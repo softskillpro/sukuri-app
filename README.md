@@ -1,4 +1,6 @@
-# Create T3 App
+# Sukuri Marketplace Application
+
+This will be a T3 app that is the main application for the frontend of Sukuri. People will be using this to interact with the Sukuri Protocol and house all the logic for doing so from a user perspective.
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
@@ -11,7 +13,6 @@ If you are not familiar with the different technologies used in this project, pl
 - [Next.js](https://nextjs.org)
 - [NextAuth.js](https://next-auth.js.org)
 - [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
 - [tRPC](https://trpc.io)
 
 ## Learn More
