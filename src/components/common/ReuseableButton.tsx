@@ -13,7 +13,7 @@ type ButtonProps =  {
 const CustomButton = styled(Button)(({ theme }) => ({
   width: '100px',
   height: '40px',
-  borderRadius: '15%',
+  borderRadius: '10%',
   backgroundColor: "pink", //theme.palette.primary.main, MUI styling
   display: 'flex',
   alignItems: 'center',
