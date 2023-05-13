@@ -8,12 +8,14 @@ import ReuseableButton from "../components/common/ReuseableButton";
 
 import { api } from "@/utils/api";
 import ColorPalette from "@/components/user/ColorPalette";
+import ImageUpload from "@/components/user/ImageUpload";
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
   const colors = ['pink', 'yellow', 'blue', 'black', 'red', 'green', 'orange'];
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingButtonTwo, setIsLoadingButtonTwo] = useState(false)
+  const [isLoadingButtonThree, setIsLoadingButtonThree] = useState(false)
 
   const handleClick = () => {
     setIsLoading(true);
@@ -28,6 +30,14 @@ const Home: NextPage = () => {
     // Simulating an asynchronous action
     setTimeout(() => {
       setIsLoadingButtonTwo(false);
+    }, 2000);
+  };
+
+  const handleSubmit = () => {
+    setIsLoadingButtonThree(true);
+    // Simulating an asynchronous action
+    setTimeout(() => {
+      setIsLoadingButtonThree(false);
     }, 2000);
   };
 
@@ -85,6 +95,7 @@ const Home: NextPage = () => {
             <div className="content"><ReuseableButton onClick={handleClickButtonTwo} isLoading={isLoadingButtonTwo} label="Sukuri Test"/> </div>
           </div>
           <ColorPalette colors={colors}/>
+          <ImageUpload onSubmit={handleSubmit} />
           </div>
         </div>
       </main>
