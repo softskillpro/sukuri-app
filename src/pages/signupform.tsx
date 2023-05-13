@@ -7,9 +7,11 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import ReuseableButton from "../components/common/ReuseableButton";
 
 import { api } from "@/utils/api";
+import ColorPalette from "@/components/user/ColorPalette";
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  const colors = ['pink', 'yellow', 'blue', 'black', 'red', 'green', 'orange'];
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingButtonTwo, setIsLoadingButtonTwo] = useState(false)
 
@@ -82,6 +84,7 @@ const Home: NextPage = () => {
             <ReuseableButton onClick={handleClick} isLoading={isLoading} label="Sukuri Test With Styling" buttonStyles={customButtonStyles}/>
             <div className="content"><ReuseableButton onClick={handleClickButtonTwo} isLoading={isLoadingButtonTwo} label="Sukuri Test"/> </div>
           </div>
+          <ColorPalette colors={colors}/>
           </div>
         </div>
       </main>
