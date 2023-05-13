@@ -31,7 +31,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onSubmit }) => {
       <input type="file" accept="image/*" onChange={handleImageChange} />
       {imageData && (
         <div>
-          <img src={imageData} alt="Uploaded" />
+          <img src={imageData} height="100px" width="100px" alt="Uploaded" />
         </div>
       )}
       {imageData && <ReuseableButton onClick={handleSubmit} isLoading={isLoading} label='Submit'/>}
