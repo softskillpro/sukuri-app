@@ -4,6 +4,7 @@ import ImageUpload from './ImageUpload';
 import ReuseableButton from '../common/ReuseableButton';
 import { Button } from '@mui/material';
 import { styled } from '@mui/system';
+import UserNameRandom from './UserNameRandom';
 
 type FormProps =  {
   onClick: () => void;
@@ -26,6 +27,7 @@ const SignUpForm: React.FC<FormProps> = ({ onClick }) => {
   const [selectedColorTrim, setSelectedColorTrim] = useState<string | null>(null);
   const [selectedColorBase, setSelectedColorBase] = useState<string | null>(null);
   const [selectedColorFoil, setSelectedColorFoil] = useState<string | null>(null);
+  const [username, setUsername] = useState<string | null>(null);
   const [profilePicture, setProfilePicture] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -37,6 +39,11 @@ const SignUpForm: React.FC<FormProps> = ({ onClick }) => {
   };
   const handleColorSelectFoil = (color: string) => {
     setSelectedColorFoil(color);
+  };
+
+  const handleInputChange = (value: string) => {
+    setUsername(value)
+    // You can perform any actions with the input value here
   };
 
   const handleSubmit = (image: string | null) => {
@@ -62,18 +69,21 @@ const SignUpForm: React.FC<FormProps> = ({ onClick }) => {
 
   return (
     <div>
-      <>
+      <><div>
+       <UserNameRandom onInputChange={handleInputChange} />
+       <p>Username: {username}</p>
+      </div>
       <div>
         <ColorPalette colors={colorsTrim} onColorSelect={handleColorSelectTrim} />
-        <p>Selected color: {selectedColorTrim}</p>
+        <p>Trim Selected color: {selectedColorTrim}</p>
       </div>
       <div>
         <ColorPalette colors={colorsBase} onColorSelect={handleColorSelectBase} />
-        <p>Selected color: {selectedColorBase}</p>
+        <p>Base Selected color: {selectedColorBase}</p>
       </div>
       <div>
         <ColorPalette colors={colorsFoil} onColorSelect={handleColorSelectFoil} />
-        <p>Selected color: {selectedColorFoil}</p>
+        <p>Foil Selected color: {selectedColorFoil}</p>
       </div>
       <div>
         <ImageUpload onImageChange={handleSubmit} />
