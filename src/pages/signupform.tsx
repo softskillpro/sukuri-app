@@ -9,6 +9,7 @@ import ReuseableButton from "../components/common/ReuseableButton";
 import { api } from "@/utils/api";
 import ColorPalette from "@/components/user/ColorPalette";
 import ImageUpload from "@/components/user/ImageUpload";
+import SignUpForm from "@/components/user/SignUpForm";
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
@@ -94,7 +95,7 @@ const Home: NextPage = () => {
             <ReuseableButton onClick={handleClick} isLoading={isLoading} label="Sukuri Test With Styling" buttonStyles={customButtonStyles}/>
             <div className="content"><ReuseableButton onClick={handleClickButtonTwo} isLoading={isLoadingButtonTwo} label="Sukuri Test"/> </div>
           </div>
-          <ColorPalette colors={colors}/>
+          <SignUpForm onClick={handleSubmit}/>
           <ImageUpload onSubmit={handleSubmit} />
           </div>
         </div>

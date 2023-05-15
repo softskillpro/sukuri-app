@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 
 interface ColorSwatchProps {
   colors: string[];
+  onColorSelect: (color: string) => void;
 }
 
-const ColorPalette: React.FC<ColorSwatchProps> = ({ colors }) => {
+const ColorPalette: React.FC<ColorSwatchProps> = ({ colors, onColorSelect }) => {
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
   const handleColorClick = (color: string) => {
     setSelectedColor(color);
+    onColorSelect(color);
   };
 
   return (
