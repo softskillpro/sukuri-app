@@ -1,28 +1,25 @@
 import React, { useState } from 'react';
-import ReuseableButton from '../common/ReuseableButton';
 
 interface ImageUploadProps {
-  onSubmit: (image: string) => void;
+  onImageChange: (image: string | null) => void;
 }
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ onSubmit }) => {
+const ImageUpload: React.FC<ImageUploadProps> = ({ onImageChange }) => {
   const [imageData, setImageData] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImageData(reader.result as string);
+        const imageData = reader.result as string;
+        setImageData(imageData);
+        onImageChange(imageData);
       };
       reader.readAsDataURL(file);
-    }
-  };
-
-  const handleSubmit = () => {
-    if (imageData) {
-      onSubmit(imageData);
+    } else {
+      setImageData(null);
+      onImageChange(null);
     }
   };
 
@@ -31,10 +28,9 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onSubmit }) => {
       <input type="file" accept="image/*" onChange={handleImageChange} />
       {imageData && (
         <div>
-          <img src={imageData} height="100px" width="100px" alt="Uploaded" />
+          <img src={imageData} alt="Uploaded" style={{ width: '100px', height: '100px' }} />
         </div>
       )}
-      {imageData && <ReuseableButton onClick={handleSubmit} isLoading={isLoading} label='Submit'/>}
     </div>
   );
 };

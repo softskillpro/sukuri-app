@@ -91,12 +91,12 @@ const Home: NextPage = () => {
               {hello.data ? hello.data.greeting : "Loading tRPC query..."}
             </p>
             <AuthShowcase />
-            <div className={styles.cardRow}>
+            {/*<div className={styles.cardRow}>
             <ReuseableButton onClick={handleClick} isLoading={isLoading} label="Sukuri Test With Styling" buttonStyles={customButtonStyles}/>
             <div className="content"><ReuseableButton onClick={handleClickButtonTwo} isLoading={isLoadingButtonTwo} label="Sukuri Test"/> </div>
-          </div>
+            </div>*/}
           <SignUpForm onClick={handleSubmit}/>
-          <ImageUpload onSubmit={handleSubmit} />
+
           </div>
         </div>
       </main>
