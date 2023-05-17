@@ -58,21 +58,21 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageChange }) => {
   };
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={.5}>
       {imageData && (
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={5}>
           <img src={imageData} alt="Uploaded" style={{ width: '302px', height: '302px' }} />
         </Grid>
       )}
       {!imageData && (
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={5}>
           <div>
             {/* Sukuri Logo Here */}
             <div style={{ background: '#FFFFFF', width: '302px', height: '302px' }} />
           </div>
         </Grid>
       )}
-      <Grid item xs={12} sm={6} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+      <Grid item xs={12} sm={3} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
       <CustomButton>
           Select Image
           <input type="file" accept="image/*" onChange={handleImageChange} />

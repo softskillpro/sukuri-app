@@ -2,6 +2,7 @@ import React, { useState} from 'react';
 import ColorPalette from './ColorPalette';
 import ImageUpload from './ImageUpload';
 import ReuseableButton from '../common/ReuseableButton';
+import Badge from './Badge';
 import { Grid, Paper, Button, Box } from '@mui/material';
 import { styled } from '@mui/system';
 import UserNameRandom from './UserNameRandom';
@@ -12,7 +13,7 @@ type FormProps =  {
 };
 
 const containerStyle = {
-  width: '90%',
+  width: '100%',
   aspectRatio: '1388/673',
   backgroundColor: '#020617',
   padding: '16px',
@@ -99,17 +100,17 @@ const SignUpForm: React.FC<FormProps> = ({ onClick }) => {
   return (
     <Box sx={containerStyle}>
     <Grid container spacing={{ xs: 2, md: 3 }} sx={{ justifyContent: 'space-between', padding: '0 16px' }}>
-      <Grid item xs="auto">
-      <div>
+      <Grid item xs={12} md={6}>
+      <div><WhiteFont>Username: {username}</WhiteFont>
        <UserNameRandom onInputChange={handleInputChange} />
-       <WhiteFont>Username: {username}</WhiteFont>
       </div>
       <div>
+      <WhiteFont>Profile Picture</WhiteFont>
         <ImageUpload onImageChange={handleSubmit} />
         <p></p>
       </div>
       </Grid>
-      <Grid item xs="auto">
+      <Grid item xs={12} md={3}>
       <div>
         <ColorPalette colors={colorsTrim} onColorSelect={handleColorSelectTrim} />
         <WhiteFont>Trim Selected color: {selectedColorTrim}</WhiteFont>
@@ -123,8 +124,16 @@ const SignUpForm: React.FC<FormProps> = ({ onClick }) => {
         <WhiteFont>Foil Selected color: {selectedColorFoil}</WhiteFont>
       </div>
       </Grid>
-    </Grid>
-    <Grid item xs="auto">
+      <Grid item xs={12} md={3}>
+      <Badge
+        file={profilePicture}
+        name={username}
+        badgeColor={selectedColorBase}
+        borderColor={selectedColorTrim}
+        fontColor={selectedColorFoil}
+        walletAddress="0x15DRFGqwewe9235g23..."
+      />
+      </Grid>
     </Grid>
     <div>
       <ReuseableButton onClick={handleClick} isLoading={isLoading} customButtonStyles={customButtonStyle} label="Submit!" />

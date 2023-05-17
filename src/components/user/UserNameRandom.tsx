@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Box } from '@mui/material';
+import { Button, Box, Grid } from '@mui/material';
 import { styled } from '@mui/system';
 
 type FormProps = {
@@ -52,10 +52,14 @@ const UserNameRandom: React.FC<FormProps> = ({ onInputChange }) => {
   };
 
   return (
-    <Box display="flex" alignItems="center" justifyContent="center" gap={2}>
-    <input type="text" value={inputValue} onChange={handleInputChange} />
-    <CustomButton onClick={handleRandomizeClick}>Randomize</CustomButton>
-  </Box>
+  <Grid container spacing={1}>
+    <Grid item xs={12} sm={6}>
+      <Box display="flex" alignItems="center" justifyContent="center" gap={2}>
+        <input type="text" value={inputValue} onChange={handleInputChange} />
+        <CustomButton onClick={handleRandomizeClick}>Randomize</CustomButton>
+      </Box>
+    </Grid>
+  </Grid>
   );
 };
 
