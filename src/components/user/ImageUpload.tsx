@@ -1,8 +1,30 @@
 import React, { useState } from 'react';
+import { Button, Grid } from '@mui/material';
+import { styled } from '@mui/system';
 
 interface ImageUploadProps {
   onImageChange: (image: string | null) => void;
 }
+
+const CustomButton = styled(Button)(({ theme }) => ({
+  width: '216px',
+  height: '41px',
+  borderRadius: '10%',
+  color: 'rgba(255, 192, 203, 1)',
+  backgroundColor: 'transparent',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  border: `1px solid rgba(255, 192, 203, 1)`,
+  '&:hover': {
+    backgroundColor: '#F88497', // Replace with your desired hover styles
+  },
+  '&:hover, &:focus': {
+    outline: `2px solid rgba(255, 192, 203, 1)`,
+    outlineOffset: '-2px',
+    backgroundColor: 'transparent',
+  },
+}));
 
 const ImageUpload: React.FC<ImageUploadProps> = ({ onImageChange }) => {
   const [imageData, setImageData] = useState<string | null>(null);
@@ -24,14 +46,27 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageChange }) => {
   };
 
   return (
-    <div>
-      <input type="file" accept="image/*" onChange={handleImageChange} />
-      {imageData && (
+  <Grid container spacing={2}>
+    {imageData && (
+      <Grid item xs={12} sm={6}>
+        <img src={imageData} alt="Uploaded" style={{ width: '302px', height: '302px' }} />
+      </Grid>
+    )}
+    {!imageData && (
+      <Grid item xs={12} sm={6}>
         <div>
-          <img src={imageData} alt="Uploaded" style={{ width: '100px', height: '100px' }} />
+          {/* Sukuri Logo Here */}
+          <div style={{ background: '#FFFFFF', width: '302px', height: '302px' }} />
         </div>
-      )}
-    </div>
+      </Grid>
+    )}
+    <Grid item xs={12} sm={6} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+      <CustomButton>
+        Select Image
+        <input type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} />
+      </CustomButton>
+    </Grid>
+  </Grid>
   );
 };
 

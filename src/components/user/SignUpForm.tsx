@@ -2,7 +2,7 @@ import React, { useState} from 'react';
 import ColorPalette from './ColorPalette';
 import ImageUpload from './ImageUpload';
 import ReuseableButton from '../common/ReuseableButton';
-import { Button } from '@mui/material';
+import { Grid, Paper, Button, Box } from '@mui/material';
 import { styled } from '@mui/system';
 import UserNameRandom from './UserNameRandom';
 
@@ -10,13 +10,37 @@ type FormProps =  {
   onClick: () => void;
 };
 
-const customButtonStyles = {
-  backgroundColor: 'pink',
-  color: 'white',
-  fontWeight: 'bold',
-  height:  '100px',
+const containerStyle = {
+  width: '90%',
+  aspectRatio: '1388/673',
+  backgroundColor: '#020617',
+  padding: '16px',
+  paddingTop: '100px',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
 };
 
+
+const customButtonStyle = ({
+  width: '322px',
+  height: '61px',
+  borderRadius: '10%',
+  color: 'rgba(255, 192, 203, 1)',
+  backgroundColor: 'transparent',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  border: `1px solid rgba(255, 192, 203, 1)`,
+  '&:hover': {
+    backgroundColor: '#F88497', // Replace with your desired hover styles
+  },
+  '&:hover, &:focus': {
+    outline: `2px solid rgba(255, 192, 203, 1)`,
+    outlineOffset: '-2px',
+    backgroundColor: 'transparent',
+  },
+});
 
 const SignUpForm: React.FC<FormProps> = ({ onClick }) => {
 
@@ -68,11 +92,19 @@ const SignUpForm: React.FC<FormProps> = ({ onClick }) => {
 
 
   return (
-    <div>
-      <><div>
+    <Box sx={containerStyle}>
+    <Grid container spacing={{ xs: 2, md: 3 }} sx={{ justifyContent: 'space-between', padding: '0 16px' }}>
+      <Grid item xs="auto">
+      <div>
        <UserNameRandom onInputChange={handleInputChange} />
        <p>Username: {username}</p>
       </div>
+      <div>
+        <ImageUpload onImageChange={handleSubmit} />
+        <p></p>
+      </div>
+      </Grid>
+      <Grid item xs="auto">
       <div>
         <ColorPalette colors={colorsTrim} onColorSelect={handleColorSelectTrim} />
         <p>Trim Selected color: {selectedColorTrim}</p>
@@ -85,15 +117,14 @@ const SignUpForm: React.FC<FormProps> = ({ onClick }) => {
         <ColorPalette colors={colorsFoil} onColorSelect={handleColorSelectFoil} />
         <p>Foil Selected color: {selectedColorFoil}</p>
       </div>
-      <div>
-        <ImageUpload onImageChange={handleSubmit} />
-        <p></p>
+      </Grid>
+    </Grid>
+    <Grid item xs="auto">
+    </Grid>
+    <div>
+      <ReuseableButton onClick={handleClick} isLoading={isLoading} customButtonStyles={customButtonStyle} label="Submit!" />
       </div>
-      <div>
-      <ReuseableButton onClick={handleClick} isLoading={isLoading} label="Submit!" buttonStyles={customButtonStyles}/>
-      </div>
-          </>
-    </div>
+    </Box>
   );
 };
 
