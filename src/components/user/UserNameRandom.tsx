@@ -1,8 +1,30 @@
 import React, { useState } from 'react';
+import { Button, Box } from '@mui/material';
+import { styled } from '@mui/system';
 
 type FormProps = {
   onInputChange: (value: string) => void;
 };
+
+const CustomButton = styled(Button)(({ theme }) => ({
+  width: '216px',
+  height: '41px',
+  borderRadius: '1%',
+  color: 'rgba(255, 192, 203, 1)',
+  backgroundColor: 'transparent',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  border: `1px solid rgba(255, 192, 203, 1)`,
+  '&:hover': {
+    backgroundColor: '#F88497', // Replace with your desired hover styles
+  },
+  '&:hover, &:focus': {
+    outline: `2px solid rgba(255, 192, 203, 1)`,
+    outlineOffset: '-2px',
+    backgroundColor: 'transparent',
+  },
+}));
 
 const UserNameRandom: React.FC<FormProps> = ({ onInputChange }) => {
   const [inputValue, setInputValue] = useState('');
@@ -30,10 +52,10 @@ const UserNameRandom: React.FC<FormProps> = ({ onInputChange }) => {
   };
 
   return (
-    <div>
-      <input type="text" value={inputValue} onChange={handleInputChange} />
-      <button onClick={handleRandomizeClick}>Randomize</button>
-    </div>
+    <Box display="flex" alignItems="center" justifyContent="center" gap={2}>
+    <input type="text" value={inputValue} onChange={handleInputChange} />
+    <CustomButton onClick={handleRandomizeClick}>Randomize</CustomButton>
+  </Box>
   );
 };
 

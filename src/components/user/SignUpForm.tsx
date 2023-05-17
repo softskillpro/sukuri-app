@@ -6,6 +6,7 @@ import { Grid, Paper, Button, Box } from '@mui/material';
 import { styled } from '@mui/system';
 import UserNameRandom from './UserNameRandom';
 
+
 type FormProps =  {
   onClick: () => void;
 };
@@ -21,11 +22,15 @@ const containerStyle = {
   alignItems: 'center',
 };
 
+const WhiteFont = styled('p')({
+  color: 'white',
+});
+
 
 const customButtonStyle = ({
   width: '322px',
   height: '61px',
-  borderRadius: '10%',
+  borderRadius: '1%',
   color: 'rgba(255, 192, 203, 1)',
   backgroundColor: 'transparent',
   display: 'flex',
@@ -97,7 +102,7 @@ const SignUpForm: React.FC<FormProps> = ({ onClick }) => {
       <Grid item xs="auto">
       <div>
        <UserNameRandom onInputChange={handleInputChange} />
-       <p>Username: {username}</p>
+       <WhiteFont>Username: {username}</WhiteFont>
       </div>
       <div>
         <ImageUpload onImageChange={handleSubmit} />
@@ -107,15 +112,15 @@ const SignUpForm: React.FC<FormProps> = ({ onClick }) => {
       <Grid item xs="auto">
       <div>
         <ColorPalette colors={colorsTrim} onColorSelect={handleColorSelectTrim} />
-        <p>Trim Selected color: {selectedColorTrim}</p>
+        <WhiteFont>Trim Selected color: {selectedColorTrim}</WhiteFont>
       </div>
       <div>
         <ColorPalette colors={colorsBase} onColorSelect={handleColorSelectBase} />
-        <p>Base Selected color: {selectedColorBase}</p>
+        <WhiteFont>Base Selected color: {selectedColorBase}</WhiteFont>
       </div>
       <div>
         <ColorPalette colors={colorsFoil} onColorSelect={handleColorSelectFoil} />
-        <p>Foil Selected color: {selectedColorFoil}</p>
+        <WhiteFont>Foil Selected color: {selectedColorFoil}</WhiteFont>
       </div>
       </Grid>
     </Grid>
