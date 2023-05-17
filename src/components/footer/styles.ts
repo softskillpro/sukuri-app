@@ -13,11 +13,12 @@ export const FooterContainer = styled(FlexBox)(({ theme }) => ({
     alignItems: 'center',
     width: 'fit-content',
     textDecoration: 'none',
+    marginBottom: 4,
   },
 
   '.grid-wrapper': {
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'space-between',
   },
 

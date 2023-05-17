@@ -58,7 +58,7 @@ const FooterBody = ({ title, href }: HrefProps) => (
 const Footer = () => {
   return (
     <FooterContainer>
-      <Grid container mb={3} className='grid-wrapper'>
+      <Grid container mb={2.5} className='grid-wrapper'>
         <Grid item xs={12} sm={4} className='grid-item'>
           {navs.map((nav) => (
             <FooterBody key={nav.href} title={nav.title} href={nav.href} />
