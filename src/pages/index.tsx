@@ -2,15 +2,16 @@ import styles from './index.module.css'
 import { useCallback } from 'react'
 import { type NextPage } from 'next'
 import Head from 'next/head'
-import Link from 'next/link'
-import { signIn, signOut, useSession } from 'next-auth/react'
+// import Link from 'next/link'
+// import { signIn, signOut, useSession } from 'next-auth/react'
 
 import TierCard from '@/components/common/TierCard'
-import { api } from '@/utils/api'
+import NftCard from '@/components/common/NftCard'
+// import { api } from '@/utils/api'
 import mock from '@/utils/mock'
 
 const Home: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: 'from tRPC' })
+  // const hello = api.example.hello.useQuery({ text: 'from tRPC' })
 
   const handleClick = useCallback(() => {
     console.log('clicked')
@@ -24,11 +25,14 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main className={styles.main}>
+        <TierCard nft={mock[0]} handleClick={handleClick} />
+        <NftCard nft={mock[0]} />
+      </main>
+      {/* <main className={styles.main}>
         <div className={styles.container}>
           <h1 className={styles.title}>
             Create <span className={styles.pinkSpan}>T3</span> App
           </h1>
-          <TierCard nft={mock[0]} handleClick={handleClick} />
           <div className={styles.cardRow}>
             <Link
               className={styles.card}
@@ -60,33 +64,33 @@ const Home: NextPage = () => {
             <AuthShowcase />
           </div>
         </div>
-      </main>
+      </main> */}
     </>
   )
 }
 
 export default Home
 
-const AuthShowcase: React.FC = () => {
-  const { data: sessionData } = useSession()
+// const AuthShowcase: React.FC = () => {
+//   const { data: sessionData } = useSession()
 
-  const { data: secretMessage } = api.example.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined },
-  )
+//   const { data: secretMessage } = api.example.getSecretMessage.useQuery(
+//     undefined, // no input
+//     { enabled: sessionData?.user !== undefined },
+//   )
 
-  return (
-    <div className={styles.authContainer}>
-      <p className={styles.showcaseText}>
-        {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-        {secretMessage && <span> - {secretMessage}</span>}
-      </p>
-      <button
-        className={styles.loginButton}
-        onClick={sessionData ? () => void signOut() : () => void signIn()}
-      >
-        {sessionData ? 'Sign out' : 'Sign in'}
-      </button>
-    </div>
-  )
-}
+//   return (
+//     <div className={styles.authContainer}>
+//       <p className={styles.showcaseText}>
+//         {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
+//         {secretMessage && <span> - {secretMessage}</span>}
+//       </p>
+//       <button
+//         className={styles.loginButton}
+//         onClick={sessionData ? () => void signOut() : () => void signIn()}
+//       >
+//         {sessionData ? 'Sign out' : 'Sign in'}
+//       </button>
+//     </div>
+//   )
+// }

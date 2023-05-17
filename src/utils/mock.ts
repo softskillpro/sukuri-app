@@ -7,8 +7,10 @@ const mock: NFTType[] = [
     short_description: 'A battle pass for Nifty Island games.',
     long_description:
       'With the Nifty Island Battle Pass, you are able to gain extra rewards in game every week, take part in battle pass only minigames, and more!',
-    thumbnail_image: 'https://example.com',
-    large_image: 'https://example.com',
+    thumbnail_image:
+      'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
+    large_image:
+      'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
     chain_id: 1,
     member_count: 5422,
     tiers: [
