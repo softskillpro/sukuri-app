@@ -1,6 +1,7 @@
 import Web3 from 'web3'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import FlexBox from '@/components/common/FlexBox'
 import StyledButton from '@/components/common/StyledButton'
 import type { NFTType } from '@/interface/Nft.interface'
 import { TierCardContainer, PriceCard } from './styles'
@@ -12,7 +13,7 @@ interface TierCardProps {
 
 const TierCard = ({ nft, handleClick }: TierCardProps) => {
   return (
-    <>
+    <FlexBox sx={{ flexDirection: 'column', width: 'fit-content' }}>
       <TierCardContainer>
         <Typography
           variant='subtitle1'
@@ -118,7 +119,7 @@ const TierCard = ({ nft, handleClick }: TierCardProps) => {
           Subscribe
         </StyledButton>
       </PriceCard>
-    </>
+    </FlexBox>
   )
 }
 
