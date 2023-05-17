@@ -96,26 +96,57 @@ const theme = createTheme({
     },
   },
   palette: {
-    primary: { main: '#000' },
-    secondary: { main: '#fff' },
-    yellow: { light: '#FFBF0D', main: '#FF9809' },
-    orange: { light: '#FF7004', main: '#FF4900' },
-    gray: { main: '#8C8CA5', dark: '#707070' },
-    text: { primary: '#fff', secondary: '#000' },
+    primary: {
+      main: '#FFF2F4',
+    },
+    secondary: {
+      main: '#FFF2F4',
+    },
+    text: { primary: '#030712', secondary: '#461427' },
+    text1: { main: '#F88497' },
+    black: { main: '#000' },
+    white: { main: '#fff' },
+    btnGradient: {
+      main: 'linear-gradient(0deg, rgba(103, 181, 76, 0.19), rgba(103, 181, 76, 0.19)), #FFFFFF',
+      dark: 'linear-gradient(0deg, rgba(208, 44, 44, 0.19), rgba(208, 44, 44, 0.19)), #FFFFFF',
+      light:
+        'linear-gradient(0deg, rgba(208, 113, 44, 0.19), rgba(208, 113, 44, 0.19)), #FFFFFF',
+    },
+    bgGradient: {
+      main: 'linear-gradient(90deg, #030712 0%, #461427 50.52%, #030712 100%)',
+      light: 'linear-gradient(180deg, #331122 0%, #020617 100%)',
+    },
+    shadow: {
+      main: 'inset 0px -4px 0px #67B54C',
+      dark: 'inset 0px -4px 0px #D02C2C',
+      light: 'inset 0px -4px 0px #D0712C',
+      contrastText: '1px 1px 10px 1px rgba(248, 132, 151, 0.5)',
+    },
+    shadow1: {
+      main: 'inset 0px -4px 0px 2px #F88497, inset 0px 8px 0px 2px #F88497',
+    },
   },
 })
 
 declare module '@mui/material/styles' {
   interface Palette {
-    yellow: Palette['primary']
-    gray: Palette['primary']
-    orange: Palette['primary']
+    text1: Palette['primary']
+    black: Palette['primary']
+    white: Palette['primary']
+    btnGradient: Palette['primary']
+    bgGradient: Palette['primary']
+    shadow: Palette['primary']
+    shadow1: Palette['primary']
   }
 
   interface PaletteOptions {
-    yellow?: PaletteOptions['primary']
-    gray?: PaletteOptions['primary']
-    orange?: PaletteOptions['primary']
+    text1?: PaletteOptions['primary']
+    black?: PaletteOptions['primary']
+    white?: PaletteOptions['primary']
+    btnGradient?: PaletteOptions['primary']
+    bgGradient?: PaletteOptions['primary']
+    shadow?: PaletteOptions['primary']
+    shadow1?: PaletteOptions['primary']
   }
 
   interface TypographyVariants {

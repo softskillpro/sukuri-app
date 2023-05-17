@@ -1,13 +1,20 @@
 import styles from './index.module.css'
+import { useCallback } from 'react'
 import { type NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { signIn, signOut, useSession } from 'next-auth/react'
 
+import TierCard from '@/components/common/TierCard'
 import { api } from '@/utils/api'
+import mock from '@/utils/mock'
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: 'from tRPC' })
+
+  const handleClick = useCallback(() => {
+    console.log('clicked')
+  }, [])
 
   return (
     <>
@@ -21,6 +28,7 @@ const Home: NextPage = () => {
           <h1 className={styles.title}>
             Create <span className={styles.pinkSpan}>T3</span> App
           </h1>
+          <TierCard nft={mock[0]} handleClick={handleClick} />
           <div className={styles.cardRow}>
             <Link
               className={styles.card}
