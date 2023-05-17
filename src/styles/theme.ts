@@ -26,61 +26,73 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontSize: 11,
-    fontFamily: 'var(--Poppins)',
+    fontSize: 14,
+    fontFamily: 'var(--Montserrat)',
     fontWeightRegular: 'normal',
     h1: {
-      fontSize: 48,
-      lineHeight: 1.4,
+      fontSize: 100,
+      lineHeight: '122px',
       fontWeight: 700,
     },
     h2: {
-      fontSize: 40,
-      lineHeight: 1.4,
+      fontSize: 70,
+      lineHeight: '85px',
       fontWeight: 700,
     },
     h3: {
-      fontSize: 36,
-      lineHeight: 1.4,
+      fontSize: 60,
+      lineHeight: '73px',
       fontWeight: 700,
     },
     h4: {
       fontSize: 32,
-      lineHeight: 1.4,
-      fontWeight: 400,
+      lineHeight: '39px',
+      fontWeight: 700,
     },
     h5: {
-      fontSize: 28,
-      lineHeight: 1.4,
-      fontWeight: 400,
+      fontSize: 30,
+      lineHeight: '37px',
+      fontWeight: 700,
     },
     h6: {
-      fontSize: 24,
-      lineHeight: 1.4,
+      fontSize: 28,
+      lineHeight: '34px',
       fontWeight: 700,
     },
     subtitle1: {
-      fontSize: 18,
-      lineHeight: 1.4,
-      fontWeight: 400,
+      fontSize: 25,
+      lineHeight: '30px',
+      fontWeight: 700,
     },
     subtitle2: {
-      fontSize: 16,
-      lineHeight: 1.4,
-      fontWeight: 400,
+      fontSize: 24,
+      lineHeight: '29px',
+      fontWeight: 500,
     },
     body1: {
-      fontSize: 14,
-      lineHeight: 1.4,
-      fontWeight: 400,
+      fontSize: 22,
+      lineHeight: '27px',
+      fontWeight: 700,
     },
     body2: {
-      fontSize: 12,
-      lineHeight: 1.4,
+      fontSize: 20,
+      lineHeight: '24px',
       fontWeight: 400,
     },
     caption: {
-      fontSize: 10,
+      fontSize: 18,
+      lineHeight: '22px',
+      fontWeight: 400,
+    },
+    custom1: {
+      fontSize: 16,
+      lineHeight: '20px',
+      fontWeight: 500,
+    },
+    custom2: {
+      fontSize: 14,
+      lineHeight: '17px',
+      fontWeight: 400,
     },
   },
   palette: {
@@ -104,6 +116,23 @@ declare module '@mui/material/styles' {
     yellow?: PaletteOptions['primary']
     gray?: PaletteOptions['primary']
     orange?: PaletteOptions['primary']
+  }
+
+  interface TypographyVariants {
+    custom1: React.CSSProperties
+    custom2: React.CSSProperties
+  }
+
+  interface TypographyVariantsOptions {
+    custom1?: React.CSSProperties
+    custom2?: React.CSSProperties
+  }
+}
+
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    custom1: true
+    custom2: true
   }
 }
 

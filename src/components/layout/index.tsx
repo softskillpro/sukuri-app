@@ -1,10 +1,10 @@
-import React from "react";
-import Seo from "../seo";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import React from 'react'
+import Seo from '../seo'
+import Header from '@/components/header'
+import Footer from '@/components/footer'
 
 interface LayoutProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 const Layout = ({ children }: LayoutProps) => {
@@ -15,7 +15,7 @@ const Layout = ({ children }: LayoutProps) => {
       <main>{children}</main>
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

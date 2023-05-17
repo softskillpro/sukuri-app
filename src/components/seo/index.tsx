@@ -1,25 +1,25 @@
-import type { FC } from "react";
-import Head from "next/head";
-import PropTypes from "prop-types";
+import type { FC } from 'react'
+import Head from 'next/head'
+import PropTypes from 'prop-types'
 
 interface SeoProps {
-  title?: string;
+  title?: string
 }
 
 const Seo: FC<SeoProps> = (props) => {
-  const { title } = props;
+  const { title } = props
 
-  const fullTitle = title ? title + " | Sukuri" : "Sukuri";
+  const fullTitle = title ? title + ' | Sukuri' : 'Sukuri'
 
   return (
     <Head>
       <title>{fullTitle}</title>
     </Head>
-  );
-};
+  )
+}
 
-export default Seo;
+export default Seo
 
 Seo.propTypes = {
   title: PropTypes.string,
-};
+}
