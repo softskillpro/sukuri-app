@@ -1,20 +1,45 @@
-import { type AppType } from "next/app";
-import { type Session } from "next-auth";
-import { SessionProvider } from "next-auth/react";
+import { type AppType } from 'next/app'
+import { type Session } from 'next-auth'
+import { SessionProvider } from 'next-auth/react'
+import { Montserrat } from 'next/font/google'
+import { CacheProvider, EmotionCache } from '@emotion/react'
+import { ThemeProvider, CssBaseline, createTheme } from '@mui/material'
 
-import { api } from "@/utils/api";
+import Layout from '@/components/layout'
+import { api } from '@/utils/api'
+import createEmotionCache from '@/utils/create-emotion-cache'
+import theme from '@/styles/theme'
 
-import "@/styles/globals.css";
+const clientSideEmotionCache = createEmotionCache()
 
-const MyApp: AppType<{ session: Session | null }> = ({
+const lightTheme = createTheme(theme)
+const montserrat = Montserrat({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--Montserrat',
+})
+
+const MyApp: AppType<{
+  session: Session | null
+  emotionCache?: EmotionCache
+}> = ({
   Component,
-  pageProps: { session, ...pageProps },
+  pageProps: { session, emotionCache = clientSideEmotionCache, ...pageProps },
 }) => {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <CacheProvider value={emotionCache}>
+        <ThemeProvider theme={lightTheme}>
+          <CssBaseline />
+          <div className={montserrat.variable}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </div>
+        </ThemeProvider>
+      </CacheProvider>
     </SessionProvider>
-  );
-};
+  )
+}
 
-export default api.withTRPC(MyApp);
+export default api.withTRPC(MyApp)
