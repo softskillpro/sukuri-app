@@ -1,9 +1,9 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import FlexBox from '@/components/common/FlexBox'
 import { FooterContainer } from './styles'
+import LogoIcon from '@/components/svgs/LogoIcon'
 
 interface HrefProps {
   title: string
@@ -58,6 +58,8 @@ const FooterBody = ({ title, href }: HrefProps) => (
 const Footer = () => {
   return (
     <FooterContainer>
+      <LogoIcon fill='#FFC0CB' sx={{ fontSize: 440 }} className='bg-img' />
+
       <Grid container mb={2.5} className='grid-wrapper'>
         <Grid item xs={12} sm={4} className='grid-item'>
           {navs.map((nav) => (
@@ -77,9 +79,9 @@ const Footer = () => {
       </Grid>
 
       <FlexBox mb={0.5}>
-        <Image src='/images/logo.png' width={50} height={46} alt='Logo' />
+        <LogoIcon sx={{ fontSize: 50 }} />
         <Typography variant='body1' ml={2}>
-          Sukuri Protocol
+          Sukuri <span style={{ fontWeight: 400 }}>Protocol</span>
         </Typography>
       </FlexBox>
 

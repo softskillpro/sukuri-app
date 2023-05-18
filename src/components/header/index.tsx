@@ -5,6 +5,7 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import FlexBox from '@/components/common/FlexBox'
+import LogoIcon from '@/components/svgs/LogoIcon'
 import HambergerMenuIcon from '@/components/svgs/HambergerMenuIcon'
 import { HeaderContainer, StyledDrawer } from './styles'
 
@@ -85,9 +86,9 @@ const Header = () => {
     <>
       <HeaderContainer>
         <Link href='/'>
-          <Image src='/images/logo.png' width={50} height={46} alt='Logo' />
+          <LogoIcon sx={{ fontSize: 50 }} />
           <Typography variant='body1' color='text.primary' ml={2}>
-            Sukuri Protocol
+            Sukuri <span style={{ fontWeight: 400 }}>Protocol</span>
           </Typography>
         </Link>
 
@@ -102,9 +103,9 @@ const Header = () => {
 
       <HeaderDrawer open={open} handleClose={handleClose}>
         <Link href='/'>
-          <Image src='/images/logo.png' width={50} height={46} alt='Logo' />
+          <LogoIcon sx={{ fontSize: 50 }} />
           <Typography variant='body1' color='text.primary' ml={2}>
-            Sukuri Protocol
+            Sukuri <span style={{ fontWeight: 400 }}>Protocol</span>
           </Typography>
         </Link>
 
