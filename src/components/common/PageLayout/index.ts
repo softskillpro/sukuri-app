@@ -5,7 +5,7 @@ const PageLayout = styled(Box)(({ theme }) => ({
   padding: '0 90px',
 
   [theme.breakpoints.down('sm')]: {
-    padding: '0 30px',
+    padding: '0 20px',
   },
 }))
 

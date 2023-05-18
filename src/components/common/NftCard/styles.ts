@@ -9,10 +9,12 @@ export const NftCardContainer = styled(FlexBox)(({ theme }) => ({
 
   img: {
     borderRadius: ' 5px 5px 0px 0px',
-    width: '100%',
+    width: 320,
   },
 
   [theme.breakpoints.down(450)]: {
-    width: 'calc(100% - 40px)',
+    width: 310,
+
+    img: { width: 310 },
   },
 }))

@@ -40,7 +40,7 @@ const TierCard = ({ nft, handleClick }: TierCardProps) => {
               textAlign: 'center',
             }}
           >
-            {nft?.short_description}
+            {nft?.tiers[0]?.descripton}
           </Typography>
 
           <Typography
@@ -53,11 +53,8 @@ const TierCard = ({ nft, handleClick }: TierCardProps) => {
             What’s included:
           </Typography>
 
-          <Typography variant='custom2' color='white.main' textAlign='center'>
-            {nft?.long_description}
-          </Typography>
-          {/* <ul style={{ margin: '9px 0 0', paddingLeft: 20 }}>
-            {contents.map((content, id) => (
+          <ul style={{ margin: '9px 0 0', paddingLeft: 20 }}>
+            {nft?.tiers[0]?.features.map((content, id) => (
               <li
                 key={`content-${id}`}
                 style={{
@@ -75,7 +72,7 @@ const TierCard = ({ nft, handleClick }: TierCardProps) => {
                 </Typography>
               </li>
             ))}
-          </ul> */}
+          </ul>
         </Box>
       </TierCardContainer>
 

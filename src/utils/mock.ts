@@ -12,7 +12,8 @@ const mock: NFTType[] = [
     large_image:
       'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
     chain_id: 1,
-    member_count: 5422,
+    member_count: 1722,
+    is_erc721: false,
     tiers: [
       {
         address: '0xe7A5839F8F978037B72bd48d3777E58Aa6093588',
@@ -20,8 +21,12 @@ const mock: NFTType[] = [
         name: 'Bronze Battle Pass',
         price: '25000000000000000000',
         unit: 'wei',
+        supply: 5000,
+        filled: 1222,
         subscription_length: 90,
         subscription_length_unit: 'days',
+        descripton: 'Basic Bronze Battle Pass',
+        features: ['Online Membership Access', '5 Star Points per Month'],
       },
       {
         address: '0xe7A5839F8F978037B72bd48d3777E58Aa6093588',
@@ -29,8 +34,16 @@ const mock: NFTType[] = [
         name: 'Silver Battle Pass',
         price: '40000000000000000000',
         unit: 'wei',
+        supply: 1000,
+        filled: 254,
         subscription_length: 90,
         subscription_length_unit: 'days',
+        descripton: 'Upgraded Silver Battle Pass',
+        features: [
+          'Online Membership Access',
+          '10 Star Points per Month',
+          'Unique Island Rental',
+        ],
       },
       {
         address: '0xe7A5839F8F978037B72bd48d3777E58Aa6093588',
@@ -38,8 +51,17 @@ const mock: NFTType[] = [
         name: 'Gold Battle Pass',
         price: '55000000000000000000',
         unit: 'wei',
+        supply: 500,
+        filled: 246,
         subscription_length: 90,
         subscription_length_unit: 'days',
+        descripton: 'Ultra Gold Battle Pass',
+        features: [
+          'Online Membership Access',
+          '25 Star Points per Month',
+          'Unique Island Rental',
+          'Unique House Rental',
+        ],
       },
     ],
     accepted_payment: [
@@ -63,19 +85,31 @@ const mock: NFTType[] = [
     short_description: 'Gain access to the #1 reselling group!',
     long_description:
       'Resell Calendar VIP status offers existing and new RC users access to advanced tools for finding the cheapest deals, price glitches, and drops. Join today and increase your revenue! ',
-    thumbnail_image: 'https://example.com',
+    thumbnail_image:
+      'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
     large_image:
       'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
     chain_id: 1,
     member_count: 1572,
+    is_erc721: true,
     tiers: [
       {
         address: '0x7686BcC557327825B643f0c29F0857489CfC274E',
         name: 'Resell Calendar VIP',
         price: '25000000000000000000',
         unit: 'wei',
+        supply: 5000,
         subscription_length: 90,
         subscription_length_unit: 'days',
+        id: 3,
+        filled: 246,
+        descripton: 'Ultra Gold Battle Pass',
+        features: [
+          'Online Membership Access',
+          '25 Star Points per Month',
+          'Unique Island Rental',
+          'Unique House Rental',
+        ],
       },
     ],
     accepted_payment: [
@@ -99,19 +133,31 @@ const mock: NFTType[] = [
     short_description: 'Gain access to the Bored Ape Yacht Club community.',
     long_description:
       'The Bored Ape Yacht Club is a collection of 10,000 unique NFTs. Members of the club have access to exclusive benefits, such as early access to new projects, discounts on merchandise, and more.',
-    thumbnail_image: 'https://example.com',
+    thumbnail_image:
+      'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
     large_image:
       'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
     chain_id: 1,
     member_count: 12400,
+    is_erc721: true,
     tiers: [
       {
         address: '0x7686BcC557327825B643f0c29F0857489CfC274E',
         name: 'Bored Ape Yacht Club Membership',
         price: '50000000000000000000',
         unit: 'wei',
+        supply: -1,
         subscription_length: 365,
         subscription_length_unit: 'days',
+        id: 3,
+        filled: 246,
+        descripton: 'Ultra Gold Battle Pass',
+        features: [
+          'Online Membership Access',
+          '25 Star Points per Month',
+          'Unique Island Rental',
+          'Unique House Rental',
+        ],
       },
     ],
     accepted_payment: [
@@ -135,11 +181,13 @@ const mock: NFTType[] = [
     short_description: 'Premium access to DAO Alpha strategies and insights.',
     long_description:
       'Get exclusive access to the DAO Alpha Group. It offers insights, strategies, and discussions around DAOs. Make informed decisions and leverage the collective knowledge of the group!',
-    thumbnail_image: 'https://example.com',
+    thumbnail_image:
+      'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
     large_image:
       'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
     chain_id: 1,
-    member_count: 2345,
+    member_count: 1985,
+    is_erc721: false,
     tiers: [
       {
         address: '0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d',
@@ -147,8 +195,16 @@ const mock: NFTType[] = [
         name: 'Insight Tier',
         price: '10000000000000000000',
         unit: 'wei',
+        supply: -1,
+        filled: 523,
         subscription_length: 30,
         subscription_length_unit: 'days',
+        descripton:
+          'Gain valuable insights to new tokens, NFTs, and Web3 projects.',
+        features: [
+          'Private Discord Access',
+          'Voting Rights to DAO Alpha Group',
+        ],
       },
       {
         address: '0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d',
@@ -156,8 +212,16 @@ const mock: NFTType[] = [
         name: 'Strategy Tier',
         price: '20000000000000000000',
         unit: 'wei',
+        supply: -1,
+        filled: 573,
         subscription_length: 60,
         subscription_length_unit: 'days',
+        descripton:
+          'Everything Insight tier includes plus toolkits for building your own trading strategies.',
+        features: [
+          'Access to internal toolkits',
+          '1 on 1 strategy building with experts',
+        ],
       },
       {
         address: '0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d',
@@ -165,8 +229,16 @@ const mock: NFTType[] = [
         name: 'Elite Tier',
         price: '50000000000000000000',
         unit: 'wei',
+        supply: -1,
+        filled: 889,
         subscription_length: 90,
         subscription_length_unit: 'days',
+        descripton:
+          'The all inclusive Elite tier, access to everything and more!',
+        features: [
+          'Access to all internal tooling and servers',
+          'Seat at the table with the board.',
+        ],
       },
     ],
     accepted_payment: [
@@ -190,19 +262,30 @@ const mock: NFTType[] = [
     short_description: 'Earn money by playing Axie Infinity.',
     long_description:
       'The Axie Infinity Scholarship Program is a way for people to earn money by playing the game Axie Infinity. Players who are accepted into the program are given a team of Axies, which are digital pets that can be used to battle, earn rewards, and more. Players can then use their Axies to earn Smooth Love Potion (SLP), which can be converted into real money.',
-    thumbnail_image: 'https://example.com',
+    thumbnail_image:
+      'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
     large_image:
       'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
     chain_id: 1,
-    member_count: 100000,
+    member_count: 14600,
+    is_erc721: true,
     tiers: [
       {
         address: '0x7686BcC557327825B643f0c29F0857489CfC274E',
         name: 'Axie Infinity Scholarship Program',
-        price: '0.05 ETH',
+        price: '5000000000000000000000',
         unit: 'wei',
+        supply: -1,
         subscription_length: 30,
         subscription_length_unit: 'days',
+        id: 3,
+        filled: 889,
+        descripton:
+          'The all inclusive Elite tier, access to everything and more!',
+        features: [
+          'Access to all internal tooling and servers',
+          'Seat at the table with the board.',
+        ],
       },
     ],
     accepted_payment: [
@@ -220,27 +303,37 @@ const mock: NFTType[] = [
     short_description: 'A gaming platform for blockchain gamers.',
     long_description:
       'Blockchain Gaming Club is a gaming platform for blockchain gamers. We offer a variety of games to choose from, all of which are powered by blockchain technology. Our members have access to exclusive features, such as early access to new games, discounts on in-game items, and more. Join today and start gaming on the blockchain! ',
-    thumbnail_image: 'https://example.com',
+    thumbnail_image:
+      'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
     large_image:
       'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
     chain_id: 1,
     member_count: 1000,
+    is_erc721: false,
     tiers: [
       {
         address: '0x7686BcC557327825B643f0c29F0857489CfC274E',
         name: 'Basic Membership',
         price: '10000000000000000000',
         unit: 'wei',
+        supply: -1,
+        filled: 455,
         subscription_length: 30,
         subscription_length_unit: 'days',
+        descripton: 'Access to unlimited games on our platform.',
+        features: [],
       },
       {
         address: '0x7686BcC557327825B643f0c29F0857489CfC274E',
         name: 'Premium Membership',
         price: '20000000000000000000',
         unit: 'wei',
+        supply: -1,
+        filled: 545,
         subscription_length: 90,
         subscription_length_unit: 'days',
+        descripton: 'Early access to new games before the basic membership!',
+        features: [],
       },
     ],
     accepted_payment: [
@@ -265,35 +358,49 @@ const mock: NFTType[] = [
       'The most informative and entertaining cryptocurrency YouTuber on the internet.',
     long_description:
       'The Crypto Guy is your one-stop shop for all things cryptocurrency. He covers the latest news, provides in-depth analysis, and teaches you how to make money in the crypto market. His videos are informative and entertaining, and he has a large following of subscribers. Join his Patreon today and get access to exclusive content, such as early access to new videos, behind-the-scenes content, and more. ',
-    thumbnail_image: 'https://example.com/the-crypto-guy.jpg',
+    thumbnail_image:
+      'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1/the-crypto-guy.jpg',
     large_image:
-      'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
+      'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1/the-crypto-guy-large.jpg',
     chain_id: 1,
-    member_count: 10000,
+    member_count: 124,
+    is_erc721: false,
     tiers: [
       {
         address: '0x7686BcC557327825B643f0c29F0857489CfC274E',
         name: 'Bronze Tier',
         price: '5000000000000000000',
         unit: 'wei',
+        supply: -1,
+        filled: 67,
         subscription_length: 30,
         subscription_length_unit: 'days',
+        descripton: 'Help support me by subscribing to the bronze tier!',
+        features: [],
       },
       {
         address: '0x7686BcC557327825B643f0c29F0857489CfC274E',
         name: 'Silver Tier',
         price: '10000000000000000000',
         unit: 'wei',
+        supply: -1,
+        filled: 55,
         subscription_length: 90,
         subscription_length_unit: 'days',
+        descripton: 'Want to help even more? Buy the silver tier!',
+        features: ['Special role in Discord server'],
       },
       {
         address: '0x7686BcC557327825B643f0c29F0857489CfC274E',
         name: 'Gold Tier',
         price: '15000000000000000000',
         unit: 'wei',
+        supply: -1,
+        filled: 2,
         subscription_length: 180,
         subscription_length_unit: 'days',
+        descripton: 'Love my content?! Buy this!',
+        features: ['Special role in Discord server', 'Early access to videos'],
       },
     ],
     accepted_payment: [

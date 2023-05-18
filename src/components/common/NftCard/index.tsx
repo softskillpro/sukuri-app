@@ -7,14 +7,15 @@ import { NftCardContainer } from './styles'
 
 interface NftCardProps {
   nft?: NFTType
+  className?: string
 }
 
-const NftCard = ({ nft }: NftCardProps) => {
+const NftCard = ({ nft, className }: NftCardProps) => {
   return (
-    <NftCardContainer>
+    <NftCardContainer className={className || 'nft-card-container'}>
       <Image
         src={nft?.large_image || 'https://picsum.photos/seed/picsum/200/300'}
-        width={200}
+        width={320}
         height={160}
         alt='NFT'
       />
@@ -23,8 +24,14 @@ const NftCard = ({ nft }: NftCardProps) => {
         variant='body2'
         fontWeight={700}
         color='primary.main'
-        mt={1.5}
-        mb={2}
+        textAlign='center'
+        sx={{
+          maxWidth: 260,
+          margin: '12px 0 16px',
+          textOverflow: 'ellipsis',
+          overflow: 'hidden',
+          whiteSpace: 'nowrap',
+        }}
       >
         {nft?.name}
       </Typography>

@@ -11,8 +11,8 @@ export const MarketplaceContainer = styled(Box)(({ theme }) => ({
 
   '.marketplace-flower': {
     position: 'absolute',
-    top: -90,
-    right: -42,
+    top: -130,
+    right: -75,
     zIndex: -10,
   },
 

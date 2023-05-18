@@ -1,22 +1,22 @@
 import Typography from '@mui/material/Typography'
 import { HorizontalDivider } from '@/components/common/StyledDivider'
 import MultiCarousel from '@/components/multicarousel'
-import { RecommendedCommunitiesContainer } from './styles'
+import { RisingProjectsContainer } from './styles'
 import mock from '@/utils/mock'
 
-const RecommendedCommunities = () => {
+const RisingProjects = () => {
   return (
-    <RecommendedCommunitiesContainer>
+    <RisingProjectsContainer>
       <div className='community-header'>
         <HorizontalDivider />
         <Typography variant='h6' color='text.secondary' mt={6.25} mb={3}>
-          Recommended Communities
+          Rising Projects
         </Typography>
       </div>
 
       <MultiCarousel nfts={mock} />
-    </RecommendedCommunitiesContainer>
+    </RisingProjectsContainer>
   )
 }
 
-export default RecommendedCommunities
+export default RisingProjects

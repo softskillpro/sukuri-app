@@ -4,8 +4,12 @@ export interface TierType {
   name: string
   price: string
   unit: string
+  supply: number
+  filled: number
   subscription_length: number
   subscription_length_unit: string
+  descripton: string
+  features: string[]
 }
 
 export interface PaymentType {
@@ -24,6 +28,7 @@ export interface NFTType {
   large_image: string
   chain_id: number
   member_count: number
+  is_erc721: boolean
   tiers: TierType[]
   accepted_payment: PaymentType[]
 }

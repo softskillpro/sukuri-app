@@ -12,7 +12,7 @@ const TodaysPick = () => {
       <div className='pick-header-wrapper'>
         <HorizontalDivider />
         <Typography variant='h6' color='text.secondary' mt={6.25}>
-          TodaysPick
+          Todays Pick
         </Typography>
       </div>
 
@@ -39,6 +39,7 @@ const TodaysPick = () => {
             src='/images/pick.png'
             width={823}
             height={341}
+            priority
             alt='Todays Pick'
             className='pick-image'
           />

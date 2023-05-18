@@ -1,12 +1,13 @@
 import { styled } from '@mui/material/styles'
 import FlexBox from '@/components/common/FlexBox'
 
-export const RecommendedCommunitiesContainer = styled(FlexBox)(({ theme }) => ({
+export const AboutSukuriContainer = styled(FlexBox)(({ theme }) => ({
   flexDirection: 'column',
-  marginBottom: 50,
+  marginBottom: 40,
 
   '.community-header': {
     width: '70%',
+    marginBottom: 50,
   },
 
   [theme.breakpoints.down('md')]: {
