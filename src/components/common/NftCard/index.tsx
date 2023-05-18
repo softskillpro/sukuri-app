@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Typography from '@mui/material/Typography'
 import FlexBox from '@/components/common/FlexBox'
-import StyledDivider from '@/components/common/StyledDivider'
+import { VerticalDivider } from '@/components/common/StyledDivider'
 import type { NFTType } from '@/interface/Nft.interface'
 import { NftCardContainer } from './styles'
 
@@ -41,7 +41,7 @@ const NftCard = ({ nft }: NftCardProps) => {
           Members
         </Typography>
 
-        <StyledDivider />
+        <VerticalDivider />
 
         <Typography
           variant='caption'

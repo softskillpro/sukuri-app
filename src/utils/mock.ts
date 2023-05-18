@@ -64,7 +64,8 @@ const mock: NFTType[] = [
     long_description:
       'Resell Calendar VIP status offers existing and new RC users access to advanced tools for finding the cheapest deals, price glitches, and drops. Join today and increase your revenue! ',
     thumbnail_image: 'https://example.com',
-    large_image: 'https://example.com',
+    large_image:
+      'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
     chain_id: 1,
     member_count: 1572,
     tiers: [
@@ -99,7 +100,8 @@ const mock: NFTType[] = [
     long_description:
       'The Bored Ape Yacht Club is a collection of 10,000 unique NFTs. Members of the club have access to exclusive benefits, such as early access to new projects, discounts on merchandise, and more.',
     thumbnail_image: 'https://example.com',
-    large_image: 'https://example.com',
+    large_image:
+      'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
     chain_id: 1,
     member_count: 12400,
     tiers: [
@@ -134,7 +136,8 @@ const mock: NFTType[] = [
     long_description:
       'Get exclusive access to the DAO Alpha Group. It offers insights, strategies, and discussions around DAOs. Make informed decisions and leverage the collective knowledge of the group!',
     thumbnail_image: 'https://example.com',
-    large_image: 'https://example.com',
+    large_image:
+      'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
     chain_id: 1,
     member_count: 2345,
     tiers: [
@@ -188,7 +191,8 @@ const mock: NFTType[] = [
     long_description:
       'The Axie Infinity Scholarship Program is a way for people to earn money by playing the game Axie Infinity. Players who are accepted into the program are given a team of Axies, which are digital pets that can be used to battle, earn rewards, and more. Players can then use their Axies to earn Smooth Love Potion (SLP), which can be converted into real money.',
     thumbnail_image: 'https://example.com',
-    large_image: 'https://example.com',
+    large_image:
+      'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
     chain_id: 1,
     member_count: 100000,
     tiers: [
@@ -217,7 +221,8 @@ const mock: NFTType[] = [
     long_description:
       'Blockchain Gaming Club is a gaming platform for blockchain gamers. We offer a variety of games to choose from, all of which are powered by blockchain technology. Our members have access to exclusive features, such as early access to new games, discounts on in-game items, and more. Join today and start gaming on the blockchain! ',
     thumbnail_image: 'https://example.com',
-    large_image: 'https://example.com',
+    large_image:
+      'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
     chain_id: 1,
     member_count: 1000,
     tiers: [
@@ -261,7 +266,8 @@ const mock: NFTType[] = [
     long_description:
       'The Crypto Guy is your one-stop shop for all things cryptocurrency. He covers the latest news, provides in-depth analysis, and teaches you how to make money in the crypto market. His videos are informative and entertaining, and he has a large following of subscribers. Join his Patreon today and get access to exclusive content, such as early access to new videos, behind-the-scenes content, and more. ',
     thumbnail_image: 'https://example.com/the-crypto-guy.jpg',
-    large_image: 'https://example.com/the-crypto-guy-large.jpg',
+    large_image:
+      'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1',
     chain_id: 1,
     member_count: 10000,
     tiers: [

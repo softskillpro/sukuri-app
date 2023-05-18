@@ -2,7 +2,7 @@ import Web3 from 'web3'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import FlexBox from '@/components/common/FlexBox'
-import StyledButton from '@/components/common/StyledButton'
+import { StateButton } from '@/components/common/StyledButton'
 import type { NFTType } from '@/interface/Nft.interface'
 import { TierCardContainer, PriceCard } from './styles'
 
@@ -115,9 +115,9 @@ const TierCard = ({ nft, handleClick }: TierCardProps) => {
           per month
         </Typography>
 
-        <StyledButton sx={{ marginTop: 1.5 }} onClick={handleClick}>
+        <StateButton sx={{ marginTop: 1.5 }} onClick={handleClick}>
           Subscribe
-        </StyledButton>
+        </StateButton>
       </PriceCard>
     </FlexBox>
   )

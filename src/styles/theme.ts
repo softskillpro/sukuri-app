@@ -124,6 +124,7 @@ const theme = createTheme({
     },
     shadow1: {
       main: 'inset 0px -4px 0px 2px #F88497, inset 0px 8px 0px 2px #F88497',
+      light: 'inset 0px -4px 0px 2px #FFC0CB, inset 0px 8px 0px 2px #FFC0CB',
     },
   },
 })
