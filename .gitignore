@@ -43,3 +43,11 @@ next-env.d.ts
 /artifacts
 
 .env
+node_modules/
+.env
+
+#next
+.next/*
+
+#hypothesis
+.hypothesis/*
