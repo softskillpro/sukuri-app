@@ -57,7 +57,8 @@ const NftCard = ({ nft, className }: NftCardProps) => {
           textAlign='center'
           sx={{ width: 110 }}
         >
-          0.5Ξ - 1Ξ per year
+          {nft?.tiers[0]?.subscription_length} <br />
+          {nft?.tiers[0]?.subscription_length_unit}
         </Typography>
       </FlexBox>
     </NftCardContainer>

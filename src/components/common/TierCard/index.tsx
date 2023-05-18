@@ -1,10 +1,10 @@
-import Web3 from 'web3'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import FlexBox from '@/components/common/FlexBox'
 import { StateButton } from '@/components/common/StyledButton'
 import type { NFTType } from '@/interface/Nft.interface'
 import { TierCardContainer, PriceCard } from './styles'
+import formatUnits from '@/utils/formatUnits'
 
 interface TierCardProps {
   nft?: NFTType
@@ -84,7 +84,7 @@ const TierCard = ({ nft, handleClick }: TierCardProps) => {
             mt={5}
             textAlign='center'
           >
-            {nft?.tiers[0]?.price && Web3.utils.fromWei(nft?.tiers[0]?.price)}Ξ
+            {formatUnits(nft?.tiers[0]?.price, nft?.tiers[0]?.unit)}Ξ
           </Typography>
         ) : (
           <>
