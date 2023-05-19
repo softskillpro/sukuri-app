@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import Seo from '../seo'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
@@ -9,11 +10,13 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
+  const { asPath } = useRouter()
+
   return (
     <>
       <Seo />
       <LayoutContainer>
-        <Header />
+        {asPath !== '/' && <Header />}
         <main>{children}</main>
         <Footer />
       </LayoutContainer>

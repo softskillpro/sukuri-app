@@ -14,6 +14,7 @@ const Seo: FC<SeoProps> = (props) => {
   return (
     <Head>
       <title>{fullTitle}</title>
+      <link rel='icon' href='/favicon.ico' />
     </Head>
   )
 }

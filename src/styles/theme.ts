@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles'
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   components: {
@@ -99,6 +99,36 @@ const theme = createTheme({
       lineHeight: '60px',
       fontWeight: 700,
     },
+    custom4: {
+      fontSize: 180,
+      lineHeight: '219px',
+      fontWeight: 700,
+    },
+    custom5: {
+      fontSize: 90,
+      lineHeight: '110px',
+      fontWeight: 700,
+    },
+    custom6: {
+      fontSize: 69,
+      lineHeight: '84px',
+      fontWeight: 700,
+    },
+    custom7: {
+      fontSize: 38,
+      lineHeight: '46px',
+      fontWeight: 500,
+    },
+    custom8: {
+      fontSize: 12,
+      lineHeight: '15px',
+      fontWeight: 700,
+    },
+    custom9: {
+      fontSize: 10,
+      lineHeight: '12px',
+      fontWeight: 400,
+    },
   },
   palette: {
     primary: {
@@ -108,7 +138,7 @@ const theme = createTheme({
       main: '#FFF2F4',
     },
     text: { primary: '#030712', secondary: '#461427' },
-    text1: { main: '#F88497' },
+    text1: { main: '#F88497', light: '#FFC0CB' },
     black: { main: '#000' },
     white: { main: '#fff' },
     btnGradient: {
@@ -130,50 +160,74 @@ const theme = createTheme({
     shadow1: {
       main: 'inset 0px -4px 0px 2px #F88497, inset 0px 8px 0px 2px #F88497',
       light: 'inset 0px -4px 0px 2px #FFC0CB, inset 0px 8px 0px 2px #FFC0CB',
+      dark: '1px 1px 2px 1px #030712',
+    },
+    border: {
+      main: '#707070',
     },
   },
-})
+});
 
 declare module '@mui/material/styles' {
   interface Palette {
-    text1: Palette['primary']
-    black: Palette['primary']
-    white: Palette['primary']
-    btnGradient: Palette['primary']
-    bgGradient: Palette['primary']
-    shadow: Palette['primary']
-    shadow1: Palette['primary']
+    text1: Palette['primary'];
+    black: Palette['primary'];
+    white: Palette['primary'];
+    btnGradient: Palette['primary'];
+    bgGradient: Palette['primary'];
+    shadow: Palette['primary'];
+    shadow1: Palette['primary'];
+    border: Palette['primary'];
   }
 
   interface PaletteOptions {
-    text1?: PaletteOptions['primary']
-    black?: PaletteOptions['primary']
-    white?: PaletteOptions['primary']
-    btnGradient?: PaletteOptions['primary']
-    bgGradient?: PaletteOptions['primary']
-    shadow?: PaletteOptions['primary']
-    shadow1?: PaletteOptions['primary']
+    text1?: PaletteOptions['primary'];
+    black?: PaletteOptions['primary'];
+    white?: PaletteOptions['primary'];
+    btnGradient?: PaletteOptions['primary'];
+    bgGradient?: PaletteOptions['primary'];
+    shadow?: PaletteOptions['primary'];
+    shadow1?: PaletteOptions['primary'];
+    border?: PaletteOptions['primary'];
   }
 
   interface TypographyVariants {
-    custom1: React.CSSProperties
-    custom2: React.CSSProperties
-    custom3: React.CSSProperties
+    custom1: React.CSSProperties;
+    custom2: React.CSSProperties;
+    custom3: React.CSSProperties;
+    custom4: React.CSSProperties;
+    custom5: React.CSSProperties;
+    custom6: React.CSSProperties;
+    custom7: React.CSSProperties;
+    custom8: React.CSSProperties;
+    custom9: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
-    custom1?: React.CSSProperties
-    custom2?: React.CSSProperties
-    custom3?: React.CSSProperties
+    custom1?: React.CSSProperties;
+    custom2?: React.CSSProperties;
+    custom3?: React.CSSProperties;
+    custom4?: React.CSSProperties;
+    custom5?: React.CSSProperties;
+    custom6?: React.CSSProperties;
+    custom7?: React.CSSProperties;
+    custom8?: React.CSSProperties;
+    custom9?: React.CSSProperties;
   }
 }
 
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
-    custom1: true
-    custom2: true
-    custom3: true
+    custom1: true;
+    custom2: true;
+    custom3: true;
+    custom4: true;
+    custom5: true;
+    custom6: true;
+    custom7: true;
+    custom8: true;
+    custom9: true;
   }
 }
 
-export default theme
+export default theme;
