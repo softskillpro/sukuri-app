@@ -1,10 +1,13 @@
 import Divider from '@mui/material/Divider'
 import { styled } from '@mui/material/styles'
 
-const StyledDivider = styled(Divider)(({ theme }) => ({
+export const VerticalDivider = styled(Divider)(({ theme }) => ({
   height: 32,
   margin: '0 20px',
   border: `1px solid ${theme.palette.primary.main}`,
 }))
 
-export default StyledDivider
+export const HorizontalDivider = styled(Divider)(({ theme }) => ({
+  width: '100%',
+  border: `1px solid ${theme.palette.text1.main}`,
+}))

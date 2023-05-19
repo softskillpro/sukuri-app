@@ -1,10 +1,10 @@
-import Web3 from 'web3'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import FlexBox from '@/components/common/FlexBox'
-import StyledButton from '@/components/common/StyledButton'
+import { StateButton } from '@/components/common/StyledButton'
 import type { NFTType } from '@/interface/Nft.interface'
 import { TierCardContainer, PriceCard } from './styles'
+import formatUnits from '@/utils/formatUnits'
 
 interface TierCardProps {
   nft?: NFTType
@@ -40,7 +40,7 @@ const TierCard = ({ nft, handleClick }: TierCardProps) => {
               textAlign: 'center',
             }}
           >
-            {nft?.short_description}
+            {nft?.tiers[0]?.descripton}
           </Typography>
 
           <Typography
@@ -53,11 +53,8 @@ const TierCard = ({ nft, handleClick }: TierCardProps) => {
             What’s included:
           </Typography>
 
-          <Typography variant='custom2' color='white.main' textAlign='center'>
-            {nft?.long_description}
-          </Typography>
-          {/* <ul style={{ margin: '9px 0 0', paddingLeft: 20 }}>
-            {contents.map((content, id) => (
+          <ul style={{ margin: '9px 0 0', paddingLeft: 20 }}>
+            {nft?.tiers[0]?.features.map((content, id) => (
               <li
                 key={`content-${id}`}
                 style={{
@@ -75,7 +72,7 @@ const TierCard = ({ nft, handleClick }: TierCardProps) => {
                 </Typography>
               </li>
             ))}
-          </ul> */}
+          </ul>
         </Box>
       </TierCardContainer>
 
@@ -87,7 +84,7 @@ const TierCard = ({ nft, handleClick }: TierCardProps) => {
             mt={5}
             textAlign='center'
           >
-            {nft?.tiers[0]?.price && Web3.utils.fromWei(nft?.tiers[0]?.price)}Ξ
+            {formatUnits(nft?.tiers[0]?.price, nft?.tiers[0]?.unit)}Ξ
           </Typography>
         ) : (
           <>
@@ -115,9 +112,9 @@ const TierCard = ({ nft, handleClick }: TierCardProps) => {
           per month
         </Typography>
 
-        <StyledButton sx={{ marginTop: 1.5 }} onClick={handleClick}>
+        <StateButton sx={{ marginTop: 1.5 }} onClick={handleClick}>
           Subscribe
-        </StyledButton>
+        </StateButton>
       </PriceCard>
     </FlexBox>
   )

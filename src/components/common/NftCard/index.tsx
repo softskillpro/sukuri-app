@@ -1,20 +1,21 @@
 import Image from 'next/image'
 import Typography from '@mui/material/Typography'
 import FlexBox from '@/components/common/FlexBox'
-import StyledDivider from '@/components/common/StyledDivider'
+import { VerticalDivider } from '@/components/common/StyledDivider'
 import type { NFTType } from '@/interface/Nft.interface'
 import { NftCardContainer } from './styles'
 
 interface NftCardProps {
   nft?: NFTType
+  className?: string
 }
 
-const NftCard = ({ nft }: NftCardProps) => {
+const NftCard = ({ nft, className }: NftCardProps) => {
   return (
-    <NftCardContainer>
+    <NftCardContainer className={className || 'nft-card-container'}>
       <Image
         src={nft?.large_image || 'https://picsum.photos/seed/picsum/200/300'}
-        width={200}
+        width={320}
         height={160}
         alt='NFT'
       />
@@ -23,8 +24,14 @@ const NftCard = ({ nft }: NftCardProps) => {
         variant='body2'
         fontWeight={700}
         color='primary.main'
-        mt={1.5}
-        mb={2}
+        textAlign='center'
+        sx={{
+          maxWidth: 260,
+          margin: '12px 0 16px',
+          textOverflow: 'ellipsis',
+          overflow: 'hidden',
+          whiteSpace: 'nowrap',
+        }}
       >
         {nft?.name}
       </Typography>
@@ -41,7 +48,7 @@ const NftCard = ({ nft }: NftCardProps) => {
           Members
         </Typography>
 
-        <StyledDivider />
+        <VerticalDivider />
 
         <Typography
           variant='caption'
@@ -50,7 +57,8 @@ const NftCard = ({ nft }: NftCardProps) => {
           textAlign='center'
           sx={{ width: 110 }}
         >
-          0.5Ξ - 1Ξ per year
+          {nft?.tiers[0]?.subscription_length} <br />
+          {nft?.tiers[0]?.subscription_length_unit}
         </Typography>
       </FlexBox>
     </NftCardContainer>

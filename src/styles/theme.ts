@@ -94,6 +94,11 @@ const theme = createTheme({
       lineHeight: '17px',
       fontWeight: 400,
     },
+    custom3: {
+      fontSize: 50,
+      lineHeight: '60px',
+      fontWeight: 700,
+    },
   },
   palette: {
     primary: {
@@ -124,6 +129,7 @@ const theme = createTheme({
     },
     shadow1: {
       main: 'inset 0px -4px 0px 2px #F88497, inset 0px 8px 0px 2px #F88497',
+      light: 'inset 0px -4px 0px 2px #FFC0CB, inset 0px 8px 0px 2px #FFC0CB',
     },
   },
 })
@@ -152,11 +158,13 @@ declare module '@mui/material/styles' {
   interface TypographyVariants {
     custom1: React.CSSProperties
     custom2: React.CSSProperties
+    custom3: React.CSSProperties
   }
 
   interface TypographyVariantsOptions {
     custom1?: React.CSSProperties
     custom2?: React.CSSProperties
+    custom3?: React.CSSProperties
   }
 }
 
@@ -164,6 +172,7 @@ declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
     custom1: true
     custom2: true
+    custom3: true
   }
 }
 
