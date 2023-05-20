@@ -1,27 +1,26 @@
-import { type AppType } from 'next/app'
-import { type Session } from 'next-auth'
-import { SessionProvider } from 'next-auth/react'
-import { Montserrat } from 'next/font/google'
-import { CacheProvider, EmotionCache } from '@emotion/react'
-import { ThemeProvider, CssBaseline, createTheme } from '@mui/material'
+import { type AppType } from 'next/app';
+import { type Session } from 'next-auth';
+import { SessionProvider } from 'next-auth/react';
+import { Montserrat } from 'next/font/google';
+import { CacheProvider, EmotionCache } from '@emotion/react';
+import { ThemeProvider, CssBaseline } from '@mui/material';
 
-import Layout from '@/components/layout'
-import { api } from '@/utils/api'
-import createEmotionCache from '@/utils/create-emotion-cache'
-import theme from '@/styles/theme'
+import Layout from '@/components/layout';
+import { api } from '@/utils/api';
+import createEmotionCache from '@/utils/create-emotion-cache';
+import theme from '@/styles/theme';
 
-const clientSideEmotionCache = createEmotionCache()
+const clientSideEmotionCache = createEmotionCache();
 
-const lightTheme = createTheme(theme)
 const montserrat = Montserrat({
   weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
   variable: '--Montserrat',
-})
+});
 
 const MyApp: AppType<{
-  session: Session | null
-  emotionCache?: EmotionCache
+  session: Session | null;
+  emotionCache?: EmotionCache;
 }> = ({
   Component,
   pageProps: { session, emotionCache = clientSideEmotionCache, ...pageProps },
@@ -29,7 +28,7 @@ const MyApp: AppType<{
   return (
     <SessionProvider session={session}>
       <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={lightTheme}>
+        <ThemeProvider theme={theme}>
           <CssBaseline />
           <div className={montserrat.variable}>
             <Layout>
@@ -39,7 +38,7 @@ const MyApp: AppType<{
         </ThemeProvider>
       </CacheProvider>
     </SessionProvider>
-  )
-}
+  );
+};
 
-export default api.withTRPC(MyApp)
+export default api.withTRPC(MyApp);

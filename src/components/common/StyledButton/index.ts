@@ -21,6 +21,7 @@ export const ContainedButton = styled('button')(({ theme }) => ({
   fontWeight: 600,
   fontSize: 16,
   lineHeight: '20px',
+  fontFamily: 'var(--Montserrat)',
   border: 'none',
   cursor: 'pointer',
 

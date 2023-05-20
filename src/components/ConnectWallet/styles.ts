@@ -34,6 +34,7 @@ export const StyledButton = styled('button')(({ theme }) => ({
   fontWeight: 500,
   fontSize: 20,
   lineHeight: '24px',
+  fontFamily: 'var(--Montserrat)',
 
   ':not(:last-of-type)': {
     marginBottom: 14,

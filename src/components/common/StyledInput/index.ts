@@ -12,6 +12,10 @@ const StyledInput = styled('input')(({ theme }) => ({
   borderLeft: 'none',
   borderRight: 'none',
   outline: 'none',
+  fontSize: 14,
+  lineHeight: '17px',
+  fontWeight: 400,
+  fontFamily: 'var(--Montserrat)',
 }));
 
 export default StyledInput;
