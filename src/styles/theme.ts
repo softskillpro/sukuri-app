@@ -128,6 +128,7 @@ const theme = createTheme({
       fontSize: 10,
       lineHeight: '12px',
       fontWeight: 400,
+      fontStyle: 'italic',
     },
   },
   palette: {
@@ -135,11 +136,16 @@ const theme = createTheme({
       main: '#FFF2F4',
     },
     secondary: {
-      main: '#FFF2F4',
+      main: '#D9D9D9',
     },
     text: { primary: '#030712', secondary: '#461427' },
-    text1: { main: '#F88497', light: '#FFC0CB' },
-    black: { main: '#000' },
+    text1: { main: '#F88497', light: '#FFC0CB', contrastText: '#FAFAF9' },
+    black: {
+      main: '#000',
+      light: '#A5A5A5',
+      dark: '#2F2F2F',
+      contrastText: '#E3E3E3',
+    },
     white: { main: '#fff' },
     btnGradient: {
       main: 'linear-gradient(0deg, rgba(103, 181, 76, 0.19), rgba(103, 181, 76, 0.19)), #FFFFFF',
@@ -161,9 +167,15 @@ const theme = createTheme({
       main: 'inset 0px -4px 0px 2px #F88497, inset 0px 8px 0px 2px #F88497',
       light: 'inset 0px -4px 0px 2px #FFC0CB, inset 0px 8px 0px 2px #FFC0CB',
       dark: '1px 1px 2px 1px #030712',
+      contrastText: 'inset 0px -4px 0px #FFC0CB, inset 0px 8px 0px #FFC0CB',
+    },
+    shadow2: {
+      main: '0px 0px 5px rgba(248, 132, 151, 0.5)',
+      light: '1px 1px 10px rgba(248, 132, 151, 0.5)',
     },
     border: {
       main: '#707070',
+      light: '#67B54C',
     },
   },
 });
@@ -177,6 +189,7 @@ declare module '@mui/material/styles' {
     bgGradient: Palette['primary'];
     shadow: Palette['primary'];
     shadow1: Palette['primary'];
+    shadow2: Palette['primary'];
     border: Palette['primary'];
   }
 
@@ -188,6 +201,7 @@ declare module '@mui/material/styles' {
     bgGradient?: PaletteOptions['primary'];
     shadow?: PaletteOptions['primary'];
     shadow1?: PaletteOptions['primary'];
+    shadow2?: PaletteOptions['primary'];
     border?: PaletteOptions['primary'];
   }
 
