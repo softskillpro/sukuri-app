@@ -1,19 +1,24 @@
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import FlexBox from '@/components/common/FlexBox'
-import { StateButton } from '@/components/common/StyledButton'
-import type { NFTType } from '@/interface/Nft.interface'
-import { TierCardContainer, PriceCard } from './styles'
-import formatUnits from '@/utils/formatUnits'
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import FlexBox from '@/components/common/FlexBox';
+import { StateButton } from '@/components/common/StyledButton';
+import type { TierType } from '@/interface/Nft.interface';
+import { TierCardContainer, PriceCard } from './styles';
+import formatUnits from '@/utils/formatUnits';
 
 interface TierCardProps {
-  nft?: NFTType
-  handleClick: () => void
+  tier: TierType;
+  handleClick: () => void;
 }
 
-const TierCard = ({ nft, handleClick }: TierCardProps) => {
+const TierCard = ({ tier, handleClick }: TierCardProps) => {
+  const matches = useMediaQuery('(min-width:600px)');
+
   return (
-    <FlexBox sx={{ flexDirection: 'column', width: 'fit-content' }}>
+    <FlexBox
+      sx={{ flexDirection: 'column', width: matches ? 'inherit' : '100%' }}
+    >
       <TierCardContainer>
         <Typography
           variant='subtitle1'
@@ -26,7 +31,7 @@ const TierCard = ({ nft, handleClick }: TierCardProps) => {
             background: (theme) => theme.palette.white.main,
           }}
         >
-          {nft?.tiers[0]?.name}
+          {tier.name}
         </Typography>
 
         <Box sx={{ width: 250, mt: 2.25 }}>
@@ -40,7 +45,7 @@ const TierCard = ({ nft, handleClick }: TierCardProps) => {
               textAlign: 'center',
             }}
           >
-            {nft?.tiers[0]?.descripton}
+            {tier.descripton}
           </Typography>
 
           <Typography
@@ -54,7 +59,7 @@ const TierCard = ({ nft, handleClick }: TierCardProps) => {
           </Typography>
 
           <ul style={{ margin: '9px 0 0', paddingLeft: 20 }}>
-            {nft?.tiers[0]?.features.map((content, id) => (
+            {tier.features.map((content, id) => (
               <li
                 key={`content-${id}`}
                 style={{
@@ -77,14 +82,14 @@ const TierCard = ({ nft, handleClick }: TierCardProps) => {
       </TierCardContainer>
 
       <PriceCard>
-        {nft?.tiers[0]?.unit === 'wei' ? (
+        {tier.unit === 'wei' ? (
           <Typography
             variant='h2'
             color='text.secondary'
             mt={5}
             textAlign='center'
           >
-            {formatUnits(nft?.tiers[0]?.price, nft?.tiers[0]?.unit)}Ξ
+            {formatUnits(tier.price, tier.unit)}Ξ
           </Typography>
         ) : (
           <>
@@ -94,7 +99,7 @@ const TierCard = ({ nft, handleClick }: TierCardProps) => {
               mt={3}
               textAlign='center'
             >
-              {nft?.tiers[0]?.price}
+              {tier.price}
             </Typography>
             <Typography
               variant='custom1'
@@ -103,7 +108,7 @@ const TierCard = ({ nft, handleClick }: TierCardProps) => {
               textAlign='center'
               mb={1}
             >
-              {nft?.tiers[0]?.unit}
+              {tier.unit}
             </Typography>
           </>
         )}
@@ -117,7 +122,7 @@ const TierCard = ({ nft, handleClick }: TierCardProps) => {
         </StateButton>
       </PriceCard>
     </FlexBox>
-  )
-}
+  );
+};
 
-export default TierCard
+export default TierCard;

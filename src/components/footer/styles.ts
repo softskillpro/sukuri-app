@@ -38,7 +38,7 @@ export const FooterContainer = styled(FlexBox)(({ theme }) => ({
   },
 
   [theme.breakpoints.down('sm')]: {
-    padding: '32px 30px 14px',
+    padding: '32px 20px 14px',
 
     '.bg-img': {
       top: -5,

@@ -9,5 +9,5 @@ export const VerticalDivider = styled(Divider)(({ theme }) => ({
 
 export const HorizontalDivider = styled(Divider)(({ theme }) => ({
   width: '100%',
-  borderBottom: `0.5px solid ${theme.palette.text1.main}`,
+  border: `0.5px solid ${theme.palette.text1.main}`,
 }));

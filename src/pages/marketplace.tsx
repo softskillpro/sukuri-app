@@ -1,27 +1,27 @@
-import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import PageLayout from '@/components/common/PageLayout'
-import LogoIcon from '@/components/svgs/LogoIcon'
-import TodaysPick from '@/components/todayspick'
-import RecommendedCommunities from '@/components/recommendedcommunities'
-import RisingProjects from '@/components/risingprojects'
-import AboutSukuri from '@/components/aboutsukuri'
-import { MarketplaceContainer } from '@/styles/marketplace'
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { Layout1 } from '@/components/common/PageLayout';
+import LogoIcon from '@/components/svgs/LogoIcon';
+import TodaysPick from '@/components/todayspick';
+import RecommendedCommunities from '@/components/recommendedcommunities';
+import RisingProjects from '@/components/risingprojects';
+import AboutSukuri from '@/components/aboutsukuri';
+import { MarketplaceContainer } from '@/styles/marketplace';
 
 const Marketplace = () => {
-  const matches = useMediaQuery('(min-width:900px)')
-  const matches500 = useMediaQuery('(min-width:500px)')
+  const matches = useMediaQuery('(min-width:900px)');
+  const matches500 = useMediaQuery('(min-width:500px)');
 
   return (
     <MarketplaceContainer>
-      <PageLayout>
-        <LogoIcon
-          fill='#FFC0CB'
-          sx={{ fontSize: 670 }}
-          className='marketplace-flower'
-        />
+      <LogoIcon
+        fill='#FFC0CB'
+        sx={{ fontSize: 670 }}
+        className='marketplace-flower'
+      />
 
+      <Layout1>
         <Grid container spacing={2} className='marketplace-grid-wrapper'>
           <Grid item xs={12} lg={5}>
             <Typography variant={matches ? 'h5' : 'subtitle1'} mb={1}>
@@ -48,17 +48,17 @@ const Marketplace = () => {
             </Typography>
           </Grid>
         </Grid>
+      </Layout1>
 
-        <TodaysPick />
+      <TodaysPick />
 
-        <RecommendedCommunities />
+      <RecommendedCommunities />
 
-        <RisingProjects />
+      <RisingProjects />
 
-        <AboutSukuri />
-      </PageLayout>
+      <AboutSukuri />
     </MarketplaceContainer>
-  )
-}
+  );
+};
 
-export default Marketplace
+export default Marketplace;
