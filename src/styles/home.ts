@@ -32,11 +32,11 @@ export const HomeContainer = styled(Box)(({ theme }) => ({
 
   [theme.breakpoints.down('md')]: {
     '.signup-section': {
-      padding: '218px 30px 135px',
+      padding: '218px 20px 135px',
     },
 
     '.project-intro-wrapper': {
-      padding: '90px 30px',
+      padding: '90px 20px',
     },
   },
 }));

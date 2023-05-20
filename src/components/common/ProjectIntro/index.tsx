@@ -1,4 +1,4 @@
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -8,13 +8,18 @@ const ProjectIntro = () => {
   return (
     <ProjectIntroContainer container>
       <Grid item xs={12} sm={7}>
-        <Image
+        {/* <Image
           src='/images/pick.png'
           width={320}
           height={237}
           className='project-img'
           alt='Project'
-        />
+        /> */}
+        <div className='project-img'>
+          <Typography variant='custom1' color='white.main'>
+            preview image
+          </Typography>
+        </div>
       </Grid>
 
       <Grid item xs={12} sm={5} className='content-wrapper'>

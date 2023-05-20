@@ -1,11 +1,11 @@
-import Drawer from '@mui/material/Drawer'
-import { styled } from '@mui/material/styles'
-import FlexBox from '@/components/common/FlexBox'
+import Drawer from '@mui/material/Drawer';
+import { styled } from '@mui/material/styles';
+import FlexBox from '@/components/common/FlexBox';
 
 export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
   justifyContent: 'space-between',
   height: 58,
-  marginBottom: 30,
+  margin: '40px 20px 0',
   padding: '0 24px 0 60px',
   background: theme.palette.primary.main,
   borderRadius: 5,
@@ -19,7 +19,7 @@ export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
   '.avatar': {
     borderRadius: '50%',
   },
-}))
+}));
 
 export const StyledDrawer = styled(Drawer)(({ theme }) => ({
   '.MuiPaper-root': {
@@ -47,4 +47,4 @@ export const StyledDrawer = styled(Drawer)(({ theme }) => ({
       },
     },
   },
-}))
+}));

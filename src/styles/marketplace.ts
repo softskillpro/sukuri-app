@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 
 export const MarketplaceContainer = styled(Box)(({ theme }) => ({
   position: 'relative',
+  margin: '30px 20px',
   background: theme.palette.primary.main,
   boxShadow: theme.palette.shadow1.light,
   borderRadius: 5,
