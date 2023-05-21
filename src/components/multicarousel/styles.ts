@@ -8,11 +8,21 @@ export const MultiCarouselContainer = styled(FlexBox)(({ theme }) => ({
   '.arrow-left-btn': {
     position: 'absolute',
     left: -50,
+    zIndex: 10,
+
+    ':disabled': {
+      opacity: 0.7,
+    },
   },
 
   '.arrow-right-btn': {
     position: 'absolute',
     right: -50,
+    zIndex: 10,
+
+    ':disabled': {
+      opacity: 0.7,
+    },
   },
 
   '.nft-card-container': {

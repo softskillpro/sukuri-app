@@ -1,13 +1,13 @@
-import Image from 'next/image'
-import Typography from '@mui/material/Typography'
-import FlexBox from '@/components/common/FlexBox'
-import { VerticalDivider } from '@/components/common/StyledDivider'
-import type { NFTType } from '@/interface/Nft.interface'
-import { NftCardContainer } from './styles'
+import Image from 'next/image';
+import Typography from '@mui/material/Typography';
+import FlexBox from '@/components/common/FlexBox';
+import { VerticalDivider } from '@/components/common/StyledDivider';
+import type { NFTType } from '@/interface/Nft.interface';
+import { NftCardContainer } from './styles';
 
 interface NftCardProps {
-  nft?: NFTType
-  className?: string
+  nft?: NFTType;
+  className?: string;
 }
 
 const NftCard = ({ nft, className }: NftCardProps) => {
@@ -62,7 +62,7 @@ const NftCard = ({ nft, className }: NftCardProps) => {
         </Typography>
       </FlexBox>
     </NftCardContainer>
-  )
-}
+  );
+};
 
-export default NftCard
+export default NftCard;
