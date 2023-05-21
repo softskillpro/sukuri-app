@@ -52,4 +52,8 @@ export const SetupProfileContainer = styled(FlexBox)(({ theme }) => ({
       },
     },
   },
+
+  [theme.breakpoints.down('sm')]: {
+    padding: '0 20px',
+  },
 }));
