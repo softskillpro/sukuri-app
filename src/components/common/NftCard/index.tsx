@@ -17,6 +17,7 @@ const NftCard = ({ nft, className }: NftCardProps) => {
         src={nft?.large_image || 'https://picsum.photos/seed/picsum/200/300'}
         width={320}
         height={160}
+        priority
         alt='NFT'
       />
 

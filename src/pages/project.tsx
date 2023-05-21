@@ -33,6 +33,7 @@ const Project = () => {
         src={nft.large_image}
         width={1000}
         height={400}
+        priority
         className='project-image'
         alt='Project Image'
       />

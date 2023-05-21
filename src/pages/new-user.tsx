@@ -1,11 +1,16 @@
 import Link from 'next/link';
+import { useAccount } from 'wagmi';
 import Typography from '@mui/material/Typography';
 import LogoIcon from '@/components/svgs/LogoIcon';
 import SetupProfile from '@/components/SetupProfile';
 import FlexBox from '@/components/common/FlexBox';
+import useIsMounted from '@/hooks/useIsMounted';
 import { NewUserContainer } from '@/styles/new-user';
 
 const NewUser = () => {
+  const isMounted = useIsMounted();
+  const { address, isConnected } = useAccount();
+
   return (
     <NewUserContainer>
       <LogoIcon
@@ -61,7 +66,7 @@ const NewUser = () => {
           Connected wallet:
           <br />
           <span style={{ color: '#FFC0CB' }}>
-            0x1234567890123456789012345678901234567890
+            {isMounted && isConnected ? address : ''}
           </span>
         </Typography>
       </FlexBox>

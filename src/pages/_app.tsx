@@ -10,6 +10,9 @@ import { api } from '@/utils/api';
 import createEmotionCache from '@/utils/create-emotion-cache';
 import theme from '@/styles/theme';
 
+import { WagmiConfig } from 'wagmi';
+import wagmiConfig from '@/configure/wagmi';
+
 const clientSideEmotionCache = createEmotionCache();
 
 const montserrat = Montserrat({
@@ -27,16 +30,18 @@ const MyApp: AppType<{
 }) => {
   return (
     <SessionProvider session={session}>
-      <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <div className={montserrat.variable}>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </div>
-        </ThemeProvider>
-      </CacheProvider>
+      <WagmiConfig config={wagmiConfig}>
+        <CacheProvider value={emotionCache}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <div className={montserrat.variable}>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </div>
+          </ThemeProvider>
+        </CacheProvider>
+      </WagmiConfig>
     </SessionProvider>
   );
 };
