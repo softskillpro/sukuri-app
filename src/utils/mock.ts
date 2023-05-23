@@ -1,4 +1,4 @@
-import { NFTType } from '@/interface/Nft.interface'
+import { NFTType } from '@/interface/Nft.interface';
 
 const mock: NFTType[] = [
   {
@@ -418,6 +418,6 @@ const mock: NFTType[] = [
       },
     ],
   },
-]
+];
 
-export default mock
+export default mock;

@@ -1,4 +1,4 @@
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 
 const HambergerMenuIcon = (props: SvgIconProps) => {
   return (
@@ -17,7 +17,7 @@ const HambergerMenuIcon = (props: SvgIconProps) => {
         d='M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5'
       />
     </SvgIcon>
-  )
-}
+  );
+};
 
-export default HambergerMenuIcon
+export default HambergerMenuIcon;

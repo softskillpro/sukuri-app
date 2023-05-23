@@ -1,5 +1,5 @@
-import { styled } from '@mui/material/styles'
-import FlexBox from '@/components/common/FlexBox'
+import { styled } from '@mui/material/styles';
+import FlexBox from '@/components/common/FlexBox';
 
 export const TierCardContainer = styled(FlexBox)(({ theme }) => ({
   flexDirection: 'column',
@@ -10,9 +10,9 @@ export const TierCardContainer = styled(FlexBox)(({ theme }) => ({
   borderRadius: 5,
 
   [theme.breakpoints.down(450)]: {
-    width: 'calc(100% - 40px)',
+    width: '100%',
   },
-}))
+}));
 
 export const PriceCard = styled(FlexBox)(({ theme }) => ({
   flexDirection: 'column',
@@ -26,4 +26,4 @@ export const PriceCard = styled(FlexBox)(({ theme }) => ({
   [theme.breakpoints.down(420)]: {
     width: 230,
   },
-}))
+}));

@@ -1,13 +1,13 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { useCallback, useState } from 'react'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import FlexBox from '@/components/common/FlexBox'
-import LogoIcon from '@/components/svgs/LogoIcon'
-import HambergerMenuIcon from '@/components/svgs/HambergerMenuIcon'
-import { HeaderContainer, StyledDrawer } from './styles'
+import Image from 'next/image';
+import Link from 'next/link';
+import { useCallback, useState } from 'react';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import FlexBox from '@/components/common/FlexBox';
+import LogoIcon from '@/components/svgs/LogoIcon';
+import HambergerMenuIcon from '@/components/svgs/HambergerMenuIcon';
+import { HeaderContainer, StyledDrawer } from './styles';
 
 const navs = [
   {
@@ -26,22 +26,22 @@ const navs = [
     title: 'Start Selling',
     link: '/start-selling',
   },
-]
+];
 
 interface HeaderDrawerProps {
-  open: boolean
-  children: React.ReactNode
-  handleClose: () => void
+  open: boolean;
+  children: React.ReactNode;
+  handleClose: () => void;
 }
 
 const HeaderDrawer = ({ open, children, handleClose }: HeaderDrawerProps) => (
   <StyledDrawer anchor='left' open={open} onClose={handleClose}>
     {children}
   </StyledDrawer>
-)
+);
 
 interface HeaderBodyProps {
-  handleClose: () => void
+  handleClose: () => void;
 }
 
 const HeaderBody = ({ handleClose }: HeaderBodyProps) => (
@@ -67,20 +67,20 @@ const HeaderBody = ({ handleClose }: HeaderBodyProps) => (
       alt='Avatar'
     />
   </FlexBox>
-)
+);
 
 const Header = () => {
-  const matches = useMediaQuery('(min-width:900px)')
+  const matches = useMediaQuery('(min-width:900px)');
 
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
 
   const handleClose = useCallback(() => {
-    setOpen(false)
-  }, [])
+    setOpen(false);
+  }, []);
 
   return (
     <>
@@ -112,7 +112,7 @@ const Header = () => {
         <HeaderBody handleClose={handleClose} />
       </HeaderDrawer>
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

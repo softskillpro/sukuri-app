@@ -1,19 +1,13 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { Button } from '@mui/material';
 import { styled } from '@mui/system';
 
-type FormProps =  {
+type FormProps = {
   onClick: () => void;
 };
 
-
 const ColorPalette: React.FC<FormProps> = ({ onClick }) => {
-
-  return (
-    <div>
-    </div>
-  );
+  return <div></div>;
 };
-
 
 export default ColorPalette;

@@ -1,4 +1,4 @@
-import { styled } from '@mui/material/styles'
+import { styled } from '@mui/material/styles';
 
 export const StateButton = styled('button')(({ theme }) => ({
   width: 210,
@@ -8,11 +8,12 @@ export const StateButton = styled('button')(({ theme }) => ({
   borderRadius: 5,
   border: 'none',
   cursor: 'pointer',
-}))
+}));
 
 export const ContainedButton = styled('button')(({ theme }) => ({
-  width: 186,
-  height: 54,
+  // width: 186,
+  // height: 54,
+  padding: '10px 45px',
   background: theme.palette.text.secondary,
   boxShadow: theme.palette.shadow.contrastText,
   color: theme.palette.white.main,
@@ -20,6 +21,11 @@ export const ContainedButton = styled('button')(({ theme }) => ({
   fontWeight: 600,
   fontSize: 16,
   lineHeight: '20px',
+  fontFamily: 'var(--Montserrat)',
   border: 'none',
   cursor: 'pointer',
-}))
+
+  ':hover': {
+    opacity: 0.8,
+  },
+}));
