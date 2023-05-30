@@ -27,6 +27,14 @@ const schema = z.object({
 
 type Inputs = z.infer<typeof schema>;
 
+/**
+ * This is a simple form page to test out the project API route.
+ * Currently, it just allows for the creation of a project with a name and a description.
+ * The information is sent to the /api/project route with a POST request.
+ * Note: This page lacks many features that would be necessary for a full-fledged project creation form,
+ * such as user authentication, error handling for the API request, form validation feedback, and more.
+ */
+
 export default function CreateProjectPage() {
   const router = useRouter();
 
