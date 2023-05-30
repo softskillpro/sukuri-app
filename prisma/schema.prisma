@@ -104,16 +104,24 @@ model VerificationToken {
 }
 
 model Project {
-  id          String           @id @default(cuid())
-  name        String           @unique
-  status      ProjectStatus
-  description String?
-  creator     User             @relation(fields: [creatorId], references: [id])
-  creatorId   String
-  tiers       Tier[]
-  createdAt   DateTime         @default(now())
-  updatedAt   DateTime         @updatedAt
-  visibility  VisibilityStatus @default(PUBLIC)
+  id                String            @id @default(cuid())
+  name              String            @unique
+  short_description String
+  long_description  String
+  thumbnail_image   String
+  large_image       String
+  chain_id          Int
+  member_count      Int
+  is_erc721         Boolean
+  status            ProjectStatus
+  description       String?
+  creator           User              @relation(fields: [creatorId], references: [id])
+  creatorId         String
+  tiers             Tier[]
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  visibility        VisibilityStatus  @default(PUBLIC)
+  acceptedPayment   AcceptedPayment[]
 }
 
 model NFT {
@@ -130,15 +138,22 @@ model NFT {
 }
 
 model Tier {
-  id                  String                @id @default(cuid())
-  name                String
-  price               Float
-  project             Project               @relation(fields: [projectId], references: [id])
-  projectId           String
-  nft                 NFT                   @relation(fields: [nftId], references: [id])
-  nftId               String
-  subscriptions       Subscription[]
-  SubscriptionHistory SubscriptionHistory[]
+  id                       String                @id @default(cuid())
+  name                     String
+  price                    Float
+  unit                     String
+  supply                   Int
+  filled                   Int
+  subscription_length      Int
+  subscription_length_unit String
+  descripton               String
+  project                  Project               @relation(fields: [projectId], references: [id])
+  projectId                String
+  subscriptions            Subscription[]
+  SubscriptionHistory      SubscriptionHistory[]
+  Feature                  Feature[]
+  NFT                      NFT?                  @relation(fields: [nFTId], references: [id])
+  nFTId                    String?
 }
 
 model Subscription {
@@ -178,4 +193,21 @@ model SubscriptionHistory {
   user       User     @relation(fields: [userId], references: [id])
   tier       Tier     @relation(fields: [tierId], references: [id])
   nft        NFT      @relation(fields: [nftId], references: [id])
+}
+
+model Feature {
+  id      String @id @default(cuid())
+  feature String
+  tier    Tier   @relation(fields: [tierId], references: [id])
+  tierId  String
+}
+
+model AcceptedPayment {
+  id        String  @id @default(cuid())
+  token     String
+  name      String
+  symbol    String
+  is_eth    Boolean
+  project   Project @relation(fields: [projectId], references: [id])
+  projectId String
 }
