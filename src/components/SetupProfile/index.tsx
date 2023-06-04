@@ -8,6 +8,9 @@ import StyledInput from '@/components/common/StyledInput';
 import { ContainedButton } from '@/components/common/StyledButton';
 import FileUpload from '@/components/FileUpload';
 import { SetupProfileContainer } from './styles';
+import router from "next/router"
+import fetch from 'cross-fetch';
+
 
 const trimColors = ['#F8EB54', '#5993D8', '#A5A5A5', '#E3E3E3'];
 
@@ -24,8 +27,10 @@ const bgColors = [
 
 const foilColors = ['#FFF25A', '#4B6EFF', '#FF3B3B', '#3EC148'];
 
-const SetupProfile = () => {
+const SetupProfile = ({address}) => {
   const [attachedFile, setAttachedFile] = useState<File | null>(null);
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
 
   const onSelectFile = useCallback((file?: File) => {
     if (!file) return;
@@ -36,6 +41,34 @@ const SetupProfile = () => {
   const handleReset = () => {
     setAttachedFile(null);
   };
+
+  // sources elements by id and submits to internal api
+  const handleSubmit = async () => {
+    const data = {
+      email: email,
+      username: username,
+      address: address
+    }
+
+    const response = await fetch('/api/register', {
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST'
+    })
+
+    const result = await response.json()
+    
+    if (result.status === true) {
+      alert(result.message)
+      router.push('/sign-in')
+    } else {
+      alert(result.message)
+      console.log('log error investigate')
+    }
+    
+  }
 
   return (
     <SetupProfileContainer>
@@ -97,12 +130,11 @@ const SetupProfile = () => {
 
           <Grid container spacing={1}>
             <Grid item xs={12} sm={8} sx={{ position: 'relative' }}>
-              <StyledInput />
+              <StyledInput value={username} onChange={e => setUsername(e.target.value)} />
               <Typography
                 variant='custom2'
                 sx={{ position: 'absolute', top: 16, right: 10 }}
               >
-                spuro
               </Typography>
             </Grid>
 
@@ -115,6 +147,31 @@ const SetupProfile = () => {
 
           <Typography variant='custom9' mt={0.5} mb={3.25} component='div'>
             Choose your display name, or randomize for pseudonymity.
+          </Typography>
+
+          <Typography
+            variant='caption'
+            fontWeight={700}
+            mb={2.25}
+            mt={1.5}
+            component='div'
+          >
+            Email
+          </Typography>
+
+          <Grid container spacing={1}>
+            <Grid item xs={12} sm={8} sx={{ position: 'relative' }}>
+              <StyledInput value={email} onChange={e => setEmail(e.target.value)} />
+              <Typography
+                variant='custom2'
+                sx={{ position: 'absolute', top: 16, right: 10 }}                
+              >
+              </Typography>
+            </Grid>
+          </Grid>
+
+          <Typography variant='custom9' mt={0.5} mb={3.25} component='div'>
+            Email for correspondence
           </Typography>
 
           <Typography
@@ -154,7 +211,7 @@ const SetupProfile = () => {
         </section>
       </FlexBox>
 
-      <ContainedButton sx={{ minWidth: 284, height: 54, my: 5 }}>
+      <ContainedButton sx={{ minWidth: 284, height: 54, my: 5 }} onClick={handleSubmit}>
         Submit
       </ContainedButton>
     </SetupProfileContainer>

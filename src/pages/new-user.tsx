@@ -71,7 +71,7 @@ const NewUser = () => {
         </Typography>
       </FlexBox>
 
-      <SetupProfile />
+      <SetupProfile address={address} />
     </NewUserContainer>
   );
 };
