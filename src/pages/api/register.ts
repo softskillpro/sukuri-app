@@ -4,7 +4,8 @@ import { redirect } from 'next/navigation';
 
 
 type Data = {
-  name: string
+  status: boolean,
+  message: string
 }
 
 export default function handler(
