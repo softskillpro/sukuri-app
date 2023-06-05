@@ -70,8 +70,9 @@ const NewUser = () => {
           </span>
         </Typography>
       </FlexBox>
-
-      <SetupProfile address={address} />
+      {address && 
+        <SetupProfile address={address} />
+      }
     </NewUserContainer>
   );
 };

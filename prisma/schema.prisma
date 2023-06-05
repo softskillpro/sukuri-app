@@ -14,12 +14,6 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-}
-
 // Necessary for Next auth
 model Account {
     id                String  @id @default(cuid())
@@ -51,11 +45,13 @@ model User {
     id            String    @id @default(cuid())
     name          String?
     email         String?   @unique
-    emailVerified DateTime?
-    image         String?
-    address       String?   @unique
     accounts      Account[]
     sessions      Session[]
+    username     String      @unique
+    address      String      @unique
+    subscribed   Project[]
+    pass         SukuriPass? @relation(fields: [sukuriPassId], references: [id])
+    sukuriPassId String?
 }
 
 model VerificationToken {
@@ -64,4 +60,45 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model SukuriPass {
+  id         String  @id @unique @default(cuid())
+  trim       String?
+  background String?
+  foil       String?
+  User       User[]
+}
+
+model Project {
+  id                String        @id @unique @default(cuid())
+  name              String        @unique
+  short_description String
+  long_description  String
+  thumbnail_image   String?
+  large_image       String?
+  chain_id          Int
+  member_count      BigInt?
+  is_erc721         Boolean
+  accepted_payments Json
+  tiers             ProjectTier[]
+  User              User?         @relation(fields: [userId], references: [id])
+  userId            String?
+}
+
+model ProjectTier {
+  id                       String   @id @unique @default(cuid())
+  address                  String
+  tier_id                  Int
+  name                     String
+  price                    String
+  unit                     String
+  supply                   BigInt
+  filled                   BigInt
+  subscription_length      Int
+  subscription_length_unit String
+  description              String
+  features                 String[]
+  Project                  Project? @relation(fields: [projectId], references: [id])
+  projectId                String?
 }
