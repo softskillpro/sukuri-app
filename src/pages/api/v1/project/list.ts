@@ -12,10 +12,20 @@ export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> {
+  const {
+    query: { page, pageSize },
+  } = req;
+
   if (req.method === 'GET') {
     try {
       // Fetch all projects
-      const projects = await prisma.project.findMany();
+      const projects = await prisma.project.findMany({
+        skip: Number(page) * Number(pageSize),
+        take: Number(pageSize),
+        include: {
+          tiers: true, // All posts where authorId == 20
+        },
+      });
 
       return res.send(projects);
     } catch (error) {

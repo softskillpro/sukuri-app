@@ -2,7 +2,7 @@
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
  */
-await import('./src/env.mjs')
+await import('./src/env.mjs');
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -15,6 +15,11 @@ const config = {
         hostname: 'i.seadn.io',
         port: '',
         pathname: '/gcs/files/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'example.com',
+        port: '',
       },
     ],
   },
@@ -29,5 +34,5 @@ const config = {
     locales: ['en'],
     defaultLocale: 'en',
   },
-}
-export default config
+};
+export default config;
