@@ -58,10 +58,10 @@ model UserProject {
   id        String      @id @default(cuid())
   userId    String
   projectId String
-  tierId    String
+  tierId    Int 
   user      User        @relation(fields: [userId], references: [id])
   project   Project     @relation(fields: [projectId], references: [id])
-  tier      ProjectTier @relation(fields: [tierId], references: [id])
+  tier      ProjectTier @relation(fields: [tierId], references: [tier_id])
 
   @@unique([userId, projectId, tierId])
 }
@@ -101,7 +101,7 @@ model Project {
 model ProjectTier {
   id                       String        @id @unique @default(cuid())
   address                  String
-  tier_id                  Int
+  tier_id                  Int        @unique
   name                     String
   price                    String
   unit                     String

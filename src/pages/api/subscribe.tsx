@@ -6,10 +6,9 @@ import { prisma } from '../../server/db';
 import { z } from 'zod';
 import { ZodError } from 'zod';
 
-const subscriptionSchema = z.object({
-    userId: z.string(),
+const subscriptionSchema = z.object({    
     projectId: z.string(),
-    tierId: z.string(),
+    tierId: z.number()
 });
 
 type SubscriptionData = z.infer<typeof subscriptionSchema>;
@@ -41,30 +40,33 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse):
     //     res.status(401).json({ error: 'Unauthorized' });
     //     return;
     // }
-    const userId = 'af7d39af-84a9-4a4b-b6a2-18563e42bc6e';
+    const userIdTest = 'af7d39af-84a9-4a4b-b6a2-18563e42bc6e';
+    console.log(userIdTest);
+    console.log(req.body)
     if (req.method === 'POST') {
         try {
             const parsedData = subscriptionSchema.safeParse(req.body);
-
+            console.log(parsedData);
             if (!parsedData.success) {
                 return res.status(400).json({ error: 'Invalid request data', details: (parsedData.error as ZodError).errors });
             }
 
-            const { userId, projectId, tierId } = parsedData.data as SubscriptionData;
-
+            const { projectId, tierId } = parsedData.data as SubscriptionData;
+            console.log(projectId);
+            console.log(projectId);
             // Ensure the logged in user is the same as the user trying to subscribe
-            if (userId !== userId) {
+            if (userIdTest !== userIdTest) {
                 return res.status(403).json({ error: 'Forbidden' });
             }
 
             // Make sure user exists
-            const user = await findOrThrow(prisma.user.findUnique({ where: { id: userId } }), 'User not found');
+            const user = await findOrThrow(prisma.user.findUnique({ where: { id: userIdTest } }), 'User not found');
 
             // Make sure project exists
             const project = await findOrThrow(prisma.project.findUnique({ where: { id: projectId } }), 'Project not found');
 
             // Make sure the tier exists and belongs to the project
-            const tier = await findOrThrow(prisma.projectTier.findUnique({ where: { id: tierId } }), 'Tier not found');
+            const tier = await findOrThrow(prisma.projectTier.findUnique({ where: { tier_id: tierId} }), 'Tier not found');
 
             if (tier.projectId !== projectId) {
                 return res.status(404).json({ error: 'Tier does not belong to the specified project' });
@@ -73,7 +75,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse):
             // Subscribe the user to the project under a specific tier
             const subscription = await prisma.userProject.create({
                 data: {
-                    userId: userId,
+                    userId: userIdTest,
                     projectId: projectId,
                     tierId: tierId
                 }

@@ -7,8 +7,7 @@
     "dev": "next dev",
     "postinstall": "prisma generate",
     "lint": "next lint",
-    "start": "next start",
-    "seed": "ts-node prisma/seed.ts"
+    "start": "next start"    
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
@@ -58,5 +57,8 @@
   },
   "ct3aMetadata": {
     "initVersion": "7.12.1"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }
