@@ -8,9 +8,8 @@ import StyledInput from '@/components/common/StyledInput';
 import { ContainedButton } from '@/components/common/StyledButton';
 import FileUpload from '@/components/FileUpload';
 import { SetupProfileContainer } from './styles';
-import router from "next/router"
+import router from 'next/router';
 import fetch from 'cross-fetch';
-
 
 const trimColors = ['#F8EB54', '#5993D8', '#A5A5A5', '#E3E3E3'];
 
@@ -27,10 +26,14 @@ const bgColors = [
 
 const foilColors = ['#FFF25A', '#4B6EFF', '#FF3B3B', '#3EC148'];
 
-const SetupProfile = ({address}) => {
+interface SetupProfileProps {
+  address: string;
+}
+
+const SetupProfile = ({ address }: SetupProfileProps) => {
   const [attachedFile, setAttachedFile] = useState<File | null>(null);
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
 
   const onSelectFile = useCallback((file?: File) => {
     if (!file) return;
@@ -47,28 +50,27 @@ const SetupProfile = ({address}) => {
     const data = {
       email: email,
       username: username,
-      address: address
-    }
+      address: address,
+    };
 
     const response = await fetch('/api/register', {
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      method: 'POST'
-    })
+      method: 'POST',
+    });
 
-    const result = await response.json()
-    
+    const result = await response.json();
+
     if (result.status === true) {
-      alert(result.message)
-      router.push('/sign-in')
+      alert(result.message);
+      router.push('/sign-in');
     } else {
-      alert(result.message)
-      console.log('log error investigate')
+      alert(result.message);
+      console.log('log error investigate');
     }
-    
-  }
+  };
 
   return (
     <SetupProfileContainer>
@@ -130,12 +132,14 @@ const SetupProfile = ({address}) => {
 
           <Grid container spacing={1}>
             <Grid item xs={12} sm={8} sx={{ position: 'relative' }}>
-              <StyledInput value={username} onChange={e => setUsername(e.target.value)} />
+              <StyledInput
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
               <Typography
                 variant='custom2'
                 sx={{ position: 'absolute', top: 16, right: 10 }}
-              >
-              </Typography>
+              ></Typography>
             </Grid>
 
             <Grid item xs={12} sm={4}>
@@ -161,12 +165,14 @@ const SetupProfile = ({address}) => {
 
           <Grid container spacing={1}>
             <Grid item xs={12} sm={8} sx={{ position: 'relative' }}>
-              <StyledInput value={email} onChange={e => setEmail(e.target.value)} />
+              <StyledInput
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
               <Typography
                 variant='custom2'
-                sx={{ position: 'absolute', top: 16, right: 10 }}                
-              >
-              </Typography>
+                sx={{ position: 'absolute', top: 16, right: 10 }}
+              ></Typography>
             </Grid>
           </Grid>
 
@@ -211,7 +217,10 @@ const SetupProfile = ({address}) => {
         </section>
       </FlexBox>
 
-      <ContainedButton sx={{ minWidth: 284, height: 54, my: 5 }} onClick={handleSubmit}>
+      <ContainedButton
+        sx={{ minWidth: 284, height: 54, my: 5 }}
+        onClick={handleSubmit}
+      >
         Submit
       </ContainedButton>
     </SetupProfileContainer>
