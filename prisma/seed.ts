@@ -22,6 +22,7 @@ const projects = (_user: User): Prisma.ProjectCreateInput[] => [
     chain_id: 1,
     member_count: 1722,
     is_erc721: false,
+    is_featured: false,
     accepted_payments: [
       {
         token: '0x0000000000000000000000000000000000000000',
@@ -49,6 +50,7 @@ const projects = (_user: User): Prisma.ProjectCreateInput[] => [
     chain_id: 1,
     member_count: 1572,
     is_erc721: true,
+    is_featured: true,
     accepted_payments: [
       {
         token: '0x0000000000000000000000000000000000000000',
@@ -76,6 +78,7 @@ const projects = (_user: User): Prisma.ProjectCreateInput[] => [
     chain_id: 1,
     member_count: 12400,
     is_erc721: true,
+    is_featured: false,
     accepted_payments: [
       {
         token: '0x0000000000000000000000000000000000000000',
@@ -103,6 +106,7 @@ const projects = (_user: User): Prisma.ProjectCreateInput[] => [
     chain_id: 1,
     member_count: 1985,
     is_erc721: false,
+    is_featured: true,
     accepted_payments: [
       {
         token: '0x0000000000000000000000000000000000000000',
@@ -130,6 +134,7 @@ const projects = (_user: User): Prisma.ProjectCreateInput[] => [
     chain_id: 1,
     member_count: 14600,
     is_erc721: true,
+    is_featured: true,
     accepted_payments: [
       {
         token: '0x0000000000000000000000000000000000000000',
@@ -151,6 +156,7 @@ const projects = (_user: User): Prisma.ProjectCreateInput[] => [
     chain_id: 1,
     member_count: 1000,
     is_erc721: false,
+    is_featured: false,
     accepted_payments: [
       {
         token: '0x0000000000000000000000000000000000000000',
@@ -179,6 +185,7 @@ const projects = (_user: User): Prisma.ProjectCreateInput[] => [
     chain_id: 1,
     member_count: 124,
     is_erc721: false,
+    is_featured: true,
     accepted_payments: [
       {
         token: '0x0000000000000000000000000000000000000000',
@@ -261,7 +268,7 @@ const projectTiers = (
     name: 'Insight Tier',
     price: '10000000000000000000',
     unit: 'wei',
-    supply: -1,
+    supply: 1,
     filled: 523,
     subscription_length: 30,
     subscription_length_unit: 'days',
@@ -277,7 +284,7 @@ const projectTiers = (
     name: 'Strategy Tier',
     price: '20000000000000000000',
     unit: 'wei',
-    supply: -1,
+    supply: 1,
     filled: 573,
     subscription_length: 60,
     subscription_length_unit: 'days',
@@ -296,7 +303,7 @@ const projectTiers = (
     name: 'Elite Tier',
     price: '50000000000000000000',
     unit: 'wei',
-    supply: -1,
+    supply: 1,
     filled: 889,
     subscription_length: 90,
     subscription_length_unit: 'days',

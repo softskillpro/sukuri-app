@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import useSWR from 'swr';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Gallery from '@/components/Gallery';
@@ -9,9 +10,17 @@ import RecommendedCommunities from '@/components/recommendedcommunities';
 import { Layout4 } from '@/components/common/PageLayout';
 import mock from '@/utils/mock';
 
+const fetcher = (url: string) => fetch(url).then((r) => r.json());
+
 const Project = () => {
   const matches = useMediaQuery('(min-width:900px)');
 
+  const { data, error, isLoading } = useSWR(
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/project/list`,
+    fetcher,
+  );
+
+  console.log(data);
   const nft = mock[0];
 
   if (!nft) return null;
