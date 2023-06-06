@@ -11,10 +11,16 @@ interface NftCardProps {
 }
 
 const NftCard = ({ nft, className }: NftCardProps) => {
+  if (!nft) return null;
+
   return (
     <NftCardContainer className={className || 'nft-card-container'}>
       <Image
-        src={nft?.large_image || 'https://picsum.photos/seed/picsum/200/300'}
+        src={
+          nft.large_image.includes('https://example.com')
+            ? 'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1'
+            : nft.large_image
+        }
         width={320}
         height={160}
         priority

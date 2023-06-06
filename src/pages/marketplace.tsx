@@ -1,3 +1,4 @@
+import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -9,7 +10,9 @@ import RisingProjects from '@/components/risingprojects';
 import AboutSukuri from '@/components/aboutsukuri';
 import { MarketplaceContainer } from '@/styles/marketplace';
 
-const Marketplace = () => {
+const Marketplace = ({
+  projects,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const matches = useMediaQuery('(min-width:900px)');
   const matches500 = useMediaQuery('(min-width:500px)');
 
@@ -54,7 +57,7 @@ const Marketplace = () => {
 
       <RecommendedCommunities />
 
-      <RisingProjects />
+      <RisingProjects projects={projects} />
 
       <AboutSukuri />
     </MarketplaceContainer>
@@ -62,3 +65,14 @@ const Marketplace = () => {
 };
 
 export default Marketplace;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const page = 0;
+  const pageSize = 5;
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/project/featured?page=${page}&pageSize=${pageSize}`,
+  );
+  const projects = await res.json();
+  return { props: { projects } };
+};

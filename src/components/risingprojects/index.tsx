@@ -2,9 +2,13 @@ import Typography from '@mui/material/Typography';
 import { HorizontalDivider } from '@/components/common/StyledDivider';
 import { Layout1, Layout2, Layout3 } from '@/components/common/PageLayout';
 import MultiCarousel from '@/components/multicarousel';
-import mock from '@/utils/mock';
+import type { NFTType } from '@/interface/Nft.interface';
 
-const RisingProjects = () => {
+interface RisingProjectsProps {
+  projects?: NFTType[];
+}
+
+const RisingProjects = ({ projects }: RisingProjectsProps) => {
   return (
     <Layout3>
       <Layout2>
@@ -15,7 +19,7 @@ const RisingProjects = () => {
       </Layout2>
 
       <Layout1>
-        <MultiCarousel nfts={mock} />
+        <MultiCarousel nfts={projects} />
       </Layout1>
     </Layout3>
   );
