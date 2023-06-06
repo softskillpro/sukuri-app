@@ -1,5 +1,6 @@
 {
   "name": "sukuri-app",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,7 +8,8 @@
     "dev": "next dev",
     "postinstall": "prisma generate",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "seed": "ts-node --esm prisma/seed.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
