@@ -26,14 +26,15 @@ const bgColors = [
 
 const foilColors = ['#FFF25A', '#4B6EFF', '#FF3B3B', '#3EC148'];
 
-interface SetupProfileProps {
+type Props = {
   address: string;
-}
+};
 
-const SetupProfile = ({ address }: SetupProfileProps) => {
+const SetupProfile = (props: Props) => {
   const [attachedFile, setAttachedFile] = useState<File | null>(null);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const { address } = props;
 
   const onSelectFile = useCallback((file?: File) => {
     if (!file) return;
