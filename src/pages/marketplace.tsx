@@ -1,9 +1,9 @@
+import Image from 'next/image';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Layout1 } from '@/components/common/PageLayout';
-import LogoIcon from '@/components/svgs/LogoIcon';
 import TodaysPick from '@/components/todayspick';
 import RecommendedCommunities from '@/components/recommendedcommunities';
 import RisingProjects from '@/components/risingprojects';
@@ -18,9 +18,12 @@ const Marketplace = ({
 
   return (
     <MarketplaceContainer>
-      <LogoIcon
-        fill='#FFC0CB'
-        sx={{ fontSize: 670 }}
+      <Image
+        src='/images/marketplace.png'
+        width={596}
+        height={508}
+        priority
+        alt='Marketplace'
         className='marketplace-flower'
       />
 

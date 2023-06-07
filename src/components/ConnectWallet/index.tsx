@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useAccount } from 'wagmi';
 import { useConnect } from 'wagmi';
 import type { Connector } from 'wagmi';
 import Typography from '@mui/material/Typography';
@@ -25,10 +27,19 @@ const wallets = [
 ];
 
 const ConnectWallet = () => {
-  const { connect, connectors, isLoading } = useConnect();
+  const router = useRouter();
+  const { isConnected } = useAccount();
+  const { connectAsync, connectors, isLoading } = useConnect();
 
   const handleConnectWallet = async (connector: Connector) => {
-    connect({ connector });
+    try {
+      if (!isConnected) {
+        await connectAsync({ connector });
+      }
+      router.push('/marketplace');
+    } catch (err: any) {
+      console.log(err?.message || err);
+    }
   };
 
   return (
