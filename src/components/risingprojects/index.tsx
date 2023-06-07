@@ -19,7 +19,9 @@ const RisingProjects = ({ projects }: RisingProjectsProps) => {
       </Layout2>
 
       <Layout1>
-        <MultiCarousel nfts={projects} />
+        {projects && projects.length > 0 && (
+          <MultiCarousel projects={projects} />
+        )}
       </Layout1>
     </Layout3>
   );

@@ -1,5 +1,7 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { type NextPage } from 'next';
+import { useAccount } from 'wagmi';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -16,7 +18,16 @@ const contents = [
 ];
 
 const Home: NextPage = () => {
+  const router = useRouter();
+  const { isConnected } = useAccount();
   const matches = useMediaQuery('(min-width:1200px)');
+
+  useEffect(() => {
+    if (isConnected) {
+      router.push('/marketplace');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isConnected]);
 
   return (
     <HomeContainer>

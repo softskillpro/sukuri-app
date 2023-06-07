@@ -9,10 +9,10 @@ import 'keen-slider/keen-slider.min.css';
 import { MultiCarouselContainer } from './styles';
 
 interface MultiCarouselProps {
-  nfts?: NFTType[];
+  projects: NFTType[];
 }
 
-const MultiCarousel = ({ nfts }: MultiCarouselProps) => {
+const MultiCarousel = ({ projects }: MultiCarouselProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
 
@@ -64,9 +64,13 @@ const MultiCarousel = ({ nfts }: MultiCarouselProps) => {
       )}
 
       <div ref={sliderRef} className='keen-slider'>
-        {nfts &&
-          nfts.map((nft: NFTType) => (
-            <NftCard key={nft.id} nft={nft} className='keen-slider__slide' />
+        {projects &&
+          projects.map((project: NFTType) => (
+            <NftCard
+              key={project.id}
+              project={project}
+              className='keen-slider__slide'
+            />
           ))}
       </div>
     </MultiCarouselContainer>

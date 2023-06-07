@@ -53,9 +53,9 @@ const Marketplace = ({
         </Grid>
       </Layout1>
 
-      <TodaysPick />
+      {projects && projects.length > 0 && <TodaysPick project={projects[0]} />}
 
-      <RecommendedCommunities />
+      <RecommendedCommunities projects={projects} />
 
       <RisingProjects projects={projects} />
 
@@ -68,7 +68,7 @@ export default Marketplace;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const page = 0;
-  const pageSize = 5;
+  const pageSize = 10;
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_ENDPOINT}/project/featured?page=${page}&pageSize=${pageSize}`,

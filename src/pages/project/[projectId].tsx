@@ -11,6 +11,7 @@ import { Layout4 } from '@/components/common/PageLayout';
 
 const Project = ({
   project,
+  projects,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const matches = useMediaQuery('(min-width:900px)');
 
@@ -59,7 +60,7 @@ const Project = ({
 
           <Subscription nft={project} />
 
-          <RecommendedCommunities />
+          <RecommendedCommunities projects={projects} />
         </>
       ) : (
         <Typography>This project does not exist</Typography>
@@ -71,14 +72,22 @@ const Project = ({
 export default Project;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const page = 0;
+  const pageSize = 10;
   const { params } = context;
 
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/project/info/${params?.projectId}`,
-    );
-    const project = await res.json();
-    return { props: { project } };
+    const res = await Promise.all([
+      fetch(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/project/info/${params?.projectId}`,
+      ),
+      fetch(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/project/featured?page=${page}&pageSize=${pageSize}`,
+      ),
+    ]);
+    const data = await Promise.all(res.map((r) => r.json()));
+
+    return { props: { project: data[0], projects: data[1] } };
   } catch (err: any) {
     return { props: { project: null } };
   }
