@@ -12,11 +12,10 @@ interface SubscriptionProps {
   userId: string; // add user id
 }
 
-const Subscription = ({ nft, userId }: SubscriptionProps) => {
-  const handleClick = useCallback((tierId: string) => {
+const Subscription = ({ nft }: SubscriptionProps) => {
+  const handleClick = useCallback((tierId: number) => {
     // Make a POST request to your subscription API
     axios.post('/api/subscribe', {
-      userId,
       projectId: nft?.id,
       tierId
     }).then((response) => {
@@ -24,7 +23,7 @@ const Subscription = ({ nft, userId }: SubscriptionProps) => {
     }).catch((error) => {
       console.error(error); // log any error
     });
-  }, [userId, nft?.id]);
+  }, [nft?.id]);
 
   if (!nft) return null;
 

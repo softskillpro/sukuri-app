@@ -1,12 +1,20 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Session } from 'next-auth';
-import { getSession } from "next-auth/react";
-
+import { getServerSession } from "next-auth/next"
+import authOptions from "./auth/[...nextauth]";
 import { prisma } from '../../server/db';
 import { z } from 'zod';
 import { ZodError } from 'zod';
 
-const subscriptionSchema = z.object({    
+/**
+ * @typedef SubscriptionData
+ * @type {object}
+ * @property {string} projectId - Project ID
+ * @property {number} tierId - Tier ID
+ */
+
+// Create a Zod schema for validating subscription data
+const subscriptionSchema = z.object({
     projectId: z.string(),
     tierId: z.number()
 });
@@ -18,6 +26,7 @@ type SubscriptionData = z.infer<typeof subscriptionSchema>;
  * @param {Promise<T | null>} promise - The Prisma client promise.
  * @param {string} error - The error message to throw if the record is not found.
  * @returns {Promise<T>}
+ * @throws {Error} If the record is not found.
  */
 async function findOrThrow<T>(promise: Promise<T | null>, error: string): Promise<T> {
     const record = await promise;
@@ -28,51 +37,89 @@ async function findOrThrow<T>(promise: Promise<T | null>, error: string): Promis
 }
 
 /**
- * Handles the API request.
+ * Handles the POST method for the subscription API route.
+ * 
  * @param {NextApiRequest} req - The API request.
  * @param {NextApiResponse} res - The API response.
  * @returns {Promise<void>}
+ * 
+ * @throws {ZodError} If the request body does not conform to the SubscriptionData schema.
+ * @throws {Error} If the requested user, project, or tier cannot be found in the database.
+ * @throws {Error} If the user is already subscribed to the requested tier.
  */
 export default async function handle(req: NextApiRequest, res: NextApiResponse): Promise<void> {
-    // const session: Session | null = await getSession({ req });
-    // console.log(`Session:${Session}`)
+    // Test User
+    const userIdTest = 'af7d39af-84a9-4a4b-b6a2-18563e42bc6e';
+
+    // Get the session from next-auth
+    const session: Session | null = await getServerSession(req, res, authOptions);
+
+    // Not Signed in throw error - uncomment when session is set by auth
     // if (!session) {
     //     res.status(401).json({ error: 'Unauthorized' });
     //     return;
     // }
-    const userIdTest = 'af7d39af-84a9-4a4b-b6a2-18563e42bc6e';
-    console.log(userIdTest);
-    console.log(req.body)
+
+    const userId = session?.user.id || userIdTest;
+
     if (req.method === 'POST') {
         try {
             const parsedData = subscriptionSchema.safeParse(req.body);
-            console.log(parsedData);
             if (!parsedData.success) {
-                return res.status(400).json({ error: 'Invalid request data', details: (parsedData.error as ZodError).errors });
+                return res.status(400).json({
+                    error: 'Invalid request data',
+                    details: (parsedData.error as ZodError).errors,
+                    message: 'Ensure your request data is in the correct format'
+                });
             }
 
             const { projectId, tierId } = parsedData.data as SubscriptionData;
-            console.log(projectId);
-            console.log(projectId);
-            // Ensure the logged in user is the same as the user trying to subscribe
-            if (userIdTest !== userIdTest) {
-                return res.status(403).json({ error: 'Forbidden' });
+
+            if (userId !== userId) { // stand in for if we add userId in the subscribe api call
+                return res.status(403).json({
+                    error: 'Forbidden',
+                    message: 'You are not authorized to make this action'
+                });
             }
 
-            // Make sure user exists
-            const user = await findOrThrow(prisma.user.findUnique({ where: { id: userIdTest } }), 'User not found');
+            try {
+                // Make sure user exists
+                await findOrThrow(prisma.user.findUnique({ where: { id: userId } }), 'User not found');
 
-            // Make sure project exists
-            const project = await findOrThrow(prisma.project.findUnique({ where: { id: projectId } }), 'Project not found');
+                // Make sure project exists
+                await findOrThrow(prisma.project.findUnique({ where: { id: projectId } }), 'Project not found');
 
-            // Make sure the tier exists and belongs to the project
-            const tier = await findOrThrow(prisma.projectTier.findUnique({ where: { tier_id: tierId} }), 'Tier not found');
+                // rest of the code...
+            } catch (error) {
+                // If an error was thrown in the findOrThrow function, return the error message
+                if (error instanceof Error) {
+                    return res.status(404).json({ error: error.message });
+                }
+            }
+            const tier = await findOrThrow(prisma.projectTier.findUnique({ where: { tier_id: tierId } }), 'Tier not found');
 
             if (tier.projectId !== projectId) {
-                return res.status(404).json({ error: 'Tier does not belong to the specified project' });
+                return res.status(404).json({
+                    error: 'Mismatched IDs',
+                    message: 'The tier does not belong to the specified project'
+                });
             }
-            
-            // Subscribe the user to the project under a specific tier
+
+            const existingSubscription = await prisma.userProject.findFirst({
+                where: {
+                    userId: userIdTest,
+                    projectId: projectId,
+                    tierId: tierId
+                }
+            });
+
+            if (existingSubscription) {
+                return res.status(409).json({
+                    error: 'Already Subscribed',
+                    message: 'You are already subscribed to this tier'
+                });
+            }
+
             const subscription = await prisma.userProject.create({
                 data: {
                     userId: userIdTest,
@@ -81,13 +128,25 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse):
                 }
             });
 
-            return res.status(200).json(subscription);
+            return res.status(200).json({
+                success: true,
+                message: 'Subscription successful',
+                data: subscription
+            });
 
         } catch (error) {
             console.error(error);
-            res.status(500).json({ error: 'An error occurred while processing your request.' });
+            if (error instanceof Error) {
+                return res.status(500).json({
+                    error: 'Internal Server Error',
+                    message: error.message
+                });
+            }
         }
     } else {
-        res.status(405).json({ error: 'Method not allowed' });
+        res.status(405).json({
+            error: 'Method Not Allowed',
+            message: 'Ensure you are using the correct HTTP method for this route'
+        });
     }
 }
