@@ -47,6 +47,65 @@ async function findOrThrow<T>(promise: Promise<T | null>, error: string): Promis
  * @throws {Error} If the requested user, project, or tier cannot be found in the database.
  * @throws {Error} If the user is already subscribed to the requested tier.
  */
+
+/**
+ * @swagger
+ * /api/subscribe:
+ *   post:
+ *     tags:
+ *       - Subscriptions
+ *     description: Subscribes the authenticated user to a specific tier of a project.
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: body
+ *         description: Subscription data
+ *         in: body
+ *         required: true
+ *         schema:
+ *           type: object
+ *           required:
+ *             - projectId
+ *             - tierId
+ *           properties:
+ *             projectId:
+ *               type: string
+ *               description: The ID of the project.
+ *             tierId:
+ *               type: integer
+ *               description: The ID of the tier.
+ *     responses:
+ *       200:
+ *         description: Successfully subscribed.
+ *         schema:
+ *           type: object
+ *           properties:
+ *             success:
+ *               type: boolean
+ *             message:
+ *               type: string
+ *             data:
+ *               type: object
+ *               properties:
+ *                 userId:
+ *                   type: string
+ *                 projectId:
+ *                   type: string
+ *                 tierId:
+ *                   type: integer
+ *       400:
+ *         description: Invalid request data.
+ *       401:
+ *         description: Unauthorized.
+ *       403:
+ *         description: Forbidden. You are not authorized to make this action.
+ *       404:
+ *         description: User, Project, Tier or mismatched IDs not found.
+ *       409:
+ *         description: Already subscribed to this tier.
+ *       500:
+ *         description: Internal Server Error.
+ */
 export default async function handle(req: NextApiRequest, res: NextApiResponse): Promise<void> {
     // Test User
     const userIdTest = 'af7d39af-84a9-4a4b-b6a2-18563e42bc6e';
@@ -86,9 +145,9 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse):
             try {
                 // Make sure user exists
                 await findOrThrow(prisma.user.findUnique({ where: { id: userId } }), 'User not found');
-                
+
                 await findOrThrow(prisma.project.findUnique({ where: { id: projectId } }), 'Project not found');
-                
+
             } catch (error) {
                 // If an error was thrown in the findOrThrow function, return the error message
                 if (error instanceof Error) {
