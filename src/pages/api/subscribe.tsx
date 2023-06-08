@@ -82,14 +82,13 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse):
                 });
             }
 
+            // db calls that serve to check if data exists for user and project
             try {
                 // Make sure user exists
                 await findOrThrow(prisma.user.findUnique({ where: { id: userId } }), 'User not found');
-
-                // Make sure project exists
+                
                 await findOrThrow(prisma.project.findUnique({ where: { id: projectId } }), 'Project not found');
-
-                // rest of the code...
+                
             } catch (error) {
                 // If an error was thrown in the findOrThrow function, return the error message
                 if (error instanceof Error) {
