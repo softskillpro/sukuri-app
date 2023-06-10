@@ -9,7 +9,32 @@ type Data = {
   name: string
 }
 
-export default function handler(
+const handleSignUp = async (body) => {
+  'use server'
+  const email = body.email
+  const password = body.password
+
+  const supabase = createServerActionClient({ cookies })
+  const {data, error} = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        address: body.address
+      }
+    },
+  })
+  if(error) {
+    return error
+  } else {
+    return data
+  }
+
+  //emailRedirectTo: 'http://localhost:3000/auth/callback', check to see this from options
+  //revalidatePath('/') check to see what this does
+}
+
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
@@ -21,27 +46,10 @@ export default function handler(
 
     if(body.username && body.email && body.address) {
       // do the registration here in supabase
-      // move this function out
       // need to create a parallel table for public users to handle jwt/nonce refreshment
-      const handleSignUp = async (formData) => {
-        'use server'
-        const email = formData.get('email')
-        const password = formData.get('password')
-    
-        const supabase = createServerActionClient({ cookies })
-        const {data, error} = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            data: {
-              address: body.address
-            }
-          },
-        })
-        
-        //emailRedirectTo: 'http://localhost:3000/auth/callback', check to see this from options
-        //revalidatePath('/') check to see what this does
-      }
+
+      let resp = await handleSignUp(body)
+      console.log(resp)
 
       res.status(200).json({ status: true, message: 'Successful Account Creation' })  
     } else if (!body.username) {

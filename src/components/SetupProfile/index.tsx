@@ -31,6 +31,7 @@ const SetupProfile = ({address}) => {
   const [attachedFile, setAttachedFile] = useState<File | null>(null);
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const onSelectFile = useCallback((file?: File) => {
     if (!file) return;
@@ -47,7 +48,8 @@ const SetupProfile = ({address}) => {
     const data = {
       email: email,
       username: username,
-      address: address
+      address: address,
+      password: password
     }
 
     const response = await fetch('/api/register', {
@@ -59,14 +61,18 @@ const SetupProfile = ({address}) => {
     })
 
     const result = await response.json()
+    // this result should be a 200/400
+
+    //redirect to according or flash error and clear state
     
-    if (result.status === true) {
-      alert(result.message)
-      router.push('/sign-in')
-    } else {
-      alert(result.message)
-      console.log('log error investigate')
-    }
+    
+    // if (result.status === true) {
+    //   alert(result.message)
+    //   router.push('/sign-in')
+    // } else {
+    //   alert(result.message)
+    //   console.log('log error investigate')
+    // }
     
   }
 
@@ -177,7 +183,28 @@ const SetupProfile = ({address}) => {
           <Typography
             variant='caption'
             fontWeight={700}
+            mb={2.25}
+            component='div'
+          >
+            Password
+          </Typography>
+
+          <Grid container spacing={1}>
+            <Grid item xs={12} sm={8} sx={{ position: 'relative' }}>
+              <StyledInput type='password' value={password} onChange={e => setPassword(e.target.value)} />
+              <Typography
+                variant='custom2'
+                sx={{ position: 'absolute', top: 16, right: 10 }}                
+              >
+              </Typography>
+            </Grid>
+          </Grid>
+
+          <Typography
+            variant='caption'
+            fontWeight={700}
             mb={1.5}
+            mt={3.5}
             component='div'
           >
             Profile Picture
