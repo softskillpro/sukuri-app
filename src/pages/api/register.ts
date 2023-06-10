@@ -14,7 +14,7 @@ const handleSignUp = async (body) => {
   const email = body.email
   const password = body.password
 
-  const supabase = createServerActionClient({ cookies })
+  const supabase =  createServerActionClient({ cookies })
   const {data, error} = await supabase.auth.signUp({
     email,
     password,

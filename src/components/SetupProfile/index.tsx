@@ -62,10 +62,8 @@ const SetupProfile = ({address}) => {
 
     const result = await response.json()
     // this result should be a 200/400
-
-    //redirect to according or flash error and clear state
     
-    
+    //redirect to according or flash error and clear state   
     // if (result.status === true) {
     //   alert(result.message)
     //   router.push('/sign-in')
