@@ -4,6 +4,7 @@ import FlexBox from '@/components/common/FlexBox';
 export const ProjectContainer = styled(FlexBox)(({ theme }) => ({
   flexDirection: 'column',
   overflow: 'hidden',
+  minHeight: 'calc(100vh - 370px)',
   margin: '30px 20px',
   paddingTop: 30,
   background: theme.palette.primary.main,

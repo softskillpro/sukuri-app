@@ -8,6 +8,7 @@ export const NewUserContainer = styled(FlexBox)(() => ({
 
   '.new-user-flower': {
     position: 'absolute',
-    top: -75,
+    top: -5,
+    height: 'auto',
   },
 }));
