@@ -16,11 +16,44 @@ export default function Login() {
   }
 
   const handleSignIn = async () => {
-    await supabase.auth.signInWithPassword({
+    let user = await supabase.auth.signInWithPassword({
       email,
       password,
     })
+    console.log(user)
+
+    // need to call 
+
+    router.push('/') // go home when done
     router.refresh()
+  }
+
+  const handleSignInWithAddress = async () => {
+    // prompt user to sign message in wallet
+    // figure out how to do this w wagmi
+    let resp = ''
+
+    let data = {
+      signed: resp.msg,
+      nonce: nonceRequest.nonce,
+      address: 
+    }
+
+    const response = await fetch('/api/login', {
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST'
+    })
+
+    const verifyRequest = await postData(
+      `${state.config.API_URL}/api/login`, 
+      { signed: msg, 
+        nonce: nonceRequest.nonce,
+        address: state.address 
+      }
+    )
   }
 
   const handleSignOut = async () => {
