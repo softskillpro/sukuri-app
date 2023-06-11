@@ -8,7 +8,8 @@ export const HomeContainer = styled(Box)(({ theme }) => ({
   '.home-logo': {
     position: 'absolute',
     left: -218,
-    top: -315,
+    top: -220,
+    height: 'auto',
     transform: 'rotate(45deg)',
   },
 

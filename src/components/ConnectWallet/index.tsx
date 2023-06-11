@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useConnect, useAccount } from 'wagmi';
+import { useAccount } from 'wagmi';
+import { useConnect } from 'wagmi';
 import type { Connector } from 'wagmi';
 import Typography from '@mui/material/Typography';
 import FlexBox from '@/components/common/FlexBox';
+import Loader from '@/components/common/Loader';
 import { ConnectWalletContainer, StyledButton } from './styles';
 
 const wallets = [
@@ -29,20 +31,20 @@ const wallets = [
 const ConnectWallet = () => {
   const router = useRouter();
   const { isConnected } = useAccount();
-  const { connect, connectors, isLoading } = useConnect();
+  const { connectAsync, connectors, isLoading } = useConnect();
 
-  const [isClicked, setIsClicked] = useState(false);
-
-  useEffect(() => {
-    if (isClicked && isConnected) {
-      router.push('/new-user');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isClicked, isConnected]);
+  const [current, setCurrent] = useState('');
 
   const handleConnectWallet = async (connector: Connector) => {
-    connect({ connector });
-    setIsClicked(true);
+    try {
+      setCurrent(connector.id);
+      if (!isConnected) {
+        await connectAsync({ connector });
+      }
+      router.push('/marketplace');
+    } catch (err: any) {
+      console.log(err?.message || err);
+    }
   };
 
   return (
@@ -64,15 +66,19 @@ const ConnectWallet = () => {
           key={connector.id}
           disabled={isLoading}
           onClick={() => handleConnectWallet(connector)}
+          style={{ justifyContent: 'space-between' }}
         >
-          <Image
-            src={wallets[id]?.icon || ''}
-            width={20}
-            height={20}
-            alt='Wallet'
-            style={{ marginRight: 9 }}
-          />
-          {connector.name}
+          <FlexBox>
+            <Image
+              src={wallets[id]?.icon || ''}
+              width={20}
+              height={20}
+              alt='Wallet'
+              style={{ marginRight: 9 }}
+            />
+            {connector.name}
+          </FlexBox>
+          {isLoading && current === connector.id && <Loader small='true' />}
         </StyledButton>
       ))}
 

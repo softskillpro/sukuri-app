@@ -1,12 +1,18 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { HorizontalDivider } from '@/components/common/StyledDivider';
 import { ContainedButton } from '@/components/common/StyledButton';
 import FlexBox from '@/components/common/FlexBox';
 import { Layout1, Layout2, Layout3 } from '@/components/common/PageLayout';
+import type { NFTType } from '@/interface/Nft.interface';
 
-const TodaysPick = () => {
+interface TodaysPickProps {
+  project: NFTType;
+}
+
+const TodaysPick = ({ project }: TodaysPickProps) => {
   return (
     <Layout3>
       <Layout2>
@@ -20,24 +26,30 @@ const TodaysPick = () => {
         <Grid container spacing={2}>
           <Grid item xs={12} lg={4}>
             <Typography variant='h5' color='text.secondary' mb={3.5}>
-              PepeDAO Gladiators
+              {project.name}
             </Typography>
 
             <Typography variant='custom1' color='black.main'>
-              Pepe Gladiators is a thrilling game-fi alpha group that takes you
-              on a wild adventure through ancient Rome. In this game, you play
-              as a gladiator who must fight for survival in the brutal arenas of
-              the Roman Empire.
+              {project?.short_description}
             </Typography>
 
-            <FlexBox sx={{ justifyContent: 'flex-end', mt: 3.5 }}>
-              <ContainedButton>See More</ContainedButton>
-            </FlexBox>
+            <Link
+              href={`/project/${project.id}`}
+              style={{ textDecoration: 'none' }}
+            >
+              <FlexBox sx={{ justifyContent: 'flex-end', mt: 3.5 }}>
+                <ContainedButton>See More</ContainedButton>
+              </FlexBox>
+            </Link>
           </Grid>
 
           <Grid item xs={12} lg={8}>
             <Image
-              src='/images/pick.png'
+              src={
+                project.large_image.includes('https://example.com')
+                  ? '/images/pick.png'
+                  : project?.large_image
+              }
               width={823}
               height={341}
               priority
