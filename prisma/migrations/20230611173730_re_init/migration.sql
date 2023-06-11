@@ -39,6 +39,16 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
+CREATE TABLE "UserProject" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "projectId" TEXT NOT NULL,
+    "tierId" INTEGER NOT NULL,
+
+    CONSTRAINT "UserProject_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "VerificationToken" (
     "identifier" TEXT NOT NULL,
     "token" TEXT NOT NULL,
@@ -64,8 +74,9 @@ CREATE TABLE "Project" (
     "thumbnail_image" TEXT,
     "large_image" TEXT,
     "chain_id" INTEGER NOT NULL,
-    "member_count" BIGINT,
+    "member_count" INTEGER,
     "is_erc721" BOOLEAN NOT NULL,
+    "is_featured" BOOLEAN,
     "accepted_payments" JSONB NOT NULL,
     "userId" TEXT,
 
@@ -80,8 +91,8 @@ CREATE TABLE "ProjectTier" (
     "name" TEXT NOT NULL,
     "price" TEXT NOT NULL,
     "unit" TEXT NOT NULL,
-    "supply" BIGINT NOT NULL,
-    "filled" BIGINT NOT NULL,
+    "supply" INTEGER NOT NULL,
+    "filled" INTEGER NOT NULL,
     "subscription_length" INTEGER NOT NULL,
     "subscription_length_unit" TEXT NOT NULL,
     "description" TEXT NOT NULL,
@@ -107,6 +118,9 @@ CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 CREATE UNIQUE INDEX "User_address_key" ON "User"("address");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "UserProject_userId_projectId_tierId_key" ON "UserProject"("userId", "projectId", "tierId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "VerificationToken_token_key" ON "VerificationToken"("token");
 
 -- CreateIndex
@@ -124,6 +138,9 @@ CREATE UNIQUE INDEX "Project_name_key" ON "Project"("name");
 -- CreateIndex
 CREATE UNIQUE INDEX "ProjectTier_id_key" ON "ProjectTier"("id");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "ProjectTier_tier_id_key" ON "ProjectTier"("tier_id");
+
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -132,6 +149,15 @@ ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId"
 
 -- AddForeignKey
 ALTER TABLE "User" ADD CONSTRAINT "User_sukuriPassId_fkey" FOREIGN KEY ("sukuriPassId") REFERENCES "SukuriPass"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserProject" ADD CONSTRAINT "UserProject_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserProject" ADD CONSTRAINT "UserProject_projectId_fkey" FOREIGN KEY ("projectId") REFERENCES "Project"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserProject" ADD CONSTRAINT "UserProject_tierId_fkey" FOREIGN KEY ("tierId") REFERENCES "ProjectTier"("tier_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Project" ADD CONSTRAINT "Project_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
