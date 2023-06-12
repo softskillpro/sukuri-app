@@ -1,4 +1,4 @@
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 
 const ArrowCircleRightIcon = (props: SvgIconProps) => {
   return (
@@ -19,7 +19,7 @@ const ArrowCircleRightIcon = (props: SvgIconProps) => {
         d='M10.74 15.53L14.26 12l-3.52-3.53'
       ></path>
     </SvgIcon>
-  )
-}
+  );
+};
 
-export default ArrowCircleRightIcon
+export default ArrowCircleRightIcon;

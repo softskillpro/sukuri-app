@@ -1,13 +1,13 @@
-import Link from 'next/link'
-import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
-import FlexBox from '@/components/common/FlexBox'
-import { FooterContainer } from './styles'
-import LogoIcon from '@/components/svgs/LogoIcon'
+import Link from 'next/link';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import FlexBox from '@/components/common/FlexBox';
+import { FooterContainer } from './styles';
+import LogoIcon from '@/components/svgs/LogoIcon';
 
 interface HrefProps {
-  title: string
-  href: string
+  title: string;
+  href: string;
 }
 
 const navs: HrefProps[] = [
@@ -23,7 +23,7 @@ const navs: HrefProps[] = [
     title: 'Docs',
     href: '/docs',
   },
-]
+];
 
 const socials: HrefProps[] = [
   {
@@ -34,7 +34,7 @@ const socials: HrefProps[] = [
     title: 'Discord',
     href: '/discord',
   },
-]
+];
 
 const docs: HrefProps[] = [
   {
@@ -45,7 +45,7 @@ const docs: HrefProps[] = [
     title: 'Privacy Policy',
     href: '/privacy-policy',
   },
-]
+];
 
 const FooterBody = ({ title, href }: HrefProps) => (
   <Link href={href}>
@@ -53,7 +53,7 @@ const FooterBody = ({ title, href }: HrefProps) => (
       {title}
     </Typography>
   </Link>
-)
+);
 
 const Footer = () => {
   return (
@@ -94,7 +94,7 @@ const Footer = () => {
         2023 © Sukuri Protocol
       </Typography>
     </FooterContainer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

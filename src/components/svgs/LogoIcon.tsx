@@ -1,7 +1,7 @@
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 
 interface LogoIconProps extends SvgIconProps {
-  fill?: string
+  fill?: string;
 }
 
 const LogoIcon = ({ fill, ...props }: LogoIconProps) => {
@@ -12,7 +12,7 @@ const LogoIcon = ({ fill, ...props }: LogoIconProps) => {
         fill={fill || '#461427'}
       />
     </SvgIcon>
-  )
-}
+  );
+};
 
-export default LogoIcon
+export default LogoIcon;
