@@ -9,7 +9,7 @@ import formatUnits from '@/utils/formatUnits';
 
 interface TierCardProps {
   tier: TierType;
-  handleClick: (tierId: string) => void; // modify handleClick type
+  handleClick: (tierId: number | undefined) => void; // modify handleClick type
 }
 
 

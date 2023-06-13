@@ -9,12 +9,14 @@ import axios from 'axios'; // import axios to make HTTP requests
 
 interface SubscriptionProps {
   nft?: NFTType;
-  userId: string; // add user id
 }
 
 const Subscription = ({ nft }: SubscriptionProps) => {
-  const handleClick = useCallback((tierId: number) => {
+  const handleClick = useCallback((tierId: number | undefined) => {
     // Make a POST request to your subscription API
+    if (!tierId) {
+      return null
+    }
     axios.post('/api/subscribe', {
       projectId: nft?.id,
       tierId
@@ -39,9 +41,13 @@ const Subscription = ({ nft }: SubscriptionProps) => {
 
       <Layout1 sx={{ mb: 6.25 }}>
         <FlexBox sx={{ justifyContent: 'center', flexWrap: 'wrap', gap: 2.5 }}>
-          {nft.tiers.map((tier) => (
-            <TierCard key={tier.id} tier={tier} handleClick={() => handleClick(tier.id)} />
-          ))}
+          {
+            nft.tiers.map((tier) => (
+              tier.id ? (
+                <TierCard key={tier.id} tier={tier} handleClick={() => handleClick(tier.id)} />
+              ) : null
+            ))
+          }
         </FlexBox>
       </Layout1>
     </>
