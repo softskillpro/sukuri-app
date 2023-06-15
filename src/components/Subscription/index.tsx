@@ -17,9 +17,11 @@ const Subscription = ({ nft }: SubscriptionProps) => {
     if (!tierId) {
       return null
     }
+    const tierIdNum = Number(tierId);
+    console.log(tierIdNum);
     axios.post('/api/subscribe', {
       projectId: nft?.id,
-      tierId
+      tierId: tierIdNum
     }).then((response) => {
       console.log(response.data); // log the server response
     }).catch((error) => {
