@@ -14,3 +14,8 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.pv2 {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
