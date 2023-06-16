@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useAccount } from 'wagmi';
-import { useConnect } from 'wagmi';
 import type { Connector } from 'wagmi';
 import Typography from '@mui/material/Typography';
 import FlexBox from '@/components/common/FlexBox';
 import Loader from '@/components/common/Loader';
 import { ConnectWalletContainer, StyledButton } from './styles';
+
+import { getCsrfToken, signIn, useSession } from "next-auth/react"
+import { SiweMessage } from "siwe"
+import { useAccount, useConnect, useNetwork, useSignMessage } from "wagmi"
+import { InjectedConnector } from 'wagmi/connectors/injected'
 
 const wallets = [
   {
@@ -30,22 +33,65 @@ const wallets = [
 
 const ConnectWallet = () => {
   const router = useRouter();
-  const { isConnected } = useAccount();
-  const { connectAsync, connectors, isLoading } = useConnect();
-
   const [current, setCurrent] = useState('');
+  const { signMessageAsync } = useSignMessage()
+  const { chain } = useNetwork()
+  const { address, isConnected } = useAccount()
+  const { connect } = useConnect({
+    connector: new InjectedConnector(),
+  });
+  const { data: session, status } = useSession()
 
-  const handleConnectWallet = async (connector: Connector) => {
+  // const handleConnectWallet = async (connector: Connector) => {
+  //   try {
+  //     setCurrent(connector.id);
+  //     if (!isConnected) {
+  //       await connectAsync({ connector });
+  //     }
+  //     router.push('/marketplace');
+  //   } catch (err: any) {
+  //     console.log(err?.message || err);
+  //   }
+  // };
+
+  const handleLogin = async () => {
     try {
-      setCurrent(connector.id);
-      if (!isConnected) {
-        await connectAsync({ connector });
-      }
-      router.push('/marketplace');
-    } catch (err: any) {
-      console.log(err?.message || err);
+      const callbackUrl = "/protected"
+      const message = new SiweMessage({
+        domain: window.location.host,
+        address: address,
+        statement: "Sign in with Ethereum to the app.",
+        uri: window.location.origin,
+        version: "1",
+        chainId: chain?.id,
+        nonce: await getCsrfToken(),
+      })
+      const signature = await signMessageAsync({
+        message: message.prepareMessage(),
+      })
+      signIn("credentials", {
+        message: JSON.stringify(message),
+        redirect: false,
+        signature,
+        callbackUrl,
+      })
+    } catch (error) {
+      console.log(error)
+      window.alert(error)
     }
-  };
+
+  }
+
+  useEffect(() => {
+    console.log(isConnected);
+    if (isConnected && !session) {
+      handleLogin()
+      router.push('/temp')
+    } else if (isConnected && session) {      
+      // check here to see if user is in public table
+      router.push('/temp')
+    }
+  }, [isConnected]) 
 
   return (
     <ConnectWalletContainer>
@@ -61,11 +107,24 @@ const ConnectWallet = () => {
         Connect your wallet.
       </Typography>
 
-      {connectors.map((connector, id) => (
+      <StyledButton onClick={() => handleLogin()}>
+        <FlexBox>
+          <Image
+            src='/images/metamask.png'
+            width={20}
+            height={20}
+            alt='Wallet'
+            style={{ marginRight: 9 }}
+          />
+          Metamask
+        </FlexBox> 
+      </StyledButton>
+
+      {/* {connectors.map((connector, id) => (
         <StyledButton
           key={connector.id}
           disabled={isLoading}
-          onClick={() => handleConnectWallet(connector)}
+          onClick={() => handleLogin(connector)}
           style={{ justifyContent: 'space-between' }}
         >
           <FlexBox>
@@ -80,7 +139,7 @@ const ConnectWallet = () => {
           </FlexBox>
           {isLoading && current === connector.id && <Loader small='true' />}
         </StyledButton>
-      ))}
+      ))} */}
 
       <FlexBox className='wallet-helper'>
         <Typography variant='subtitle2' fontWeight={700} color='white.main'>
@@ -96,5 +155,13 @@ const ConnectWallet = () => {
     </ConnectWalletContainer>
   );
 };
+
+export async function getServerSideProps(context: any) {
+  return { 
+    props: {
+      csrfToken: await getCsrfToken(context),
+    },
+  }
+}
 
 export default ConnectWallet;
