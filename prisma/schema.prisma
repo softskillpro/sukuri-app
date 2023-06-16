@@ -34,16 +34,29 @@ model Session {
 }
 
 model User {
-  id           String      @id @default(cuid())
-  name         String?
-  email        String?     @unique
-  username     String      @unique
-  address      String      @unique
-  sukuriPassId String?
-  accounts     Account[]
-  subscribed   Project[]
-  sessions     Session[]
-  pass         SukuriPass? @relation(fields: [sukuriPassId], references: [id])
+  id            String        @id @default(cuid())
+  name          String?
+  email         String?       @unique
+  accounts      Account[]
+  sessions      Session[]
+  username      String        @unique
+  address       String        @unique
+  subscriptions UserProject[]
+  pass          SukuriPass?   @relation(fields: [sukuriPassId], references: [id])
+  sukuriPassId  String?
+  Project       Project[]
+}
+
+model UserProject {
+  id        String      @id @default(cuid())
+  userId    String
+  projectId String
+  tierId    Int
+  user      User        @relation(fields: [userId], references: [id])
+  project   Project     @relation(fields: [projectId], references: [id])
+  tier      ProjectTier @relation(fields: [tierId], references: [tier_id])
+
+  @@unique([userId, projectId, tierId])
 }
 
 model VerificationToken {
@@ -74,15 +87,16 @@ model Project {
   is_erc721         Boolean
   is_featured       Boolean?
   accepted_payments Json
+  tiers             ProjectTier[]
+  subscriptions     UserProject[]
   userId            String?
   User              User?         @relation(fields: [userId], references: [id])
-  tiers             ProjectTier[]
 }
 
 model ProjectTier {
-  id                       String   @id @unique @default(cuid())
+  id                       String        @id @unique @default(cuid())
   address                  String
-  tier_id                  Int
+  tier_id                  Int           @unique
   name                     String
   price                    String
   unit                     String
@@ -92,6 +106,7 @@ model ProjectTier {
   subscription_length_unit String
   description              String
   features                 String[]
+  Project                  Project?      @relation(fields: [projectId], references: [id])
   projectId                String?
-  Project                  Project? @relation(fields: [projectId], references: [id])
+  UserProject              UserProject[]
 }
