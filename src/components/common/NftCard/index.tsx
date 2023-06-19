@@ -6,15 +6,22 @@ import type { NFTType } from '@/interface/Nft.interface';
 import { NftCardContainer } from './styles';
 
 interface NftCardProps {
-  nft?: NFTType;
+  project: NFTType;
   className?: string;
 }
 
-const NftCard = ({ nft, className }: NftCardProps) => {
+const NftCard = ({ project, className }: NftCardProps) => {
   return (
-    <NftCardContainer className={className || 'nft-card-container'}>
+    <NftCardContainer
+      href={`/project/${project.id}`}
+      className={className || 'nft-card-container'}
+    >
       <Image
-        src={nft?.large_image || 'https://picsum.photos/seed/picsum/200/300'}
+        src={
+          project.large_image.includes('https://example.com')
+            ? 'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1'
+            : project.large_image
+        }
         width={320}
         height={160}
         priority
@@ -34,7 +41,7 @@ const NftCard = ({ nft, className }: NftCardProps) => {
           whiteSpace: 'nowrap',
         }}
       >
-        {nft?.name}
+        {project.name}
       </Typography>
 
       <FlexBox mb={2}>
@@ -45,7 +52,9 @@ const NftCard = ({ nft, className }: NftCardProps) => {
           textAlign='center'
           sx={{ width: 110 }}
         >
-          {nft?.member_count ? nft?.member_count.toLocaleString('en-US') : 0}{' '}
+          {project.member_count
+            ? project.member_count.toLocaleString('en-US')
+            : 0}{' '}
           Members
         </Typography>
 
@@ -58,8 +67,8 @@ const NftCard = ({ nft, className }: NftCardProps) => {
           textAlign='center'
           sx={{ width: 110 }}
         >
-          {nft?.tiers[0]?.subscription_length} <br />
-          {nft?.tiers[0]?.subscription_length_unit}
+          {project.tiers[0]?.subscription_length} <br />
+          {project.tiers[0]?.subscription_length_unit}
         </Typography>
       </FlexBox>
     </NftCardContainer>

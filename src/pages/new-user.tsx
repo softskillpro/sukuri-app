@@ -1,7 +1,7 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { useAccount } from 'wagmi';
 import Typography from '@mui/material/Typography';
-import LogoIcon from '@/components/svgs/LogoIcon';
 import SetupProfile from '@/components/SetupProfile';
 import FlexBox from '@/components/common/FlexBox';
 import useIsMounted from '@/hooks/useIsMounted';
@@ -13,9 +13,12 @@ const NewUser = () => {
 
   return (
     <NewUserContainer>
-      <LogoIcon
-        fill='rgba(255, 192, 203, 0.25)'
-        sx={{ fontSize: 650 }}
+      <Image
+        src='/images/background.png'
+        width={650}
+        height={605}
+        priority
+        alt='NewUser'
         className='new-user-flower'
       />
 
@@ -70,8 +73,7 @@ const NewUser = () => {
           </span>
         </Typography>
       </FlexBox>
-
-      <SetupProfile address={address} />
+      {isMounted && address && <SetupProfile address={address} />}
     </NewUserContainer>
   );
 };

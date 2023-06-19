@@ -2,9 +2,13 @@ import Typography from '@mui/material/Typography';
 import { HorizontalDivider } from '@/components/common/StyledDivider';
 import MultiCarousel from '@/components/multicarousel';
 import { Layout1, Layout2, Layout3 } from '@/components/common/PageLayout';
-import mock from '@/utils/mock';
+import type { NFTType } from '@/interface/Nft.interface';
 
-const RecommendedCommunities = () => {
+interface RecommendedCommunitiesProps {
+  projects?: NFTType[];
+}
+
+const RecommendedCommunities = ({ projects }: RecommendedCommunitiesProps) => {
   return (
     <Layout3>
       <Layout2>
@@ -15,7 +19,9 @@ const RecommendedCommunities = () => {
       </Layout2>
 
       <Layout1>
-        <MultiCarousel nfts={mock} />
+        {projects && projects.length > 0 && (
+          <MultiCarousel projects={projects} />
+        )}
       </Layout1>
     </Layout3>
   );

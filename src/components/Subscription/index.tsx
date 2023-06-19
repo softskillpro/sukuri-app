@@ -5,15 +5,29 @@ import { Layout1, Layout2 } from '@/components/common/PageLayout';
 import TierCard from '@/components/common/TierCard';
 import FlexBox from '@/components/common/FlexBox';
 import type { NFTType } from '@/interface/Nft.interface';
+import axios from 'axios'; // import axios to make HTTP requests
 
 interface SubscriptionProps {
   nft?: NFTType;
 }
 
 const Subscription = ({ nft }: SubscriptionProps) => {
-  const handleClick = useCallback(() => {
-    console.log(111);
-  }, []);
+  const handleClick = useCallback((tierId: number | undefined) => {
+    // Make a POST request to your subscription API
+    if (!tierId) {
+      return null
+    }
+    const tierIdNum = Number(tierId);
+    console.log(tierIdNum);
+    axios.post('/api/subscribe', {
+      projectId: nft?.id,
+      tierId: tierIdNum
+    }).then((response) => {
+      console.log(response.data); // log the server response
+    }).catch((error) => {
+      console.error(error); // log any error
+    });
+  }, [nft?.id]);
 
   if (!nft) return null;
 
@@ -29,9 +43,13 @@ const Subscription = ({ nft }: SubscriptionProps) => {
 
       <Layout1 sx={{ mb: 6.25 }}>
         <FlexBox sx={{ justifyContent: 'center', flexWrap: 'wrap', gap: 2.5 }}>
-          {nft.tiers.map((tier) => (
-            <TierCard key={tier.id} tier={tier} handleClick={handleClick} />
-          ))}
+          {
+            nft.tiers.map((tier) => (
+              tier.id ? (
+                <TierCard key={tier.id} tier={tier} handleClick={() => handleClick(tier.id)} />
+              ) : null
+            ))
+          }
         </FlexBox>
       </Layout1>
     </>

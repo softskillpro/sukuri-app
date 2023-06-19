@@ -1,69 +1,24 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  // NOTE: When using postgresql, mysql or sqlserver, uncomment the @db.Text annotations in model Account below
-  // Further reading:
-  // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
-  // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
   url      = env("DATABASE_URL")
 }
 
-enum ProjectStatus {
-  ACTIVE
-  INACTIVE
-  ARCHIVED
-}
-
-enum VisibilityStatus {
-  PUBLIC
-  PRIVATE
-  DRAFT
-}
-
-enum RenewalPolicy {
-  AUTO_RENEWAL
-  MANUAL_RENEWAL
-}
-
-enum NotificationPreference {
-  EMAIL
-  SMS
-  NONE
-}
-
-model AuditLog {
-  id        String   @id @default(cuid())
-  userId    String
-  action    String
-  timestamp DateTime @default(now())
-  user      User     @relation(fields: [userId], references: [id])
-}
-
-model Example {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-// Necessary for Next auth
 model Account {
   id                String  @id @default(cuid())
   userId            String
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -79,20 +34,29 @@ model Session {
 }
 
 model User {
-  id                     String                 @id @default(cuid())
-  name                   String?
-  email                  String?                @unique
-  emailVerified          DateTime?
-  image                  String?
-  address                String?                @unique
-  accounts               Account[]
-  sessions               Session[]
-  subscriptions          Subscription[]
-  NFT                    NFT[]
-  Project                Project[]
-  notificationPreference NotificationPreference @default(EMAIL)
-  AuditLog               AuditLog[]
-  SubscriptionHistory    SubscriptionHistory[]
+  id            String        @id @default(cuid())
+  name          String?
+  email         String?       @unique
+  accounts      Account[]
+  sessions      Session[]
+  username      String        @unique
+  address       String        @unique
+  subscriptions UserProject[]
+  pass          SukuriPass?   @relation(fields: [sukuriPassId], references: [id])
+  sukuriPassId  String?
+  Project       Project[]
+}
+
+model UserProject {
+  id        String      @id @default(cuid())
+  userId    String
+  projectId String
+  tierId    Int
+  user      User        @relation(fields: [userId], references: [id])
+  project   Project     @relation(fields: [projectId], references: [id])
+  tier      ProjectTier @relation(fields: [tierId], references: [tier_id])
+
+  @@unique([userId, projectId, tierId])
 }
 
 model VerificationToken {
@@ -103,111 +67,46 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+model SukuriPass {
+  id         String  @id @unique @default(cuid())
+  trim       String?
+  background String?
+  foil       String?
+  User       User[]
+}
+
 model Project {
-  id                String            @id @default(cuid())
-  name              String            @unique
+  id                String        @id @unique @default(cuid())
+  name              String        @unique
   short_description String
   long_description  String
-  thumbnail_image   String
-  large_image       String
+  thumbnail_image   String?
+  large_image       String?
   chain_id          Int
-  member_count      Int
+  member_count      Int?
   is_erc721         Boolean
-  status            ProjectStatus
-  description       String?
-  creator           User              @relation(fields: [creatorId], references: [id])
-  creatorId         String
-  tiers             Tier[]
-  createdAt         DateTime          @default(now())
-  updatedAt         DateTime          @updatedAt
-  visibility        VisibilityStatus  @default(PUBLIC)
-  acceptedPayment   AcceptedPayment[]
+  is_featured       Boolean?
+  accepted_payments Json
+  tiers             ProjectTier[]
+  subscriptions     UserProject[]
+  userId            String?
+  User              User?         @relation(fields: [userId], references: [id])
 }
 
-model NFT {
-  id                  String                @id @default(cuid())
-  name                String
-  description         String?
-  imageUrl            String?
-  creator             User                  @relation(fields: [creatorId], references: [id])
-  creatorId           String
-  tiers               Tier[]
-  subscriptions       Subscription[]
-  visibility          VisibilityStatus      @default(PUBLIC)
-  SubscriptionHistory SubscriptionHistory[]
-}
-
-model Tier {
-  id                       String                @id @default(cuid())
+model ProjectTier {
+  id                       String        @id @unique @default(cuid())
+  address                  String
+  tier_id                  Int           @unique
   name                     String
-  price                    Float
+  price                    String
   unit                     String
   supply                   Int
   filled                   Int
   subscription_length      Int
   subscription_length_unit String
-  descripton               String
-  project                  Project               @relation(fields: [projectId], references: [id])
-  projectId                String
-  subscriptions            Subscription[]
-  SubscriptionHistory      SubscriptionHistory[]
-  Feature                  Feature[]
-  NFT                      NFT?                  @relation(fields: [nFTId], references: [id])
-  nFTId                    String?
-}
-
-model Subscription {
-  id            String        @id @default(cuid())
-  userId        String
-  tierId        String
-  nftId         String
-  startDate     DateTime      @default(now())
-  endDate       DateTime
-  isActive      Boolean       @default(true)
-  renewalPolicy RenewalPolicy @default(AUTO_RENEWAL)
-  paymentId     String
-
-  // Relations
-  payment Payment @relation(fields: [paymentId], references: [id])
-  user    User    @relation(fields: [userId], references: [id])
-  tier    Tier    @relation(fields: [tierId], references: [id])
-  nft     NFT     @relation(fields: [nftId], references: [id])
-}
-
-model Payment {
-  id           String         @id @default(cuid())
-  amount       BigInt // in Wei
-  ethAddr      String // Ethereum address for payment
-  txnId        String // Transaction ID
-  status       String // Payment status
-  Subscription Subscription[]
-}
-
-model SubscriptionHistory {
-  id         String   @id @default(cuid())
-  userId     String
-  tierId     String
-  nftId      String
-  change     String
-  changeDate DateTime @default(now())
-  user       User     @relation(fields: [userId], references: [id])
-  tier       Tier     @relation(fields: [tierId], references: [id])
-  nft        NFT      @relation(fields: [nftId], references: [id])
-}
-
-model Feature {
-  id      String @id @default(cuid())
-  feature String
-  tier    Tier   @relation(fields: [tierId], references: [id])
-  tierId  String
-}
-
-model AcceptedPayment {
-  id        String  @id @default(cuid())
-  token     String
-  name      String
-  symbol    String
-  is_eth    Boolean
-  project   Project @relation(fields: [projectId], references: [id])
-  projectId String
+  description              String
+  features                 String[]
+  Project                  Project?      @relation(fields: [projectId], references: [id])
+  projectId                String?
+  UserProject              UserProject[]
 }

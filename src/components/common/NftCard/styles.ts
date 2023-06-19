@@ -1,13 +1,16 @@
+import Link from 'next/link';
 import { styled } from '@mui/material/styles';
-import FlexBox from '@/components/common/FlexBox';
 
-export const NftCardContainer = styled(FlexBox)(({ theme }) => ({
+export const NftCardContainer = styled(Link)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
   flexDirection: 'column',
   width: 320,
   maxWidth: 320,
   minWidth: 320,
   background: theme.palette.bgGradient.light,
   borderRadius: 5,
+  textDecoration: 'none',
 
   img: {
     borderRadius: '5px 5px 0px 0px',
