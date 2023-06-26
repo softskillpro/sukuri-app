@@ -58,7 +58,7 @@ const Project = ({
 
           <ProjectAbout nft={project} />
 
-          <Subscription nft={project} />
+          <Subscription project={project} />
 
           <RecommendedCommunities projects={projects} />
         </>

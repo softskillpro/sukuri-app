@@ -9,11 +9,17 @@ import formatUnits from '@/utils/formatUnits';
 
 interface TierCardProps {
   tier: TierType;
+  loading: boolean;
+  isSubscribed: boolean;
   handleClick: (tierId: number | undefined) => void; // modify handleClick type
 }
 
-
-const TierCard = ({ tier, handleClick }: TierCardProps) => {
+const TierCard = ({
+  tier,
+  loading,
+  isSubscribed,
+  handleClick,
+}: TierCardProps) => {
   const matches = useMediaQuery('(min-width:600px)');
 
   return (
@@ -118,8 +124,17 @@ const TierCard = ({ tier, handleClick }: TierCardProps) => {
           per month
         </Typography>
 
-        <StateButton sx={{ marginTop: 1.5 }} onClick={() => handleClick(tier.id)}>
-          Subscribe
+        <StateButton
+          disabled={loading}
+          sx={{
+            marginTop: 1.5,
+            background: isSubscribed
+              ? (theme) => theme.palette.btnGradient.dark
+              : '',
+          }}
+          onClick={() => handleClick(tier.id)}
+        >
+          {isSubscribed ? 'Unsubscribe' : 'Subscribe'}
         </StateButton>
       </PriceCard>
     </FlexBox>
