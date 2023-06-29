@@ -2,6 +2,7 @@ import { type AppType } from 'next/app';
 import { type Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
 import { Montserrat } from 'next/font/google';
+import { ToastContainer } from 'react-toastify';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 
@@ -9,6 +10,7 @@ import Layout from '@/components/layout';
 import { api } from '@/utils/api';
 import createEmotionCache from '@/utils/create-emotion-cache';
 import theme from '@/styles/theme';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { WagmiConfig } from 'wagmi';
 import wagmiConfig from '@/configure/wagmi';
@@ -38,6 +40,7 @@ const MyApp: AppType<{
               <Layout>
                 <Component {...pageProps} />
               </Layout>
+              <ToastContainer />
             </div>
           </ThemeProvider>
         </CacheProvider>

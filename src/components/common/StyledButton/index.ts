@@ -8,6 +8,10 @@ export const StateButton = styled('button')(({ theme }) => ({
   borderRadius: 5,
   border: 'none',
   cursor: 'pointer',
+
+  ':disabled': {
+    cursor: 'not-allowed',
+  },
 }));
 
 export const ContainedButton = styled('button')(({ theme }) => ({
