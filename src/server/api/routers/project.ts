@@ -80,6 +80,7 @@ export const projectRouter = createTRPCRouter({
      * @returns {Project} - The newly created project.
      * @throws {Error} - If the user is not authenticated.
      */
+    // Change to protectedProcedure when auth is working
     create: publicProcedure.input(ProjectInput).mutation(async ({ input, ctx }) => {
         const userId = 'af7d39af-84a9-4a4b-b6a2-18563e42bc6e'//ctx.session?.user?.id;
         if (!userId) {
@@ -121,14 +122,15 @@ export const projectRouter = createTRPCRouter({
      * @returns {Project} - The updated project.
      * @throws {Error} - If the user is not authenticated.
      */
-    update: protectedProcedure.input(z.object({
+    // Change to protectedProcedure when auth is working
+    update: publicProcedure.input(z.object({
         id: z.string(),
         data: PartialProjectInput,
     })).mutation(async ({ input, ctx }) => {
-        const userId = ctx.session?.user?.id;
+        const userId = 'af7d39af-84a9-4a4b-b6a2-18563e42bc6e'//ctx.session?.user?.id;
         if (!userId) {
             throw new Error("Not authenticated");
-        }        
+        }
         const { accepted_payments, ...rest } = input.data;
         const projectData: Prisma.ProjectUpdateInput = {
             ...rest,
@@ -142,7 +144,7 @@ export const projectRouter = createTRPCRouter({
             where: { id: input.id },
             data: projectData,
         });
-        if (accepted_payments) {            
+        if (accepted_payments) {
             await Promise.all(accepted_payments.map(payment =>
                 ctx.prisma.projectPayment.upsert({
                     where: {
@@ -161,4 +163,39 @@ export const projectRouter = createTRPCRouter({
         }
         return project;
     }),
+    /**
+     * @function delete
+     * Deletes an existing project and its associated payments.
+     *
+     * @param {string} id - The ID of the project to delete.
+     * @returns {boolean} - Returns true on successful deletion.
+     * @throws {Error} - If the user is not authenticated or if they do not own the project.
+     */
+    // Change to protectedProcedure when auth is working
+    delete: publicProcedure.input(z.string()).mutation(async ({ input, ctx }) => {
+        const userId = 'af7d39af-84a9-4a4b-b6a2-18563e42bc6e'//ctx.session?.user?.id;
+        if (!userId) {
+            throw new Error("Not authenticated");
+        }                
+        const project = await ctx.prisma.project.findUnique({
+            where: { id: input },
+        });
+        if(!project){
+            throw new Error("Project does not exist");
+        }
+        if (project.userId !== userId) {
+            throw new Error("You do not have permission to delete this project");
+        }        
+        await ctx.prisma.projectPayment.deleteMany({
+            where: {
+                projectId: input,
+            },
+        });
+        await ctx.prisma.project.delete({
+            where: { id: input },
+        });
+
+        return true;
+    }),
+
 });
