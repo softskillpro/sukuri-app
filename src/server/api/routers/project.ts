@@ -51,6 +51,8 @@ const ProjectInput = z.object({
     accepted_payments: z.array(ProjectPaymentInput).optional(),
 });
 
+const PartialProjectInput = ProjectInput.partial();
+
 /**
  * @module projectRouter
  * A router module that handles requests related to projects.
@@ -77,7 +79,7 @@ export const projectRouter = createTRPCRouter({
      * @param {Project} project - The project to create.
      * @returns {Project} - The newly created project.
      * @throws {Error} - If the user is not authenticated.
-     */    
+     */
     create: publicProcedure.input(ProjectInput).mutation(async ({ input, ctx }) => {
         const userId = 'af7d39af-84a9-4a4b-b6a2-18563e42bc6e'//ctx.session?.user?.id;
         if (!userId) {
@@ -106,25 +108,30 @@ export const projectRouter = createTRPCRouter({
         }
         return project;
     }),
+
     /**
      * @function update
-     * Update an existing project.
+     * Update an existing project. The update can contain the full project payload
+     * or any partial fields. If accepted payments are provided, it will add new payments
+     * to the existing ones.
      *
-     * @param {string} id - The ID of the project to update.
-     * @param {Project} project - The new project data.
+     * @param {Object} args - An object containing the ID and the new data of the project.
+     * @param {string} args.id - The ID of the project to update.
+     * @param {Partial<ProjectInput>} args.data - The new project data.
      * @returns {Project} - The updated project.
      * @throws {Error} - If the user is not authenticated.
      */
     update: protectedProcedure.input(z.object({
         id: z.string(),
-        data: ProjectInput,
+        data: PartialProjectInput,
     })).mutation(async ({ input, ctx }) => {
         const userId = ctx.session?.user?.id;
         if (!userId) {
             throw new Error("Not authenticated");
-        }
+        }        
+        const { accepted_payments, ...rest } = input.data;
         const projectData: Prisma.ProjectUpdateInput = {
-            ...input.data,
+            ...rest,
             User: {
                 connect: {
                     id: userId,
@@ -135,10 +142,17 @@ export const projectRouter = createTRPCRouter({
             where: { id: input.id },
             data: projectData,
         });
-        if (input.data.accepted_payments) {
-            await Promise.all(input.data.accepted_payments.map(payment =>
-                ctx.prisma.projectPayment.create({
-                    data: {
+        if (accepted_payments) {            
+            await Promise.all(accepted_payments.map(payment =>
+                ctx.prisma.projectPayment.upsert({
+                    where: {
+                        projectId_token: {
+                            projectId: project.id,
+                            token: payment.token,
+                        },
+                    },
+                    update: {},
+                    create: {
                         projectId: project.id,
                         token: payment.token,
                     },
