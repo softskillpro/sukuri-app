@@ -86,27 +86,34 @@ export const projectRouter = createTRPCRouter({
         if (!userId) {
             throw new Error("Not authenticated");
         }
+        const { accepted_payments, ...rest } = input;
+
         const projectData: Prisma.ProjectCreateInput = {
-            ...input,
+            ...rest,
             User: {
                 connect: {
                     id: userId,
                 },
             },
+            accepted_payments: accepted_payments ? {
+                create: await Promise.all(accepted_payments.map(async (payment) => {
+                    const paymentOption = await ctx.prisma.paymentOption.findUnique({
+                        where: { token: payment.token },
+                    });
+
+                    if (!paymentOption) {
+                        throw new Error(`Payment option for token "${payment.token}" not found.`);
+                    }
+
+                    return { token: payment.token };
+                })),
+            } : undefined,
         };
+
         const project = await ctx.prisma.project.create({
             data: projectData,
         });
-        if (input.accepted_payments) {
-            await Promise.all(input.accepted_payments.map(payment =>
-                ctx.prisma.projectPayment.create({
-                    data: {
-                        projectId: project.id,
-                        token: payment.token,
-                    },
-                }),
-            ));
-        }
+
         return project;
     }),
 
