@@ -10,6 +10,20 @@ const user: Prisma.UserCreateInput = {
   address: '0xe7A5839F8F978037B72bd48d3777E58Aa6093588',
 };
 
+const paymentOptions: Prisma.PaymentOptionCreateInput[] = [
+  {
+    token: '0x0000000000000000000000000000000000000000',
+    name: 'Ethereum',
+    symbol: 'ETH',
+    is_eth: true,
+  },
+  {
+    token: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+    name: 'USD Coin',
+    symbol: 'USDC',
+    is_eth: false,
+  },
+];
 const projects = (_user: User): Prisma.ProjectCreateInput[] => [
   {
     id: '1afb19ba-9e01-4a7d-b5c7-9e9943693232',
@@ -23,20 +37,6 @@ const projects = (_user: User): Prisma.ProjectCreateInput[] => [
     member_count: 1722,
     is_erc721: false,
     is_featured: false,
-    accepted_payments: [
-      {
-        token: '0x0000000000000000000000000000000000000000',
-        name: 'Ethereum',
-        symbol: 'ETH',
-        is_eth: true,
-      },
-      {
-        token: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-        name: 'USD Coin',
-        symbol: 'USDC',
-        is_eth: false,
-      },
-    ],
     User: { connect: { id: _user.id } },
   },
   {
@@ -51,20 +51,6 @@ const projects = (_user: User): Prisma.ProjectCreateInput[] => [
     member_count: 1572,
     is_erc721: true,
     is_featured: true,
-    accepted_payments: [
-      {
-        token: '0x0000000000000000000000000000000000000000',
-        name: 'Ethereum',
-        symbol: 'ETH',
-        is_eth: true,
-      },
-      {
-        token: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-        name: 'USD Coin',
-        symbol: 'USDC',
-        is_eth: false,
-      },
-    ],
     User: { connect: { id: _user.id } },
   },
   {
@@ -79,20 +65,6 @@ const projects = (_user: User): Prisma.ProjectCreateInput[] => [
     member_count: 12400,
     is_erc721: true,
     is_featured: false,
-    accepted_payments: [
-      {
-        token: '0x0000000000000000000000000000000000000000',
-        name: 'Ethereum',
-        symbol: 'ETH',
-        is_eth: true,
-      },
-      {
-        token: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-        name: 'USD Coin',
-        symbol: 'USDC',
-        is_eth: false,
-      },
-    ],
     User: { connect: { id: _user.id } },
   },
   {
@@ -107,20 +79,6 @@ const projects = (_user: User): Prisma.ProjectCreateInput[] => [
     member_count: 1985,
     is_erc721: false,
     is_featured: true,
-    accepted_payments: [
-      {
-        token: '0x0000000000000000000000000000000000000000',
-        name: 'Ethereum',
-        symbol: 'ETH',
-        is_eth: true,
-      },
-      {
-        token: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-        name: 'USD Coin',
-        symbol: 'USDC',
-        is_eth: false,
-      },
-    ],
     User: { connect: { id: _user.id } },
   },
   {
@@ -135,14 +93,6 @@ const projects = (_user: User): Prisma.ProjectCreateInput[] => [
     member_count: 14600,
     is_erc721: true,
     is_featured: true,
-    accepted_payments: [
-      {
-        token: '0x0000000000000000000000000000000000000000',
-        name: 'Ethereum',
-        symbol: 'ETH',
-        is_eth: true,
-      },
-    ],
     User: { connect: { id: _user.id } },
   },
   {
@@ -157,20 +107,6 @@ const projects = (_user: User): Prisma.ProjectCreateInput[] => [
     member_count: 1000,
     is_erc721: false,
     is_featured: false,
-    accepted_payments: [
-      {
-        token: '0x0000000000000000000000000000000000000000',
-        name: 'Ethereum',
-        symbol: 'ETH',
-        is_eth: true,
-      },
-      {
-        token: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-        name: 'USD Coin',
-        symbol: 'USDC',
-        is_eth: false,
-      },
-    ],
     User: { connect: { id: _user.id } },
   },
   {
@@ -186,23 +122,24 @@ const projects = (_user: User): Prisma.ProjectCreateInput[] => [
     member_count: 124,
     is_erc721: false,
     is_featured: true,
-    accepted_payments: [
-      {
-        token: '0x0000000000000000000000000000000000000000',
-        name: 'Ethereum',
-        symbol: 'ETH',
-        is_eth: true,
-      },
-      {
-        token: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-        name: 'USD Coin',
-        symbol: 'USDC',
-        is_eth: false,
-      },
-    ],
     User: { connect: { id: _user.id } },
   },
 ];
+
+const projectPayments = (
+  _projects: Project[],
+): Prisma.ProjectPaymentUncheckedCreateInput[] => {
+  const payments = [];
+  for (let project of _projects) {
+    for (let paymentOption of paymentOptions) {
+      payments.push({
+        projectId: project.id,
+        token: paymentOption.token,
+      });
+    }
+  }
+  return payments;
+};
 
 const projectTiers = (
   _projects: Project[],
@@ -321,9 +258,21 @@ const main = async () => {
     data: user,
   });
 
+  const newPaymentOptions = await Promise.all(
+    paymentOptions.map((paymentOption) =>
+      prisma.paymentOption.create({ data: paymentOption }),
+    ),
+  );
+
   const newProjects = await Promise.all(
     projects(newUser).map((project) =>
       prisma.project.create({ data: project }),
+    ),
+  );
+
+  await Promise.all(
+    projectPayments(newProjects).map((projectPayment) =>
+      prisma.projectPayment.create({ data: projectPayment }),
     ),
   );
 

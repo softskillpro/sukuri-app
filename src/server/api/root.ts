@@ -1,5 +1,6 @@
 import { createTRPCRouter } from '@/server/api/trpc';
 import { exampleRouter } from '@/server/api/routers/example';
+import { projectRouter } from '@/server/api/routers/project';
 import { subscriptionRouter } from '@/server/api/routers/subscribe';
 
 /**
@@ -9,6 +10,7 @@ import { subscriptionRouter } from '@/server/api/routers/subscribe';
  */
 export const appRouter = createTRPCRouter({
   example: exampleRouter,
+  project: projectRouter,
   subscribe: subscriptionRouter
 });
 
