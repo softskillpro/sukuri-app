@@ -130,8 +130,8 @@ const projectPayments = (
   _projects: Project[],
 ): Prisma.ProjectPaymentUncheckedCreateInput[] => {
   const payments = [];
-  for (let project of _projects) {
-    for (let paymentOption of paymentOptions) {
+  for (const project of _projects) {
+    for (const paymentOption of paymentOptions) {
       payments.push({
         projectId: project.id,
         token: paymentOption.token,

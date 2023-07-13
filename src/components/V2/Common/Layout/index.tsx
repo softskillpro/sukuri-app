@@ -1,8 +1,11 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import Seo from '../seo';
+
+import Seo from '@/components/V2/Common/Seo';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
+import { DarkGlassWrapper } from '@/components/V2/Common/GlassWrapper';
+
 import { LayoutContainer } from './styles';
 
 interface LayoutProps {
@@ -24,9 +27,13 @@ const Layout = ({ children }: LayoutProps) => {
           className='background-img'
         />
 
-        {!(asPath === '/' || asPath === '/new-user') && <Header />}
-        <main>{children}</main>
-        <Footer />
+        <div className='main-wrapper'>
+          <DarkGlassWrapper>
+            {!(asPath === '/new-user') && <Header />}
+            <main>{children}</main>
+            <Footer />
+          </DarkGlassWrapper>
+        </div>
       </LayoutContainer>
     </>
   );
