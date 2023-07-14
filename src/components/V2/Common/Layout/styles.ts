@@ -17,4 +17,10 @@ export const LayoutContainer = styled(Box)(() => ({
     height: '100%',
     mixBlendMode: 'lighten',
   },
+
+  '.main-wrapper': {
+    width: '100%',
+    height: 'inherit',
+    minHeight: '100vh',
+  },
 }));

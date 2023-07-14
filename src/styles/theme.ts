@@ -6,8 +6,8 @@ const theme = createTheme({
       styleOverrides: {
         html: {
           '& ::-webkit-scrollbar': {
-            width: '5px',
-            height: '5px',
+            width: '8px',
+            height: '8px',
           },
           '& ::-webkit-scrollbar-track': {
             boxShadow: `inset 0 0 5px #fff`,
@@ -147,7 +147,7 @@ const theme = createTheme({
     secondary: {
       main: '#D9D9D9',
     },
-    text: { primary: '#030712', secondary: '#461427' },
+    text: { primary: '#fff', secondary: '#461427' },
     text1: { main: '#F88497', light: '#FFC0CB', contrastText: '#FAFAF9' },
     black: {
       main: '#000',
@@ -191,7 +191,7 @@ const theme = createTheme({
     values: {
       xs: 0,
       sm: 600,
-      md: 900,
+      md: 720,
       lg: 1200,
       xl: 1400,
     },
@@ -233,6 +233,17 @@ declare module '@mui/material/styles' {
     custom7: React.CSSProperties;
     custom8: React.CSSProperties;
     custom9: React.CSSProperties;
+
+    code: React.CSSProperties;
+    paragraph: React.CSSProperties;
+    labelXl: React.CSSProperties;
+    labelLg: React.CSSProperties;
+    labelMd: React.CSSProperties;
+    labelSm: React.CSSProperties;
+    labelXs: React.CSSProperties;
+    subHeading: React.CSSProperties;
+    productTitle: React.CSSProperties;
+    userBar: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
@@ -245,6 +256,17 @@ declare module '@mui/material/styles' {
     custom7?: React.CSSProperties;
     custom8?: React.CSSProperties;
     custom9?: React.CSSProperties;
+
+    code?: React.CSSProperties;
+    paragraph?: React.CSSProperties;
+    labelXl?: React.CSSProperties;
+    labelLg?: React.CSSProperties;
+    labelMd?: React.CSSProperties;
+    labelSm?: React.CSSProperties;
+    labelXs?: React.CSSProperties;
+    subHeading?: React.CSSProperties;
+    productTitle?: React.CSSProperties;
+    userBar?: React.CSSProperties;
   }
 }
 
@@ -259,7 +281,127 @@ declare module '@mui/material/Typography' {
     custom7: true;
     custom8: true;
     custom9: true;
+
+    code: true;
+    paragraph: true;
+    labelXl: true;
+    labelLg: true;
+    labelMd: true;
+    labelSm: true;
+    labelXs: true;
+    subHeading: true;
+    productTitle: true;
+    userBar: true;
   }
 }
+
+theme.typography.code = {
+  fontSize: 12,
+};
+
+theme.typography.h1 = {
+  fontSize: 40,
+};
+
+theme.typography.h2 = {
+  fontSize: 36,
+};
+
+theme.typography.h3 = {
+  fontSize: 30,
+};
+
+theme.typography.h4 = {
+  fontSize: 24,
+  [theme.breakpoints.down('md')]: {
+    fontSize: 18,
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 18,
+  },
+};
+
+theme.typography.h5 = {
+  fontSize: 18,
+  [theme.breakpoints.down('md')]: {
+    fontSize: 14,
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 12,
+  },
+};
+
+theme.typography.caption = {
+  fontSize: 12,
+  [theme.breakpoints.down('md')]: {
+    fontSize: 10,
+  },
+};
+
+theme.typography.paragraph = {
+  fontSize: 14,
+};
+
+theme.typography.labelXl = {
+  fontSize: 22,
+};
+
+theme.typography.labelLg = {
+  fontSize: 18,
+  [theme.breakpoints.down('md')]: {
+    fontSize: 16,
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 16,
+  },
+};
+
+theme.typography.labelMd = {
+  fontSize: 12,
+  [theme.breakpoints.down('md')]: {
+    fontSize: 10,
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 9,
+  },
+};
+
+theme.typography.labelSm = {
+  fontSize: 10,
+  [theme.breakpoints.down('md')]: {
+    fontSize: 10,
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 8,
+  },
+};
+
+theme.typography.labelXs = {
+  fontSize: 8,
+};
+
+theme.typography.subHeading = {
+  fontSize: 16,
+  [theme.breakpoints.down('md')]: {
+    fontSize: 14,
+  },
+};
+
+theme.typography.productTitle = {
+  fontSize: 42,
+  [theme.breakpoints.down('md')]: {
+    fontSize: 24,
+  },
+};
+
+theme.typography.userBar = {
+  fontSize: 50,
+  [theme.breakpoints.down('md')]: {
+    fontSize: 30,
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 25,
+  },
+};
 
 export default theme;

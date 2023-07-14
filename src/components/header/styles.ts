@@ -5,7 +5,6 @@ import FlexBox from '@/components/common/FlexBox';
 export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
   justifyContent: 'space-between',
   height: 58,
-  margin: '40px 20px 0',
   padding: '0 24px 0 60px',
   background: theme.palette.primary.main,
   borderRadius: 5,

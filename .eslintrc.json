@@ -2,7 +2,6 @@
   "plugins": [
     "@typescript-eslint",
     "react",
-    "react-hooks",
     "@typescript-eslint",
     "prettier",
     "jsx-a11y"

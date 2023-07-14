@@ -29,7 +29,7 @@ const Home: NextPage = () => {
         className='home-logo'
       />
 
-      <Grid container spacing={3} className='signup-section'>
+      {/* <Grid container spacing={3} className='signup-section'>
         <Grid item xs={12} md={6}>
           <Typography
             variant='custom7'
@@ -86,7 +86,7 @@ const Home: NextPage = () => {
             )}
           </Fragment>
         ))}
-      </section>
+      </section> */}
     </HomeContainer>
   );
 };

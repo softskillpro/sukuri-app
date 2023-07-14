@@ -83,7 +83,7 @@ const Header = () => {
   }, []);
 
   return (
-    <>
+    <header>
       <HeaderContainer>
         <Link href='/'>
           <LogoIcon sx={{ fontSize: 50 }} />
@@ -111,7 +111,7 @@ const Header = () => {
 
         <HeaderBody handleClose={handleClose} />
       </HeaderDrawer>
-    </>
+    </header>
   );
 };
 
