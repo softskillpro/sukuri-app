@@ -4,10 +4,10 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
-import FlexBox from '@/components/v2/Common/FlexBox';
-import Stepper from '@/components/v2/Stepper';
-import StyledInput from '@/components/v2/Common/StyledInput';
-import { StyledButton } from '@/components/v2/Common/StyledButton';
+import FlexBox from '@/components/V2/Common/FlexBox';
+import Stepper from '@/components/V2/Stepper';
+import StyledInput from '@/components/V2/Common/StyledInput';
+import { StyledButton } from '@/components/V2/Common/StyledButton';
 import { AuthContainer } from '@/styles/auth';
 
 const SignUp = () => {

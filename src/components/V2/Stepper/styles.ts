@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import FlexBox from '@/components/v2/Common/FlexBox';
+import FlexBox from '@/components/V2/Common/FlexBox';
 
 export const StepperContainer = styled('section')(() => ({
   display: 'flex',

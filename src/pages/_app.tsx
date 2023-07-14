@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 
-import Layout from '@/components/v2/Common/Layout';
+import Layout from '@/components/V2/Common/Layout';
 import { api } from '@/utils/api';
 import createEmotionCache from '@/utils/create-emotion-cache';
 import theme from '@/styles/theme';
