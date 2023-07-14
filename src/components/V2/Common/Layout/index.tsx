@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import Seo from '@/components/v2/Common/Seo';
+import Seo from '@/components/V2/Common/Seo';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
-import { DarkGlassWrapper } from '@/components/v2/Common/GlassWrapper';
+import { DarkGlassWrapper } from '@/components/V2/Common/GlassWrapper';
 
 import { LayoutContainer } from './styles';
 

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Typography from '@mui/material/Typography';
 
-import FlexBox from '@/components/v2/Common/FlexBox';
+import FlexBox from '@/components/V2/Common/FlexBox';
 import { StepperContainer, OutlinedNumber } from './styles';
 
 interface StepperProps {
