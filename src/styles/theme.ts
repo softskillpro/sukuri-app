@@ -6,8 +6,8 @@ const theme = createTheme({
       styleOverrides: {
         html: {
           '& ::-webkit-scrollbar': {
-            width: '5px',
-            height: '5px',
+            width: '8px',
+            height: '8px',
           },
           '& ::-webkit-scrollbar-track': {
             boxShadow: `inset 0 0 5px #fff`,
@@ -147,7 +147,7 @@ const theme = createTheme({
     secondary: {
       main: '#D9D9D9',
     },
-    text: { primary: '#030712', secondary: '#461427' },
+    text: { primary: '#fff', secondary: '#461427' },
     text1: { main: '#F88497', light: '#FFC0CB', contrastText: '#FAFAF9' },
     black: {
       main: '#000',
