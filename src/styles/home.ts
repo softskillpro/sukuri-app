@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 export const HomeContainer = styled(Box)(({ theme }) => ({
   position: 'relative',
   overflow: 'hidden',
+  margin: 20,
 
   '.home-logo': {
     position: 'absolute',

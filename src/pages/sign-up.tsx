@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import FlexBox from '@/components/v2/Common/FlexBox';
 import Stepper from '@/components/v2/Stepper';
 import StyledInput from '@/components/v2/Common/StyledInput';
-import { StyledButton } from '@/components/v2/Common/StyledButton';
+import StyledButton from '@/components/v2/Common/StyledButton';
 import { AuthContainer } from '@/styles/auth';
 
 const SignUp = () => {
@@ -88,7 +88,7 @@ const SignUp = () => {
                     link twitter
                   </Typography>
 
-                  <StyledButton
+                  {/* <StyledButton
                     sx={{
                       height: 'auto',
                       padding: '5px 15px',
@@ -108,12 +108,12 @@ const SignUp = () => {
                       height={24}
                       alt='Twitter'
                     />
-                  </StyledButton>
+                  </StyledButton> */}
                 </Grid>
               </Grid>
             </Box>
 
-            <StyledButton onClick={handleSubmit}>submit</StyledButton>
+            {/* <StyledButton onClick={handleSubmit}>submit</StyledButton> */}
           </>
         ) : (
           <>
@@ -129,10 +129,10 @@ const SignUp = () => {
             </Box>
 
             <Box textAlign='center' my={3.75}>
-              <StyledButton onClick={handleSubmit}>MINT</StyledButton>
+              {/* <StyledButton onClick={handleSubmit}>MINT</StyledButton> */}
             </Box>
 
-            <StyledButton
+            {/* <StyledButton
               sx={{
                 padding: '0 15px',
                 backgroundColor: 'rgba(87, 87, 87, 0.70)',
@@ -140,7 +140,7 @@ const SignUp = () => {
               onClick={handleSubmit}
             >
               skip
-            </StyledButton>
+            </StyledButton> */}
           </>
         )}
       </FlexBox>

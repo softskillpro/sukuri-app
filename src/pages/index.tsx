@@ -8,6 +8,7 @@ import { HomeContainer } from '@/styles/home';
 import ConnectWallet from '@/components/ConnectWallet';
 import ProjectIntro from '@/components/common/ProjectIntro';
 import { HorizontalDivider } from '@/components/common/StyledDivider';
+import TierCard from '@/components/v2/Common/TierCard';
 
 const contents = [
   'Supercharging subscriptions on the blockchain.',
@@ -20,14 +21,15 @@ const Home: NextPage = () => {
 
   return (
     <HomeContainer>
-      <Image
+      <TierCard />
+      {/* <Image
         src='/images/background.png'
         width={940}
         height={870}
         priority
         alt='background'
         className='home-logo'
-      />
+      /> */}
 
       {/* <Grid container spacing={3} className='signup-section'>
         <Grid item xs={12} md={6}>

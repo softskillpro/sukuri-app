@@ -167,7 +167,7 @@ const theme = createTheme({
       light: 'linear-gradient(180deg, #331122 0%, #020617 100%)',
     },
     shadow: {
-      main: 'inset 0px -4px 0px #67B54C',
+      main: '0px 0px 4px 0px rgba(0, 0, 0, 0.35)',
       dark: 'inset 0px -4px 0px #D02C2C',
       light: 'inset 0px -4px 0px #D0712C',
       contrastText: '1px 1px 10px 1px rgba(248, 132, 151, 0.5)',
@@ -185,6 +185,23 @@ const theme = createTheme({
     border: {
       main: '#707070',
       light: '#67B54C',
+    },
+
+    green: {
+      main: 'rgba(21, 109, 46, 0.80)',
+    },
+    blue: {
+      main: 'rgba(23, 67, 179, 0.80)',
+      dark: 'rgba(20, 53, 137, 0.80)',
+    },
+    hardNegative: {
+      main: '#BC1010',
+    },
+    unavailableBg: {
+      main: 'rgba(65, 65, 65, 0.90)',
+    },
+    lightInternalGlassBorder: {
+      main: 'rgba(255, 255, 255, 0.05)',
     },
   },
   breakpoints: {
@@ -209,6 +226,12 @@ declare module '@mui/material/styles' {
     shadow1: Palette['primary'];
     shadow2: Palette['primary'];
     border: Palette['primary'];
+
+    blue: Palette['primary'];
+    green: Palette['primary'];
+    hardNegative: Palette['primary'];
+    unavailableBg: Palette['primary'];
+    lightInternalGlassBorder: Palette['primary'];
   }
 
   interface PaletteOptions {
@@ -221,6 +244,12 @@ declare module '@mui/material/styles' {
     shadow1?: PaletteOptions['primary'];
     shadow2?: PaletteOptions['primary'];
     border?: PaletteOptions['primary'];
+
+    blue?: PaletteOptions['primary'];
+    green?: PaletteOptions['primary'];
+    hardNegative?: PaletteOptions['primary'];
+    unavailableBg?: PaletteOptions['primary'];
+    lightInternalGlassBorder?: PaletteOptions['primary'];
   }
 
   interface TypographyVariants {
@@ -340,14 +369,17 @@ theme.typography.caption = {
 
 theme.typography.paragraph = {
   fontSize: 14,
+  fontWeight: 400,
 };
 
 theme.typography.labelXl = {
   fontSize: 22,
+  fontWeight: 600,
 };
 
 theme.typography.labelLg = {
   fontSize: 18,
+  fontWeight: 600,
   [theme.breakpoints.down('md')]: {
     fontSize: 16,
   },
