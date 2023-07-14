@@ -13,6 +13,10 @@ import { AuthContainer } from '@/styles/auth';
 const SignUp = () => {
   const [status, setStatus] = useState(2);
 
+  const handleSubmit = () => {
+    setStatus((prev) => prev + 1);
+  };
+
   return (
     <AuthContainer>
       <FlexBox className='auth-main-wrapper'>
@@ -25,81 +29,120 @@ const SignUp = () => {
           }
         />
 
-        <Box mt={3.75}>
-          <Typography mb={1}>You are not connected.</Typography>
-          <StyledButton>connect wallet</StyledButton>
-        </Box>
+        {status === 1 ? (
+          <>
+            <Box mt={3.75}>
+              <Typography mb={1}>You are not connected.</Typography>
+              <StyledButton>connect wallet</StyledButton>
+            </Box>
 
-        <Box width='100%' mt={3.75}>
-          <Typography mb={1} textAlign='center'>
-            Your display name
-          </Typography>
-          <StyledInput />
-        </Box>
-
-        <Box width='100%' my={3.75}>
-          <Typography mb={1} textAlign='center'>
-            Link to services (optional)
-          </Typography>
-
-          <Grid container spacing={4} sx={{ alignItems: 'center' }}>
-            <Grid item xs={6}>
-              <Typography mb={0.5} textTransform='uppercase' textAlign='center'>
-                email
+            <Box width='100%' mt={3.75}>
+              <Typography mb={1} textAlign='center'>
+                Your display name
               </Typography>
-              <StyledInput placeholder='test@email.com' />
+              <StyledInput />
+            </Box>
 
-              <Typography
-                mt={2}
-                mb={0.5}
-                textTransform='uppercase'
-                textAlign='center'
-              >
-                confirm email
+            <Box width='100%' my={3.75}>
+              <Typography mb={1} textAlign='center'>
+                Link to services (optional)
               </Typography>
-              <StyledInput placeholder='test@email.com' />
-            </Grid>
 
-            <Grid
-              item
-              xs={6}
+              <Grid container spacing={4} sx={{ alignItems: 'center' }}>
+                <Grid item xs={6}>
+                  <Typography
+                    mb={0.5}
+                    textTransform='uppercase'
+                    textAlign='center'
+                  >
+                    email
+                  </Typography>
+                  <StyledInput placeholder='test@email.com' />
+
+                  <Typography
+                    mt={2}
+                    mb={0.5}
+                    textTransform='uppercase'
+                    textAlign='center'
+                  >
+                    confirm email
+                  </Typography>
+                  <StyledInput placeholder='test@email.com' />
+                </Grid>
+
+                <Grid
+                  item
+                  xs={6}
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Typography
+                    mt={2}
+                    mb={0.5}
+                    textTransform='uppercase'
+                    textAlign='center'
+                  >
+                    link twitter
+                  </Typography>
+
+                  <StyledButton
+                    sx={{
+                      height: 'auto',
+                      padding: '5px 15px',
+                      background: 'rgba(107, 170, 232, 0.70)',
+                    }}
+                  >
+                    <Typography
+                      mr={3}
+                      textTransform='uppercase'
+                      textAlign='center'
+                    >
+                      connect to twitter
+                    </Typography>
+                    <Image
+                      src='/images/v2/twitter.png'
+                      width={30}
+                      height={24}
+                      alt='Twitter'
+                    />
+                  </StyledButton>
+                </Grid>
+              </Grid>
+            </Box>
+
+            <StyledButton onClick={handleSubmit}>submit</StyledButton>
+          </>
+        ) : (
+          <>
+            <Box textAlign='center' mt={3.75}>
+              <Typography mb={1}>Connected wallet:</Typography>
+              <Typography>0x123456789875r4e3w212345678987654321</Typography>
+            </Box>
+
+            <Box textAlign='center' mt={3.75}>
+              <Typography>
+                This account does not yet have a VIP pass.
+              </Typography>
+            </Box>
+
+            <Box textAlign='center' my={3.75}>
+              <StyledButton onClick={handleSubmit}>MINT</StyledButton>
+            </Box>
+
+            <StyledButton
               sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
+                padding: '0 15px',
+                backgroundColor: 'rgba(87, 87, 87, 0.70)',
               }}
+              onClick={handleSubmit}
             >
-              <Typography
-                mt={2}
-                mb={0.5}
-                textTransform='uppercase'
-                textAlign='center'
-              >
-                link twitter
-              </Typography>
-
-              <StyledButton
-                sx={{
-                  height: 'auto',
-                  padding: '5px 15px',
-                  background: 'rgba(107, 170, 232, 0.70)',
-                }}
-              >
-                <Typography mr={3} textTransform='uppercase' textAlign='center'>
-                  connect to twitter
-                </Typography>
-                <Image
-                  src='/images/v2/twitter.png'
-                  width={30}
-                  height={24}
-                  alt='Twitter'
-                />
-              </StyledButton>
-            </Grid>
-          </Grid>
-        </Box>
-
-        <StyledButton>submit</StyledButton>
+              skip
+            </StyledButton>
+          </>
+        )}
       </FlexBox>
     </AuthContainer>
   );
