@@ -9,6 +9,7 @@ import ConnectWallet from '@/components/ConnectWallet';
 import ProjectIntro from '@/components/common/ProjectIntro';
 import { HorizontalDivider } from '@/components/common/StyledDivider';
 import TierCard from '@/components/v2/Common/TierCard';
+import ProjectInfoCard from '@/components/v2/Common/ProjectInfoCard';
 
 const contents = [
   'Supercharging subscriptions on the blockchain.',
@@ -22,6 +23,7 @@ const Home: NextPage = () => {
   return (
     <HomeContainer>
       <TierCard />
+      <ProjectInfoCard />
       {/* <Image
         src='/images/background.png'
         width={940}

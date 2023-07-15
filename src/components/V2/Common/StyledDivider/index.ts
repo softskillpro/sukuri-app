@@ -4,5 +4,4 @@ import { styled } from '@mui/material/styles';
 export const StyledDivider = styled(Divider)(({ theme }) => ({
   width: '100%',
   borderColor: theme.palette.white.main,
-  borderBottomWidth: 0.5,
 }));

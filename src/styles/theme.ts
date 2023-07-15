@@ -182,10 +182,6 @@ const theme = createTheme({
       main: '0px 0px 5px rgba(248, 132, 151, 0.5)',
       light: '1px 1px 10px rgba(248, 132, 151, 0.5)',
     },
-    border: {
-      main: '#707070',
-      light: '#67B54C',
-    },
 
     green: {
       main: 'rgba(21, 109, 46, 0.80)',
@@ -202,6 +198,10 @@ const theme = createTheme({
     },
     lightInternalGlassBorder: {
       main: 'rgba(255, 255, 255, 0.05)',
+    },
+    border: {
+      main: 'rgba(255, 255, 255, 0.20)',
+      light: '#67B54C',
     },
   },
   breakpoints: {
@@ -400,6 +400,7 @@ theme.typography.labelMd = {
 
 theme.typography.labelSm = {
   fontSize: 10,
+  fontWeight: 600,
   [theme.breakpoints.down('md')]: {
     fontSize: 10,
   },

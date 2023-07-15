@@ -5,7 +5,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 import FlexBox from '@/components/v2/Common/FlexBox';
 import { StyledDivider } from '@/components/v2/Common/StyledDivider';
-import StyledButton from '@/components/v2/Common/StyledButton';
+import { StyledButton } from '@/components/v2/Common/StyledButton';
 import { TierCardContainer } from './styles';
 
 const inter = Inter({
@@ -81,7 +81,9 @@ const TierCard = () => {
           </Typography>
         </FlexBox>
 
-        <StyledButton size={matches ? 'md' : 'sm'}>subscribe</StyledButton>
+        <StyledButton disabled variants={matches ? 'md' : 'sm'}>
+          subscribe
+        </StyledButton>
       </FlexBox>
     </TierCardContainer>
   );
