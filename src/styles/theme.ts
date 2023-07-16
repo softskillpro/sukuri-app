@@ -145,7 +145,7 @@ const theme = createTheme({
       main: '#FFF2F4',
     },
     secondary: {
-      main: '#D9D9D9',
+      main: 'rgba(0, 0, 0, 0.40)',
     },
     text: { primary: '#fff', secondary: '#461427' },
     text1: { main: '#F88497', light: '#FFC0CB', contrastText: '#FAFAF9' },
@@ -185,10 +185,14 @@ const theme = createTheme({
 
     green: {
       main: 'rgba(21, 109, 46, 0.80)',
+      dark: 'rgba(20, 78, 36, 0.89)',
+      light: 'rgba(31, 147, 64, 0.80)',
+      contrastText: '#67B54C',
     },
     blue: {
       main: 'rgba(23, 67, 179, 0.80)',
       dark: 'rgba(20, 53, 137, 0.80)',
+      light: 'rgba(32, 82, 208, 0.80)',
     },
     hardNegative: {
       main: '#BC1010',

@@ -10,6 +10,7 @@ import ProjectIntro from '@/components/common/ProjectIntro';
 import { HorizontalDivider } from '@/components/common/StyledDivider';
 import TierCard from '@/components/v2/Common/TierCard';
 import ProjectInfoCard from '@/components/v2/Common/ProjectInfoCard';
+import ProductHeroCard from '@/components/v2/Common/ProductHeroCard';
 
 const contents = [
   'Supercharging subscriptions on the blockchain.',
@@ -24,6 +25,7 @@ const Home: NextPage = () => {
     <HomeContainer>
       <TierCard />
       <ProjectInfoCard />
+      <ProductHeroCard />
       {/* <Image
         src='/images/background.png'
         width={940}
