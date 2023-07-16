@@ -29,11 +29,13 @@ const Layout = ({ children }: LayoutProps) => {
 
         <div className='main-wrapper'>
           <DarkGlassWrapper>
-            {!(asPath === '/sign-up') && <Header />}
+            <div className='layout-wrapper'>
+              {!(asPath === '/sign-up') && <Header />}
 
-            <main>{children}</main>
+              <main>{children}</main>
 
-            {!(asPath === '/sign-up') && <Footer />}
+              {!(asPath === '/sign-up') && <Footer />}
+            </div>
           </DarkGlassWrapper>
         </div>
       </LayoutContainer>

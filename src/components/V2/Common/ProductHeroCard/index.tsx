@@ -10,7 +10,7 @@ import { inter } from '@/components/v2/Common/CustomFont';
 import { ProductHeroCardContainer } from './styles';
 
 const ProductHeroCard = () => {
-  const matches = useMediaQuery('(min-width:600px)');
+  const matches = useMediaQuery('(min-width:720px)');
 
   return (
     <ProductHeroCardContainer>
