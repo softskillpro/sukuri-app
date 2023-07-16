@@ -206,6 +206,7 @@ const theme = createTheme({
     border: {
       main: 'rgba(255, 255, 255, 0.20)',
       light: '#67B54C',
+      dark: 'rgba(255, 255, 255, 0.15)',
     },
   },
   breakpoints: {
@@ -277,6 +278,10 @@ declare module '@mui/material/styles' {
     subHeading: React.CSSProperties;
     productTitle: React.CSSProperties;
     userBar: React.CSSProperties;
+    wordmarkMarketplace: React.CSSProperties;
+    wordmarkFooter: React.CSSProperties;
+    wordmarkHeader: React.CSSProperties;
+    wordmarkSignup: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
@@ -300,6 +305,10 @@ declare module '@mui/material/styles' {
     subHeading?: React.CSSProperties;
     productTitle?: React.CSSProperties;
     userBar?: React.CSSProperties;
+    wordmarkMarketplace?: React.CSSProperties;
+    wordmarkFooter?: React.CSSProperties;
+    wordmarkHeader?: React.CSSProperties;
+    wordmarkSignup?: React.CSSProperties;
   }
 }
 
@@ -325,6 +334,10 @@ declare module '@mui/material/Typography' {
     subHeading: true;
     productTitle: true;
     userBar: true;
+    wordmarkMarketplace: true;
+    wordmarkFooter: true;
+    wordmarkHeader: true;
+    wordmarkSignup: true;
   }
 }
 
@@ -334,18 +347,22 @@ theme.typography.code = {
 
 theme.typography.h1 = {
   fontSize: 40,
+  fontFamily: 'var(--Montserrat)',
 };
 
 theme.typography.h2 = {
   fontSize: 36,
+  fontFamily: 'var(--Montserrat)',
 };
 
 theme.typography.h3 = {
   fontSize: 30,
+  fontFamily: 'var(--Montserrat)',
 };
 
 theme.typography.h4 = {
   fontSize: 24,
+  fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 18,
   },
@@ -356,6 +373,7 @@ theme.typography.h4 = {
 
 theme.typography.h5 = {
   fontSize: 18,
+  fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 14,
   },
@@ -366,6 +384,7 @@ theme.typography.h5 = {
 
 theme.typography.caption = {
   fontSize: 12,
+  fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 10,
   },
@@ -374,16 +393,19 @@ theme.typography.caption = {
 theme.typography.paragraph = {
   fontSize: 14,
   fontWeight: 400,
+  fontFamily: 'var(--Montserrat)',
 };
 
 theme.typography.labelXl = {
   fontSize: 22,
   fontWeight: 600,
+  fontFamily: 'var(--Montserrat)',
 };
 
 theme.typography.labelLg = {
   fontSize: 18,
   fontWeight: 600,
+  fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 16,
   },
@@ -394,6 +416,7 @@ theme.typography.labelLg = {
 
 theme.typography.labelMd = {
   fontSize: 12,
+  fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 10,
   },
@@ -405,6 +428,7 @@ theme.typography.labelMd = {
 theme.typography.labelSm = {
   fontSize: 10,
   fontWeight: 600,
+  fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 10,
   },
@@ -415,10 +439,12 @@ theme.typography.labelSm = {
 
 theme.typography.labelXs = {
   fontSize: 8,
+  fontFamily: 'var(--Montserrat)',
 };
 
 theme.typography.subHeading = {
   fontSize: 16,
+  fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 14,
   },
@@ -426,6 +452,7 @@ theme.typography.subHeading = {
 
 theme.typography.productTitle = {
   fontSize: 42,
+  fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 24,
   },
@@ -433,11 +460,51 @@ theme.typography.productTitle = {
 
 theme.typography.userBar = {
   fontSize: 50,
+  fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 30,
   },
   [theme.breakpoints.down('sm')]: {
     fontSize: 25,
+  },
+};
+
+theme.typography.wordmarkMarketplace = {
+  fontSize: 50,
+  fontFamily: 'var(--Montserrat)',
+  [theme.breakpoints.down('md')]: {
+    fontSize: 35,
+  },
+};
+
+theme.typography.wordmarkFooter = {
+  fontSize: 22,
+  fontFamily: 'var(--Montserrat)',
+  [theme.breakpoints.down('md')]: {
+    fontSize: 16,
+  },
+};
+
+theme.typography.wordmarkHeader = {
+  fontSize: 20,
+  fontWeight: 600,
+  fontFamily: 'var(--Montserrat)',
+  [theme.breakpoints.down('md')]: {
+    fontSize: 16,
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 18,
+  },
+};
+
+theme.typography.wordmarkSignup = {
+  fontSize: 52,
+  fontFamily: 'var(--Montserrat)',
+  [theme.breakpoints.down('md')]: {
+    fontSize: 48,
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 32,
   },
 };
 

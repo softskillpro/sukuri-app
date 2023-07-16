@@ -19,7 +19,14 @@ export const StyledButton = styled(Button)<StyledButtonProps>(
         : variants === 'md'
         ? '5px 10px'
         : '5px 10px',
-    borderRadius: 10,
+    borderRadius:
+      variants === 'xl'
+        ? 10
+        : variants === 'lg'
+        ? 10
+        : variants === 'md'
+        ? 7
+        : 5,
     textTransform: 'uppercase',
     color: '#fff',
     cursor: 'pointer',

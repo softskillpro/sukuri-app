@@ -6,7 +6,7 @@ import TokenCardGroup from '@/components/v2/Common/TokenCardGroup';
 import SocialGroup from '@/components/v2/Common/SocialGroup';
 import MembershipCardGroup from '@/components/v2/Common/MembershipCardGroup';
 
-import inter from '@/components/v2/Common/InterFont';
+import { inter } from '@/components/v2/Common/CustomFont';
 import { ProductHeroCardContainer } from './styles';
 
 const ProductHeroCard = () => {

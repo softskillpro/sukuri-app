@@ -79,8 +79,6 @@ const SocialGroup = ({ variant = 'md' }: SocialGroupProps) => {
   const open = Boolean(anchorEl);
   const id = open ? 'social-popper' : undefined;
 
-  console.log(open);
-
   return (
     <>
       <SocialGroupContainer variant={variant}>
