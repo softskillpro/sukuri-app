@@ -282,6 +282,8 @@ declare module '@mui/material/styles' {
     wordmarkFooter: React.CSSProperties;
     wordmarkHeader: React.CSSProperties;
     wordmarkSignup: React.CSSProperties;
+    footer: React.CSSProperties;
+    input: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
@@ -309,6 +311,8 @@ declare module '@mui/material/styles' {
     wordmarkFooter?: React.CSSProperties;
     wordmarkHeader?: React.CSSProperties;
     wordmarkSignup?: React.CSSProperties;
+    footer?: React.CSSProperties;
+    input?: React.CSSProperties;
   }
 }
 
@@ -338,6 +342,8 @@ declare module '@mui/material/Typography' {
     wordmarkFooter: true;
     wordmarkHeader: true;
     wordmarkSignup: true;
+    footer: true;
+    input: true;
   }
 }
 
@@ -479,6 +485,7 @@ theme.typography.wordmarkMarketplace = {
 
 theme.typography.wordmarkFooter = {
   fontSize: 22,
+  fontWeight: 600,
   fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 16,
@@ -505,6 +512,14 @@ theme.typography.wordmarkSignup = {
   },
   [theme.breakpoints.down('sm')]: {
     fontSize: 32,
+  },
+};
+
+theme.typography.footer = {
+  fontSize: 14,
+  fontWeight: 400,
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 18,
   },
 };
 

@@ -2,7 +2,6 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Seo from '../seo';
 import Header from '@/components/header';
-import Footer from '@/components/footer';
 import { LayoutContainer } from './styles';
 
 interface LayoutProps {
@@ -26,7 +25,6 @@ const Layout = ({ children }: LayoutProps) => {
 
         {!(asPath === '/' || asPath === '/new-user') && <Header />}
         <main>{children}</main>
-        <Footer />
       </LayoutContainer>
     </>
   );
