@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Inter } from 'next/font/google';
 import Typography from '@mui/material/Typography';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 import FlexBox from '@/components/v2/Common/FlexBox';
 import { StyledDivider } from '@/components/v2/Common/StyledDivider';
 import { StyledButton } from '@/components/v2/Common/StyledButton';
+import type { Tier } from '@/interface/tier.interface';
 import { TierCardContainer } from './styles';
 
 const inter = Inter({
@@ -13,9 +13,12 @@ const inter = Inter({
   subsets: ['latin'],
 });
 
-const TierCard = () => {
-  const matches = useMediaQuery('(min-width:1400px)');
+interface TierCardProps {
+  tier?: Tier;
+  active?: boolean;
+}
 
+const TierCard = ({ tier, active = false }: TierCardProps) => {
   const [more, setMore] = useState(false);
 
   const handleMore = () => {
@@ -26,7 +29,7 @@ const TierCard = () => {
     <TierCardContainer>
       <FlexBox sx={{ height: 40 }}>
         <Typography variant='labelLg' textTransform='uppercase'>
-          tier 1
+          {tier?.type}
         </Typography>
 
         <Typography variant='labelXl' textTransform='uppercase' ml={5.5}>
@@ -44,8 +47,7 @@ const TierCard = () => {
           px={1.5}
           sx={{ fontFamily: inter.style.fontFamily }}
         >
-          A very short piece of text about why this tier might be good at this
-          price.
+          {tier?.description}
         </Typography>
 
         {more && (
@@ -54,8 +56,7 @@ const TierCard = () => {
               variant='paragraph'
               sx={{ fontFamily: inter.style.fontFamily }}
             >
-              A very short piece of text about why this tier might be good at
-              this price.
+              {tier?.option}
             </Typography>
           </div>
         )}
@@ -71,19 +72,17 @@ const TierCard = () => {
 
       <FlexBox className='tier-card-footer'>
         <FlexBox mr={5.5} sx={{ flexDirection: 'column' }}>
-          <Typography variant='labelXl'>0.005Ξ</Typography>
+          <Typography variant='labelXl'>{tier?.price}</Typography>
           <Typography
             variant='labelMd'
             textTransform='uppercase'
             sx={{ lineHeight: 1 }}
           >
-            monthly
+            {tier?.period}
           </Typography>
         </FlexBox>
 
-        <StyledButton disabled variants={matches ? 'md' : 'sm'}>
-          subscribe
-        </StyledButton>
+        <StyledButton disabled={active}>subscribe</StyledButton>
       </FlexBox>
     </TierCardContainer>
   );

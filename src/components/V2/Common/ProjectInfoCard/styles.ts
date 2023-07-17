@@ -4,6 +4,7 @@ import FlexBox from '@/components/common/FlexBox';
 export const ProjectInfoCardContainer = styled(FlexBox)(({ theme }) => ({
   position: 'relative',
   flexDirection: 'column',
+  height: 'fit-content',
   borderRadius: 10,
   border: `1px solid ${theme.palette.lightInternalGlassBorder.main}`,
   background: 'rgba(255, 255, 255, 0.40)',
@@ -13,8 +14,8 @@ export const ProjectInfoCardContainer = styled(FlexBox)(({ theme }) => ({
 
   '.project-info-bg': {
     width: '100%',
-    // minWidth: '100%',
     height: 240,
+    objectFit: 'cover',
     borderRadius: 10,
     border: `1px solid ${theme.palette.lightInternalGlassBorder.main}`,
   },

@@ -19,8 +19,20 @@ const entries: Entry[] = [
   },
 ];
 
-const DiscoverCreatorsCard = () => {
-  return <EntryCardGroup title='Discover Creators' entries={entries} />;
+interface DiscoverCreatorsCardProps {
+  className?: string;
+}
+
+const DiscoverCreatorsCard = ({
+  className = 'discovery-creators-card',
+}: DiscoverCreatorsCardProps) => {
+  return (
+    <EntryCardGroup
+      title='Discover Creators'
+      entries={entries}
+      className={className}
+    />
+  );
 };
 
 export default DiscoverCreatorsCard;

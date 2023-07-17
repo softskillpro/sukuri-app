@@ -5,6 +5,8 @@ import ProductContentCardGroup from '@/components/v2/ProductContentCardGroup';
 import MultiCarousel from '@/components/v2/Common/MultiCarousel';
 import { StyledDivider } from '@/components/v2/Common/StyledDivider';
 import SubscriptionTiersCard from '@/components/v2/SubscriptionTiersCard';
+import DiscoverCreatorsCard from '@/components/v2/Common/DiscoverCreatorsCard';
+import TopCategoriesCard from '@/components/v2/Common/TopCategoriesCard';
 import { ProductContainer } from '@/styles/product';
 
 const products = ['boat.png', 'project_info.png', 'project_info.png'];
@@ -15,6 +17,11 @@ const Product = () => {
       <ProductHeroCard />
 
       <SidebarLayout className='product-layout'>
+        <section>
+          <DiscoverCreatorsCard />
+          <TopCategoriesCard className='top-categories-card' />
+        </section>
+
         <section className='sidebar-layout-body'>
           <ProductContentCardGroup />
 

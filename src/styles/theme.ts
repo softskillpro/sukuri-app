@@ -29,31 +29,6 @@ const theme = createTheme({
     fontSize: 14,
     fontFamily: 'var(--Montserrat)',
     fontWeightRegular: 'normal',
-    h1: {
-      fontSize: 100,
-      lineHeight: '122px',
-      fontWeight: 700,
-    },
-    h2: {
-      fontSize: 70,
-      lineHeight: '85px',
-      fontWeight: 700,
-    },
-    h3: {
-      fontSize: 60,
-      lineHeight: '73px',
-      fontWeight: 700,
-    },
-    h5: {
-      fontSize: 30,
-      lineHeight: '37px',
-      fontWeight: 700,
-    },
-    h6: {
-      fontSize: 28,
-      lineHeight: '34px',
-      fontWeight: 700,
-    },
     subtitle1: {
       fontSize: 25,
       lineHeight: '30px',
@@ -72,11 +47,6 @@ const theme = createTheme({
     body2: {
       fontSize: 20,
       lineHeight: '24px',
-      fontWeight: 400,
-    },
-    caption: {
-      fontSize: 18,
-      lineHeight: '22px',
       fontWeight: 400,
     },
     custom1: {

@@ -1,5 +1,3 @@
-import DiscoverCreatorsCard from '@/components/v2/Common/DiscoverCreatorsCard';
-import TopCategoriesCard from '@/components/v2/Common/TopCategoriesCard';
 import { SidebarLayoutContainer } from './styles';
 
 interface SidebarLayoutProps {
@@ -13,11 +11,6 @@ const SidebarLayout = ({
 }: SidebarLayoutProps) => {
   return (
     <SidebarLayoutContainer className={className}>
-      <section>
-        <DiscoverCreatorsCard />
-        <TopCategoriesCard className='top-categories-card' />
-      </section>
-
       {children}
     </SidebarLayoutContainer>
   );

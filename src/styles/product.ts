@@ -39,11 +39,11 @@ export const ProductContainer = styled('div')(({ theme }) => ({
       margin: '30px 0',
 
       section: {
-        ':nth-child(1)': {
+        ':nth-of-type(1)': {
           order: 2,
         },
 
-        ':nth-child(2)': {
+        ':nth-of-type(2)': {
           order: 1,
         },
       },
