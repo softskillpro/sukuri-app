@@ -40,6 +40,8 @@ export const SubscriptionManagementContainer = styled('div')(({ theme }) => ({
         '.deactivate-card': {
           justifyContent: 'space-between',
           width: '100%',
+          gap: 15,
+          marginBottom: 40,
           padding: '10px 15px',
           borderRadius: 10,
           border: `1px solid ${theme.palette.lightInternalGlassBorder.main}`,
@@ -47,6 +49,15 @@ export const SubscriptionManagementContainer = styled('div')(({ theme }) => ({
           backgroundBlendMode: 'overlay',
         },
       },
+    },
+
+    '.subscription-management-footer': {
+      width: '100%',
+      padding: 15,
+      borderRadius: '0px 0px 15px 15px',
+      border: `2px solid ${theme.palette.lightInternalGlassBorder.main}`,
+      background: theme.palette.green.dark,
+      cursor: 'pointer',
     },
   },
 
@@ -61,7 +72,14 @@ export const SubscriptionManagementContainer = styled('div')(({ theme }) => ({
 
   [theme.breakpoints.down('md')]: {
     '.sidebar-layout-body': {
-      '.product-divider': { width: 'calc(100% - 20px)' },
+      '.subscription-management-body': {
+        '.deactivate-wrapper': {
+          '.deactivate-card': {
+            flexDirection: 'column',
+            marginBottom: 20,
+          },
+        },
+      },
     },
   },
 }));

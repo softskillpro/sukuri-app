@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import Typography from '@mui/material/Typography';
 import SidebarLayout from '@/components/v2/SidebarLayout';
 import UserInfoCard from '@/components/v2/Common/UserInfoCard';
@@ -7,6 +8,7 @@ import TierCard from '@/components/v2/Common/TierCard';
 import FlexBox from '@/components/v2/Common/FlexBox';
 import TransactionTable from '@/components/v2/Common/TransactionTable';
 import { SubscriptionManagementContainer } from '@/styles/subscriptionManagement';
+import { StyledButton } from '@/components/v2/Common/StyledButton';
 import { inter } from '@/components/v2/Common/CustomFont';
 import type { Tier } from '@/interface/tier.interface';
 
@@ -38,6 +40,8 @@ const tiers: Tier[] = [
 ];
 
 const SubscriptionManagement = () => {
+  const router = useRouter();
+
   return (
     <SubscriptionManagementContainer>
       <SidebarLayout className='subscription-management-layout'>
@@ -59,7 +63,14 @@ const SubscriptionManagement = () => {
           <div className='subscription-management-body'>
             <ProjectInfoCard />
 
-            <FlexBox sx={{ flexDirection: 'column', alignItems: 'flex-start' }}>
+            <FlexBox
+              sx={{
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                width: '100%',
+                overflow: 'auto',
+              }}
+            >
               <Typography
                 variant='h5'
                 textTransform='uppercase'
@@ -81,7 +92,6 @@ const SubscriptionManagement = () => {
                   flexDirection: 'column',
                   alignItems: 'flex-start',
                   width: '100%',
-                  overflow: 'auto',
                 }}
               >
                 <Typography variant='h5' textTransform='uppercase' m='15px'>
@@ -114,9 +124,11 @@ const SubscriptionManagement = () => {
 
                   <Typography
                     variant='caption'
-                    textTransform='uppercase'
                     lineHeight={1}
+                    textAlign='center'
+                    fontStyle='italic'
                     sx={{
+                      maxWidth: '50%',
                       fontFamily: inter.style.fontFamily,
                     }}
                   >
@@ -124,13 +136,24 @@ const SubscriptionManagement = () => {
                     the next billing cycle.
                   </Typography>
 
-                  <Typography variant='h5' textTransform='uppercase' m='15px'>
-                    Deactivate
-                  </Typography>
+                  <StyledButton status='Negative'>Deactivate</StyledButton>
                 </FlexBox>
               </FlexBox>
             </FlexBox>
           </div>
+
+          <Typography
+            variant='subHeading'
+            textAlign='center'
+            component='div'
+            className='subscription-management-footer'
+            sx={{
+              fontFamily: inter.style.fontFamily,
+            }}
+            onClick={() => router.push('/marketplace')}
+          >
+            Looking for more? Check out the Marketplace.
+          </Typography>
         </section>
       </SidebarLayout>
     </SubscriptionManagementContainer>

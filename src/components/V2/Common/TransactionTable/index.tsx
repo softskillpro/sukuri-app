@@ -59,7 +59,7 @@ const transactions = [
 export default function TransactionTable() {
   return (
     <TableContainer component={StyledPaper}>
-      <Table sx={{ minWidth: 700 }} aria-label='transaction table'>
+      <Table sx={{ minWidth: 500 }} aria-label='transaction table'>
         <TableHead>
           <TableRow>
             {headers.map((header, id) => (
