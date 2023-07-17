@@ -50,7 +50,7 @@ export const ProductContainer = styled('div')(({ theme }) => ({
 
       '.sidebar-layout-body': {
         '.product-content-card-group': {
-          margin: '15px 15px 30px',
+          margin: '15px 10px 30px',
         },
 
         '.product-divider': { width: 'calc(100% - 30px)' },

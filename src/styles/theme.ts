@@ -44,11 +44,6 @@ const theme = createTheme({
       lineHeight: '73px',
       fontWeight: 700,
     },
-    h4: {
-      fontSize: 32,
-      lineHeight: '39px',
-      fontWeight: 700,
-    },
     h5: {
       fontSize: 30,
       lineHeight: '37px',
@@ -150,6 +145,8 @@ const theme = createTheme({
     secondary: {
       main: 'rgba(0, 0, 0, 0.40)',
       dark: 'rgba(255, 255, 255, 0.40)',
+      light: 'rgba(0, 0, 0, 0.30)',
+      contrastText: 'rgba(0, 0, 0, 0.10)',
     },
     text: { primary: '#fff', secondary: '#461427' },
     text1: { main: '#F88497', light: '#FFC0CB', contrastText: '#FAFAF9' },

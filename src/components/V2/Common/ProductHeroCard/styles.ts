@@ -14,6 +14,7 @@ export const ProductHeroCardContainer = styled('div')(({ theme }) => ({
     height: '100%',
     borderRadius: 5,
     zIndex: -5,
+    objectFit: 'cover',
   },
 
   '.product-hero-card-wrapper': {
