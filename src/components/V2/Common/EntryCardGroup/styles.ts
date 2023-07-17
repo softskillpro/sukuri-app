@@ -15,7 +15,7 @@ export const EntryCardGroupContainer = styled(FlexBox)(({ theme }) => ({
     justifyContent: 'space-between',
     width: '100%',
     marginBottom: 5,
-    padding: '10px 30px',
+    padding: '10px 25px',
     borderRadius: 10,
     border: `1px solid ${theme.palette.lightInternalGlassBorder.main}`,
     background: theme.palette.secondary.dark,

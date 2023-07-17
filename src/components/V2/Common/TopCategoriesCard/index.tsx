@@ -20,9 +20,17 @@ const entries: Entry[] = [
   },
 ];
 
-const TopCategoriesCard = () => {
+interface TopCategoriesCardProps {
+  className?: string;
+}
+
+const TopCategoriesCard = ({ className }: TopCategoriesCardProps) => {
   return (
-    <EntryCardGroup title='Top Categories' entries={entries}>
+    <EntryCardGroup
+      title='Top Categories'
+      entries={entries}
+      className={className}
+    >
       <StyledButton className='view-all-btn'>view all</StyledButton>
     </EntryCardGroup>
   );

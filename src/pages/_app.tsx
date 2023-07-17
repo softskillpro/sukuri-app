@@ -15,6 +15,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { WagmiConfig } from 'wagmi';
 import wagmiConfig from '@/configure/wagmi';
 
+import '@/styles/globals.css';
+
 const clientSideEmotionCache = createEmotionCache();
 
 const montserrat = Montserrat({

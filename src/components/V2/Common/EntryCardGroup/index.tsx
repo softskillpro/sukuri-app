@@ -8,14 +8,20 @@ import type { Entry } from '@/interface/entry.interface';
 interface EntryCardGroupProps {
   title: string;
   entries: Entry[];
+  className?: string;
   children?: React.ReactNode;
 }
 
-const EntryCardGroup = ({ title, entries, children }: EntryCardGroupProps) => {
+const EntryCardGroup = ({
+  title,
+  entries,
+  className = 'entry-card-group',
+  children,
+}: EntryCardGroupProps) => {
   const matches = useMediaQuery('(min-width:1400px)');
 
   return (
-    <EntryCardGroupContainer>
+    <EntryCardGroupContainer className={className}>
       <FlexBox className='entry-card-title'>
         <Typography variant='subHeading' component='div'>
           {title}

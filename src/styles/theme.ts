@@ -143,6 +143,9 @@ const theme = createTheme({
   palette: {
     primary: {
       main: '#FFF2F4',
+      dark: 'rgba(0, 0, 0, 0.20)',
+      light:
+        'linear-gradient(0deg, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.60) 100%)',
     },
     secondary: {
       main: 'rgba(0, 0, 0, 0.40)',
@@ -174,8 +177,8 @@ const theme = createTheme({
       contrastText: '1px 1px 10px 1px rgba(248, 132, 151, 0.5)',
     },
     shadow1: {
-      main: 'inset 0px -4px 0px 2px #F88497, inset 0px 8px 0px 2px #F88497',
-      light: 'inset 0px -4px 0px 2px #FFC0CB, inset 0px 8px 0px 2px #FFC0CB',
+      main: '0px 0px 8px 0px rgba(0, 0, 0, 0.35)',
+      light: 'rgba(0, 0, 0, 0.05)',
       dark: '1px 1px 2px 1px #030712',
       contrastText: 'inset 0px -4px 0px #FFC0CB, inset 0px 8px 0px #FFC0CB',
     },
