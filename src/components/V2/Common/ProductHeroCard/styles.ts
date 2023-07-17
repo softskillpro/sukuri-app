@@ -28,8 +28,8 @@ export const ProductHeroCardContainer = styled('div')(({ theme }) => ({
   },
 
   '.membership-card-group-wrapper': {
-    position: 'fixed',
-    bottom: 107,
+    position: 'absolute',
+    bottom: -68,
     right: 100,
     width: 650,
   },
@@ -42,9 +42,9 @@ export const ProductHeroCardContainer = styled('div')(({ theme }) => ({
     },
 
     '.membership-card-group-wrapper': {
-      position: 'fixed',
-      bottom: 200,
-      right: 35,
+      position: 'absolute',
+      bottom: 15,
+      right: 15,
       width: 420,
     },
   },

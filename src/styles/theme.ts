@@ -146,6 +146,7 @@ const theme = createTheme({
     },
     secondary: {
       main: 'rgba(0, 0, 0, 0.40)',
+      dark: 'rgba(255, 255, 255, 0.40)',
     },
     text: { primary: '#fff', secondary: '#461427' },
     text1: { main: '#F88497', light: '#FFC0CB', contrastText: '#FAFAF9' },
@@ -207,6 +208,7 @@ const theme = createTheme({
       main: 'rgba(255, 255, 255, 0.20)',
       light: '#67B54C',
       dark: 'rgba(255, 255, 255, 0.15)',
+      contrastText: 'rgba(255, 255, 255, 0.50)',
     },
   },
   breakpoints: {
@@ -416,7 +418,7 @@ theme.typography.labelLg = {
     fontSize: 16,
   },
   [theme.breakpoints.down('sm')]: {
-    fontSize: 16,
+    fontSize: 14,
   },
 };
 

@@ -11,6 +11,8 @@ import { HorizontalDivider } from '@/components/common/StyledDivider';
 import TierCard from '@/components/v2/Common/TierCard';
 import ProjectInfoCard from '@/components/v2/Common/ProjectInfoCard';
 import ProductHeroCard from '@/components/v2/Common/ProductHeroCard';
+import DiscoverCreatorsCard from '@/components/v2/Common/DiscoverCreatorsCard';
+import TopCategoriesCard from '@/components/v2/Common/TopCategoriesCard';
 
 const contents = [
   'Supercharging subscriptions on the blockchain.',
@@ -26,6 +28,8 @@ const Home: NextPage = () => {
       <TierCard />
       <ProjectInfoCard />
       <ProductHeroCard />
+      <DiscoverCreatorsCard />
+      <TopCategoriesCard />
       {/* <Image
         src='/images/background.png'
         width={940}
