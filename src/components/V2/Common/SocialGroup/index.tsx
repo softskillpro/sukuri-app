@@ -14,11 +14,11 @@ export interface SocialGroupProps {
   variant?: 'sm' | 'md';
 }
 
-const SocialWrapper = ({
+export const SocialWrapper = ({
   onClick,
   variant = 'md',
 }: {
-  onClick: () => void;
+  onClick?: () => void;
   variant?: 'sm' | 'md';
 }) => {
   return (

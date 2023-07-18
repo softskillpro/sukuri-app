@@ -13,14 +13,15 @@ export const SubscriptionManagementContainer = styled('div')(({ theme }) => ({
     alignItems: 'center',
     gap: 30,
     borderRadius: 15,
-    border: `1px solid ${theme.palette.border.dark}`,
+    // border: `1px solid ${theme.palette.border.dark}`,
     background: theme.palette.secondary.main,
     boxShadow: theme.palette.shadow1.main,
     backdropFilter: 'blur(15px)',
 
     '.subscription-management-header': {
+      justifyContent: 'space-between',
       width: '100%',
-      padding: 15,
+      padding: '15px 30px',
       background: theme.palette.secondary.main,
       borderRadius: '15px 15px 0 0',
     },
@@ -51,7 +52,7 @@ export const SubscriptionManagementContainer = styled('div')(({ theme }) => ({
       },
     },
 
-    '.subscription-management-footer': {
+    '.check-marketplace': {
       width: '100%',
       padding: 15,
       borderRadius: '0px 0px 15px 15px',
@@ -63,6 +64,10 @@ export const SubscriptionManagementContainer = styled('div')(({ theme }) => ({
 
   [theme.breakpoints.down('xl')]: {
     '.sidebar-layout-body': {
+      '.subscription-management-header': {
+        padding: 15,
+      },
+
       '.subscription-management-body': {
         gridTemplateColumns: '1fr',
         gap: 40,

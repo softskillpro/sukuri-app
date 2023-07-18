@@ -7,38 +7,36 @@ export const ProjectInfoCardContainer = styled(FlexBox)(({ theme }) => ({
   height: 'fit-content',
   borderRadius: 10,
   border: `1px solid ${theme.palette.lightInternalGlassBorder.main}`,
-  background: 'rgba(255, 255, 255, 0.40)',
+  // background: 'rgba(255, 255, 255, 0.40)',
   backgroundBlendMode: 'overlay',
   boxShadow: theme.palette.shadow.main,
   backdropFilter: 'blur(2.5px)',
 
-  '.project-info-bg': {
-    width: '100%',
-    height: 240,
-    objectFit: 'cover',
-    borderRadius: 10,
-    border: `1px solid ${theme.palette.lightInternalGlassBorder.main}`,
-  },
+  '.project-info-card-header': {
+    display: 'grid',
+    gridTemplateColumns: '1fr',
 
-  '.social-group': {
-    position: 'absolute',
-    top: 5,
-    right: 5,
-    padding: 10,
-    borderRadius: 5,
-    border: `1px solid ${theme.palette.border.main}`,
-    background: 'rgba(0, 0, 0, 0.50)',
-    boxShadow: theme.palette.shadow.main,
-    backdropFilter: 'blur(2.5px)',
+    '.project-info-img-social-wrapper': {
+      position: 'relative',
 
-    a: {
-      img: {
-        width: 'auto',
+      '.project-info-bg': {
+        width: '100%',
+        height: 240,
+        objectFit: 'cover',
+        borderRadius: 10,
+        border: `1px solid ${theme.palette.lightInternalGlassBorder.main}`,
       },
 
-      ':not(:last-of-type)': {
-        marginRight: 15,
+      '.project-info-social-group': {
+        position: 'absolute',
+        top: 5,
+        right: 5,
+        padding: 10,
       },
+    },
+
+    '.project-info-title': {
+      padding: '10px 15px',
     },
   },
 
@@ -59,32 +57,34 @@ export const ProjectInfoCardContainer = styled(FlexBox)(({ theme }) => ({
       '.price-card-wrapper': {
         width: '100%',
         marginBottom: 5,
+        gap: 16,
 
-        '.price-card': {
-          width: 'calc((100% - 2px - 48px)/3)',
-          flexDirection: 'column',
-          borderRadius: 5,
-
-          '.price-card-value': {
-            width: '100%',
-            padding: '10px 30px',
-            backgroundColor: theme.palette.blue.main,
-            borderRadius: '5px 5px 0 0',
-          },
-
-          '.price-card-type': {
-            width: '100%',
-            backgroundColor: theme.palette.blue.dark,
-            borderRadius: '0 0 5px 5px',
-          },
+        '.project-subscription-card': {
+          width: '100%',
         },
       },
     },
   },
 
   [theme.breakpoints.down('xl')]: {
-    '.price-card-value': {
-      padding: '10px !important',
+    '.project-info-card-header': {
+      gridTemplateColumns: '8fr 2fr',
+
+      '.project-info-img-social-wrapper': {
+        '.project-info-social-group': {
+          position: 'absolute',
+          top: 'auto',
+          bottom: 5,
+          right: 5,
+          padding: 10,
+        },
+      },
+    },
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    '.project-info-card-header': {
+      gridTemplateColumns: '1fr',
     },
   },
 }));

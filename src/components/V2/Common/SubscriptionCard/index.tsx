@@ -6,6 +6,7 @@ interface SubscriptionCardProps {
   period: string;
   variant?: 'primary' | 'secondary';
   orientation?: 'horizontal' | 'vertical';
+  className?: string;
 }
 
 const SubscriptionCard = ({
@@ -13,9 +14,14 @@ const SubscriptionCard = ({
   period,
   variant = 'primary',
   orientation = 'vertical',
+  className = 'subscription-card',
 }: SubscriptionCardProps) => {
   return (
-    <SubscriptionCardContainer variant={variant} orientation={orientation}>
+    <SubscriptionCardContainer
+      variant={variant}
+      orientation={orientation}
+      className={className}
+    >
       <Typography
         variant='labelMd'
         fontWeight={600}
