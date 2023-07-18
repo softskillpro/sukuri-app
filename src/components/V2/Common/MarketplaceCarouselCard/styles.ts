@@ -4,8 +4,8 @@ import { styled } from '@mui/material/styles';
 export const MarketplaceCarouselCardContainer = styled(Box)(({ theme }) => ({
   position: 'relative',
   display: 'flex',
-  justifyItems:'stretch',
   flexDirection: 'column',
+  justifyContent: 'space-between',
 
   marginLeft: 7.5,
   marginRight: 7.5,
@@ -14,8 +14,14 @@ export const MarketplaceCarouselCardContainer = styled(Box)(({ theme }) => ({
 
   padding: 15,
 
-  [theme.breakpoints.down('lg')]: {
+  [theme.breakpoints.down('md')]: {
     height: 200,
+    padding: 10,
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    height: 150,
+    padding:5,
   },
 
   ".card-bg": {

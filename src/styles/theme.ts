@@ -108,7 +108,7 @@ const theme = createTheme({
   palette: {
     primary: {
       main: '#FFF2F4',
-      dark: 'rgba(0, 0, 0, 0.20)',
+      dark: 'rgba(0, 0, 0, 0.40)',
       light:
         'linear-gradient(0deg, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.60) 100%)',
     },

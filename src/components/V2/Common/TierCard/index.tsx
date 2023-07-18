@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Inter } from 'next/font/google';
 import Typography from '@mui/material/Typography';
 
-import FlexBox from '@/components/v2/Common/FlexBox';
-import { StyledDivider } from '@/components/v2/Common/StyledDivider';
-import { StyledButton } from '@/components/v2/Common/StyledButton';
+import FlexBox from '@/components/V2/Common/FlexBox';
+import { StyledDivider } from '@/components/V2/Common/StyledDivider';
+import { StyledButton } from '@/components/V2/Common/StyledButton';
 import type { Tier } from '@/interface/tier.interface';
 import { TierCardContainer } from './styles';
 

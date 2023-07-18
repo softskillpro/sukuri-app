@@ -7,7 +7,7 @@ export const FooterContainer = styled(FlexBox)(({ theme }) => ({
   padding: '30px',
   borderRadius: 15,
   border: `1px solid ${theme.palette.border.dark}`,
-  background: theme.palette.secondary.main,
+  background: theme.palette.primary.dark,
   boxShadow: theme.palette.shadow.main,
   backdropFilter: 'blur(15px)',
 

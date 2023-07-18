@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Typography from '@mui/material/Typography';
 import ProductContentCard from '@/components/v2/Common/ProductContentCard';
-import FlexBox from '@/components/v2/Common/FlexBox';
+import FlexBox from '@/components/V2/Common/FlexBox';
 import { inter } from '@/components/v2/Common/CustomFont';
 import { ProductContentCardGroupContainer } from './styles';
 

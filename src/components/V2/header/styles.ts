@@ -7,7 +7,7 @@ export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
   justifyContent: 'space-between',
   height: 46,
   padding: '0 40px',
-  background: theme.palette.secondary.main,
+  background: theme.palette.primary.dark,
   borderRadius: 15,
   border: `1px solid ${theme.palette.border.dark}`,
   backgroundBlendMode: 'overlay',

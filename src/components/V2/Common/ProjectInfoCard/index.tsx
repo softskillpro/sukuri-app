@@ -4,9 +4,9 @@ import { Inter } from 'next/font/google';
 import Typography from '@mui/material/Typography';
 
 import { ProjectInfoCardContainer } from './styles';
-import FlexBox from '@/components/v2/Common/FlexBox';
-import { StyledDivider } from '@/components/v2/Common/StyledDivider';
-import { StyledButton } from '@/components/v2/Common/StyledButton';
+import FlexBox from '@/components/V2/Common/FlexBox';
+import { StyledDivider } from '@/components/V2/Common/StyledDivider';
+import { StyledButton } from '@/components/V2/Common/StyledButton';
 
 const inter = Inter({
   weight: ['400', '500', '600', '700'],
