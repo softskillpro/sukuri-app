@@ -21,11 +21,12 @@ import { MarketplaceCarouselCard } from '@/components/V2/Common/MarketplaceCarou
 import { NFTType } from '@/interface/Nft.interface';
 import formatUnits from '@/utils/formatUnits';
 
-import { MarketplaceContainer, MarketplaceIntro, MarketplaceContent, TopProjectsSection, TopProjectsList, TopProjectEntry, MembershipCardWrapper, TopProjectInfoWrapper, CategoryList  } from '@/styles/marketplace';
+import { MarketplaceContainer, MarketplaceIntro, MarketplaceContent, CategoryList  } from '@/styles/marketplace';
 import MembershipCardGroup from '@/components/V2/Common/MembershipCardGroup';
 import { StyledButton } from '@/components/V2/Common/StyledButton';
 import TrendingSection from '@/components/V2/TrendingSection';
 import CategorySection from '@/components/V2/CategorySection';
+import TopProjectsSection from '@/components/V2/TopProjectsSection';
 
 // TODO: mock trending data
 const trendingProject = Array.from(mock.slice(0,1));
@@ -69,34 +70,7 @@ const Marketplace = ({
 
       <MarketplaceContent>
         <TrendingSection trendingProject={trendingProject} />
-        <TopProjectsSection>
-          <Typography variant="h3" className='section-title'>
-            Top Projects
-          </Typography>
-          <StyledHr />
-          <TopProjectsList>
-            {
-              topProjects.map((project, id) => {
-                return(
-                  <TopProjectEntry className="project-details" id={`topProj-${id}`}>
-                    <TopProjectInfoWrapper>
-                      <Image src={project.thumbnail_image} alt={project.name} fill={true} className='top-proj-bg'/>
-                      <Typography variant="productTitleSmall" className='project-name'>
-                        {project.name}
-                      </Typography>
-                      <StyledButton className='project-category'>
-                        gaming
-                      </StyledButton>
-                    </TopProjectInfoWrapper>
-                    <MembershipCardWrapper>
-                      <MembershipCardGroup />
-                    </MembershipCardWrapper>
-                  </TopProjectEntry>
-                )
-              })
-            }
-          </TopProjectsList>
-        </TopProjectsSection>
+        <TopProjectsSection topProjects={topProjects} />
         <CategorySection categories={categories} />
         <AboutSukuri />
         <TwitterCTA />
