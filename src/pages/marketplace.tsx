@@ -52,7 +52,7 @@ const Marketplace = ({
         <CategoryList>
           {
             categories.map((category, id) => (
-              <a href="#" key={id}>
+              <a href="/" key={id}>
                 <Typography variant="labelMd" align='center' key={id}>
                   {category.name}
                 </Typography>

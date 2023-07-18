@@ -130,24 +130,22 @@ export const TopProjectEntry = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
 
-  padding: 5,
-
-  backdropFilter: 'brightness(150%)',
-
-  [theme.breakpoints.down('md')]: {
-    flexDirection: 'row',
-  },
-
-  [theme.breakpoints.down('sm')]: {
-    flexDirection: 'column',
-  },
-
-  '.project-category': {
-    background: theme.palette.secondary.main,
-    width: 'max-content',
-  },
+  border: '1px solid rgba(0,0,0,0.2)',
+  boxShadow: '0px 0px 4px rgba(0,0,0,0.35)',
 
   borderRadius: 10,
+
+  padding: 5,
+
+  backdropFilter: 'brightness(100%)',
+
+  '.project-category': {
+    background: theme.palette.secondary.teal,
+    border: '1px solid rgba(255,255,255,.2)',
+    width: 'max-content',
+    borderRadius: 5,
+  },
+  
 }))
 
 export const TopProjectInfoWrapper = styled(Box)(({ theme }) => ({
@@ -164,14 +162,11 @@ export const TopProjectInfoWrapper = styled(Box)(({ theme }) => ({
   padding: '15px 10px 40px 10px',
 
   [theme.breakpoints.down('md')]: {
-    padding: '5px',
-    width: '80%',
-    alignItems: 'start',
+    alignItems: 'end',
+    padding: '10px 10px 30px 10px',
   },
 
   [theme.breakpoints.down('sm')]: {
-    height: 160,
-    width: 'auto',
     padding: '5px 5px 15px 5px',
   },
 
@@ -195,17 +190,13 @@ export const MembershipCardWrapper = styled(Box)(({ theme }) => ({
   padding: '5px 5px 5px',
 
   [theme.breakpoints.down('md')]: {
-    position: 'absolute',
-    width: 310,
-    right: 0,
-    marginTop: 0,
+    width: '100%',
+    marginTop: -25,
   },
 
   [theme.breakpoints.down('sm')]: {
-    position: 'relative',
     width: '100%',
     marginTop: -15,
-    padding: '5px 5px 5px',
   }
 }))
 

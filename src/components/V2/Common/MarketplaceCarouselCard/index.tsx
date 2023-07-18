@@ -25,7 +25,7 @@ export const MarketplaceCarouselCard = ({name, category, membershipPrice, largeI
       <Typography variant='productTitle' align='right' className='product-tile'>
         {name}
       </Typography> 
-      <StyledButton style={{width:'max-content', background: theme.palette.secondary.main}}>
+      <StyledButton className='category-button'>
         {category}
       </StyledButton>
     </InfoWrapper>

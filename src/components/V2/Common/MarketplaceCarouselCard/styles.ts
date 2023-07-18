@@ -33,6 +33,12 @@ export const MarketplaceCarouselCardContainer = styled(Box)(({ theme }) => ({
     objectFit: 'cover',
   },
 
+  '.category-button': {
+    width: 'max-content',
+    background: theme.palette.secondary.teal, 
+    order: '1px solid rgba(255,255,255.2)',
+  },
+
   '.product-title': {
     filter: 'drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.25))',
   }
