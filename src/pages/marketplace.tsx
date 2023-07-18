@@ -40,7 +40,7 @@ const Marketplace = ({
         <CategoryList>
           {
             categories.map((category, id) => (
-              <a href="#">
+              <a href="#" key={id}>
                 <Typography variant="labelMd" align='center' key={id}>
                   {category.name}
                 </Typography>
@@ -71,7 +71,7 @@ const Marketplace = ({
               categories.map(({name, image, count}, i) => {
                 
                 return(
-                  <CategoryTile
+                  <CategoryTile key={i}
                     name={name}
                     image={image ? image : ''}
                     count={count ? count : null}

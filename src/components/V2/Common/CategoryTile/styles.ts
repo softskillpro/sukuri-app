@@ -21,10 +21,10 @@ export const CategoryTileContainer = styled(Box)(({theme}) => ({
   borderRadius: 15,
   border: `2px solid ${theme.palette.border.main}`,
 
-  transition: 'filter 0.25s',
+  // transition: 'filter 0.25s',
 
   "&:hover":{
-    filter:'brightness(1.1)'
+    filter:'brightness(90%)'
   },
 
   [theme.breakpoints.down('md')]: {
