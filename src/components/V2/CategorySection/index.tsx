@@ -1,4 +1,4 @@
-import { CategorySection } from "./styles"
+import { CategorySectionContainer } from "./styles"
 import Typography from '@mui/material/Typography'
 import { StyledHr } from '@/components/V2/Common/Splitter/styles';
 import { CategoryTile } from "@/components/V2/Common/CategoryTile";
@@ -6,13 +6,13 @@ import { CategoryTile } from "@/components/V2/Common/CategoryTile";
 export type CategoryListProps = {
   categories: {
     name: string,
-    image: string,
+    image?: string,
     count?: number
   }[]
 }
-const CategoryList = ({ categories }: CategoryListProps) => {
+const CategorySection = ({ categories }: CategoryListProps) => {
   return (
-    <CategorySection>
+    <CategorySectionContainer>
       <Typography variant="h3" className='section-title'>
         Categories
       </Typography>
@@ -33,9 +33,9 @@ const CategoryList = ({ categories }: CategoryListProps) => {
             : ''
         }
       </div>
-    </CategorySection>
+    </CategorySectionContainer>
   )
 }
 
 
-export default CategoryList
+export default CategorySection

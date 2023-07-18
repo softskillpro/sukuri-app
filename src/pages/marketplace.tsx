@@ -21,11 +21,11 @@ import { MarketplaceCarouselCard } from '@/components/V2/Common/MarketplaceCarou
 import { NFTType } from '@/interface/Nft.interface';
 import formatUnits from '@/utils/formatUnits';
 
-import { MarketplaceContainer, MarketplaceIntro, MarketplaceContent, TopProjectsSection, CarouselContainer, TopProjectsList, TopProjectEntry, MembershipCardWrapper, TopProjectInfoWrapper  } from '@/styles/marketplace';
+import { MarketplaceContainer, MarketplaceIntro, MarketplaceContent, TopProjectsSection, TopProjectsList, TopProjectEntry, MembershipCardWrapper, TopProjectInfoWrapper, CategoryList  } from '@/styles/marketplace';
 import MembershipCardGroup from '@/components/V2/Common/MembershipCardGroup';
 import { StyledButton } from '@/components/V2/Common/StyledButton';
 import TrendingSection from '@/components/V2/TrendingSection';
-import CategoryList from '@/components/V2/CategoryList';
+import CategorySection from '@/components/V2/CategorySection';
 
 // TODO: mock trending data
 const trendingProject = Array.from(mock.slice(0,1));
@@ -97,7 +97,7 @@ const Marketplace = ({
             }
           </TopProjectsList>
         </TopProjectsSection>
-        <CategoryList categories={categories} />
+        <CategorySection categories={categories} />
         <AboutSukuri />
         <TwitterCTA />
       </MarketplaceContent>
