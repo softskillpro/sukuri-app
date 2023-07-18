@@ -8,9 +8,9 @@ export const ProductContentCardGroupContainer = styled('div')(({ theme }) => ({
   backgroundBlendMode: 'overlay',
   borderRadius: 15,
   border: `1px solid ${theme.palette.lightInternalGlassBorder.main}`,
-  background: theme.palette.secondary.dark,
+  
   boxShadow: theme.palette.shadow.main,
-  backdropFilter: 'blur(2.5px)',
+  backdropFilter: 'brightness(150%)',
 
   '.product-content-body': {
     flexDirection: 'column',

@@ -7,8 +7,36 @@ import { Layout1 } from '@/components/common/PageLayout';
 import TodaysPick from '@/components/todayspick';
 import RecommendedCommunities from '@/components/recommendedcommunities';
 import RisingProjects from '@/components/risingprojects';
-import AboutSukuri from '@/components/aboutsukuri';
-import { MarketplaceContainer } from '@/styles/marketplace';
+import AboutSukuri from '@/components/V2/AboutSukuri';
+import TwitterCTA from '@/components/V2/TwitterCTA';
+import { CategoryTile } from '@/components/V2/Common/CategoryTile';
+import { DarkGlassWrapper } from '@/components/V2/Common/DarkGlassWrapper';
+import { Input } from '@mui/material';
+import { StyledHr } from '@/components/V2/Common/Splitter/styles';
+import { CategoryTileProps } from '@/components/V2/Common/CategoryTile';
+import { Carousel } from 'react-responsive-carousel';
+import MultiCarousel from '@/components/V2/Common/MultiCarousel';
+import mock from '@/utils/mock';
+import { MarketplaceCarouselCard } from '@/components/V2/Common/MarketplaceCarouselCard';
+import { NFTType } from '@/interface/Nft.interface';
+import formatUnits from '@/utils/formatUnits';
+
+import { MarketplaceContainer, MarketplaceIntro, MarketplaceContent, CategoryList  } from '@/styles/marketplace';
+import MembershipCardGroup from '@/components/V2/Common/MembershipCardGroup';
+import { StyledButton } from '@/components/V2/Common/StyledButton';
+import TrendingSection from '@/components/V2/TrendingSection';
+import CategorySection from '@/components/V2/CategorySection';
+import TopProjectsSection from '@/components/V2/TopProjectsSection';
+
+// TODO: mock trending data
+const trendingProject = Array.from(mock.slice(0,1));
+
+// TODO: mock top Projects data
+const topProjects = Array.from(mock.slice(0,3));
+
+// TODO: check if there's a list of categories that should be passed to component
+// for now, hardcoded strings used
+const categories: CategoryTileProps[] = [{ name: 'utility', image: '/images/v2/recommend.png', count: 50 }, { name: 'gaming', image: '/images/v2/recommend.png' }, { name: 'content', image: '/images/v2/recommend.png' }, { name: 'dao', image: '/images/v2/recommend.png' }, { name: 'alpha', image: '/images/v2/recommend.png' }]
 
 const Marketplace = ({
   projects,
@@ -18,51 +46,35 @@ const Marketplace = ({
 
   return (
     <MarketplaceContainer>
-      <Image
-        src='/images/marketplace.png'
-        width={596}
-        height={508}
-        priority
-        alt='Marketplace'
-        className='marketplace-flower'
-      />
+      <MarketplaceIntro>
+        <Typography variant="wordmarkMarketplace">
+          SUKURI <span style={{ fontWeight: 400 }}>PROTOCOL</span>
+        </Typography>
+        <input placeholder='SEARCH' className='marketplace-search' />
+        <Typography variant="subHeading" align='center' sx={{lineHeight: '120%'}}>
+          Explore new ways to buy, sell and create subscriptions.<br/>All on the blockchain.
+        </Typography>
+        <StyledHr />
+        <CategoryList>
+          {
+            categories.map((category, id) => (
+              <a href="/" key={id}>
+                <Typography variant="labelMd" align='center' key={id}>
+                  {category.name}
+                </Typography>
+              </a>
+              ))
+          }
+        </CategoryList>
+      </MarketplaceIntro>
 
-      <Layout1>
-        <Grid container spacing={2} className='marketplace-grid-wrapper'>
-          <Grid item xs={12} lg={5}>
-            <Typography variant={matches ? 'h5' : 'subtitle1'} mb={1}>
-              Find <span style={{ color: '#F88497' }}>600+</span> Communities To
-              Join
-            </Typography>
-            <Typography variant={matches ? 'h5' : 'subtitle1'} mb={1}>
-              Earn <span style={{ color: '#F88497' }}>5% APY</span>
-            </Typography>
-            <Typography variant={matches ? 'h5' : 'subtitle1'}>
-              Over <span style={{ color: '#F88497' }}>23M</span> Total Value
-              Locked
-            </Typography>
-          </Grid>
-          <Grid item xs={12} lg={7}>
-            <Typography
-              variant={matches ? 'h1' : matches500 ? 'h3' : 'custom3'}
-              color='text.secondary'
-              textAlign='right'
-              component='div'
-            >
-              Sukuri <br />
-              Marketplace
-            </Typography>
-          </Grid>
-        </Grid>
-      </Layout1>
-
-      {projects && projects.length > 0 && <TodaysPick project={projects[0]} />}
-
-      <RecommendedCommunities projects={projects} />
-
-      <RisingProjects projects={projects} />
-
-      <AboutSukuri />
+      <MarketplaceContent>
+        <TrendingSection trendingProject={trendingProject} />
+        <TopProjectsSection topProjects={topProjects} />
+        <CategorySection categories={categories} />
+        <AboutSukuri />
+        <TwitterCTA />
+      </MarketplaceContent>
     </MarketplaceContainer>
   );
 };

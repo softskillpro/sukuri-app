@@ -108,16 +108,10 @@ const theme = createTheme({
   palette: {
     primary: {
       main: '#FFF2F4',
-      dark: 'rgba(0, 0, 0, 0.20)',
+      dark: 'rgba(0, 0, 0, 0.40)',
       light:
         'linear-gradient(0deg, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.60) 100%)',
       contrastText: 'rgba(0, 0, 0, 0.50)',
-    },
-    secondary: {
-      main: 'rgba(0, 0, 0, 0.40)',
-      dark: 'rgba(255, 255, 255, 0.40)',
-      light: 'rgba(0, 0, 0, 0.30)',
-      contrastText: 'rgba(0, 0, 0, 0.10)',
     },
     text: { primary: '#fff', secondary: '#461427' },
     text1: { main: '#F88497', light: '#FFC0CB', contrastText: '#FAFAF9' },
@@ -181,12 +175,18 @@ const theme = createTheme({
       dark: 'rgba(255, 255, 255, 0.15)',
       contrastText: 'rgba(255, 255, 255, 0.50)',
     },
+    secondary: {
+      main: 'rgba(0,0,0,.4)',
+      dark: 'rgba(255, 255, 255, 0.40)',
+      light: 'rgba(0, 0, 0, 0.30)',
+      contrastText: 'rgba(0, 0, 0, 0.10)',
+    },
   },
   breakpoints: {
     values: {
       xs: 0,
-      sm: 600,
-      md: 720,
+      sm: 720,
+      md: 1024,
       lg: 1200,
       xl: 1400,
     },
@@ -250,6 +250,7 @@ declare module '@mui/material/styles' {
     labelXs: React.CSSProperties;
     subHeading: React.CSSProperties;
     productTitle: React.CSSProperties;
+    productTitleSmall: React.CSSProperties;
     userBar: React.CSSProperties;
     wordmarkMarketplace: React.CSSProperties;
     wordmarkFooter: React.CSSProperties;
@@ -312,6 +313,7 @@ declare module '@mui/material/Typography' {
     labelXs: true;
     subHeading: true;
     productTitle: true;
+    productTitleSmall: true;
     userBar: true;
     wordmarkMarketplace: true;
     wordmarkFooter: true;
@@ -339,12 +341,20 @@ theme.typography.h2 = {
 
 theme.typography.h3 = {
   fontSize: 30,
+  fontWeight: 600,
+  lineHeight: '100%',
+  textTransform: 'uppercase',
   fontFamily: 'var(--Montserrat)',
+  [theme.breakpoints.down('md')]: {
+    fontSize: 25,
+  },
 };
 
 theme.typography.h4 = {
   fontSize: 24,
   fontFamily: 'var(--Montserrat)',
+  textTransform: 'uppercase',
+  fontWeight: 600,
   [theme.breakpoints.down('md')]: {
     fontSize: 18,
   },
@@ -375,7 +385,8 @@ theme.typography.caption = {
 theme.typography.paragraph = {
   fontSize: 14,
   fontWeight: 400,
-  fontFamily: 'var(--Montserrat)',
+  lineHeight: '100%',
+  fontFamily: 'var(--Inter)',
 };
 
 theme.typography.labelXl = {
@@ -400,6 +411,7 @@ theme.typography.labelMd = {
   fontSize: 12,
   fontWeight: 600,
   lineHeight: 1,
+  textTransform: 'uppercase',
   fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 10,
@@ -428,7 +440,9 @@ theme.typography.labelXs = {
 
 theme.typography.subHeading = {
   fontSize: 16,
-  fontFamily: 'var(--Montserrat)',
+  fontFamily: 'var(--Inter)',
+  lineHeight: '100%',
+  fontWeight: 600,
   [theme.breakpoints.down('md')]: {
     fontSize: 14,
   },
@@ -436,9 +450,21 @@ theme.typography.subHeading = {
 
 theme.typography.productTitle = {
   fontSize: 42,
-  fontFamily: 'var(--Montserrat)',
+  fontFamily: 'var(--Inter)',
+  fontWeight: 600,
+  lineHeight: '100%',
   [theme.breakpoints.down('md')]: {
     fontSize: 24,
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 18,
+  },
+};
+
+theme.typography.productTitleSmall = {
+  fontSize: 24,
+  [theme.breakpoints.down('md')]: {
+    fontSize: 18,
   },
 };
 

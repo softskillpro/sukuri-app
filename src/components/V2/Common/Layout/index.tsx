@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import Seo from '@/components/v2/Common/Seo';
-import Header from '@/components/v2/Header';
-import Footer from '@/components/v2/Footer';
-import { DarkGlassWrapper } from '@/components/v2/Common/GlassWrapper';
+import Seo from '@/components/V2/Common/Seo';
+import Header from '@/components/V2/Header';
+import Footer from '@/components/V2/Footer';
+import { DarkGlassWrapper } from '@/components/V2/Common/GlassWrapper';
 
 import { LayoutContainer } from './styles';
 
@@ -25,10 +25,10 @@ const Layout = ({ children }: LayoutProps) => {
           height={1000}
           alt='Background'
           className='background-img'
+          style={{opacity:0.4}}
         />
 
         <div className='main-wrapper'>
-          <DarkGlassWrapper>
             <div className='layout-wrapper'>
               {!(asPath === '/sign-up') && <Header />}
 
@@ -36,7 +36,6 @@ const Layout = ({ children }: LayoutProps) => {
 
               {!(asPath === '/sign-up') && <Footer />}
             </div>
-          </DarkGlassWrapper>
         </div>
       </LayoutContainer>
     </>

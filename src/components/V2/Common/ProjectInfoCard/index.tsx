@@ -3,8 +3,8 @@ import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import FlexBox from '@/components/v2/Common/FlexBox';
 import { StyledButton } from '@/components/v2/Common/StyledButton';
-import { SocialWrapper } from '@/components/v2/Common/SocialGroup';
 import SubscriptionCard from '@/components/v2/Common/SubscriptionCard';
+import { SocialWrapper } from '@/components/v2/Common/SocialGroup';
 import { inter } from '@/components/v2/Common/CustomFont';
 
 import { ProjectInfoCardContainer } from './styles';

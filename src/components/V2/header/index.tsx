@@ -4,10 +4,10 @@ import { useCallback, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import LogoIcon from '@/components/v2/svgs/LogoIcon';
-import HambergerMenuIcon from '@/components/v2/svgs/HambergerMenuIcon';
-import { StyledButton } from '@/components/v2/Common/StyledButton';
-import { montserrat } from '@/components/v2/Common/CustomFont';
+import LogoIcon from '@/components/V2/svgs/LogoIcon';
+import HambergerMenuIcon from '@/components/V2/svgs/HambergerMenuIcon';
+import { StyledButton } from '@/components/V2/Common/StyledButton';
+import { montserrat } from '@/components/V2/Common/CustomFont';
 
 import {
   HeaderContainer,
@@ -129,14 +129,6 @@ const HeaderBody = ({ handleClose }: HeaderBodyProps) => {
         <StyledButton variants='sm' sx={{ mx: 2.5 }}>
           vip pass
         </StyledButton>
-
-        <Image
-          src='/images/avatar.png'
-          width={40}
-          height={40}
-          className='avatar'
-          alt='Avatar'
-        />
       </HeaderBodyContainer>
 
       <HeaderPopper id={id} open={open} anchorEl={anchorEl}>

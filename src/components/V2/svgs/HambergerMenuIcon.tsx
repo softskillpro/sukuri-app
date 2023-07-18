@@ -11,7 +11,7 @@ const HambergerMenuIcon = (props: SvgIconProps) => {
       {...props}
     >
       <path
-        stroke='#030712'
+        stroke='#ffffff'
         strokeLinecap='round'
         strokeLinejoin='round'
         d='M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5'

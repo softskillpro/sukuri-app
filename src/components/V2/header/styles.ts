@@ -1,18 +1,17 @@
 import Drawer from '@mui/material/Drawer';
 import Popper from '@mui/material/Popper';
 import { styled } from '@mui/material/styles';
-import FlexBox from '@/components/v2/Common/FlexBox';
+import FlexBox from '@/components/V2/Common/FlexBox';
 
 export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
   justifyContent: 'space-between',
   height: 46,
   padding: '0 40px',
-  background: theme.palette.secondary.main,
+  background: theme.palette.primary.dark,
   borderRadius: 15,
   border: `1px solid ${theme.palette.border.dark}`,
   backgroundBlendMode: 'overlay',
   boxShadow: theme.palette.shadow.main,
-  backdropFilter: 'blur(2.5px)',
 
   a: {
     display: 'flex',

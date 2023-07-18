@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import FlexBox from '@/components/v2/Common/FlexBox';
+import FlexBox from '@/components/V2/Common/FlexBox';
 
 export const FooterContainer = styled(FlexBox)(({ theme }) => ({
   flexDirection: 'column',
@@ -7,7 +7,7 @@ export const FooterContainer = styled(FlexBox)(({ theme }) => ({
   padding: '30px',
   borderRadius: 15,
   border: `1px solid ${theme.palette.border.dark}`,
-  background: theme.palette.secondary.main,
+  background: theme.palette.primary.dark,
   boxShadow: theme.palette.shadow.main,
   backdropFilter: 'blur(15px)',
 

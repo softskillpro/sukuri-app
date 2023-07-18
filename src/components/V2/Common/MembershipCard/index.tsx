@@ -1,5 +1,5 @@
 import Typography from '@mui/material/Typography';
-import FlexBox from '@/components/v2/Common/FlexBox';
+import FlexBox from '@/components/V2/Common/FlexBox';
 
 import { MembershipCardContainer } from './styles';
 
@@ -41,7 +41,7 @@ const MembershipCard = ({
             style={{ width: `calc(100% / ${memberships.length}` }}
           >
             <Typography
-              variant='labelLg'
+              variant='labelMd'
               component='div'
               lineHeight={1}
               textAlign='center'
@@ -50,7 +50,7 @@ const MembershipCard = ({
               {membership.price}
             </Typography>
             <Typography
-              variant='labelMd'
+              variant='labelSm'
               component='div'
               lineHeight={1}
               textTransform='uppercase'

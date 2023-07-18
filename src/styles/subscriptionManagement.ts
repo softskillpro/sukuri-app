@@ -16,7 +16,6 @@ export const SubscriptionManagementContainer = styled('div')(({ theme }) => ({
     // border: `1px solid ${theme.palette.border.dark}`,
     background: theme.palette.secondary.main,
     boxShadow: theme.palette.shadow1.main,
-    backdropFilter: 'blur(15px)',
 
     '.subscription-management-header': {
       justifyContent: 'space-between',

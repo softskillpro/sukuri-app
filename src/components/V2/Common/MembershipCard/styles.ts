@@ -5,8 +5,8 @@ export const MembershipCardContainer = styled(FlexBox)<any>(
   ({ lengs, theme }: any) => ({
     flexDirection: 'column',
     justifyContent: 'center',
-    borderRadius: 5,
-    border: `2px solid ${theme.palette.border.main}`,
+    borderRadius: 7,
+    border: `1px solid ${theme.palette.border.main}`,
     boxShadow: theme.palette.shadow.main,
 
     '.membership-header': {
@@ -15,6 +15,12 @@ export const MembershipCardContainer = styled(FlexBox)<any>(
       borderRadius: '5px 5px 0px 0px',
       background:
         lengs === '1' ? theme.palette.green.main : theme.palette.blue.main,
+      [theme.breakpoints.down('lg')]: {
+        padding: '5px 5px',
+      },
+        [theme.breakpoints.down('md')]: {
+          padding: '3px 3px',
+        }
     },
 
     '.membership-price-card': {
@@ -22,11 +28,23 @@ export const MembershipCardContainer = styled(FlexBox)<any>(
         padding: '7px 15px',
         background:
           lengs === '1' ? theme.palette.green.light : theme.palette.blue.light,
+        [theme.breakpoints.down('lg')]: {
+          padding: '5px 5px',
+        },
+        [theme.breakpoints.down('md')]: {
+          padding: '3px 3px',
+        }
       },
       '.membership-price-state': {
         padding: '7px 15px',
         background:
           lengs === '1' ? theme.palette.green.dark : theme.palette.blue.dark,
+        [theme.breakpoints.down('lg')]: {
+          padding: '5px 5px',
+        },
+        [theme.breakpoints.down('md')]: {
+          padding: '3px 3px',
+        }
       },
     },
   }),

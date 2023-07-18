@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Typography from '@mui/material/Typography';
 import ProductContentCard from '@/components/v2/Common/ProductContentCard';
-import FlexBox from '@/components/v2/Common/FlexBox';
+import FlexBox from '@/components/V2/Common/FlexBox';
 import { inter } from '@/components/v2/Common/CustomFont';
 import WebsiteIcon from '@/components/v2/svgs/WebsiteIcon';
 import DiscordIcon from '@/components/v2/svgs/DiscordIcon';
