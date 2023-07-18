@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import {styled} from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 export const CategoryTileContainer = styled(Box)(({theme}) => ({
   display: 'flex',
@@ -24,7 +24,7 @@ export const CategoryTileContainer = styled(Box)(({theme}) => ({
   transition: 'filter 0.25s',
 
   "&:hover":{
-    filter:'brightness(1.5)'
+    filter:'brightness(1.1)'
   },
 
   [theme.breakpoints.down('md')]: {
@@ -38,6 +38,5 @@ export const CategoryTileContainer = styled(Box)(({theme}) => ({
     borderRadius: 5,
     zIndex: -5,
     objectFit: 'cover',
-    filter: 'brightness(0.6)',
   },
 }))

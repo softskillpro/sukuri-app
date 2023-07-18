@@ -26,7 +26,6 @@ export const MarketplaceIntro = styled(Box)(({ theme }) => ({
   borderRadius: "15px",
   border: "1px solid var(--major-dark-panel-border, rgba(255, 255, 255, 0.15))",
   background: "var(--black-40, rgba(0, 0, 0, 0.40))",
-  backdropFilter: "blur(15px)",
 }))
 
 // inside of MarketplaceIntro
@@ -53,7 +52,6 @@ export const MarketplaceContent = styled(Box)(({ theme }) => ({
   borderRadius: "15px",
   border: "1px solid var(--major-dark-panel-border, rgba(255, 255, 255, 0.15))",
   background: "var(--black-40, rgba(0, 0, 0, 0.40))",
-  backdropFilter: "blur(15px)",
 
   [theme.breakpoints.down('lg')]: {
     gap: 30
@@ -64,7 +62,7 @@ export const MarketplaceContent = styled(Box)(({ theme }) => ({
   },
 
   [theme.breakpoints.down('sm')]: {
-    padding: "30px 5px"
+    padding: "5px 5px"
   },
 }))
 

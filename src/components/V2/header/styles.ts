@@ -12,7 +12,6 @@ export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
   border: `1px solid ${theme.palette.border.dark}`,
   backgroundBlendMode: 'overlay',
   boxShadow: theme.palette.shadow.main,
-  backdropFilter: 'blur(2.5px)',
 
   a: {
     display: 'flex',

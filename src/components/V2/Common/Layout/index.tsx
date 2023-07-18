@@ -25,10 +25,10 @@ const Layout = ({ children }: LayoutProps) => {
           height={1000}
           alt='Background'
           className='background-img'
+          style={{opacity:0.4}}
         />
 
         <div className='main-wrapper'>
-          <DarkGlassWrapper>
             <div className='layout-wrapper'>
               {!(asPath === '/sign-up') && <Header />}
 
@@ -36,7 +36,6 @@ const Layout = ({ children }: LayoutProps) => {
 
               {!(asPath === '/sign-up') && <Footer />}
             </div>
-          </DarkGlassWrapper>
         </div>
       </LayoutContainer>
     </>

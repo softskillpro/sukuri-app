@@ -4,6 +4,8 @@ import { styled } from "@mui/material"
 export const WrapperDiv = styled("div")(({ theme }) => ({
   padding: 40,
 
+  position: "relative",
+
   borderRadius: 'inherit',
 
   [theme.breakpoints.down("xl")]: {

@@ -5,6 +5,4 @@ export const StyledHr = styled('hr')(({ theme }) => ({
   height: '1px',
   border: 'none',
   background: 'rgba(255,255,255,0.2)',
-  // mixBlendMode: 'overlay',
-  backdropFilter: 'blur(15px) brightness(190%)',
 }))

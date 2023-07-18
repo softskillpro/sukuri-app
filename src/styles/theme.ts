@@ -347,6 +347,8 @@ theme.typography.h3 = {
 theme.typography.h4 = {
   fontSize: 24,
   fontFamily: 'var(--Montserrat)',
+  textTransform: 'uppercase',
+  fontWeight: 600,
   [theme.breakpoints.down('md')]: {
     fontSize: 18,
   },

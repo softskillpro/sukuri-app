@@ -11,7 +11,7 @@ import AboutSukuri from '@/components/V2/AboutSukuri';
 import TwitterCTA from '@/components/V2/TwitterCTA';
 import { CategoryTile } from '@/components/V2/Common/CategoryTile';
 import { MarketplaceContainer, MarketplaceIntro, MarketplaceContent, CategoryList, TrendingSection, TopProjectsSection, CategorySection  } from '@/styles/marketplace';
-import { DarkGlassWrapper } from '@/components/V2/Common/GlassWrapper';
+import { DarkGlassWrapper } from '@/components/V2/Common/DarkGlassWrapper';
 import { Input } from '@mui/material';
 import { StyledHr } from '@/components/V2/Common/Splitter/styles';
 import { CategoryTileProps } from '@/components/V2/Common/CategoryTile';
@@ -83,6 +83,7 @@ const Marketplace = ({
           </div>
         </CategorySection>
         <AboutSukuri />
+        <TwitterCTA />
       </MarketplaceContent>
     </MarketplaceContainer>
   );
