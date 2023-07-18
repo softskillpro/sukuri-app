@@ -182,7 +182,7 @@ const theme = createTheme({
       contrastText: 'rgba(0, 0, 0, 0.10)',
     },
     teal: {
-      main: 'rgba(21, 109, 83, 0.9)'
+      main: 'rgba(21, 109, 83, 0.9)',
     },
   },
   breakpoints: {
