@@ -46,7 +46,7 @@ export const TopProjectEntry = styled(Box)(({ theme }) => ({
   backdropFilter: 'blur(10px) brightness(150%)',
 
   '.project-category': {
-    background: theme.palette.secondary.teal,
+    background: theme.palette.teal.main,
     border: '1px solid rgba(255,255,255,.2)',
     width: 'max-content',
     borderRadius: 5,

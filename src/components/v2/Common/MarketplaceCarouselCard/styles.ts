@@ -34,7 +34,7 @@ export const MarketplaceCarouselCardContainer = styled(Box)(({ theme }) => ({
 
   '.category-button': {
     width: 'max-content',
-    background: theme.palette.secondary.teal,
+    background: theme.palette.teal.main,
     order: '1px solid rgba(255,255,255.2)',
   },
 
@@ -43,7 +43,7 @@ export const MarketplaceCarouselCardContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const InfoWrapper = styled(Box)(({ theme }) => ({
+export const InfoWrapper = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'end',

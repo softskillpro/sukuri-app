@@ -1,25 +1,11 @@
-import Image from 'next/image';
+import Link from 'next/link';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { Layout1 } from '@/components/common/PageLayout';
-import TodaysPick from '@/components/todayspick';
-import RecommendedCommunities from '@/components/recommendedcommunities';
-import RisingProjects from '@/components/risingprojects';
 import AboutSukuri from '@/components/v2/AboutSukuri';
-import TwitterCTA from '@/components/v2/TwitterCTA';
-import { CategoryTile } from '@/components/v2/Common/CategoryTile';
-import { DarkGlassWrapper } from '@/components/v2/Common/DarkGlassWrapper';
-import { Input } from '@mui/material';
+import TwitterCTA from '@/components/v2/TwitterCta';
 import { StyledHr } from '@/components/v2/Common/Splitter/styles';
 import { CategoryTileProps } from '@/components/v2/Common/CategoryTile';
-import { Carousel } from 'react-responsive-carousel';
-import MultiCarousel from '@/components/v2/Common/MultiCarousel';
 import mock from '@/utils/mock';
-import { MarketplaceCarouselCard } from '@/components/v2/Common/MarketplaceCarouselCard';
-import { NFTType } from '@/interface/Nft.interface';
-import formatUnits from '@/utils/formatUnits';
 
 import {
   MarketplaceContainer,
@@ -27,8 +13,6 @@ import {
   MarketplaceContent,
   CategoryList,
 } from '@/styles/marketplace';
-import MembershipCardGroup from '@/components/v2/Common/MembershipCardGroup';
-import { StyledButton } from '@/components/v2/Common/StyledButton';
 import TrendingSection from '@/components/v2/TrendingSection';
 import CategorySection from '@/components/v2/CategorySection';
 import TopProjectsSection from '@/components/v2/TopProjectsSection';
@@ -52,9 +36,7 @@ const categories: CategoryTileProps[] = [
 const Marketplace = ({
   projects,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const matches = useMediaQuery('(min-width:900px)');
-  const matches500 = useMediaQuery('(min-width:500px)');
-
+  console.log(projects);
   return (
     <MarketplaceContainer>
       <MarketplaceIntro>
@@ -74,11 +56,11 @@ const Marketplace = ({
         <StyledHr />
         <CategoryList>
           {categories.map((category, id) => (
-            <a href='/' key={id}>
+            <Link href='/' key={id}>
               <Typography variant='labelMd' align='center' key={id}>
                 {category.name}
               </Typography>
-            </a>
+            </Link>
           ))}
         </CategoryList>
       </MarketplaceIntro>

@@ -181,6 +181,9 @@ const theme = createTheme({
       light: 'rgba(0, 0, 0, 0.30)',
       contrastText: 'rgba(0, 0, 0, 0.10)',
     },
+    teal: {
+      main: 'red',
+    },
   },
   breakpoints: {
     values: {
@@ -210,6 +213,7 @@ declare module '@mui/material/styles' {
     hardNegative: Palette['primary'];
     unavailableBg: Palette['primary'];
     lightInternalGlassBorder: Palette['primary'];
+    teal: Palette['primary'];
   }
 
   interface PaletteOptions {
@@ -228,6 +232,7 @@ declare module '@mui/material/styles' {
     hardNegative?: PaletteOptions['primary'];
     unavailableBg?: PaletteOptions['primary'];
     lightInternalGlassBorder?: PaletteOptions['primary'];
+    teal?: PaletteOptions['primary'];
   }
 
   interface TypographyVariants {

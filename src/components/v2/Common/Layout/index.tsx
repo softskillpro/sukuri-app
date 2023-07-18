@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import Seo from '@/components/v2/Common/Seo';
 import Header from '@/components/v2/header';
 import Footer from '@/components/v2/Footer';
-import { DarkGlassWrapper } from '@/components/v2/Common/GlassWrapper';
 
 import { LayoutContainer } from './styles';
 

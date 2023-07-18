@@ -1,4 +1,3 @@
-import { LightGlassWrapper } from '@/components/LightGlassWrapper';
 import { styled } from '@mui/material';
 
 export const WrapperDiv = styled('div')(({ theme }) => ({
@@ -25,7 +24,7 @@ export const WrapperDiv = styled('div')(({ theme }) => ({
   },
 }));
 
-export const ChildWrapper = styled('span')(({ theme }) => ({
+export const ChildWrapper = styled('span')(() => ({
   width: '100%',
   position: 'relative',
   zIndex: 5,

@@ -4,7 +4,6 @@ import MembershipCardGroup from '@/components/v2/Common/MembershipCardGroup';
 import { MarketplaceCarouselCardContainer, InfoWrapper } from './styles';
 import { Typography } from '@mui/material';
 import { StyledButton } from '@/components/v2/Common/StyledButton';
-import theme from '@/styles/theme';
 
 type MarketplaceCarouselCardProps = {
   name: string;

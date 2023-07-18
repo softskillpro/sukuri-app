@@ -24,7 +24,7 @@ export const AboutContainer = styled('div')(({ theme }) => ({
   },
 }));
 
-export const Entries = styled('div')(({ theme }) => ({
+export const Entries = styled('div')(() => ({
   display: 'flex',
   flexDirection: 'column',
   gap: 45,
@@ -46,7 +46,7 @@ export const Entry = styled('div')(({ theme }) => ({
   },
 }));
 
-export const InfoText = styled('div')(({ theme }) => ({
+export const InfoText = styled('div')(() => ({
   display: 'flex',
   flexDirection: 'column',
   gap: 15,

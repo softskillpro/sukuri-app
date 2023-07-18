@@ -2,8 +2,7 @@ interface LightGlassWrapperProps {
   children: React.ReactNode;
 }
 
-import { Children } from 'react';
-import { WrapperDiv, ChildWrapper } from './styles';
+import { ChildWrapper } from './styles';
 
 export const DarkGlassWrapper = ({ children }: LightGlassWrapperProps) => {
   return (
