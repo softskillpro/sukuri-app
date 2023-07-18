@@ -25,21 +25,21 @@ const Home: NextPage = () => {
 
   return (
     <HomeContainer>
-      {/* <TierCard /> */}
+      <TierCard />
       <ProjectInfoCard />
       <ProductHeroCard />
       <DiscoverCreatorsCard />
       <TopCategoriesCard />
-      {/* <Image
+      <Image
         src='/images/background.png'
         width={940}
         height={870}
         priority
         alt='background'
         className='home-logo'
-      /> */}
+      />
 
-      {/* <Grid container spacing={3} className='signup-section'>
+      <Grid container spacing={3} className='signup-section'>
         <Grid item xs={12} md={6}>
           <Typography
             variant='custom7'
@@ -96,7 +96,7 @@ const Home: NextPage = () => {
             )}
           </Fragment>
         ))}
-      </section> */}
+      </section>
     </HomeContainer>
   );
 };

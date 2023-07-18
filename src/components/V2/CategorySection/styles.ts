@@ -9,7 +9,7 @@ export const CategorySectionContainer = styled(Box)(({ theme }) => ({
   gap: 15,
 
   [theme.breakpoints.down('sm')]: {
-    gap: 5
+    gap: 5,
   },
 
   '.category-tile-grid': {
@@ -24,12 +24,12 @@ export const CategorySectionContainer = styled(Box)(({ theme }) => ({
   '.section-title': {
     marginLeft: 30,
     [theme.breakpoints.down('md')]: {
-      marginLeft: 15
+      marginLeft: 15,
     },
     [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
       width: '100%',
-      marginLeft: 0
-    }
+      marginLeft: 0,
+    },
   },
-}))
+}));

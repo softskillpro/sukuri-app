@@ -18,9 +18,9 @@ export const MembershipCardContainer = styled(FlexBox)<any>(
       [theme.breakpoints.down('lg')]: {
         padding: '5px 5px',
       },
-        [theme.breakpoints.down('md')]: {
-          padding: '3px 3px',
-        }
+      [theme.breakpoints.down('md')]: {
+        padding: '3px 3px',
+      },
     },
 
     '.membership-price-card': {
@@ -33,7 +33,7 @@ export const MembershipCardContainer = styled(FlexBox)<any>(
         },
         [theme.breakpoints.down('md')]: {
           padding: '3px 3px',
-        }
+        },
       },
       '.membership-price-state': {
         padding: '7px 15px',
@@ -44,7 +44,7 @@ export const MembershipCardContainer = styled(FlexBox)<any>(
         },
         [theme.breakpoints.down('md')]: {
           padding: '3px 3px',
-        }
+        },
       },
     },
   }),

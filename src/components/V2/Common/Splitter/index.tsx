@@ -1,5 +1,5 @@
-import { StyledHr } from './styles'
+import { StyledHr } from './styles';
 
 const Splitter = () => {
-  return(<StyledHr/>)
-}
+  return <StyledHr />;
+};

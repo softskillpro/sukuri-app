@@ -20,10 +20,10 @@ export const MarketplaceCarouselCardContainer = styled(Box)(({ theme }) => ({
 
   [theme.breakpoints.down('sm')]: {
     height: 300,
-    padding:5,
+    padding: 5,
   },
 
-  ".card-bg": {
+  '.card-bg': {
     position: 'absolute',
     width: '100%',
     height: '100%',
@@ -34,22 +34,22 @@ export const MarketplaceCarouselCardContainer = styled(Box)(({ theme }) => ({
 
   '.category-button': {
     width: 'max-content',
-    background: theme.palette.secondary.teal, 
+    background: theme.palette.secondary.teal,
     order: '1px solid rgba(255,255,255.2)',
   },
 
   '.product-title': {
     filter: 'drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.25))',
-  }
-}))
+  },
+}));
 
 export const InfoWrapper = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'end',
-  height: "100%",
+  height: '100%',
   justifyContent: 'space-between',
   padding: '30px 15px 15px 15px',
   background: 'rgb(0,0,0,0.4)', // TODO: temp solution
-  borderRadius: 5,  
-}))
+  borderRadius: 5,
+}));

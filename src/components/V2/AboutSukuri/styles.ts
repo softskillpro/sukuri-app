@@ -21,35 +21,34 @@ export const AboutContainer = styled('div')(({ theme }) => ({
       maxWidth: '100%',
       padding: '0px 15px',
     },
-  }
-}))
+  },
+}));
 
 export const Entries = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: 45,
-}))
+}));
 
 export const Entry = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
   gap: 10,
 
-  '.leading-decoration' : {
+  '.leading-decoration': {
     width: 100,
     [theme.breakpoints.down('lg')]: {
       width: 30,
     },
     [theme.breakpoints.down('sm')]: {
       display: 'none',
-    }
-  }
-}))
+    },
+  },
+}));
 
 export const InfoText = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: 15,
   width: '100%',
-}))
-
+}));

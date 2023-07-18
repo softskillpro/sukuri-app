@@ -7,15 +7,15 @@ export const TopProjectsSectionContainer = styled(Box)(({ theme }) => ({
   '.section-title': {
     marginLeft: 30,
     [theme.breakpoints.down('md')]: {
-      marginLeft: 15
+      marginLeft: 15,
     },
     [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
       width: '100%',
-      marginLeft: 0
-    }
+      marginLeft: 0,
+    },
   },
-}))
+}));
 
 export const TopProjectsList = styled(Box)(({ theme }) => ({
   display: 'grid',
@@ -23,14 +23,14 @@ export const TopProjectsList = styled(Box)(({ theme }) => ({
   gap: 15,
 
   [theme.breakpoints.down('lg')]: {
-    gap: 10
+    gap: 10,
   },
 
   [theme.breakpoints.down('md')]: {
     gridTemplateColumns: 'repeat(1, 1fr)',
     gridTemplateRows: 'repeat(3, 1fr)',
   },
-}))
+}));
 
 export const TopProjectEntry = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -51,8 +51,7 @@ export const TopProjectEntry = styled(Box)(({ theme }) => ({
     width: 'max-content',
     borderRadius: 5,
   },
-
-}))
+}));
 
 export const TopProjectInfoWrapper = styled(Box)(({ theme }) => ({
   overflow: 'hidden',
@@ -87,8 +86,8 @@ export const TopProjectInfoWrapper = styled(Box)(({ theme }) => ({
 
   '& > *': {
     zIndex: 1,
-  }
-}))
+  },
+}));
 
 export const MembershipCardWrapper = styled(Box)(({ theme }) => ({
   width: '100%',
@@ -103,5 +102,5 @@ export const MembershipCardWrapper = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
     width: '100%',
     marginTop: -15,
-  }
-}))
+  },
+}));

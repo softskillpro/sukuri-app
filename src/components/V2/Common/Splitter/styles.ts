@@ -5,4 +5,4 @@ export const StyledHr = styled('hr')(({ theme }) => ({
   height: '1px',
   border: 'none',
   background: 'rgba(255,255,255,0.2)',
-}))
+}));

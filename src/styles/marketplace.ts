@@ -20,77 +20,77 @@ export const MarketplaceContainer = styled(Box)(({ theme }) => ({
 
   '.marketplace-search': {
     maxWidth: 500,
-    width: "50%",
+    width: '50%',
     display: 'flex',
     itemAlign: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    padding: "15px 60px",
-    background: "none",
-    border:"1px solid rgba(255,255,255,0.2)",
+    padding: '15px 60px',
+    background: 'none',
+    border: '1px solid rgba(255,255,255,0.2)',
     borderRadius: 15,
     backdropFilter: 'blur(15px) brightness(150%)',
-    color: "white",
-    '&:focus-visible' : {
-      border: "1px solid rgba(255,255,255,1)",
+    color: 'white',
+    '&:focus-visible': {
+      border: '1px solid rgba(255,255,255,1)',
       outline: 'none',
     },
     [theme.breakpoints.down('md')]: {
-      width: "80%",
-    }
-  }
+      width: '80%',
+    },
+  },
 }));
 
-export const MarketplaceIntro = styled(Box)(({ theme }) => ({
-  display: "flex",
-  padding: "60px 15px 30px 15px",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  gap: "15px",
-  alignSelf: "stretch",
-  borderRadius: "15px",
-  border: "1px solid var(--major-dark-panel-border, rgba(255, 255, 255, 0.15))",
-  background: "var(--black-40, rgba(0, 0, 0, 0.40))",
-}))
+export const MarketplaceIntro = styled(Box)(() => ({
+  display: 'flex',
+  padding: '60px 15px 30px 15px',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: '15px',
+  alignSelf: 'stretch',
+  borderRadius: '15px',
+  border: '1px solid var(--major-dark-panel-border, rgba(255, 255, 255, 0.15))',
+  background: 'var(--black-40, rgba(0, 0, 0, 0.40))',
+}));
 
 // inside of MarketplaceIntro
-export const CategoryList = styled('div')(({ theme }) => ({
-  display:'flex',
+export const CategoryList = styled('div')(() => ({
+  display: 'flex',
   justifyContent: 'space-between',
-  padding: "0px 15px",
+  padding: '0px 15px',
   alignItems: 'center',
   width: '80%',
-  
+
   '& a:hover': {
     color: 'grey',
-  }
-}))
+  },
+}));
 
 export const MarketplaceContent = styled(Box)(({ theme }) => ({
-  display: "flex",
-  padding: "30px 15px",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
+  display: 'flex',
+  padding: '30px 15px',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
   gap: 90,
-  alignSelf: "stretch",
-  borderRadius: "15px",
-  border: "1px solid var(--major-dark-panel-border, rgba(255, 255, 255, 0.15))",
-  background: "var(--black-40, rgba(0, 0, 0, 0.40))",
+  alignSelf: 'stretch',
+  borderRadius: '15px',
+  border: '1px solid var(--major-dark-panel-border, rgba(255, 255, 255, 0.15))',
+  background: 'var(--black-40, rgba(0, 0, 0, 0.40))',
 
   [theme.breakpoints.down('lg')]: {
-    gap: 30
+    gap: 30,
   },
 
   [theme.breakpoints.down('md')]: {
-    padding: "15px 10px"
+    padding: '15px 10px',
   },
 
   [theme.breakpoints.down('sm')]: {
-    padding: "5px 5px"
+    padding: '5px 5px',
   },
-}))
+}));
 
 // inside of MarketplaceContent
 
@@ -98,7 +98,7 @@ export const CarouselContainer = styled(Box)(({ theme }) => ({
   '.slide': {
     width: 150,
   },
-  
+
   '.product-carousel-img-container': {
     margin: '0 7px',
     borderRadius: 10,
@@ -108,4 +108,4 @@ export const CarouselContainer = styled(Box)(({ theme }) => ({
       border: `2px solid ${theme.palette.border.main}`,
     },
   },
-}))
+}));
