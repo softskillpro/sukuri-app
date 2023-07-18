@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { AboutContainer, Entry, Entries, InfoText } from './styles';
-import { StyledHr } from '../Common/Splitter/styles';
+import { StyledHr } from '../common/Splitter/styles';
 
 const AboutSukuri = () => {
   const matches = useMediaQuery('(min-width:900px)');
