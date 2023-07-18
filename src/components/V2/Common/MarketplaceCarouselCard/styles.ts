@@ -9,9 +9,6 @@ export const MarketplaceCarouselCardContainer = styled(Box)(({ theme }) => ({
 
   width: '100%',
 
-  marginLeft: 7.5,
-  marginRight: 7.5,
-
   height: 355,
 
   padding: 15,

@@ -21,9 +21,10 @@ import { MarketplaceCarouselCard } from '@/components/V2/Common/MarketplaceCarou
 import { NFTType } from '@/interface/Nft.interface';
 import formatUnits from '@/utils/formatUnits';
 
-import { MarketplaceContainer, MarketplaceIntro, MarketplaceContent, CategoryList, TrendingSection, TopProjectsSection, CategorySection, CarouselContainer, TopProjectsList, TopProjectEntry, MembershipCardWrapper, TopProjectInfoWrapper  } from '@/styles/marketplace';
+import { MarketplaceContainer, MarketplaceIntro, MarketplaceContent, CategoryList, TopProjectsSection, CategorySection, CarouselContainer, TopProjectsList, TopProjectEntry, MembershipCardWrapper, TopProjectInfoWrapper  } from '@/styles/marketplace';
 import MembershipCardGroup from '@/components/V2/Common/MembershipCardGroup';
 import { StyledButton } from '@/components/V2/Common/StyledButton';
+import TrendingSection from '@/components/V2/TrendingSection';
 
 // TODO: mock trending data
 const trendingProject = Array.from(mock.slice(0,1));
@@ -66,22 +67,7 @@ const Marketplace = ({
       </MarketplaceIntro>
 
       <MarketplaceContent>
-        <TrendingSection>
-          <Typography variant="h3" className='section-title'>
-            Trending
-          </Typography>
-          <StyledHr />
-            {
-            trendingProject.map((project, id) => ( // MultiCarousel is broken with dynamically sized content as far as I can tell.
-              <div
-                key={`project-${id}`}
-                className='product-carousel-img-container'
-              >
-                <MarketplaceCarouselCard key={id} name={project.name} category='gaming' membershipPrice={'$5'} largeImageURL={project.large_image} />
-              </div>
-            ))
-            }
-        </TrendingSection>
+        <TrendingSection trendingProject={trendingProject} />
         <TopProjectsSection>
           <Typography variant="h3" className='section-title'>
             Top Projects
