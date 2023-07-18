@@ -111,6 +111,104 @@ export const TopProjectsSection = styled(Box)(({ theme }) => ({
   },
 }))
 
+export const TopProjectsList = styled(Box)(({ theme }) => ({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(3, 1fr)',
+  gap: 15,
+
+  [theme.breakpoints.down('lg')]: {
+    gap: 10
+  },
+  
+  [theme.breakpoints.down('md')]: {
+    gridTemplateColumns: 'repeat(1, 1fr)',
+    gridTemplateRows: 'repeat(3, 1fr)',
+  },
+}))
+
+export const TopProjectEntry = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+
+  padding: 5,
+
+  backdropFilter: 'brightness(150%)',
+
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'row',
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column',
+  },
+
+  '.project-category': {
+    background: theme.palette.secondary.main,
+    width: 'max-content',
+  },
+
+  borderRadius: 10,
+}))
+
+export const TopProjectInfoWrapper = styled(Box)(({ theme }) => ({
+  overflow: 'hidden',
+  position: 'relative',
+  height: 160,
+  width: 'auto',
+
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  alignItems:'end',
+
+  padding: '15px 10px 40px 10px',
+
+  [theme.breakpoints.down('md')]: {
+    padding: '5px',
+    width: '80%',
+    alignItems: 'start',
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    height: 160,
+    width: 'auto',
+    padding: '5px 5px 15px 5px',
+  },
+
+  '.top-proj-bg': {
+    position: 'relative',
+    borderRadius: 10,
+    top: 0,
+    left: 0,
+    objectFit: 'cover',
+    zIndex: -1,
+  },
+
+  '& > *': {
+    zIndex: 1,
+  }
+}))
+
+export const MembershipCardWrapper = styled(Box)(({ theme }) => ({
+  width: '100%',
+  marginTop: -30,
+  padding: '5px 5px 5px',
+
+  [theme.breakpoints.down('md')]: {
+    position: 'absolute',
+    width: 310,
+    right: 0,
+    marginTop: 0,
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    position: 'relative',
+    width: '100%',
+    marginTop: -15,
+    padding: '5px 5px 5px',
+  }
+}))
+
 export const CategorySection = styled(Box)(({ theme }) => ({
   width: '100%',
 

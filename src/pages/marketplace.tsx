@@ -10,21 +10,27 @@ import RisingProjects from '@/components/risingprojects';
 import AboutSukuri from '@/components/V2/AboutSukuri';
 import TwitterCTA from '@/components/V2/TwitterCTA';
 import { CategoryTile } from '@/components/V2/Common/CategoryTile';
-import { MarketplaceContainer, MarketplaceIntro, MarketplaceContent, CategoryList, TrendingSection, TopProjectsSection, CategorySection, CarouselContainer  } from '@/styles/marketplace';
 import { DarkGlassWrapper } from '@/components/V2/Common/DarkGlassWrapper';
 import { Input } from '@mui/material';
 import { StyledHr } from '@/components/V2/Common/Splitter/styles';
 import { CategoryTileProps } from '@/components/V2/Common/CategoryTile';
 import { Carousel } from 'react-responsive-carousel';
-import MultiCarousel from '@/components/v2/Common/MultiCarousel';
+import MultiCarousel from '@/components/V2/Common/MultiCarousel';
 import mock from '@/utils/mock';
 import { MarketplaceCarouselCard } from '@/components/V2/Common/MarketplaceCarouselCard';
 import { NFTType } from '@/interface/Nft.interface';
 import formatUnits from '@/utils/formatUnits';
 
+import { MarketplaceContainer, MarketplaceIntro, MarketplaceContent, CategoryList, TrendingSection, TopProjectsSection, CategorySection, CarouselContainer, TopProjectsList, TopProjectEntry, MembershipCardWrapper, TopProjectInfoWrapper  } from '@/styles/marketplace';
+import MembershipCardGroup from '@/components/V2/Common/MembershipCardGroup';
+import { StyledButton } from '@/components/V2/Common/StyledButton';
+
+// TODO: mock top Projects data
+const topProjects = Array.from(mock.slice(0,3));
+
 // TODO: check if there's a list of categories that should be passed to component
 // for now, hardcoded strings used
-const categories: CategoryTileProps[] = [{ name: 'utility', image: '/images/v2/recommend.png', count: '50' }, { name: 'gaming', image: '/images/v2/recommend.png' }, { name: 'content', image: '/images/v2/recommend.png' }, { name: 'dao', image: '/images/v2/recommend.png' }, { name: 'alpha', image: '/images/v2/recommend.png' }]
+const categories: CategoryTileProps[] = [{ name: 'utility', image: '/images/v2/recommend.png', count: 50 }, { name: 'gaming', image: '/images/v2/recommend.png' }, { name: 'content', image: '/images/v2/recommend.png' }, { name: 'dao', image: '/images/v2/recommend.png' }, { name: 'alpha', image: '/images/v2/recommend.png' }]
 
 const Marketplace = ({
   projects,
@@ -79,6 +85,28 @@ const Marketplace = ({
             Top Projects
           </Typography>
           <StyledHr />
+          <TopProjectsList>
+            {
+              topProjects.map((project, id) => {
+                return(
+                  <TopProjectEntry className="project-details" id={`topProj-${id}`}>
+                    <TopProjectInfoWrapper>
+                      <Image src={project.thumbnail_image} alt={project.name} fill={true} className='top-proj-bg'/>
+                      <Typography variant="productTitleSmall" className='project-name'>
+                        {project.name}
+                      </Typography>
+                      <StyledButton className='project-category'>
+                        gaming
+                      </StyledButton>
+                    </TopProjectInfoWrapper>
+                    <MembershipCardWrapper>
+                      <MembershipCardGroup />
+                    </MembershipCardWrapper>
+                  </TopProjectEntry>
+                )
+              })
+            }
+          </TopProjectsList>
         </TopProjectsSection>
         <CategorySection>
           <Typography variant="h3" className='section-title'>

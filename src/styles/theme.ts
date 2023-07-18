@@ -249,6 +249,7 @@ declare module '@mui/material/styles' {
     labelXs: React.CSSProperties;
     subHeading: React.CSSProperties;
     productTitle: React.CSSProperties;
+    productTitleSmall: React.CSSProperties;
     userBar: React.CSSProperties;
     wordmarkMarketplace: React.CSSProperties;
     wordmarkFooter: React.CSSProperties;
@@ -309,6 +310,7 @@ declare module '@mui/material/Typography' {
     labelXs: true;
     subHeading: true;
     productTitle: true;
+    productTitleSmall: true;
     userBar: true;
     wordmarkMarketplace: true;
     wordmarkFooter: true;
@@ -452,6 +454,13 @@ theme.typography.productTitle = {
     fontSize: 18,
   },
 };
+
+theme.typography.productTitleSmall = {
+  fontSize: 24,
+  [theme.breakpoints.down('md')]: {
+    fontSize: 18,
+  }
+}
 
 theme.typography.userBar = {
   fontSize: 50,
