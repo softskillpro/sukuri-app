@@ -1,9 +1,10 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import Typography from '@mui/material/Typography';
 import ProductContentCard from '@/components/v2/Common/ProductContentCard';
 import FlexBox from '@/components/v2/Common/FlexBox';
 import { inter } from '@/components/v2/Common/CustomFont';
+import WebsiteIcon from '@/components/v2/svgs/WebsiteIcon';
+import DiscordIcon from '@/components/v2/svgs/DiscordIcon';
 import { ProductContentCardGroupContainer } from './styles';
 
 const socials = [
@@ -21,12 +22,12 @@ const included = [
   {
     title: 'Custom Community Site',
     link: 'https://twitter.com/vendor',
-    icon: 'website.png',
+    icon: WebsiteIcon,
   },
   {
     title: 'Gated Discord',
     link: 'https://vendor.com/about',
-    icon: 'discord.png',
+    icon: DiscordIcon,
   },
 ];
 
@@ -67,27 +68,26 @@ const ProductContentCardGroup = () => {
           className='product-content-body'
           sx={{ alignItems: 'flex-start' }}
         >
-          {included.map((item) => (
-            <Link key={item.title} href={item.link} target='_blank'>
-              <FlexBox>
-                <Image
-                  src={`/images/v2/${item.icon}`}
-                  width={32}
-                  height={32}
-                  alt='icon'
-                />
+          {included.map((item) => {
+            const SocialIcon = item.icon;
 
-                <Typography
-                  variant='paragraph'
-                  lineHeight={1}
-                  component='div'
-                  sx={{ fontFamily: inter.style.fontFamily }}
-                >
-                  {item.title}
-                </Typography>
-              </FlexBox>
-            </Link>
-          ))}
+            return (
+              <Link key={item.title} href={item.link} target='_blank'>
+                <FlexBox>
+                  <SocialIcon sx={{ fontSize: 32 }} />
+
+                  <Typography
+                    variant='paragraph'
+                    lineHeight={1}
+                    component='div'
+                    sx={{ fontFamily: inter.style.fontFamily }}
+                  >
+                    {item.title}
+                  </Typography>
+                </FlexBox>
+              </Link>
+            );
+          })}
         </FlexBox>
       </ProductContentCard>
     </ProductContentCardGroupContainer>

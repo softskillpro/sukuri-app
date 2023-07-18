@@ -19,6 +19,7 @@ const ProductHeroCard = () => {
         width={500}
         height={500}
         alt='Product Hero'
+        priority
         className='product-hero-img'
       />
 

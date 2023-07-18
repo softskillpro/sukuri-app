@@ -1,14 +1,13 @@
 import Button, { ButtonProps } from '@mui/material/Button';
-import { Theme, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 export interface StyledButtonProps extends ButtonProps {
   variants?: 'sm' | 'md' | 'lg' | 'xl';
   status?: 'Navigation' | 'Positive' | 'Negative' | 'Unavailable';
-  theme?: Theme;
 }
 
 export const StyledButton = styled(Button)<StyledButtonProps>(
-  ({ variants = 'md', status = 'Positive', theme }: StyledButtonProps) => ({
+  ({ variants = 'md', status = 'Positive', theme }: any) => ({
     display: 'flex',
     alignItems: 'center',
     padding:
@@ -31,8 +30,9 @@ export const StyledButton = styled(Button)<StyledButtonProps>(
     color: '#fff',
     cursor: 'pointer',
     fontFamily: 'var(--Montserrat)',
-    fontSize: variants === 'sm' ? 12 : 18,
+    fontSize: 18,
     fontWeight: 600,
+    lineHeight: 1,
     backgroundColor:
       status === 'Navigation'
         ? theme?.palette.blue.dark
@@ -58,6 +58,14 @@ export const StyledButton = styled(Button)<StyledButtonProps>(
           : status === 'Negative'
           ? theme?.palette.hardNegative.main
           : theme?.palette.unavailableBg.main,
+    },
+
+    [theme.breakpoints.down('md')]: {
+      fontSize: 16,
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 14,
     },
   }),
 );

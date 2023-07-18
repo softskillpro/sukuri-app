@@ -20,11 +20,10 @@ export const ProductContentCardGroupContainer = styled('div')(({ theme }) => ({
       textDecoration: 'none',
       color: theme.palette.text.primary,
       lineHeight: 1,
-    },
 
-    img: {
-      height: 'auto',
-      marginRight: 10,
+      svg: {
+        marginRight: 10,
+      },
     },
   },
 

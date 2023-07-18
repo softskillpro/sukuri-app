@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import ArrowbackIcon from '@/components/v2/svgs/ArrowbackIcon';
+import ArrowdownIcon from '@/components/v2/svgs/ArrowdownIcon';
+import socials from '@/utils/socials';
 
 import {
   SocialGroupContainer,
@@ -8,56 +10,28 @@ import {
   SocialGroupPopper,
 } from './styles';
 
-const socials = [
-  {
-    name: 'discord',
-    link: '',
-  },
-  {
-    name: 'github',
-    link: '',
-  },
-  {
-    name: 'twitter',
-    link: '',
-  },
-  {
-    name: 'instagram',
-    link: '',
-  },
-  {
-    name: 'medium',
-    link: '',
-  },
-  {
-    name: 'website',
-    link: '',
-  },
-];
-
 export interface SocialGroupProps {
   variant?: 'sm' | 'md';
 }
 
 const SocialWrapper = ({
   onClick,
-  open,
+  variant = 'md',
 }: {
   onClick: () => void;
-  open: boolean;
+  variant?: 'sm' | 'md';
 }) => {
   return (
-    <SocialGroupWrapper open={open}>
-      {socials.map((social) => (
-        <Link key={social.name} href={social.link} onClick={onClick}>
-          <Image
-            src={`/images/v2/${social.name}.png`}
-            width={19}
-            height={19}
-            alt='Social'
-          />
-        </Link>
-      ))}
+    <SocialGroupWrapper variant={variant}>
+      {socials.map((social, id) => {
+        const SocialIcon = social.icon;
+
+        return (
+          <Link key={`social-${id}`} href={social.link} onClick={onClick}>
+            <SocialIcon sx={{ fontSize: 19 }} />
+          </Link>
+        );
+      })}
     </SocialGroupWrapper>
   );
 };
@@ -81,7 +55,7 @@ const SocialGroup = ({ variant = 'md' }: SocialGroupProps) => {
 
   return (
     <>
-      <SocialGroupContainer variant={variant}>
+      <SocialGroupContainer>
         {variant === 'sm' && (
           <button
             aria-describedby={id}
@@ -90,26 +64,19 @@ const SocialGroup = ({ variant = 'md' }: SocialGroupProps) => {
             onClick={handleClick}
           >
             Links
-            <Image
-              src={
-                clicked
-                  ? '/images/v2/arrow_back.png'
-                  : '/images/v2/arrow_down.png'
-              }
-              width={14}
-              height={14}
-              alt='Arrow'
-            />
+            {clicked ? (
+              <ArrowbackIcon sx={{ fontSize: 14 }} />
+            ) : (
+              <ArrowdownIcon sx={{ fontSize: 14 }} />
+            )}
           </button>
         )}
 
-        {variant === 'md' && (
-          <SocialWrapper open={open} onClick={handleClose} />
-        )}
+        {variant === 'md' && <SocialWrapper onClick={handleClose} />}
       </SocialGroupContainer>
 
       <SocialGroupPopper id={id} open={open} anchorEl={anchorEl}>
-        <SocialWrapper open={open} onClick={handleClose} />
+        <SocialWrapper variant='sm' onClick={handleClose} />
       </SocialGroupPopper>
     </>
   );

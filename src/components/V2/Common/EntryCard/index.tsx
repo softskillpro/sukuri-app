@@ -22,6 +22,7 @@ const EntryCard = ({ imgUri, title, uri }: EntryCardContainer) => {
         src={imgUri}
         width={300}
         height={55}
+        priority
         alt='Entry Card'
         className='entry-card-img'
       />

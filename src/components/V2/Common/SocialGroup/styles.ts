@@ -2,15 +2,7 @@ import Popper from '@mui/material/Popper';
 import { styled } from '@mui/material/styles';
 import FlexBox from '@/components/v2/Common/FlexBox';
 
-export const SocialGroupContainer = styled('div')<{
-  variant?: 'sm' | 'md';
-}>(({ variant, theme }: any) => ({
-  width: 'fit-content',
-  padding: variant === 'md' ? 10 : 0,
-  borderRadius: variant === 'md' ? 5 : 10,
-  border: `1px solid ${theme.palette.border.main}`,
-  background: 'rgba(0, 0, 0, 0.50)',
-
+export const SocialGroupContainer = styled('div')(() => ({
   '.link-button': {
     display: 'flex',
     alignItems: 'center',
@@ -26,35 +18,36 @@ export const SocialGroupContainer = styled('div')<{
     fontFamily: 'var(--Montserrat)',
     textTransform: 'uppercase',
 
-    img: {
+    svg: {
       marginLeft: 10,
     },
   },
 }));
 
-export const SocialGroupWrapper = styled(FlexBox)<{ open: boolean }>(
-  ({ open }) => ({
-    width: !open ? 203 : 'auto',
-    flexDirection: !open ? 'row' : 'column',
-    background: !open ? 'transparent' : 'rgba(0, 0, 0, 0.50)',
-    borderRadius: 5,
-    padding: !open ? 0 : '12px 0',
+export const SocialGroupWrapper = styled(FlexBox)<{
+  variant?: 'sm' | 'md';
+}>(({ variant, theme }) => ({
+  flexDirection: variant === 'md' ? 'row' : 'column',
+  background: theme.palette.primary.contrastText,
+  borderRadius: variant === 'md' ? 5 : 10,
+  padding: variant === 'md' ? '10px 15px' : 5,
+  border: `1px solid ${theme.palette.border.main}`,
 
-    a: {
-      height: 19,
-      margin: !open ? '0 15px 0 0' : '12px 0',
-
-      img: {
-        width: 'auto',
-      },
+  a: {
+    ':not(:last-of-type)': {
+      margin: variant === 'md' ? '0 20px 0 0' : '0 0 10px 0',
     },
-  }),
-);
+  },
 
-export const SocialGroupPopper = styled(Popper)(() => ({
-  width: 81,
+  [theme.breakpoints.down('xl')]: {
+    padding: variant === 'md' ? '5px 10px' : 5,
+  },
+}));
+
+export const SocialGroupPopper = styled(Popper)(({ theme }) => ({
+  width: 80,
   margin: '12px 0 !important',
   zIndex: 1000,
-  background: 'rgba(0, 0, 0, 0.50)',
-  borderRadius: 5,
+  background: theme.palette.primary.contrastText,
+  borderRadius: 10,
 }));

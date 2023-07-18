@@ -111,6 +111,7 @@ const theme = createTheme({
       dark: 'rgba(0, 0, 0, 0.20)',
       light:
         'linear-gradient(0deg, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.60) 100%)',
+      contrastText: 'rgba(0, 0, 0, 0.50)',
     },
     secondary: {
       main: 'rgba(0, 0, 0, 0.40)',
