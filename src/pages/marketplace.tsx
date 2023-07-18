@@ -50,7 +50,7 @@ const Marketplace = ({
         <Typography variant="wordmarkMarketplace">
           SUKURI <span style={{ fontWeight: 400 }}>PROTOCOL</span>
         </Typography>
-        <input placeholder='SEARCH'></input>
+        <input placeholder='SEARCH' className='marketplace-search' />
         <Typography variant="subHeading" align='center' sx={{lineHeight: '120%'}}>
           Explore new ways to buy, sell and create subscriptions.<br/>All on the blockchain.
         </Typography>

@@ -17,6 +17,26 @@ export const MarketplaceContainer = styled(Box)(({ theme }) => ({
   '.slider > .slide:not(.selected)': {
     filter: 'blur(5px) brightness(50%)',
   },
+
+  '.marketplace-search': {
+    maxWidth: 500,
+    width: "50%",
+    display: 'flex',
+    itemAlign: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    padding: "15px 60px",
+    background: "none",
+    border:"1px solid rgba(255,255,255,0.2)",
+    borderRadius: 15,
+    backdropFilter: 'brightness(150%)',
+    color: "white",
+    '&:focus-visible' : {
+      border: "1px solid rgba(255,255,255,1)",
+      outline: 'none',
+    },
+    
+  }
 }));
 
 export const MarketplaceIntro = styled(Box)(({ theme }) => ({
