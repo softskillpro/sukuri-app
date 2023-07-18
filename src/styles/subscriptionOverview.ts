@@ -11,40 +11,21 @@ export const SubscriptionOverviewContainer = styled('div')(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    gap: 30,
     borderRadius: 15,
     border: `1px solid ${theme.palette.border.dark}`,
     background: theme.palette.secondary.main,
     boxShadow: theme.palette.shadow1.main,
     backdropFilter: 'blur(15px)',
 
-    '.subscription-management-body': {
+    '.subscription-overview-body': {
       width: '100%',
       display: 'grid',
-      gridTemplateColumns: '2fr 3fr',
-      gap: 10,
-      padding: '0 10px',
-
-      '.deactivate-wrapper': {
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        width: '100%',
-
-        '.deactivate-card': {
-          justifyContent: 'space-between',
-          width: '100%',
-          gap: 15,
-          marginBottom: 40,
-          padding: '10px 15px',
-          borderRadius: 10,
-          border: `1px solid ${theme.palette.lightInternalGlassBorder.main}`,
-          background: theme.palette.secondary.dark,
-          backgroundBlendMode: 'overlay',
-        },
-      },
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: 15,
+      padding: 15,
     },
 
-    '.subscription-management-footer': {
+    '.subscription-overview-footer': {
       width: '100%',
       padding: 15,
       borderRadius: '0px 0px 15px 15px',
@@ -54,24 +35,18 @@ export const SubscriptionOverviewContainer = styled('div')(({ theme }) => ({
     },
   },
 
-  [theme.breakpoints.down('xl')]: {
+  [theme.breakpoints.down('lg')]: {
     '.sidebar-layout-body': {
-      '.subscription-management-body': {
-        gridTemplateColumns: '1fr',
-        gap: 40,
+      '.subscription-overview-body': {
+        gridTemplateColumns: 'repeat(2, 1fr)',
       },
     },
   },
 
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down('sm')]: {
     '.sidebar-layout-body': {
-      '.subscription-management-body': {
-        '.deactivate-wrapper': {
-          '.deactivate-card': {
-            flexDirection: 'column',
-            marginBottom: 20,
-          },
-        },
+      '.subscription-overview-body': {
+        gridTemplateColumns: '1fr',
       },
     },
   },

@@ -31,6 +31,7 @@ const SubscriptionEntryCard = () => {
             fontWeight={700}
             lineHeight={1}
             mt={2.25}
+            textAlign='right'
             sx={{ fontFamily: inter.style.fontFamily }}
           >
             Sukuri Bail Fund
