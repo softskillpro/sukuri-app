@@ -29,7 +29,7 @@ export const MarketplaceContainer = styled(Box)(({ theme }) => ({
     background: "none",
     border:"1px solid rgba(255,255,255,0.2)",
     borderRadius: 15,
-    backdropFilter: 'brightness(150%)',
+    backdropFilter: 'blur(15px) brightness(150%)',
     color: "white",
     '&:focus-visible' : {
       border: "1px solid rgba(255,255,255,1)",
