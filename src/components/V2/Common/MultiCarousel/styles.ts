@@ -7,8 +7,23 @@ export const MultiCarouselContainer = styled(FlexBox)(({ theme }) => ({
   '.carousel-btn': {
     position: 'absolute',
     top: '50%',
-    transform: 'translate(-50%, -50%)',
+    transform: 'translate(0%, -50%)',
     zIndex: 100,
+    
+  },
+
+  '.btn-left': {
+    left: '25%',
+    [theme.breakpoints.down('sm')]: {
+      left: '30%',
+    }
+  },
+
+  '.btn-right': {
+    right: '25%',
+    [theme.breakpoints.down('sm')]: {
+      right: '30%',
+    }
   },
 
   '.slide': {
@@ -19,7 +34,6 @@ export const MultiCarouselContainer = styled(FlexBox)(({ theme }) => ({
       width: 'calc(100% - 14px)',
       height: '100%',
       background: theme.palette.primary.light,
-      backgroundBlendMode: 'multiply, normal',
       borderRadius: 10,
     },
   },

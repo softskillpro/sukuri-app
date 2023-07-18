@@ -7,6 +7,8 @@ export const MarketplaceCarouselCardContainer = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
   justifyContent: 'space-between',
 
+  width: '100%',
+
   marginLeft: 7.5,
   marginRight: 7.5,
 
@@ -20,7 +22,7 @@ export const MarketplaceCarouselCardContainer = styled(Box)(({ theme }) => ({
   },
 
   [theme.breakpoints.down('sm')]: {
-    height: 150,
+    height: 300,
     padding:5,
   },
 

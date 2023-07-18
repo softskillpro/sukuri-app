@@ -25,6 +25,9 @@ import { MarketplaceContainer, MarketplaceIntro, MarketplaceContent, CategoryLis
 import MembershipCardGroup from '@/components/V2/Common/MembershipCardGroup';
 import { StyledButton } from '@/components/V2/Common/StyledButton';
 
+// TODO: mock trending data
+const trendingProject = Array.from(mock.slice(0,1));
+
 // TODO: mock top Projects data
 const topProjects = Array.from(mock.slice(0,3));
 
@@ -68,17 +71,16 @@ const Marketplace = ({
             Trending
           </Typography>
           <StyledHr />
-          <CarouselContainer>
-            <MultiCarousel>
-              {
-                mock.map((project, id) => {
-                  return(
-                    <MarketplaceCarouselCard key={id} name={project.name} category='gaming' membershipPrice={'$5'} largeImageURL={project.large_image}/>
-                  )
-                })
-              }
-            </MultiCarousel>
-          </CarouselContainer>
+            {
+            trendingProject.map((project, id) => ( // MultiCarousel is broken with dynamically sized content as far as I can tell.
+              <div
+                key={`project-${id}`}
+                className='product-carousel-img-container'
+              >
+                <MarketplaceCarouselCard key={id} name={project.name} category='gaming' membershipPrice={'$5'} largeImageURL={project.large_image} />
+              </div>
+            ))
+            }
         </TrendingSection>
         <TopProjectsSection>
           <Typography variant="h3" className='section-title'>

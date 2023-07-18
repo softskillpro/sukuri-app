@@ -1,12 +1,12 @@
 import Image from 'next/image';
-import ProductHeroCard from '@/components/v2/Common/ProductHeroCard';
-import SidebarLayout from '@/components/v2/SidebarLayout';
-import ProductContentCardGroup from '@/components/v2/ProductContentCardGroup';
-import MultiCarousel from '@/components/v2/Common/MultiCarousel';
-import { StyledDivider } from '@/components/v2/Common/StyledDivider';
-import SubscriptionTiersCard from '@/components/v2/SubscriptionTiersCard';
-import DiscoverCreatorsCard from '@/components/v2/Common/DiscoverCreatorsCard';
-import TopCategoriesCard from '@/components/v2/Common/TopCategoriesCard';
+import ProductHeroCard from '@/components/V2/Common/ProductHeroCard';
+import SidebarLayout from '@/components/V2/SidebarLayout';
+import ProductContentCardGroup from '@/components/V2/ProductContentCardGroup';
+import MultiCarousel from '@/components/V2/Common/MultiCarousel';
+import { StyledDivider } from '@/components/V2/Common/StyledDivider';
+import SubscriptionTiersCard from '@/components/V2/SubscriptionTiersCard';
+import DiscoverCreatorsCard from '@/components/V2/Common/DiscoverCreatorsCard';
+import TopCategoriesCard from '@/components/V2/Common/TopCategoriesCard';
 import { ProductContainer } from '@/styles/product';
 
 const products = ['boat.png', 'project_info.png', 'project_info.png'];

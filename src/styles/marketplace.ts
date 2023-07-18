@@ -88,11 +88,19 @@ export const TrendingSection = styled(Box)(({ theme }) => ({
 }))
 
 export const CarouselContainer = styled(Box)(({ theme }) => ({
-  width: 'inherit',
   '.slide': {
     width: 150,
-    minWidth: 'auto',
-  }
+  },
+  
+  '.product-carousel-img-container': {
+    margin: '0 7px',
+    borderRadius: 10,
+
+    '.product-carousel-img': {
+      borderRadius: 10,
+      border: `2px solid ${theme.palette.border.main}`,
+    },
+  },
 }))
 
 export const TopProjectsSection = styled(Box)(({ theme }) => ({
