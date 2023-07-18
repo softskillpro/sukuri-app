@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Typography from '@mui/material/Typography';
 
-import FlexBox from '@/components/V2/Common/FlexBox';
+import FlexBox from '@/components/v2/Common/FlexBox';
+import { inter } from '@/components/v2/Common/CustomFont';
 import { StepperContainer, OutlinedNumber } from './styles';
 
 interface StepperProps {
@@ -12,16 +13,35 @@ interface StepperProps {
 const Stepper = ({ status, content }: StepperProps) => {
   return (
     <StepperContainer>
-      <Typography textTransform='uppercase' mb={3.75}>
+      <Typography
+        variant='h4'
+        textTransform='uppercase'
+        textAlign='center'
+        lineHeight={1}
+        mb={3.75}
+      >
         welcome to
       </Typography>
 
-      <Typography textTransform='uppercase' mb={3.75}>
+      <Typography
+        variant='wordmarkSignup'
+        textTransform='uppercase'
+        textAlign='center'
+        lineHeight={1}
+        mb={3.75}
+      >
         sukuri protocol
       </Typography>
 
       <FlexBox mb={3.75}>
-        <OutlinedNumber active={`${status === 1}`}>1</OutlinedNumber>
+        <OutlinedNumber active={`${status === 1}`}>
+          <Typography
+            variant='signupNumber'
+            sx={{ fontFamily: inter.style.fontFamily }}
+          >
+            1
+          </Typography>
+        </OutlinedNumber>
 
         <Image
           src='/images/v2/line.png'
@@ -31,14 +51,32 @@ const Stepper = ({ status, content }: StepperProps) => {
           style={{ margin: '0 5px' }}
         />
 
-        <OutlinedNumber active={`${status === 2}`}>2</OutlinedNumber>
+        <OutlinedNumber active={`${status === 2}`}>
+          <Typography
+            variant='signupNumber'
+            sx={{ fontFamily: inter.style.fontFamily }}
+          >
+            2
+          </Typography>
+        </OutlinedNumber>
       </FlexBox>
 
-      <Typography mb={1}>
+      <Typography
+        variant='subHeading'
+        textAlign='center'
+        lineHeight={1}
+        sx={{ fontFamily: inter.style.fontFamily }}
+        mb={1}
+      >
         Step {status}. {status === 2 && 'optional'}
       </Typography>
 
-      <Typography textAlign='center' sx={{ maxWidth: 315 }}>
+      <Typography
+        variant='paragraph'
+        textAlign='center'
+        lineHeight={1}
+        sx={{ maxWidth: 315, fontFamily: inter.style.fontFamily }}
+      >
         {content}
       </Typography>
     </StepperContainer>

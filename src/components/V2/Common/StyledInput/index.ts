@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 
-const StyledInput = styled('input')(() => ({
+const StyledInput = styled('input')(({ theme }) => ({
   width: '100%',
   height: 30,
   padding: '4px 16px',
@@ -9,8 +9,8 @@ const StyledInput = styled('input')(() => ({
   borderRadius: 5,
   border: 'none',
   outline: 'none',
-  fontSize: 14,
-  lineHeight: '17px',
+  fontSize: theme.typography.input.fontSize,
+  lineHeight: 1,
   fontWeight: 400,
   fontFamily: 'var(--Montserrat)',
   textAlign: 'center',

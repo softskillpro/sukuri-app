@@ -256,6 +256,7 @@ declare module '@mui/material/styles' {
     wordmarkSignup: React.CSSProperties;
     footer: React.CSSProperties;
     input: React.CSSProperties;
+    signupNumber: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
@@ -285,6 +286,7 @@ declare module '@mui/material/styles' {
     wordmarkSignup?: React.CSSProperties;
     footer?: React.CSSProperties;
     input?: React.CSSProperties;
+    signupNumber?: React.CSSProperties;
   }
 }
 
@@ -316,6 +318,7 @@ declare module '@mui/material/Typography' {
     wordmarkSignup: true;
     footer: true;
     input: true;
+    signupNumber: true;
   }
 }
 
@@ -394,6 +397,8 @@ theme.typography.labelLg = {
 
 theme.typography.labelMd = {
   fontSize: 12,
+  fontWeight: 600,
+  lineHeight: 1,
   fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 10,
@@ -493,6 +498,18 @@ theme.typography.footer = {
   [theme.breakpoints.down('sm')]: {
     fontSize: 18,
   },
+};
+
+theme.typography.signupNumber = {
+  fontSize: 22,
+  fontWeight: 700,
+  lineHeight: 1,
+};
+
+theme.typography.input = {
+  fontSize: 12,
+  fontWeight: 400,
+  lineHeight: 1,
 };
 
 export default theme;
