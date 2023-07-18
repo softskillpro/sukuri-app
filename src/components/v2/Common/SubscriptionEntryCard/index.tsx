@@ -19,6 +19,7 @@ const SubscriptionEntryCard = () => {
           src='/images/v2/subscription.png'
           width={300}
           height={200}
+          priority
           alt='Subscription Img'
           className='subscription-entry-img'
         />

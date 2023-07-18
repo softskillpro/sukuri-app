@@ -4,7 +4,6 @@ import { useCallback, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import LogoIcon from '@/components/v2/svgs/LogoIcon';
 import HambergerMenuIcon from '@/components/v2/svgs/HambergerMenuIcon';
 import { StyledButton } from '@/components/v2/Common/StyledButton';
 import { montserrat } from '@/components/v2/Common/CustomFont';
@@ -58,6 +57,7 @@ interface HeaderBodyProps {
 
 const HeaderBody = ({ handleClose }: HeaderBodyProps) => {
   const matches = useMediaQuery('(min-width:1400px)');
+  const mobile = useMediaQuery('(min-width:600px)');
 
   const [clicked, setClicked] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -79,7 +79,7 @@ const HeaderBody = ({ handleClose }: HeaderBodyProps) => {
   return (
     <>
       <HeaderBodyContainer className='header-body'>
-        {matches ? (
+        {matches || !mobile ? (
           navs.map((nav) => (
             <Link key={nav.link} href={nav.link} onClick={handleClose}>
               <Typography
@@ -194,8 +194,19 @@ const Header = () => {
 
       <HeaderDrawer open={open} handleClose={handleClose}>
         <Link href='/'>
-          <LogoIcon sx={{ fontSize: 50 }} />
-          <Typography variant='body1' color='text.primary' ml={2}>
+          <Image
+            src='/images/v2/logo.png'
+            priority
+            width={30}
+            height={30}
+            alt='Logo'
+          />
+          <Typography
+            variant='h4'
+            color='text.primary'
+            ml={2}
+            textTransform='uppercase'
+          >
             Sukuri <span style={{ fontWeight: 400 }}>Protocol</span>
           </Typography>
         </Link>

@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { AboutContainer, Entry, Entries, InfoText } from './styles';
-import { StyledHr } from '../common/Splitter/styles';
+import { StyledHr } from '../Common/Splitter/styles';
 
 const AboutSukuri = () => {
   const matches = useMediaQuery('(min-width:900px)');
@@ -44,7 +44,7 @@ const AboutSukuri = () => {
           <StyledHr className='leading-decoration' />
           <InfoText>
             <Typography variant='subHeading'>
-              ERC4337: Sukuri's Adoption Catalyst
+              ERC4337: Sukuri&apos;s Adoption Catalyst
             </Typography>
             <Typography variant='paragraph'>
               Sukuri ensures transparent, sustainable income for on-chain

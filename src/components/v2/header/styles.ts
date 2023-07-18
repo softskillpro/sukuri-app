@@ -32,11 +32,11 @@ export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
   },
 }));
 
-export const StyledDrawer = styled(Drawer)(({ theme }) => ({
+export const StyledDrawer = styled(Drawer)(() => ({
   '.MuiPaper-root': {
     width: 260,
     padding: '40px 20px',
-    background: theme.palette.primary.main,
+    background: 'rgba(26, 25, 73, 0.8)',
 
     a: {
       display: 'flex',
@@ -51,10 +51,15 @@ export const StyledDrawer = styled(Drawer)(({ theme }) => ({
 
       a: {
         marginBottom: 20,
+        fontFamily: 'var(--Montserrat)',
       },
 
       '.avatar': {
         borderRadius: '50%',
+      },
+
+      button: {
+        margin: 0,
       },
     },
   },

@@ -1,7 +1,7 @@
 import { CategorySectionContainer } from './styles';
 import Typography from '@mui/material/Typography';
-import { StyledHr } from '@/components/V2/common/Splitter/styles';
-import { CategoryTile } from '@/components/V2/Common/CategoryTile';
+import { StyledHr } from '@/components/v2/Common/Splitter/styles';
+import { CategoryTile } from '@/components/v2/Common/CategoryTile';
 
 export type CategoryListProps = {
   categories: {
