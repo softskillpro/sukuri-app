@@ -335,7 +335,13 @@ theme.typography.h2 = {
 
 theme.typography.h3 = {
   fontSize: 30,
+  fontWeight:600,
+  lineHeight: '100%',
+  textTransform:'uppercase',
   fontFamily: 'var(--Montserrat)',
+  [theme.breakpoints.down('md')]:{
+    fontSize: 25,
+  }
 };
 
 theme.typography.h4 = {
@@ -371,7 +377,8 @@ theme.typography.caption = {
 theme.typography.paragraph = {
   fontSize: 14,
   fontWeight: 400,
-  fontFamily: 'var(--Montserrat)',
+  lineHeight: '100%',
+  fontFamily: 'var(--Inter)',
 };
 
 theme.typography.labelXl = {
@@ -394,6 +401,7 @@ theme.typography.labelLg = {
 
 theme.typography.labelMd = {
   fontSize: 12,
+  textTransform: 'uppercase',
   fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 10,
@@ -422,7 +430,9 @@ theme.typography.labelXs = {
 
 theme.typography.subHeading = {
   fontSize: 16,
-  fontFamily: 'var(--Montserrat)',
+  fontFamily: 'var(--Inter)',
+  lineHeight: "100%",
+  fontWeight: 600,
   [theme.breakpoints.down('md')]: {
     fontSize: 14,
   },

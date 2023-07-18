@@ -17,6 +17,13 @@ export const ProductHeroCardContainer = styled('div')(({ theme }) => ({
     objectFit: 'cover',
   },
 
+  '.product-hero=img::after': {
+    content: '""',
+    // background:
+    //   'linear-gradient(270deg, #000 0%, rgba(0, 0, 0, 0.72) 28.13%, rgba(0, 0, 0, 0.00) 100%)',
+    background:'red',
+  },
+
   '.product-hero-card-wrapper': {
     padding: 15,
 

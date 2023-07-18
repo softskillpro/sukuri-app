@@ -8,6 +8,7 @@ import MembershipCardGroup from '@/components/v2/Common/MembershipCardGroup';
 
 import { inter } from '@/components/v2/Common/CustomFont';
 import { ProductHeroCardContainer } from './styles';
+import { DarkGlassWrapper, LightGlassWrapper } from '../GlassWrapper';
 
 const ProductHeroCard = () => {
   const matches = useMediaQuery('(min-width:720px)');
@@ -54,7 +55,7 @@ const ProductHeroCard = () => {
       </div>
 
       <div className='membership-card-group-wrapper'>
-        <MembershipCardGroup />
+          <MembershipCardGroup />
       </div>
     </ProductHeroCardContainer>
   );

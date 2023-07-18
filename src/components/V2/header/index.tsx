@@ -129,14 +129,6 @@ const HeaderBody = ({ handleClose }: HeaderBodyProps) => {
         <StyledButton variants='sm' sx={{ mx: 2.5 }}>
           vip pass
         </StyledButton>
-
-        <Image
-          src='/images/avatar.png'
-          width={40}
-          height={40}
-          className='avatar'
-          alt='Avatar'
-        />
       </HeaderBodyContainer>
 
       <HeaderPopper id={id} open={open} anchorEl={anchorEl}>
