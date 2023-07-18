@@ -9,7 +9,7 @@ interface ActionTogglerProps {
 const ActionToggler = ({ action, onClick }: ActionTogglerProps) => {
   return (
     <ActionTogglerContainer>
-      {['Active', 'Cancelling'].map((item) => (
+      {['Active', 'Cancel'].map((item) => (
         <ActionTogglerButton
           key={item}
           active={`${item === action}`}

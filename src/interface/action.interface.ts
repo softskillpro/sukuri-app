@@ -1,1 +1,1 @@
-export type Action = 'Active' | 'Cancelling';
+export type Action = 'Active' | 'Cancel';

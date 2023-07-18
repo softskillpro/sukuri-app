@@ -31,7 +31,7 @@ export const StyledButton = styled(Button)<StyledButtonProps>(
     color: '#fff',
     cursor: 'pointer',
     fontFamily: 'var(--Montserrat)',
-    fontvariants: variants === 'sm' ? 12 : 18,
+    fontSize: variants === 'sm' ? 12 : 18,
     fontWeight: 600,
     backgroundColor:
       status === 'Navigation'

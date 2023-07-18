@@ -12,6 +12,8 @@ import { StyledButton } from '@/components/v2/Common/StyledButton';
 import { inter } from '@/components/v2/Common/CustomFont';
 import { SubscriptionOverviewContainer } from '@/styles/subscriptionOverview';
 import type { Tier } from '@/interface/tier.interface';
+import StatusHinter from '@/components/v2/Common/StatusHinter';
+import SubscriptionEntryCard from '@/components/v2/Common/SubscriptionEntryCard';
 
 const tiers: Tier[] = [
   {
@@ -54,8 +56,12 @@ const SubscriptionOverview = () => {
         <section className='sidebar-layout-body'>
           <SubscriptionOverviewHeader />
 
-          {/* <div className='subscription-management-body'>
-            <ProjectInfoCard />
+          <div className='subscription-management-body'>
+            {/* <StatusHinter action='Active' />
+            <StatusHinter action='Cancel' /> */}
+
+            <SubscriptionEntryCard />
+            {/* <ProjectInfoCard />
 
             <FlexBox
               sx={{
@@ -133,8 +139,8 @@ const SubscriptionOverview = () => {
                   <StyledButton status='Negative'>Deactivate</StyledButton>
                 </FlexBox>
               </FlexBox>
-            </FlexBox>
-          </div> */}
+            </FlexBox> */}
+          </div>
 
           <Typography
             variant='subHeading'
