@@ -73,7 +73,14 @@ const ProjectInfoCard = () => {
           </FlexBox>
 
           <StyledButton sx={{ width: '100%' }}>
-            {'View on marketplace ->'}
+            <Typography
+              variant='subHeading'
+              lineHeight={1}
+              fontWeight={600}
+              sx={{ fontFamily: inter.style.fontFamily }}
+            >
+              {'View on marketplace ->'}
+            </Typography>
           </StyledButton>
         </FlexBox>
       </FlexBox>
