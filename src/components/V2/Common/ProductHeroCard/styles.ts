@@ -21,7 +21,7 @@ export const ProductHeroCardContainer = styled('div')(({ theme }) => ({
     content: '""',
     // background:
     //   'linear-gradient(270deg, #000 0%, rgba(0, 0, 0, 0.72) 28.13%, rgba(0, 0, 0, 0.00) 100%)',
-    background:'red',
+    background: 'red',
   },
 
   '.product-hero-card-wrapper': {

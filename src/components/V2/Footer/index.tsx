@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Typography from '@mui/material/Typography';
-import FlexBox from '@/components/V2/Common/FlexBox';
-import { inter } from '@/components/V2/Common/CustomFont';
+import FlexBox from '@/components/v2/Common/FlexBox';
+import { inter } from '@/components/v2/Common/CustomFont';
 
 import { FooterContainer } from './styles';
 

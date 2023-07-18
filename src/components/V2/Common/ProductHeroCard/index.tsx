@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import FlexBox from '@/components/V2/Common/FlexBox';
-import TokenCardGroup from '@/components/V2/Common/TokenCardGroup';
-import SocialGroup from '@/components/V2/Common/SocialGroup';
-import MembershipCardGroup from '@/components/V2/Common/MembershipCardGroup';
+import FlexBox from '@/components/v2/Common/FlexBox';
+import TokenCardGroup from '@/components/v2/Common/TokenCardGroup';
+import SocialGroup from '@/components/v2/Common/SocialGroup';
+import MembershipCardGroup from '@/components/v2/Common/MembershipCardGroup';
 
-import { inter } from '@/components/V2/Common/CustomFont';
+import { inter } from '@/components/v2/Common/CustomFont';
 import { ProductHeroCardContainer } from './styles';
 import { DarkGlassWrapper, LightGlassWrapper } from '../GlassWrapper';
 
@@ -56,7 +56,7 @@ const ProductHeroCard = () => {
       </div>
 
       <div className='membership-card-group-wrapper'>
-          <MembershipCardGroup />
+        <MembershipCardGroup />
       </div>
     </ProductHeroCardContainer>
   );

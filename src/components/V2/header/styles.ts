@@ -1,7 +1,7 @@
 import Drawer from '@mui/material/Drawer';
 import Popper from '@mui/material/Popper';
 import { styled } from '@mui/material/styles';
-import FlexBox from '@/components/V2/Common/FlexBox';
+import FlexBox from '@/components/v2/Common/FlexBox';
 
 export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
   justifyContent: 'space-between',

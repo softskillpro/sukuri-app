@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import Typography from '@mui/material/Typography';
-import FlexBox from '@/components/V2/Common/FlexBox';
-import TierEntryCard from '@/components/V2/Common/TierEntryCard';
+import FlexBox from '@/components/v2/Common/FlexBox';
+import TierEntryCard from '@/components/v2/Common/TierEntryCard';
 import { StyledButton } from '@/components/v2/Common/StyledButton';
 import { inter } from '@/components/v2/Common/CustomFont';
 import type { Tier } from '@/interface/tier.interface';

@@ -22,6 +22,7 @@ export const LayoutContainer = styled(Box)(({ theme }) => ({
     width: '100%',
     height: 'inherit',
     minHeight: '100vh',
+    zIndex: 10,
 
     '.layout-wrapper': {
       padding: '15px 23px',

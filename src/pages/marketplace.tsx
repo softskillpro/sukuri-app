@@ -7,36 +7,47 @@ import { Layout1 } from '@/components/common/PageLayout';
 import TodaysPick from '@/components/todayspick';
 import RecommendedCommunities from '@/components/recommendedcommunities';
 import RisingProjects from '@/components/risingprojects';
-import AboutSukuri from '@/components/V2/AboutSukuri';
-import TwitterCTA from '@/components/V2/TwitterCTA';
-import { CategoryTile } from '@/components/V2/Common/CategoryTile';
-import { DarkGlassWrapper } from '@/components/V2/Common/DarkGlassWrapper';
+import AboutSukuri from '@/components/v2/AboutSukuri';
+import TwitterCTA from '@/components/v2/TwitterCTA';
+import { CategoryTile } from '@/components/v2/Common/CategoryTile';
+import { DarkGlassWrapper } from '@/components/v2/Common/DarkGlassWrapper';
 import { Input } from '@mui/material';
-import { StyledHr } from '@/components/V2/Common/Splitter/styles';
-import { CategoryTileProps } from '@/components/V2/Common/CategoryTile';
+import { StyledHr } from '@/components/v2/Common/Splitter/styles';
+import { CategoryTileProps } from '@/components/v2/Common/CategoryTile';
 import { Carousel } from 'react-responsive-carousel';
-import MultiCarousel from '@/components/V2/Common/MultiCarousel';
+import MultiCarousel from '@/components/v2/Common/MultiCarousel';
 import mock from '@/utils/mock';
-import { MarketplaceCarouselCard } from '@/components/V2/Common/MarketplaceCarouselCard';
+import { MarketplaceCarouselCard } from '@/components/v2/Common/MarketplaceCarouselCard';
 import { NFTType } from '@/interface/Nft.interface';
 import formatUnits from '@/utils/formatUnits';
 
-import { MarketplaceContainer, MarketplaceIntro, MarketplaceContent, CategoryList  } from '@/styles/marketplace';
-import MembershipCardGroup from '@/components/V2/Common/MembershipCardGroup';
-import { StyledButton } from '@/components/V2/Common/StyledButton';
-import TrendingSection from '@/components/V2/TrendingSection';
-import CategorySection from '@/components/V2/CategorySection';
-import TopProjectsSection from '@/components/V2/TopProjectsSection';
+import {
+  MarketplaceContainer,
+  MarketplaceIntro,
+  MarketplaceContent,
+  CategoryList,
+} from '@/styles/marketplace';
+import MembershipCardGroup from '@/components/v2/Common/MembershipCardGroup';
+import { StyledButton } from '@/components/v2/Common/StyledButton';
+import TrendingSection from '@/components/v2/TrendingSection';
+import CategorySection from '@/components/v2/CategorySection';
+import TopProjectsSection from '@/components/v2/TopProjectsSection';
 
 // TODO: mock trending data
-const trendingProject = Array.from(mock.slice(0,1));
+const trendingProject = Array.from(mock.slice(0, 1));
 
 // TODO: mock top Projects data
-const topProjects = Array.from(mock.slice(0,3));
+const topProjects = Array.from(mock.slice(0, 3));
 
 // TODO: check if there's a list of categories that should be passed to component
 // for now, hardcoded strings used
-const categories: CategoryTileProps[] = [{ name: 'utility', image: '/images/v2/recommend.png', count: 50 }, { name: 'gaming', image: '/images/v2/recommend.png' }, { name: 'content', image: '/images/v2/recommend.png' }, { name: 'dao', image: '/images/v2/recommend.png' }, { name: 'alpha', image: '/images/v2/recommend.png' }]
+const categories: CategoryTileProps[] = [
+  { name: 'utility', image: '/images/v2/recommend.png', count: 50 },
+  { name: 'gaming', image: '/images/v2/recommend.png' },
+  { name: 'content', image: '/images/v2/recommend.png' },
+  { name: 'dao', image: '/images/v2/recommend.png' },
+  { name: 'alpha', image: '/images/v2/recommend.png' },
+];
 
 const Marketplace = ({
   projects,
@@ -47,24 +58,28 @@ const Marketplace = ({
   return (
     <MarketplaceContainer>
       <MarketplaceIntro>
-        <Typography variant="wordmarkMarketplace">
+        <Typography variant='wordmarkMarketplace'>
           SUKURI <span style={{ fontWeight: 400 }}>PROTOCOL</span>
         </Typography>
         <input placeholder='SEARCH' className='marketplace-search' />
-        <Typography variant="subHeading" align='center' sx={{lineHeight: '120%'}}>
-          Explore new ways to buy, sell and create subscriptions.<br/>All on the blockchain.
+        <Typography
+          variant='subHeading'
+          align='center'
+          sx={{ lineHeight: '120%' }}
+        >
+          Explore new ways to buy, sell and create subscriptions.
+          <br />
+          All on the blockchain.
         </Typography>
         <StyledHr />
         <CategoryList>
-          {
-            categories.map((category, id) => (
-              <a href="/" key={id}>
-                <Typography variant="labelMd" align='center' key={id}>
-                  {category.name}
-                </Typography>
-              </a>
-              ))
-          }
+          {categories.map((category, id) => (
+            <a href='/' key={id}>
+              <Typography variant='labelMd' align='center' key={id}>
+                {category.name}
+              </Typography>
+            </a>
+          ))}
         </CategoryList>
       </MarketplaceIntro>
 

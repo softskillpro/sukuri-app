@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import FlexBox from '@/components/V2/Common/FlexBox';
+import FlexBox from '@/components/v2/Common/FlexBox';
 
 export const MultiCarouselContainer = styled(FlexBox)(({ theme }) => ({
   justifyContent: 'center',
@@ -9,21 +9,20 @@ export const MultiCarouselContainer = styled(FlexBox)(({ theme }) => ({
     top: '50%',
     transform: 'translate(0%, -50%)',
     zIndex: 100,
-    
   },
 
   '.btn-left': {
     left: '25%',
     [theme.breakpoints.down('sm')]: {
       left: '30%',
-    }
+    },
   },
 
   '.btn-right': {
     right: '25%',
     [theme.breakpoints.down('sm')]: {
       right: '30%',
-    }
+    },
   },
 
   '.slide': {
