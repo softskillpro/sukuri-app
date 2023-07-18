@@ -13,6 +13,10 @@ export const MarketplaceContainer = styled(Box)(({ theme }) => ({
   margin: '10px 0px',
 
   gap: 10,
+
+  '.slider > .slide:not(.selected)': {
+    filter: 'blur(5px) brightness(50%)',
+  },
 }));
 
 export const MarketplaceIntro = styled(Box)(({ theme }) => ({
@@ -69,17 +73,46 @@ export const MarketplaceContent = styled(Box)(({ theme }) => ({
 // inside of MarketplaceContent
 export const TrendingSection = styled(Box)(({ theme }) => ({
   width: '100%',
-  padding: '0px 30px',
+
+   '.section-title': {
+    marginLeft: 30,
+    [theme.breakpoints.down('md')]: {
+      marginLeft: 15
+    },
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+      width: '100%',
+      marginLeft: 0
+    }
+  },
+}))
+
+export const CarouselContainer = styled(Box)(({ theme }) => ({
+  width: 'inherit',
+  '.slide': {
+    width: 150,
+    minWidth: 'auto',
+  }
 }))
 
 export const TopProjectsSection = styled(Box)(({ theme }) => ({
   width: '100%',
-  padding: '0px 30px',
+
+   '.section-title': {
+    marginLeft: 30,
+    [theme.breakpoints.down('md')]: {
+      marginLeft: 15
+    },
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+      width: '100%',
+      marginLeft: 0
+    }
+  },
 }))
 
 export const CategorySection = styled(Box)(({ theme }) => ({
   width: '100%',
-  padding: '0px 0px',
 
   display: 'flex',
   flexDirection: 'column',
@@ -87,6 +120,15 @@ export const CategorySection = styled(Box)(({ theme }) => ({
 
   [theme.breakpoints.down('sm')]: {
     gap: 5
+  },
+
+  '.category-tile-grid': {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    gap: 15,
+    [theme.breakpoints.down('sm')]: {
+      gridTemplateColumns: 'repeat(2, 1fr)',
+    },
   },
 
   '.section-title': {
@@ -100,13 +142,4 @@ export const CategorySection = styled(Box)(({ theme }) => ({
       marginLeft: 0
     }
   },
-
-  '.category-tile-grid': {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
-    gap: 15,
-    [theme.breakpoints.down('sm')]: {
-      gridTemplateColumns: 'repeat(2, 1fr)',
-    },
-  }
 }))

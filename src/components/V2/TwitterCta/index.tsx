@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Typography from '@mui/material/Typography';
 
 import { TwitterCTAContainer } from './styles';
-import { StyledButton } from "@/components/v2/Common/StyledButton";
+import { StyledButton } from "@/components/V2/Common/StyledButton";
 
 const TwitterCTA = () => {
   return (

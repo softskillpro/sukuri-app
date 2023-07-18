@@ -4,10 +4,10 @@ import { useCallback, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import LogoIcon from '@/components/v2/svgs/LogoIcon';
-import HambergerMenuIcon from '@/components/v2/svgs/HambergerMenuIcon';
-import { StyledButton } from '@/components/v2/Common/StyledButton';
-import { montserrat } from '@/components/v2/Common/CustomFont';
+import LogoIcon from '@/components/V2/svgs/LogoIcon';
+import HambergerMenuIcon from '@/components/V2/svgs/HambergerMenuIcon';
+import { StyledButton } from '@/components/V2/Common/StyledButton';
+import { montserrat } from '@/components/V2/Common/CustomFont';
 
 import {
   HeaderContainer,

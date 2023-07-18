@@ -112,12 +112,6 @@ const theme = createTheme({
       light:
         'linear-gradient(0deg, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.60) 100%)',
     },
-    secondary: {
-      main: 'rgba(0, 0, 0, 0.40)',
-      dark: 'rgba(255, 255, 255, 0.40)',
-      light: 'rgba(0, 0, 0, 0.30)',
-      contrastText: 'rgba(0, 0, 0, 0.10)',
-    },
     text: { primary: '#fff', secondary: '#461427' },
     text1: { main: '#F88497', light: '#FFC0CB', contrastText: '#FAFAF9' },
     black: {
@@ -180,6 +174,12 @@ const theme = createTheme({
       dark: 'rgba(255, 255, 255, 0.15)',
       contrastText: 'rgba(255, 255, 255, 0.50)',
     },
+    secondary: {
+      main: 'rgba(21, 109, 83, 0.9)',
+      dark: 'rgba(255, 255, 255, 0.40)',
+      light: 'rgba(0, 0, 0, 0.30)',
+      contrastText: 'rgba(0, 0, 0, 0.10)',
+    }
   },
   breakpoints: {
     values: {
@@ -442,9 +442,14 @@ theme.typography.subHeading = {
 
 theme.typography.productTitle = {
   fontSize: 42,
-  fontFamily: 'var(--Montserrat)',
+  fontFamily: 'var(--Inter)',
+  fontWeight: 600,
+  lineHeight: '100%',
   [theme.breakpoints.down('md')]: {
     fontSize: 24,
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 18,
   },
 };
 

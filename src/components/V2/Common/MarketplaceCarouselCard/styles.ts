@@ -1,0 +1,44 @@
+import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
+
+export const MarketplaceCarouselCardContainer = styled(Box)(({ theme }) => ({
+  position: 'relative',
+  display: 'flex',
+  justifyItems:'stretch',
+  flexDirection: 'column',
+
+  marginLeft: 7.5,
+  marginRight: 7.5,
+
+  height: 355,
+
+  padding: 15,
+
+  [theme.breakpoints.down('lg')]: {
+    height: 200,
+  },
+
+  ".card-bg": {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    borderRadius: 5,
+    zIndex: -5,
+    objectFit: 'cover',
+  },
+
+  '.product-title': {
+    filter: 'drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.25))',
+  }
+}))
+
+export const InfoWrapper = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'end',
+  height: "100%",
+  justifyContent: 'space-between',
+  padding: '30px 15px 15px 15px',
+  background: 'rgb(0,0,0,0.4)', // TODO: temp solution
+  borderRadius: 5,  
+}))

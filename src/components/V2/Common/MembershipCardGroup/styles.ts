@@ -5,7 +5,7 @@ export const MembershipCardGroupContainer = styled(FlexBox)(({ theme }) => ({
   padding: 10,
   borderRadius: 10,
   border: '1px solid rgba(255, 255, 255, 0.20))',
-  background: 'rgba(0, 0, 0, 0.50))',
+  background: 'rgba(0, 0, 0, 0.50)',
   boxShadow: theme.palette.shadow.main,
   backdropFilter: 'blur(2.5px)',
 

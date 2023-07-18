@@ -10,11 +10,17 @@ import RisingProjects from '@/components/risingprojects';
 import AboutSukuri from '@/components/V2/AboutSukuri';
 import TwitterCTA from '@/components/V2/TwitterCTA';
 import { CategoryTile } from '@/components/V2/Common/CategoryTile';
-import { MarketplaceContainer, MarketplaceIntro, MarketplaceContent, CategoryList, TrendingSection, TopProjectsSection, CategorySection  } from '@/styles/marketplace';
+import { MarketplaceContainer, MarketplaceIntro, MarketplaceContent, CategoryList, TrendingSection, TopProjectsSection, CategorySection, CarouselContainer  } from '@/styles/marketplace';
 import { DarkGlassWrapper } from '@/components/V2/Common/DarkGlassWrapper';
 import { Input } from '@mui/material';
 import { StyledHr } from '@/components/V2/Common/Splitter/styles';
 import { CategoryTileProps } from '@/components/V2/Common/CategoryTile';
+import { Carousel } from 'react-responsive-carousel';
+import MultiCarousel from '@/components/v2/Common/MultiCarousel';
+import mock from '@/utils/mock';
+import { MarketplaceCarouselCard } from '@/components/V2/Common/MarketplaceCarouselCard';
+import { NFTType } from '@/interface/Nft.interface';
+import formatUnits from '@/utils/formatUnits';
 
 // TODO: check if there's a list of categories that should be passed to component
 // for now, hardcoded strings used
@@ -49,16 +55,30 @@ const Marketplace = ({
           }
         </CategoryList>
       </MarketplaceIntro>
+
       <MarketplaceContent>
         <TrendingSection>
-          <Typography variant="h3">
+          <Typography variant="h3" className='section-title'>
             Trending
           </Typography>
+          <StyledHr />
+          <CarouselContainer>
+            <MultiCarousel>
+              {
+                mock.map((project, id) => {
+                  return(
+                    <MarketplaceCarouselCard key={id} name={project.name} category='gaming' membershipPrice={'$5'} largeImageURL={project.large_image}/>
+                  )
+                })
+              }
+            </MultiCarousel>
+          </CarouselContainer>
         </TrendingSection>
         <TopProjectsSection>
-          <Typography variant="h3">
+          <Typography variant="h3" className='section-title'>
             Top Projects
           </Typography>
+          <StyledHr />
         </TopProjectsSection>
         <CategorySection>
           <Typography variant="h3" className='section-title'>
@@ -85,6 +105,7 @@ const Marketplace = ({
         <AboutSukuri />
         <TwitterCTA />
       </MarketplaceContent>
+
     </MarketplaceContainer>
   );
 };

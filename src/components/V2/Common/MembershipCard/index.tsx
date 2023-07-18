@@ -1,5 +1,5 @@
 import Typography from '@mui/material/Typography';
-import FlexBox from '@/components/v2/Common/FlexBox';
+import FlexBox from '@/components/V2/Common/FlexBox';
 
 import { MembershipCardContainer } from './styles';
 
