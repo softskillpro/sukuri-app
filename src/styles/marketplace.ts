@@ -71,21 +71,6 @@ export const MarketplaceContent = styled(Box)(({ theme }) => ({
 }))
 
 // inside of MarketplaceContent
-export const TrendingSection = styled(Box)(({ theme }) => ({
-  width: '100%',
-
-   '.section-title': {
-    marginLeft: 30,
-    [theme.breakpoints.down('md')]: {
-      marginLeft: 15
-    },
-    [theme.breakpoints.down('sm')]: {
-      textAlign: 'center',
-      width: '100%',
-      marginLeft: 0
-    }
-  },
-}))
 
 export const CarouselContainer = styled(Box)(({ theme }) => ({
   '.slide': {
@@ -206,37 +191,4 @@ export const MembershipCardWrapper = styled(Box)(({ theme }) => ({
     width: '100%',
     marginTop: -15,
   }
-}))
-
-export const CategorySection = styled(Box)(({ theme }) => ({
-  width: '100%',
-
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 15,
-
-  [theme.breakpoints.down('sm')]: {
-    gap: 5
-  },
-
-  '.category-tile-grid': {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
-    gap: 15,
-    [theme.breakpoints.down('sm')]: {
-      gridTemplateColumns: 'repeat(2, 1fr)',
-    },
-  },
-
-  '.section-title': {
-    marginLeft: 30,
-    [theme.breakpoints.down('md')]: {
-      marginLeft: 15
-    },
-    [theme.breakpoints.down('sm')]: {
-      textAlign: 'center',
-      width: '100%',
-      marginLeft: 0
-    }
-  },
 }))

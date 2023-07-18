@@ -21,10 +21,11 @@ import { MarketplaceCarouselCard } from '@/components/V2/Common/MarketplaceCarou
 import { NFTType } from '@/interface/Nft.interface';
 import formatUnits from '@/utils/formatUnits';
 
-import { MarketplaceContainer, MarketplaceIntro, MarketplaceContent, CategoryList, TopProjectsSection, CategorySection, CarouselContainer, TopProjectsList, TopProjectEntry, MembershipCardWrapper, TopProjectInfoWrapper  } from '@/styles/marketplace';
+import { MarketplaceContainer, MarketplaceIntro, MarketplaceContent, TopProjectsSection, CarouselContainer, TopProjectsList, TopProjectEntry, MembershipCardWrapper, TopProjectInfoWrapper  } from '@/styles/marketplace';
 import MembershipCardGroup from '@/components/V2/Common/MembershipCardGroup';
 import { StyledButton } from '@/components/V2/Common/StyledButton';
 import TrendingSection from '@/components/V2/TrendingSection';
+import CategoryList from '@/components/V2/CategoryList';
 
 // TODO: mock trending data
 const trendingProject = Array.from(mock.slice(0,1));
@@ -96,32 +97,10 @@ const Marketplace = ({
             }
           </TopProjectsList>
         </TopProjectsSection>
-        <CategorySection>
-          <Typography variant="h3" className='section-title'>
-            Categories
-          </Typography>
-          <StyledHr />
-          <div className="category-tile-grid">
-            {
-              categories ? 
-              categories.map(({name, image, count}, i) => {
-                
-                return(
-                  <CategoryTile key={i}
-                    name={name}
-                    image={image ? image : ''}
-                    count={count ? count : null}
-                  />
-                )
-              })
-              : ''
-            }
-          </div>
-        </CategorySection>
+        <CategoryList categories={categories} />
         <AboutSukuri />
         <TwitterCTA />
       </MarketplaceContent>
-
     </MarketplaceContainer>
   );
 };
