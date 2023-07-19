@@ -40,7 +40,7 @@ const Marketplace = ({
   return (
     <MarketplaceContainer>
       <MarketplaceIntro>
-        <Typography variant='wordmarkMarketplace'>
+        <Typography variant='wordmarkMarketplace' align='center'>
           SUKURI <span style={{ fontWeight: 400 }}>PROTOCOL</span>
         </Typography>
         <input placeholder='SEARCH' className='marketplace-search' />
