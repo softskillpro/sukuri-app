@@ -24,7 +24,7 @@ export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
 
     [theme.breakpoints.down('lg')]: {
       ':not(:last-of-type)': {
-        marginRight: 40,
+        marginRight: 25,
       },
     }
   },

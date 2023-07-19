@@ -25,18 +25,31 @@ const navs: NavsProps[] = [
     title: 'Marketplace',
     link: '/marketplace',
   },
+  // TEMP: DISPLAY LINKS FOR AVAILABLE DEMO PAGES 
   {
-    title: 'Resources',
-    link: '/resources',
+    title: 'Product Example',
+    link: '/product'
   },
   {
-    title: 'Affiliates',
-    link: '/affiliates',
+    title: 'Subcriptions',
+    link: '/subscription-overview'
   },
   {
-    title: 'Start Selling',
-    link: '/start-selling',
-  },
+    title: "Manage Subscription",
+    link: '/subscription-management'
+  }
+  // {
+  //   title: 'Subscription Overview',
+  //   link: '/resources',
+  // },
+  // {
+  //   title: 'Affiliates',
+  //   link: '/affiliates',
+  // },
+  // {
+  //   title: 'Start Selling',
+  //   link: '/start-selling',
+  // },
 ];
 
 interface HeaderDrawerProps {
