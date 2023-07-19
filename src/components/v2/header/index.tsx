@@ -56,7 +56,7 @@ interface HeaderBodyProps {
 }
 
 const HeaderBody = ({ handleClose }: HeaderBodyProps) => {
-  const matches = useMediaQuery('(min-width:1400px)');
+  const matches = useMediaQuery('(min-width:1024px)');
   const mobile = useMediaQuery('(min-width:600px)');
 
   const [clicked, setClicked] = useState(false);
