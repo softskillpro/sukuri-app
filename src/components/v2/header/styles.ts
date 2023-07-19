@@ -77,6 +77,7 @@ export const HeaderPopper = styled(Popper)(({ theme }) => ({
   border: `1px solid ${theme.palette.border.main}`,
   background: theme.palette.secondary.main,
   backgroundBlendMode: 'overlay',
+  backdropFilter: 'blur(10px)',
 
   a: {
     textDecoration: 'none',
