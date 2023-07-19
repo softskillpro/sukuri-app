@@ -88,7 +88,7 @@ export const MarketplaceContent = styled(Box)(({ theme }) => ({
   },
 
   [theme.breakpoints.down('sm')]: {
-    padding: '5px 5px',
+    padding: '15px 5px 5px 5px',
   },
 }));
 
