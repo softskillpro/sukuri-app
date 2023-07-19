@@ -13,9 +13,8 @@ export const SubscriptionOverviewContainer = styled('div')(({ theme }) => ({
     alignItems: 'center',
     borderRadius: 15,
     border: `1px solid ${theme.palette.border.dark}`,
-    background: theme.palette.secondary.main,
+    background: 'rgba(0,0,0,0.4)',
     boxShadow: theme.palette.shadow1.main,
-    backdropFilter: 'blur(15px)',
 
     '.subscription-overview-body': {
       width: '100%',

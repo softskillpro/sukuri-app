@@ -5,12 +5,11 @@ export const ProductContentCardGroupContainer = styled('div')(({ theme }) => ({
   gridTemplateColumns: 'repeat(3, 1fr)',
   gap: 15,
   padding: 15,
-  backgroundBlendMode: 'overlay',
   borderRadius: 15,
   border: `1px solid ${theme.palette.lightInternalGlassBorder.main}`,
+  backdropFilter:'blur(10px) brightness(150%)',
 
   boxShadow: theme.palette.shadow.main,
-  backdropFilter: 'brightness(150%)',
 
   '.product-content-body': {
     flexDirection: 'column',

@@ -7,7 +7,10 @@ export const LayoutContainer = styled(Box)(({ theme }) => ({
   width: '100%',
   height: 'inherit',
   backgroundColor: '#1D1C4F',
-  backgroundBlendMode: 'lighten',
+
+  '& > *': {
+    zIndex: 2,
+  },
 
   '.background-img': {
     position: 'fixed',
@@ -15,7 +18,10 @@ export const LayoutContainer = styled(Box)(({ theme }) => ({
     minWidth: '100%',
     width: 'inherit',
     height: '100%',
+    zIndex: 1,
     mixBlendMode: 'lighten',
+    objectFit: 'cover', 
+    pointerEvents: 'none'
   },
 
   '.main-wrapper': {

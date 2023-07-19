@@ -10,7 +10,7 @@ export const SocialGroupContainer = styled('div')(() => ({
     padding: 10,
     borderRadius: 10,
     border: 'none',
-    background: 'rgba(0, 0, 0, 0.50)',
+    background: 'rgba(0, 0, 0, 0.4)',
     cursor: 'pointer',
     color: '#fff',
     fontSize: 12,

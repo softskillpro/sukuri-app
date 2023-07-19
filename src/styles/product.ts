@@ -14,7 +14,6 @@ export const ProductContainer = styled('div')(({ theme }) => ({
       border: `1px solid ${theme.palette.border.dark}`,
       background: theme.palette.secondary.main,
       boxShadow: theme.palette.shadow1.main,
-      backdropFilter: 'blur(15px)',
 
       '.product-content-card-group': {
         margin: '30px 30px 60px',

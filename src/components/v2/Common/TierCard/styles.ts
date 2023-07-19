@@ -8,7 +8,7 @@ export const TierCardContainer = styled(FlexBox)(({ theme }) => ({
   borderRadius: 10,
   border: `1px solid ${theme.palette.lightInternalGlassBorder.main}`,
   boxShadow: theme.palette.shadow.main,
-  backdropFilter: 'blur(2.5px)',
+  backdropFilter: 'blur(30px) brightness(120%)',
 
   '.tier-card-body': {
     flexDirection: 'column',

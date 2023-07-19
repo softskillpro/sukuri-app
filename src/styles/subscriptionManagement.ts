@@ -13,8 +13,8 @@ export const SubscriptionManagementContainer = styled('div')(({ theme }) => ({
     alignItems: 'center',
     gap: 30,
     borderRadius: 15,
-    // border: `1px solid ${theme.palette.border.dark}`,
-    background: theme.palette.secondary.main,
+    border: `1px solid ${theme.palette.border.dark}`,
+    background: theme.palette.primary.dark,
     boxShadow: theme.palette.shadow1.main,
 
     '.subscription-management-header': {
@@ -45,8 +45,7 @@ export const SubscriptionManagementContainer = styled('div')(({ theme }) => ({
           padding: '10px 15px',
           borderRadius: 10,
           border: `1px solid ${theme.palette.lightInternalGlassBorder.main}`,
-          background: theme.palette.secondary.dark,
-          backgroundBlendMode: 'overlay',
+          backdropFilter: 'blur(2.5px) brightness(120%)',
         },
       },
     },

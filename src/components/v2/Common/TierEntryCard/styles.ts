@@ -10,8 +10,8 @@ export const TierEntryCardContainer = styled(FlexBox)<{ active: string }>(
     border: `1px solid ${theme.palette.lightInternalGlassBorder.main}`,
     background:
       active === 'true'
-        ? theme.palette.secondary.light
-        : theme.palette.secondary.contrastText,
+        ? 'rgba(0,0,0,0.2)'
+        : 'rgba(0,0,0,0.4)',
     cursor: 'pointer',
   }),
 );

@@ -6,10 +6,9 @@ export const SubscriptionTiersCardContainer = styled('div')(({ theme }) => ({
   padding: 30,
   borderRadius: 15,
   border: `1px solid ${theme.palette.lightInternalGlassBorder.main}`,
-  background: theme.palette.secondary.dark,
   backgroundBlendMode: 'overlay',
   boxShadow: theme.palette.shadow.main,
-  backdropFilter: 'blur(2.5px)',
+  backdropFilter: 'blur(10px) brightness(150%)',
 
   '.subscription-tiers-card-body': {
     display: 'grid',
@@ -43,7 +42,7 @@ export const SubscriptionTiersCardContainer = styled('div')(({ theme }) => ({
           padding: 15,
           borderRadius: 5,
           border: `1px solid ${theme.palette.lightInternalGlassBorder.main}`,
-          background: theme.palette.border.main,
+          background: theme.palette.primary.dark,
           backgroundBlendMode: 'overlay',
         },
       },

@@ -7,9 +7,8 @@ export const EntryCardGroupContainer = styled(FlexBox)(({ theme }) => ({
   padding: 10,
   borderRadius: 15,
   border: `1px solid ${theme.palette.border.dark}`,
-  background: theme.palette.secondary.main,
+  background: theme.palette.secondary.light,
   boxShadow: theme.palette.shadow.main,
-  backdropFilter: 'blur(2.5px)',
 
   '.entry-card-title': {
     justifyContent: 'space-between',
@@ -17,10 +16,11 @@ export const EntryCardGroupContainer = styled(FlexBox)(({ theme }) => ({
     marginBottom: 5,
     padding: '10px 25px',
     borderRadius: 10,
+    height: 50,
     border: `1px solid ${theme.palette.lightInternalGlassBorder.main}`,
-    background: theme.palette.secondary.dark,
+    // background: theme.palette.secondary.dark,
     boxShadow: theme.palette.shadow.main,
-    backdropFilter: 'blur(2.5px)',
+    backdropFilter: 'blur(10px) brightness(120%)',
     backgroundBlendMode: 'overlay',
   },
 

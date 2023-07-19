@@ -5,7 +5,6 @@ export const ProductHeroCardContainer = styled('div')(({ theme }) => ({
   borderRadius: 5,
   background:
     'linear-gradient(270deg, #000 0%, rgba(0, 0, 0, 0.72) 28.13%, rgba(0, 0, 0, 0.00) 100%)',
-  backgroundBlendMode: 'multiply, normal',
   zIndex: 50,
 
   '.product-hero-img': {

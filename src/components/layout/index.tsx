@@ -17,10 +17,16 @@ const Layout = ({ children }: LayoutProps) => {
       <LayoutContainer>
         <Image
           src='/images/v2/background.jpg'
-          width={1000}
-          height={1000}
           alt='Background'
+          priority
           className='background-img'
+          placeholder="blur"
+          quality={100}
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: 'cover',
+          }}
         />
 
         {!(asPath === '/' || asPath === '/new-user') && <Header />}

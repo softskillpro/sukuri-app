@@ -10,9 +10,6 @@ export const StyledPaper = styled(Paper)(() => ({
 
 export const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    background: theme.palette.border.contrastText,
-    backgroundBlendMode: 'overlay',
-    backdropFilter: 'blur(2.5px)',
     color: theme.palette.common.white,
     boxShadow: theme.palette.shadow.main,
 

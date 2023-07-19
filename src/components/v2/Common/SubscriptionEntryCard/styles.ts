@@ -6,9 +6,8 @@ export const SubscriptionEntryCardContainer = styled(FlexBox)(({ theme }) => ({
   gap: 8,
   padding: 5,
   borderRadius: 10,
-  border: `1px solid ${theme.palette.lightInternalGlassBorder.main}`,
-  background: theme.palette.secondary.dark,
-  backgroundBlendMode: 'overlay',
+  border: `1px solid rgba(255,255,255,0.2)`,
+  backdropFilter: 'brightness(150%)',
 
   '.subscription-entry-header': {
     position: 'relative',
