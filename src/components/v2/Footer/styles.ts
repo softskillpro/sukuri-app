@@ -12,16 +12,26 @@ export const FooterContainer = styled(FlexBox)(({ theme }) => ({
   backdropFilter: 'blur(15px)',
 
   '.grid-wrapper': {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
-    width: '60%',
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 60,
 
     a: {
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'start',
       width: 'fit-content',
+      marginTop: 5,
       textDecoration: 'none',
     },
+  },
+
+  '.grid-item, .grid-item-2':{
+    height: '75px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'start',
+    justifyContent: 'flex-start',
   },
 
   '.sukuri-protocal': {
@@ -30,7 +40,6 @@ export const FooterContainer = styled(FlexBox)(({ theme }) => ({
 
   [theme.breakpoints.down('lg')]: {
     '.grid-wrapper': {
-      width: '75%',
     },
 
     '.sukuri-protocal': {
@@ -42,14 +51,12 @@ export const FooterContainer = styled(FlexBox)(({ theme }) => ({
     padding: '30px 30px 15px 30px',
 
     '.grid-wrapper': {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(1, 1fr)',
+      flexDirection: 'column',
       width: '100%',
-
-      '.grid-item-2': {
-        margin: '20px 0',
-      },
+      alignItems: 'start',
     },
+
+
 
     '.sukuri-protocal': {
       marginTop: 35,
