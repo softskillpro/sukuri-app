@@ -8,6 +8,7 @@ export const LayoutContainer = styled(Box)(() => ({
   height: 'inherit',
   backgroundColor: '#1D1C4F',
   backgroundBlendMode: 'lighten',
+  pointerEvents: 'none',
 
   '.background-img': {
     position: 'fixed',
@@ -16,5 +17,6 @@ export const LayoutContainer = styled(Box)(() => ({
     width: 'inherit',
     height: '100%',
     mixBlendMode: 'lighten',
+    pointerEvents: 'none',
   },
 }));

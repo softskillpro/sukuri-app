@@ -29,36 +29,6 @@ const theme = createTheme({
     fontSize: 14,
     fontFamily: 'var(--Montserrat)',
     fontWeightRegular: 'normal',
-    h1: {
-      fontSize: 100,
-      lineHeight: '122px',
-      fontWeight: 700,
-    },
-    h2: {
-      fontSize: 70,
-      lineHeight: '85px',
-      fontWeight: 700,
-    },
-    h3: {
-      fontSize: 60,
-      lineHeight: '73px',
-      fontWeight: 700,
-    },
-    h4: {
-      fontSize: 32,
-      lineHeight: '39px',
-      fontWeight: 700,
-    },
-    h5: {
-      fontSize: 30,
-      lineHeight: '37px',
-      fontWeight: 700,
-    },
-    h6: {
-      fontSize: 28,
-      lineHeight: '34px',
-      fontWeight: 700,
-    },
     subtitle1: {
       fontSize: 25,
       lineHeight: '30px',
@@ -77,11 +47,6 @@ const theme = createTheme({
     body2: {
       fontSize: 20,
       lineHeight: '24px',
-      fontWeight: 400,
-    },
-    caption: {
-      fontSize: 18,
-      lineHeight: '22px',
       fontWeight: 400,
     },
     custom1: {
@@ -143,9 +108,10 @@ const theme = createTheme({
   palette: {
     primary: {
       main: '#FFF2F4',
-    },
-    secondary: {
-      main: '#D9D9D9',
+      dark: 'rgba(0, 0, 0, 0.40)',
+      light:
+        'linear-gradient(0deg, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.60) 100%)',
+      contrastText: 'rgba(0, 0, 0, 0.50)',
     },
     text: { primary: '#fff', secondary: '#461427' },
     text1: { main: '#F88497', light: '#FFC0CB', contrastText: '#FAFAF9' },
@@ -167,14 +133,14 @@ const theme = createTheme({
       light: 'linear-gradient(180deg, #331122 0%, #020617 100%)',
     },
     shadow: {
-      main: 'inset 0px -4px 0px #67B54C',
+      main: '0px 0px 4px 0px rgba(0, 0, 0, 0.35)',
       dark: 'inset 0px -4px 0px #D02C2C',
       light: 'inset 0px -4px 0px #D0712C',
       contrastText: '1px 1px 10px 1px rgba(248, 132, 151, 0.5)',
     },
     shadow1: {
-      main: 'inset 0px -4px 0px 2px #F88497, inset 0px 8px 0px 2px #F88497',
-      light: 'inset 0px -4px 0px 2px #FFC0CB, inset 0px 8px 0px 2px #FFC0CB',
+      main: '0px 0px 8px 0px rgba(0, 0, 0, 0.35)',
+      light: 'rgba(0, 0, 0, 0.05)',
       dark: '1px 1px 2px 1px #030712',
       contrastText: 'inset 0px -4px 0px #FFC0CB, inset 0px 8px 0px #FFC0CB',
     },
@@ -182,16 +148,48 @@ const theme = createTheme({
       main: '0px 0px 5px rgba(248, 132, 151, 0.5)',
       light: '1px 1px 10px rgba(248, 132, 151, 0.5)',
     },
+
+    green: {
+      main: 'rgba(21, 109, 46, 0.80)',
+      dark: 'rgba(20, 78, 36, 0.89)',
+      light: 'rgba(31, 147, 64, 0.80)',
+      contrastText: '#67B54C',
+    },
+    blue: {
+      main: 'rgba(23, 67, 179, 0.80)',
+      dark: 'rgba(20, 53, 137, 0.80)',
+      light: 'rgba(32, 82, 208, 0.80)',
+    },
+    hardNegative: {
+      main: '#BC1010',
+    },
+    unavailableBg: {
+      main: 'rgba(65, 65, 65, 0.90)',
+    },
+    lightInternalGlassBorder: {
+      main: 'rgba(255, 255, 255, 0.05)',
+    },
     border: {
-      main: '#707070',
+      main: 'rgba(255, 255, 255, 0.20)',
       light: '#67B54C',
+      dark: 'rgba(255, 255, 255, 0.15)',
+      contrastText: 'rgba(255, 255, 255, 0.50)',
+    },
+    secondary: {
+      main: 'rgba(0,0,0,.4)',
+      dark: 'rgba(255, 255, 255, 0.40)',
+      light: 'rgba(0, 0, 0, 0.30)',
+      contrastText: 'rgba(0, 0, 0, 0.10)',
+    },
+    teal: {
+      main: 'rgba(21, 109, 83, 0.9)',
     },
   },
   breakpoints: {
     values: {
       xs: 0,
-      sm: 600,
-      md: 720,
+      sm: 720,
+      md: 1024,
       lg: 1200,
       xl: 1400,
     },
@@ -209,6 +207,13 @@ declare module '@mui/material/styles' {
     shadow1: Palette['primary'];
     shadow2: Palette['primary'];
     border: Palette['primary'];
+
+    blue: Palette['primary'];
+    green: Palette['primary'];
+    hardNegative: Palette['primary'];
+    unavailableBg: Palette['primary'];
+    lightInternalGlassBorder: Palette['primary'];
+    teal: Palette['primary'];
   }
 
   interface PaletteOptions {
@@ -221,6 +226,13 @@ declare module '@mui/material/styles' {
     shadow1?: PaletteOptions['primary'];
     shadow2?: PaletteOptions['primary'];
     border?: PaletteOptions['primary'];
+
+    blue?: PaletteOptions['primary'];
+    green?: PaletteOptions['primary'];
+    hardNegative?: PaletteOptions['primary'];
+    unavailableBg?: PaletteOptions['primary'];
+    lightInternalGlassBorder?: PaletteOptions['primary'];
+    teal?: PaletteOptions['primary'];
   }
 
   interface TypographyVariants {
@@ -243,7 +255,15 @@ declare module '@mui/material/styles' {
     labelXs: React.CSSProperties;
     subHeading: React.CSSProperties;
     productTitle: React.CSSProperties;
+    productTitleSmall: React.CSSProperties;
     userBar: React.CSSProperties;
+    wordmarkMarketplace: React.CSSProperties;
+    wordmarkFooter: React.CSSProperties;
+    wordmarkHeader: React.CSSProperties;
+    wordmarkSignup: React.CSSProperties;
+    footer: React.CSSProperties;
+    input: React.CSSProperties;
+    signupNumber: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
@@ -267,6 +287,13 @@ declare module '@mui/material/styles' {
     subHeading?: React.CSSProperties;
     productTitle?: React.CSSProperties;
     userBar?: React.CSSProperties;
+    wordmarkMarketplace?: React.CSSProperties;
+    wordmarkFooter?: React.CSSProperties;
+    wordmarkHeader?: React.CSSProperties;
+    wordmarkSignup?: React.CSSProperties;
+    footer?: React.CSSProperties;
+    input?: React.CSSProperties;
+    signupNumber?: React.CSSProperties;
   }
 }
 
@@ -291,7 +318,15 @@ declare module '@mui/material/Typography' {
     labelXs: true;
     subHeading: true;
     productTitle: true;
+    productTitleSmall: true;
     userBar: true;
+    wordmarkMarketplace: true;
+    wordmarkFooter: true;
+    wordmarkHeader: true;
+    wordmarkSignup: true;
+    footer: true;
+    input: true;
+    signupNumber: true;
   }
 }
 
@@ -301,18 +336,30 @@ theme.typography.code = {
 
 theme.typography.h1 = {
   fontSize: 40,
+  fontFamily: 'var(--Montserrat)',
 };
 
 theme.typography.h2 = {
   fontSize: 36,
+  fontFamily: 'var(--Montserrat)',
 };
 
 theme.typography.h3 = {
   fontSize: 30,
+  fontWeight: 600,
+  lineHeight: '100%',
+  textTransform: 'uppercase',
+  fontFamily: 'var(--Montserrat)',
+  [theme.breakpoints.down('md')]: {
+    fontSize: 25,
+  },
 };
 
 theme.typography.h4 = {
   fontSize: 24,
+  fontFamily: 'var(--Montserrat)',
+  textTransform: 'uppercase',
+  fontWeight: 600,
   [theme.breakpoints.down('md')]: {
     fontSize: 18,
   },
@@ -323,6 +370,7 @@ theme.typography.h4 = {
 
 theme.typography.h5 = {
   fontSize: 18,
+  fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 14,
   },
@@ -333,6 +381,7 @@ theme.typography.h5 = {
 
 theme.typography.caption = {
   fontSize: 12,
+  fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 10,
   },
@@ -340,24 +389,35 @@ theme.typography.caption = {
 
 theme.typography.paragraph = {
   fontSize: 14,
+  fontWeight: 400,
+  lineHeight: '100%',
+  fontFamily: 'var(--Inter)',
 };
 
 theme.typography.labelXl = {
   fontSize: 22,
+  fontWeight: 600,
+  fontFamily: 'var(--Montserrat)',
 };
 
 theme.typography.labelLg = {
   fontSize: 18,
+  fontWeight: 600,
+  fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 16,
   },
   [theme.breakpoints.down('sm')]: {
-    fontSize: 16,
+    fontSize: 14,
   },
 };
 
 theme.typography.labelMd = {
   fontSize: 12,
+  fontWeight: 600,
+  lineHeight: 1,
+  textTransform: 'uppercase',
+  fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 10,
   },
@@ -368,6 +428,8 @@ theme.typography.labelMd = {
 
 theme.typography.labelSm = {
   fontSize: 10,
+  fontWeight: 600,
+  fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 10,
   },
@@ -378,10 +440,14 @@ theme.typography.labelSm = {
 
 theme.typography.labelXs = {
   fontSize: 8,
+  fontFamily: 'var(--Montserrat)',
 };
 
 theme.typography.subHeading = {
   fontSize: 16,
+  fontFamily: 'var(--Inter)',
+  lineHeight: '100%',
+  fontWeight: 600,
   [theme.breakpoints.down('md')]: {
     fontSize: 14,
   },
@@ -389,19 +455,93 @@ theme.typography.subHeading = {
 
 theme.typography.productTitle = {
   fontSize: 42,
+  fontFamily: 'var(--Inter)',
+  fontWeight: 600,
+  lineHeight: '100%',
   [theme.breakpoints.down('md')]: {
     fontSize: 24,
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 18,
+  },
+};
+
+theme.typography.productTitleSmall = {
+  fontSize: 24,
+  [theme.breakpoints.down('md')]: {
+    fontSize: 18,
   },
 };
 
 theme.typography.userBar = {
   fontSize: 50,
+  fontFamily: 'var(--Montserrat)',
   [theme.breakpoints.down('md')]: {
     fontSize: 30,
   },
   [theme.breakpoints.down('sm')]: {
     fontSize: 25,
   },
+};
+
+theme.typography.wordmarkMarketplace = {
+  fontSize: 50,
+  fontFamily: 'var(--Montserrat)',
+  [theme.breakpoints.down('md')]: {
+    fontSize: 35,
+  },
+};
+
+theme.typography.wordmarkFooter = {
+  fontSize: 22,
+  fontWeight: 600,
+  fontFamily: 'var(--Montserrat)',
+  [theme.breakpoints.down('md')]: {
+    fontSize: 16,
+  },
+};
+
+theme.typography.wordmarkHeader = {
+  fontSize: 20,
+  fontWeight: 600,
+  fontFamily: 'var(--Montserrat)',
+  [theme.breakpoints.down('md')]: {
+    fontSize: 16,
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 18,
+  },
+};
+
+theme.typography.wordmarkSignup = {
+  fontSize: 52,
+  fontFamily: 'var(--Montserrat)',
+  [theme.breakpoints.down('md')]: {
+    fontSize: 48,
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 32,
+  },
+};
+
+theme.typography.footer = {
+  fontSize: 14,
+  fontWeight: 400,
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 18,
+  },
+};
+
+theme.typography.signupNumber = {
+  fontSize: 22,
+  fontWeight: 700,
+  lineHeight: 1,
+};
+
+theme.typography.input = {
+  fontSize: 12,
+  fontWeight: 400,
+  lineHeight: 1,
 };
 
 export default theme;

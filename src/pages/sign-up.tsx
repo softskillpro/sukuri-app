@@ -4,14 +4,15 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
-import FlexBox from '@/components/V2/Common/FlexBox';
-import Stepper from '@/components/V2/Stepper';
-import StyledInput from '@/components/V2/Common/StyledInput';
-import { StyledButton } from '@/components/V2/Common/StyledButton';
+import FlexBox from '@/components/v2/Common/FlexBox';
+import Stepper from '@/components/v2/Stepper';
+import StyledInput from '@/components/v2/Common/StyledInput';
+import { StyledButton } from '@/components/v2/Common/StyledButton';
+import { inter } from '@/components/v2/Common/CustomFont';
 import { AuthContainer } from '@/styles/auth';
 
 const SignUp = () => {
-  const [status, setStatus] = useState(2);
+  const [status, setStatus] = useState(1);
 
   const handleSubmit = () => {
     setStatus((prev) => prev + 1);
@@ -31,29 +32,64 @@ const SignUp = () => {
 
         {status === 1 ? (
           <>
-            <Box mt={3.75}>
-              <Typography mb={1}>You are not connected.</Typography>
-              <StyledButton>connect wallet</StyledButton>
-            </Box>
+            <FlexBox mt={3.75} sx={{ flexDirection: 'column' }}>
+              <Typography
+                variant='subHeading'
+                textAlign='center'
+                lineHeight={1}
+                mb={1}
+                sx={{ fontFamily: inter.style.fontFamily }}
+              >
+                You are not connected.
+              </Typography>
+              <StyledButton variants='xl' sx={{ height: 30 }}>
+                <Typography variant='labelMd' textTransform='uppercase'>
+                  connect wallet
+                </Typography>
+              </StyledButton>
+            </FlexBox>
 
             <Box width='100%' mt={3.75}>
-              <Typography mb={1} textAlign='center'>
+              <Typography
+                variant='subHeading'
+                textAlign='center'
+                lineHeight={1}
+                mb={1}
+                sx={{ fontFamily: inter.style.fontFamily }}
+              >
                 Your display name
               </Typography>
-              <StyledInput />
+
+              <StyledInput placeholder='enter display name' />
             </Box>
 
-            <Box width='100%' my={3.75}>
-              <Typography mb={1} textAlign='center'>
+            <FlexBox width='100%' my={3.75} sx={{ flexDirection: 'column' }}>
+              <Typography
+                variant='subHeading'
+                textAlign='center'
+                lineHeight={1}
+                mb={1}
+                sx={{ fontFamily: inter.style.fontFamily }}
+              >
                 Link to services (optional)
               </Typography>
 
-              <Grid container spacing={4} sx={{ alignItems: 'center' }}>
-                <Grid item xs={6}>
+              <Grid container spacing={4}>
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
                   <Typography
-                    mb={0.5}
+                    variant='labelMd'
                     textTransform='uppercase'
                     textAlign='center'
+                    mb={0.5}
                   >
                     email
                   </Typography>
@@ -62,6 +98,7 @@ const SignUp = () => {
                   <Typography
                     mt={2}
                     mb={0.5}
+                    variant='labelMd'
                     textTransform='uppercase'
                     textAlign='center'
                   >
@@ -72,33 +109,38 @@ const SignUp = () => {
 
                 <Grid
                   item
-                  xs={6}
+                  xs={12}
+                  sm={6}
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'center',
+                    justifyContent: 'center',
                   }}
                 >
                   <Typography
-                    mt={2}
-                    mb={0.5}
+                    variant='labelMd'
                     textTransform='uppercase'
                     textAlign='center'
+                    mb={0.625}
                   >
                     link twitter
                   </Typography>
 
                   <StyledButton
                     sx={{
-                      height: 'auto',
                       padding: '5px 15px',
                       background: 'rgba(107, 170, 232, 0.70)',
+
+                      ':hover': {
+                        background: 'rgba(107, 170, 232, 0.70)',
+                      },
                     }}
                   >
                     <Typography
                       mr={3}
                       textTransform='uppercase'
                       textAlign='center'
+                      variant='labelMd'
                     >
                       connect to twitter
                     </Typography>
@@ -111,35 +153,72 @@ const SignUp = () => {
                   </StyledButton>
                 </Grid>
               </Grid>
-            </Box>
+            </FlexBox>
 
-            <StyledButton onClick={handleSubmit}>submit</StyledButton>
+            <StyledButton
+              variants='xl'
+              sx={{ height: 30 }}
+              onClick={handleSubmit}
+            >
+              <Typography variant='labelMd' textTransform='uppercase'>
+                submit
+              </Typography>
+            </StyledButton>
           </>
         ) : (
           <>
-            <Box textAlign='center' mt={3.75}>
-              <Typography mb={1}>Connected wallet:</Typography>
-              <Typography>0x123456789875r4e3w212345678987654321</Typography>
-            </Box>
+            <FlexBox mt={3.75} sx={{ flexDirection: 'column' }}>
+              <Typography
+                variant='paragraph'
+                lineHeight={1}
+                mb={1}
+                sx={{ fontFamily: inter.style.fontFamily }}
+              >
+                Connected wallet:
+              </Typography>
+              <Typography
+                variant='subHeading'
+                textAlign='center'
+                lineHeight={1}
+                fontWeight={600}
+                sx={{ fontFamily: inter.style.fontFamily }}
+              >
+                0x123456789875r4e3w212345678987654321
+              </Typography>
+            </FlexBox>
 
-            <Box textAlign='center' mt={3.75}>
-              <Typography>
+            <FlexBox textAlign='center' mt={3.75}>
+              <Typography
+                variant='subHeading'
+                textAlign='center'
+                lineHeight={1}
+                fontWeight={600}
+                sx={{ fontFamily: inter.style.fontFamily }}
+              >
                 This account does not yet have a VIP pass.
               </Typography>
-            </Box>
+            </FlexBox>
 
             <Box textAlign='center' my={3.75}>
-              <StyledButton onClick={handleSubmit}>MINT</StyledButton>
+              <StyledButton
+                variants='xl'
+                sx={{ height: 30 }}
+                onClick={handleSubmit}
+              >
+                <Typography variant='labelMd' textTransform='uppercase'>
+                  MINT
+                </Typography>
+              </StyledButton>
             </Box>
 
             <StyledButton
-              sx={{
-                padding: '0 15px',
-                backgroundColor: 'rgba(87, 87, 87, 0.70)',
-              }}
+              sx={{ height: 30 }}
+              status='Unavailable'
               onClick={handleSubmit}
             >
-              skip
+              <Typography variant='labelMd' textTransform='uppercase'>
+                skip
+              </Typography>
             </StyledButton>
           </>
         )}

@@ -11,7 +11,7 @@ import { subscriptionRouter } from '@/server/api/routers/subscribe';
 export const appRouter = createTRPCRouter({
   example: exampleRouter,
   project: projectRouter,
-  subscribe: subscriptionRouter
+  subscribe: subscriptionRouter,
 });
 
 // export type definition of API

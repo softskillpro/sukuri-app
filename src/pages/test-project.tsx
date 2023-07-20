@@ -16,7 +16,7 @@ const TestProjectPage: React.FC = () => {
   const createProjectMutation = api.project.create.useMutation();
   const updateProjectMutation = api.project.update.useMutation();
   const deleteProjectMutation = api.project.delete.useMutation();
-  const getProjectQuery = api.project.get.useQuery(fetchProjectId||"");
+  const getProjectQuery = api.project.get.useQuery(fetchProjectId || '');
 
   const createProject = async () => {
     const newProject = await createProjectMutation.mutateAsync({
