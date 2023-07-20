@@ -21,7 +21,11 @@ export const MarketplaceCarouselCard = ({
   return (
     <MarketplaceCarouselCardContainer>
       <Image
-        src={largeImageURL}
+        src={
+          'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1' ??
+          largeImageURL
+        }
+        priority
         alt='Product'
         className='card-bg'
         fill={true}

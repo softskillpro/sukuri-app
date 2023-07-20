@@ -5,7 +5,6 @@ import AboutSukuri from '@/components/v2/AboutSukuri';
 import TwitterCTA from '@/components/v2/TwitterCta';
 import { StyledHr } from '@/components/v2/Common/Splitter/styles';
 import { CategoryTileProps } from '@/components/v2/Common/CategoryTile';
-import mock from '@/utils/mock';
 
 import {
   MarketplaceContainer,
@@ -16,12 +15,7 @@ import {
 import TrendingSection from '@/components/v2/TrendingSection';
 import CategorySection from '@/components/v2/CategorySection';
 import TopProjectsSection from '@/components/v2/TopProjectsSection';
-
-// TODO: mock trending data
-const trendingProject = Array.from(mock.slice(0, 1));
-
-// TODO: mock top Projects data
-const topProjects = Array.from(mock.slice(0, 3));
+import { NFTType } from '@/interface/Nft.interface';
 
 // TODO: check if there's a list of categories that should be passed to component
 // for now, hardcoded strings used
@@ -36,7 +30,12 @@ const categories: CategoryTileProps[] = [
 const Marketplace = ({
   projects,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  console.log(projects);
+  // TODO: mock trending data
+  const trendingProject: NFTType[] = Array.from(projects.slice(0, 1));
+
+  // TODO: mock top Projects data
+  const topProjects: NFTType[] = Array.from(projects.slice(0, 3));
+
   return (
     <MarketplaceContainer>
       <MarketplaceIntro>
