@@ -26,15 +26,17 @@ const EntryCard = ({ imgUri, title, uri }: EntryCardContainer) => {
         alt='Entry Card'
         className='entry-card-img'
       />
-      <Typography
-        variant='labelLg'
-        textTransform='uppercase'
-        fontWeight={600}
-        textAlign='right'
-        zIndex={100}
-      >
-        {title}
-      </Typography>
+      <div className='entry-title-wrapper'>
+        <Typography
+          variant='labelLg'
+          textTransform='uppercase'
+          fontWeight={600}
+          textAlign='right'
+          zIndex={100}
+        >
+          {title}
+        </Typography>
+      </div>
     </EntryCardContainer>
   );
 };
