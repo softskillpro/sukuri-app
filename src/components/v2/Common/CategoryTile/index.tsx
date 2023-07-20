@@ -20,14 +20,16 @@ export const CategoryTile = ({ name, image, count }: CategoryTileProps) => {
           className='category-tile-bg'
         />
       ) : null}
-      <Typography variant='h3' align='center'>
-        {name}
-      </Typography>
-      {count ? (
-        <Typography variant='paragraph' align='center'>
-          {count} products
+      <div className='category-content'>
+        <Typography variant='h3' align='center'>
+          {name}
         </Typography>
-      ) : null}
+        {count ? (
+          <Typography variant='paragraph' align='center'>
+            {count} products
+          </Typography>
+        ) : null}
+      </div>
     </CategoryTileContainer>
   );
 };

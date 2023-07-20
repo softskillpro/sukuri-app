@@ -12,7 +12,6 @@ export const CategoryTileContainer = styled(Box)(({ theme }) => ({
   width: '100%',
   height: '128px',
   overflow: 'hidden',
-  flexShrink: 0,
 
   cursor: 'pointer',
 
@@ -20,12 +19,6 @@ export const CategoryTileContainer = styled(Box)(({ theme }) => ({
 
   borderRadius: 15,
   border: `2px solid ${theme.palette.border.main}`,
-
-  // transition: 'filter 0.25s',
-
-  '&:hover': {
-    filter: 'brightness(90%)',
-  },
 
   [theme.breakpoints.down('md')]: {
     height: 80,
@@ -39,4 +32,24 @@ export const CategoryTileContainer = styled(Box)(({ theme }) => ({
     zIndex: -5,
     objectFit: 'cover',
   },
+
+  '.category-content': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    width: '100%',
+    height: '100%',
+    
+    background:
+      'linear-gradient(270deg, #000 0%, rgba(0, 0, 0, 0.20) 100%)',
+    backgroundSize: '100%',
+    backgroundPosition: 'right',
+
+    transition: 'background 0.25s',
+
+    '&:hover': {
+      backgroundSize: '300%'
+    },
+  }
 }));

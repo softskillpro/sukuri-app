@@ -20,27 +20,30 @@ export const MarketplaceCarouselCard = ({
 }: MarketplaceCarouselCardProps) => {
   return (
     <MarketplaceCarouselCardContainer>
-      <Image
-        src={
-          'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1' ??
-          largeImageURL
-        }
-        priority
-        alt='Product'
-        className='card-bg'
-        fill={true}
-      />
-      <InfoWrapper>
-        <Typography
-          variant='productTitle'
-          align='right'
-          className='product-tile'
-        >
-          {name}
-        </Typography>
-        <StyledButton className='category-button'>{category}</StyledButton>
-      </InfoWrapper>
-      <MembershipCardGroup membershipPrice={membershipPrice} />
+        <Image
+        // src={largeImageURL}
+          src={
+            'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1' ??
+            largeImageURL
+          }
+          priority
+          alt='Product'
+          className='card-bg'
+          fill={true}
+        />
+        <InfoWrapper>
+          <Typography
+            variant='productTitle'
+            align='right'
+            className='product-tile'
+          >
+            {name}
+          </Typography>
+          <StyledButton className='category-button'>{category}</StyledButton>
+          <div className='membership-card-wrapper'>
+            <MembershipCardGroup membershipPrice={membershipPrice}/>
+          </div>
+        </InfoWrapper>
     </MarketplaceCarouselCardContainer>
   );
 };

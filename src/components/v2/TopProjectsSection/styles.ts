@@ -64,15 +64,41 @@ export const TopProjectInfoWrapper = styled(Box)(({ theme }) => ({
   justifyContent: 'space-between',
   alignItems: 'end',
 
-  padding: '15px 10px 40px 10px',
+  
+  '.top-proj-content-wrapper': {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+    height:'100%',
+    width: '100%',
+    justifyContent: 'space-between',
+    
+    borderRadius: 10,
+    
+    cursor: 'pointer',
+    
+    background:
+    'linear-gradient(270deg, #000 0%, rgba(0, 0, 0, 0.20) 100%)',
+    backgroundSize: '100%',
+    backgroundPosition: 'right',
 
-  [theme.breakpoints.down('md')]: {
-    alignItems: 'end',
-    padding: '10px 10px 30px 10px',
-  },
+    transition: 'background 0.25s',
 
-  [theme.breakpoints.down('sm')]: {
-    padding: '5px 5px 15px 5px',
+    '&:hover': {
+      backgroundSize: '300%'
+    },
+
+    
+    padding: '15px 10px 40px 10px',
+
+    [theme.breakpoints.down('md')]: {
+      alignItems: 'end',
+      padding: '10px 10px 30px 10px',
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      padding: '5px 5px 15px 5px',
+    },
   },
 
   '.top-proj-bg': {
@@ -93,6 +119,8 @@ export const MembershipCardWrapper = styled(Box)(({ theme }) => ({
   width: '100%',
   marginTop: -30,
   padding: '5px 5px 5px',
+  
+  zIndex: 3,
 
   [theme.breakpoints.down('md')]: {
     width: '100%',

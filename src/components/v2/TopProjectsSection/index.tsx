@@ -33,6 +33,7 @@ const TopProjectsSection = ({ topProjects }: any) => {
             >
               <TopProjectInfoWrapper>
                 <Image
+                  // src={project.thumbnail_image}
                   src={
                     'https://i.seadn.io/gcs/files/d34ed1514aa22989df91aec0feda0aba.gif?auto=format&dpr=1&h=500&fr=1' ??
                     project.thumbnail_image
@@ -42,14 +43,16 @@ const TopProjectsSection = ({ topProjects }: any) => {
                   fill={true}
                   className='top-proj-bg'
                 />
-                <Typography
-                  variant='productTitleSmall'
-                  className='project-name'
-                  textAlign='right'
-                >
-                  {project.name}
-                </Typography>
-                <StyledButton className='project-category'>gaming</StyledButton>
+                <div className='top-proj-content-wrapper'>
+                  <Typography
+                    variant='productTitleSmall'
+                    className='project-name'
+                    textAlign='right'
+                  >
+                    {project.name}
+                  </Typography>
+                  <StyledButton className='project-category'>gaming</StyledButton>
+                </div>
               </TopProjectInfoWrapper>
               <MembershipCardWrapper>
                 <MembershipCardGroup />

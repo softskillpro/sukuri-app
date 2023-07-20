@@ -21,15 +21,18 @@ import { NFTType } from '@/interface/Nft.interface';
 // for now, hardcoded strings used
 const categories: CategoryTileProps[] = [
   { name: 'utility', image: '/images/v2/recommend.png', count: 50 },
-  { name: 'gaming', image: '/images/v2/recommend.png' },
+  { name: 'gaming', image: '/images/v2/recommend.png', count: 50 },
   { name: 'content', image: '/images/v2/recommend.png' },
-  { name: 'dao', image: '/images/v2/recommend.png' },
+  { name: 'dao', image: '/images/v2/recommend.png', count: 50 },
   { name: 'alpha', image: '/images/v2/recommend.png' },
 ];
+
+// import mock from '@/utils/mock';
 
 const Marketplace = ({
   projects,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+
   // TODO: mock trending data
   const trendingProject: NFTType[] = Array.from(projects.slice(0, 1));
 

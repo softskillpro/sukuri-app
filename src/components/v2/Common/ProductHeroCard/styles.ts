@@ -3,8 +3,6 @@ import { styled } from '@mui/material/styles';
 export const ProductHeroCardContainer = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: 15,
-  background:
-    'linear-gradient(270deg, #000 0%, rgba(0, 0, 0, 0.72) 28.13%, rgba(0, 0, 0, 0.00) 100%)',
   zIndex: 50,
   margin: "0px 15px",
   boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.6)',
@@ -31,6 +29,13 @@ export const ProductHeroCardContainer = styled('div')(({ theme }) => ({
 
   '.product-hero-card-wrapper': {
     padding: 15,
+    borderRadius: 15,
+    background:
+      'linear-gradient(270deg, #000 0%, rgba(0, 0, 0, 0.72) 28.13%, rgba(0, 0, 0, 0.00) 100%)',
+
+    [theme.breakpoints.down('md')]: {
+      borderRadius: 10,
+    },
 
     '.product-hero-content-wrapper': {
       flexDirection: 'column',

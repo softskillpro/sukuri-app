@@ -11,16 +11,12 @@ export const MarketplaceCarouselCardContainer = styled(Box)(({ theme }) => ({
 
   height: 355,
 
-  padding: 15,
-
   [theme.breakpoints.down('md')]: {
     height: 200,
-    padding: 10,
   },
 
   [theme.breakpoints.down('sm')]: {
     height: 300,
-    padding: 5,
   },
 
   '.card-bg': {
@@ -38,18 +34,33 @@ export const MarketplaceCarouselCardContainer = styled(Box)(({ theme }) => ({
     order: '1px solid rgba(255,255,255.2)',
   },
 
-  '.product-title': {
-    filter: 'drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.25))',
-  },
+
+  '.membership-card-wrapper':{
+    width: "50%",
+    padding: 5,
+
+    [theme.breakpoints.down('md')]: {
+      width: "100%",
+    }
+  }
 }));
 
-export const InfoWrapper = styled(Box)(() => ({
+export const InfoWrapper = styled(Box)(({theme}) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'end',
   height: '100%',
   justifyContent: 'space-between',
-  padding: '30px 15px 15px 15px',
-  background: 'rgb(0,0,0,0.4)', // TODO: temp solution
+  background:
+      'linear-gradient(270deg, #000 0%, rgba(0, 0, 0, 0.72) 28.13%, rgba(0, 0, 0, 0.00) 100%)',
   borderRadius: 5,
+
+  padding: 15,
+  [theme.breakpoints.down('md')]: {
+    padding: 10,
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    padding: 5,
+  },
 }));
