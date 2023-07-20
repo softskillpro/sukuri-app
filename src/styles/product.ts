@@ -69,3 +69,18 @@ export const ProductContainer = styled('div')(({ theme }) => ({
     },
   },
 }));
+
+export const SidebarComboContainer = styled('section')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+
+  gap: 10,
+
+  [theme.breakpoints.down('xl')]: {
+    flexDirection: 'row',
+  },
+
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column',
+  }
+}))

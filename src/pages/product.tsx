@@ -7,7 +7,7 @@ import { StyledDivider } from '@/components/v2/Common/StyledDivider';
 import SubscriptionTiersCard from '@/components/v2/SubscriptionTiersCard';
 import DiscoverCreatorsCard from '@/components/v2/Common/DiscoverCreatorsCard';
 import TopCategoriesCard from '@/components/v2/Common/TopCategoriesCard';
-import { ProductContainer } from '@/styles/product';
+import { ProductContainer, SidebarComboContainer } from '@/styles/product';
 
 const products = ['boat.png', 'project_info.png', 'project_info.png'];
 
@@ -17,10 +17,12 @@ const Product = () => {
       <ProductHeroCard />
 
       <SidebarLayout className='product-layout'>
-        <section>
+        <SidebarComboContainer>
+        {/* <section> */}
           <DiscoverCreatorsCard />
           <TopCategoriesCard className='top-categories-card' />
-        </section>
+        {/* </section> */}
+        </SidebarComboContainer>
 
         <section className='sidebar-layout-body'>
           <ProductContentCardGroup />

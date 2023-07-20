@@ -2,8 +2,9 @@ import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import FlexBox from '@/components/v2/Common/FlexBox';
 import EntryCard from '@/components/v2/Common/EntryCard';
-import { EntryCardGroupContainer } from './styles';
 import type { Entry } from '@/interface/entry.interface';
+
+import { EntryCardGroupContainer } from './styles';
 
 interface EntryCardGroupProps {
   title: string;
