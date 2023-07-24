@@ -1,4 +1,4 @@
-import Image from 'next/image';
+// import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import Seo from '@/components/v2/Common/Seo';
@@ -18,13 +18,13 @@ const Layout = ({ children }: LayoutProps) => {
     <>
       <Seo />
       <LayoutContainer>
-        <Image
+        {/* <Image
           src='/images/v2/background.jpg'
           alt='Background'
           priority
           className='background-img'
           fill={true}
-        />
+        /> */}
 
         <div className='main-wrapper'>
           <div className='layout-wrapper'>
