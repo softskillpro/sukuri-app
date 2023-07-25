@@ -10,12 +10,12 @@ const entries: Entry[] = [
   {
     imgUri: '/images/v2/trending.jpeg',
     title: 'trending',
-    uri: '/trending',
+    uri: '/marketplace',
   },
   {
     imgUri: '/images/v2/recommend.png',
     title: 'recommended',
-    uri: '/recommended',
+    uri: '/marketplace',
   },
 ];
 

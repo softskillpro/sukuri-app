@@ -1,3 +1,10 @@
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import Typography from '@mui/material/Typography';
+import { StyledHr } from '@/components/v2/Common/Splitter/styles';
+import { StyledButton } from '@/components/v2/Common/StyledButton';
+import MembershipCardGroup from '@/components/v2/Common/MembershipCardGroup';
+import { NFTType } from '@/interface/Nft.interface';
 import {
   TopProjectsSectionContainer,
   TopProjectEntry,
@@ -5,18 +12,18 @@ import {
   TopProjectsList,
   MembershipCardWrapper,
 } from './styles';
-import { StyledHr } from '@/components/v2/Common/Splitter/styles';
-import Typography from '@mui/material/Typography';
-import Image from 'next/image';
-import { StyledButton } from '@/components/v2/Common/StyledButton';
-import MembershipCardGroup from '@/components/v2/Common/MembershipCardGroup';
 
 export type TopProjectsSectionProps = {
-  topProjects: {
-    name: string;
-  };
+  topProjects: NFTType[];
 };
-const TopProjectsSection = ({ topProjects }: any) => {
+
+const TopProjectsSection = ({ topProjects }: TopProjectsSectionProps) => {
+  const router = useRouter();
+
+  const handleProduct = (projectId: string) => {
+    router.push(`/product/${projectId}`);
+  };
+
   return (
     <TopProjectsSectionContainer>
       <Typography variant='h3' className='section-title'>
@@ -24,12 +31,13 @@ const TopProjectsSection = ({ topProjects }: any) => {
       </Typography>
       <StyledHr />
       <TopProjectsList>
-        {topProjects.map((project: any, id: number) => {
+        {topProjects.map((project: NFTType, id: number) => {
           return (
             <TopProjectEntry
               key={`top-project-${id}`}
               className='project-details'
               id={`topProj-${id}`}
+              onClick={() => handleProduct(project.id)}
             >
               <TopProjectInfoWrapper>
                 <Image
@@ -51,7 +59,9 @@ const TopProjectsSection = ({ topProjects }: any) => {
                   >
                     {project.name}
                   </Typography>
-                  <StyledButton className='project-category'>gaming</StyledButton>
+                  <StyledButton className='project-category'>
+                    gaming
+                  </StyledButton>
                 </div>
               </TopProjectInfoWrapper>
               <MembershipCardWrapper>

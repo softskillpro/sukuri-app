@@ -9,7 +9,12 @@ import MembershipCardGroup from '@/components/v2/Common/MembershipCardGroup';
 import { inter } from '@/components/v2/Common/CustomFont';
 import { ProductHeroCardContainer } from './styles';
 
-const ProductHeroCard = () => {
+interface ProductHeroCardProps {
+  name: string;
+  description: string;
+}
+
+const ProductHeroCard = ({ name, description }: ProductHeroCardProps) => {
   const matches = useMediaQuery('(min-width:720px)');
 
   return (
@@ -35,7 +40,7 @@ const ProductHeroCard = () => {
             textAlign='right'
             sx={{ fontFamily: inter.style.fontFamily }}
           >
-            sukuri paid alpha group 100x guarantee
+            {name}
           </Typography>
           <Typography
             variant='paragraph'
@@ -43,8 +48,7 @@ const ProductHeroCard = () => {
             textAlign='right'
             sx={{ fontFamily: inter.style.fontFamily }}
           >
-            An optional blurb, ideally not too long can just add some flavour
-            for the project.
+            {description}
           </Typography>
         </FlexBox>
 

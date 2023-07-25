@@ -3,12 +3,14 @@ export interface TierType {
   id?: number;
   name: string;
   price: string;
+  projectId: string;
   unit: string;
   supply: number;
+  tier_id: number;
   filled: number;
   subscription_length: number;
   subscription_length_unit: string;
-  descripton: string;
+  description: string;
   features: string[];
 }
 

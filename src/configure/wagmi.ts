@@ -33,7 +33,7 @@ const wagmiConfig = createConfig({
     new InjectedConnector({
       chains,
       options: {
-        name: 'Injected',
+        name: 'OKX Wallet',
         shimDisconnect: true,
       },
     }),

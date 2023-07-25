@@ -6,17 +6,17 @@ const entries: Entry[] = [
   {
     imgUri: '/images/v2/marketplace.png',
     title: 'gaming',
-    uri: '/gaming',
+    uri: '/marketplace',
   },
   {
     imgUri: '/images/v2/trending.jpeg',
     title: 'utility',
-    uri: '/utility',
+    uri: '/marketplace',
   },
   {
     imgUri: '/images/v2/recommend.png',
     title: 'content',
-    uri: '/content',
+    uri: '/marketplace',
   },
 ];
 

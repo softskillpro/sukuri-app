@@ -1,12 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useState } from 'react';
+import { useAccount } from 'wagmi';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import HambergerMenuIcon from '@/components/v2/svgs/HambergerMenuIcon';
 import { StyledButton } from '@/components/v2/Common/StyledButton';
 import { montserrat } from '@/components/v2/Common/CustomFont';
+import ConnectWallet from '@/components/v2/ConnectWallet';
+import formatAddress from '@/utils/formatAddress';
 
 import {
   HeaderContainer,
@@ -26,17 +29,17 @@ const navs: NavsProps[] = [
     link: '/marketplace',
   },
   {
-    title: 'Resources',
-    link: '/resources',
+    title: 'My Subscriptions',
+    link: '/subscription-overview',
   },
   {
-    title: 'Affiliates',
-    link: '/affiliates',
+    title: 'Docs',
+    link: 'https://sukuri.notion.site/Sukuri-Protocol-c254d45224b14afabbd9e79d1e05d035',
   },
-  {
-    title: 'Start Selling',
-    link: '/start-selling',
-  },
+  // {
+  //   title: 'Start Selling',
+  //   link: '/start-selling',
+  // },
 ];
 
 interface HeaderDrawerProps {
@@ -53,11 +56,13 @@ const HeaderDrawer = ({ open, children, handleClose }: HeaderDrawerProps) => (
 
 interface HeaderBodyProps {
   handleClose: () => void;
+  handleConnect: () => void;
 }
 
-const HeaderBody = ({ handleClose }: HeaderBodyProps) => {
+const HeaderBody = ({ handleClose, handleConnect }: HeaderBodyProps) => {
   const matches = useMediaQuery('(min-width:1024px)');
   const mobile = useMediaQuery('(min-width:600px)');
+  const { address, isConnected } = useAccount();
 
   const [clicked, setClicked] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -126,8 +131,13 @@ const HeaderBody = ({ handleClose }: HeaderBodyProps) => {
           </>
         )}
 
-        <StyledButton variants='sm' sx={{ mx: 2.5 }}>
-          vip pass
+        <StyledButton
+          variants='sm'
+          sx={{ ml: 2.5, fontSize: '12px !important' }}
+          disabled={isConnected}
+          onClick={handleConnect}
+        >
+          {isConnected ? formatAddress(address) : 'Connect'}
         </StyledButton>
       </HeaderBodyContainer>
 
@@ -157,63 +167,79 @@ const HeaderBody = ({ handleClose }: HeaderBodyProps) => {
 const Header = () => {
   const matches = useMediaQuery('(min-width:600px)');
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(0);
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handleDrawerOpen = () => {
+    setOpen(1);
   };
 
   const handleClose = useCallback(() => {
-    setOpen(false);
+    setOpen(0);
+  }, []);
+
+  const handleConnect = useCallback(() => {
+    setOpen(2);
   }, []);
 
   return (
-    <header>
-      <HeaderContainer>
-        <Link href='/'>
-          <Image src='/images/v2/logo.png' width={35} height={35} alt='Logo' />
+    <>
+      <header>
+        <HeaderContainer>
+          <Link href='/'>
+            <Image
+              src='/images/v2/logo.png'
+              width={35}
+              height={35}
+              alt='Logo'
+            />
 
-          <Typography
-            variant='wordmarkHeader'
-            color='text.primary'
-            textTransform='uppercase'
-            ml={2}
-          >
-            Sukuri <span style={{ fontWeight: 400 }}>Protocol</span>
-          </Typography>
-        </Link>
+            <Typography
+              variant='wordmarkHeader'
+              color='text.primary'
+              textTransform='uppercase'
+              ml={2}
+            >
+              Sukuri <span style={{ fontWeight: 400 }}>Protocol</span>
+            </Typography>
+          </Link>
 
-        {matches ? (
-          <HeaderBody handleClose={handleClose} />
-        ) : (
-          <IconButton onClick={handleOpen}>
-            <HambergerMenuIcon />
-          </IconButton>
-        )}
-      </HeaderContainer>
+          {matches ? (
+            <HeaderBody
+              handleClose={handleClose}
+              handleConnect={handleConnect}
+            />
+          ) : (
+            <IconButton onClick={handleDrawerOpen}>
+              <HambergerMenuIcon />
+            </IconButton>
+          )}
+        </HeaderContainer>
 
-      <HeaderDrawer open={open} handleClose={handleClose}>
-        <Link href='/'>
-          <Image
-            src='/images/v2/logo.png'
-            priority
-            width={30}
-            height={30}
-            alt='Logo'
-          />
-          <Typography
-            variant='h4'
-            color='text.primary'
-            ml={2}
-            textTransform='uppercase'
-          >
-            Sukuri <span style={{ fontWeight: 400 }}>Protocol</span>
-          </Typography>
-        </Link>
+        <HeaderDrawer open={open === 1} handleClose={handleClose}>
+          <Link href='/'>
+            <Image
+              src='/images/v2/logo.png'
+              priority
+              width={30}
+              height={30}
+              alt='Logo'
+            />
+            <Typography
+              variant='h4'
+              color='text.primary'
+              ml={2}
+              textTransform='uppercase'
+            >
+              Sukuri <span style={{ fontWeight: 400 }}>Protocol</span>
+            </Typography>
+          </Link>
 
-        <HeaderBody handleClose={handleClose} />
-      </HeaderDrawer>
-    </header>
+          <HeaderBody handleClose={handleClose} handleConnect={handleConnect} />
+        </HeaderDrawer>
+      </header>
+
+      <ConnectWallet open={open === 2} onClose={handleClose} />
+    </>
   );
 };
 

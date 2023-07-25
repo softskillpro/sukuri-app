@@ -32,7 +32,6 @@ const categories: CategoryTileProps[] = [
 const Marketplace = ({
   projects,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-
   // TODO: mock trending data
   const trendingProject: NFTType[] = Array.from(projects.slice(0, 1));
 

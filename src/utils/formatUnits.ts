@@ -5,7 +5,7 @@ const formatUnits = (price?: string, unit?: string) => {
 
   if (unit === 'wei') {
     const etherValue = formatEther(price);
-    return etherValue;
+    return `${etherValue}Ξ`;
   }
 
   return price;

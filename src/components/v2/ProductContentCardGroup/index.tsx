@@ -31,7 +31,13 @@ const included = [
   },
 ];
 
-const ProductContentCardGroup = () => {
+interface ProductContentCardGroupProps {
+  description: string;
+}
+
+const ProductContentCardGroup = ({
+  description,
+}: ProductContentCardGroupProps) => {
   return (
     <ProductContentCardGroupContainer className='product-content-card-group'>
       <ProductContentCard title='About'>
@@ -41,9 +47,7 @@ const ProductContentCardGroup = () => {
           component='div'
           sx={{ fontFamily: inter.style.fontFamily }}
         >
-          Cupidatat amet qui excepteur esse velit. Voluptate dolore amet
-          exercitation aute pariatur culpa. Ullamco commodo consectetur commodo
-          quis est qui sunt eu do irure non aliqua sit. Enim sit.
+          {description}
         </Typography>
       </ProductContentCard>
 

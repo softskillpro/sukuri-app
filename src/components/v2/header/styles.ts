@@ -26,7 +26,7 @@ export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
       ':not(:last-of-type)': {
         marginRight: 40,
       },
-    }
+    },
   },
 
   '.avatar': {
@@ -34,7 +34,7 @@ export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
   },
 
   [theme.breakpoints.down('xl')]: {
-    padding: '0 10px',
+    padding: '0 20px',
   },
 }));
 
@@ -88,6 +88,11 @@ export const HeaderPopper = styled(Popper)(({ theme }) => ({
   a: {
     textDecoration: 'none',
     lineHeight: 1,
+    fontSize: 9,
+
+    ':hover': {
+      opacity: 0.7,
+    },
 
     ':not(:last-of-type)': {
       marginBottom: 15,
@@ -96,6 +101,14 @@ export const HeaderPopper = styled(Popper)(({ theme }) => ({
 }));
 
 export const HeaderBodyContainer = styled(FlexBox)(({ theme }) => ({
+  a: {
+    fontSize: 9,
+
+    ':hover': {
+      opacity: 0.7,
+    },
+  },
+
   '.header-more-button': {
     display: 'flex',
     alignItems: 'center',

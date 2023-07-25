@@ -12,16 +12,16 @@ export const MultiCarouselContainer = styled(FlexBox)(({ theme }) => ({
   },
 
   '.btn-left': {
-    left: '25%',
+    left: '16%',
     [theme.breakpoints.down('sm')]: {
-      left: '30%',
+      left: '12%',
     },
   },
 
   '.btn-right': {
-    right: '25%',
+    right: '16%',
     [theme.breakpoints.down('sm')]: {
-      right: '30%',
+      right: '12%',
     },
   },
 

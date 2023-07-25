@@ -11,7 +11,7 @@ export const StyledPaper = styled(Paper)(() => ({
 export const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     color: theme.palette.common.white,
-    boxShadow: theme.palette.shadow.main,
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
 
     ':nth-of-type(1)': {
       borderRadius: '10px 0 0 0',

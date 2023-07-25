@@ -1,94 +1,91 @@
-import { Fragment } from 'react';
-import Image from 'next/image';
-import { type NextPage } from 'next';
-import Grid from '@mui/material/Grid';
+import Link from 'next/link';
+import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import Typography from '@mui/material/Typography';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { HomeContainer } from '@/styles/home';
-import ConnectWallet from '@/components/ConnectWallet';
-import ProjectIntro from '@/components/common/ProjectIntro';
-import { HorizontalDivider } from '@/components/common/StyledDivider';
+import AboutSukuri from '@/components/v2/AboutSukuri';
+import TwitterCTA from '@/components/v2/TwitterCta';
+import { StyledHr } from '@/components/v2/Common/Splitter/styles';
+import { CategoryTileProps } from '@/components/v2/Common/CategoryTile';
 
-const contents = [
-  'Supercharging subscriptions on the blockchain.',
-  'More feature summaries to appear (animated slide and fade in) as the user scrolls down.',
-  'Something about being better than everyone else.',
+import {
+  MarketplaceContainer,
+  MarketplaceIntro,
+  MarketplaceContent,
+  CategoryList,
+} from '@/styles/marketplace';
+import TrendingSection from '@/components/v2/TrendingSection';
+import CategorySection from '@/components/v2/CategorySection';
+import TopProjectsSection from '@/components/v2/TopProjectsSection';
+import { NFTType } from '@/interface/Nft.interface';
+
+// TODO: check if there's a list of categories that should be passed to component
+// for now, hardcoded strings used
+const categories: CategoryTileProps[] = [
+  { name: 'utility', image: '/images/v2/recommend.png', count: 50 },
+  { name: 'gaming', image: '/images/v2/recommend.png', count: 50 },
+  { name: 'content', image: '/images/v2/recommend.png' },
+  { name: 'dao', image: '/images/v2/recommend.png', count: 50 },
+  { name: 'alpha', image: '/images/v2/recommend.png' },
 ];
 
-const Home: NextPage = () => {
-  const matches = useMediaQuery('(min-width:1200px)');
+// import mock from '@/utils/mock';
+
+const Marketplace = ({
+  projects,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  // TODO: mock trending data
+  const trendingProject: NFTType[] = Array.from(projects.slice(0, 1));
+
+  // TODO: mock top Projects data
+  const topProjects: NFTType[] = Array.from(projects.slice(0, 3));
 
   return (
-    <HomeContainer>
-      <Image
-        src='/images/background.png'
-        width={940}
-        height={870}
-        priority
-        alt='background'
-        className='home-logo'
-      />
+    <MarketplaceContainer>
+      <MarketplaceIntro>
+        <Typography variant='wordmarkMarketplace' align='center'>
+          SUKURI <span style={{ fontWeight: 400 }}>PROTOCOL</span>
+        </Typography>
+        <input placeholder='SEARCH' className='marketplace-search' />
+        <Typography
+          variant='subHeading'
+          align='center'
+          sx={{ lineHeight: '120%' }}
+        >
+          Explore new ways to buy, sell and create subscriptions.
+          <br />
+          All on the blockchain.
+        </Typography>
+        <StyledHr />
+        <CategoryList>
+          {categories.map((category, id) => (
+            <Link href='/' key={id}>
+              <Typography variant='labelMd' align='center' key={id}>
+                {category.name}
+              </Typography>
+            </Link>
+          ))}
+        </CategoryList>
+      </MarketplaceIntro>
 
-      <Grid container spacing={3} className='signup-section'>
-        <Grid item xs={12} md={6}>
-          <Typography
-            variant='custom7'
-            color='white.main'
-            textAlign='right'
-            component='div'
-          >
-            Supercharging subscriptions <br />
-            on the blockchain.
-          </Typography>
-          <Typography variant='h1' color='primary.main' component='div'>
-            Sukuri
-          </Typography>
-          <Typography variant='custom6' color='text1.light'>
-            Protocol
-          </Typography>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <ConnectWallet />
-        </Grid>
-      </Grid>
-
-      <HorizontalDivider
-        sx={{
-          borderBottom: (theme) => `0.5px solid ${theme.palette.border.main}`,
-        }}
-      />
-
-      <section className='project-intro-wrapper'>
-        {[0, 1, 2, 3].map((id) => (
-          <Fragment key={`project-${id}`}>
-            <Grid container spacing={5}>
-              <Grid item xs={12} lg={6}>
-                <ProjectIntro />
-              </Grid>
-            </Grid>
-            {id < contents.length && (
-              <Grid
-                container
-                spacing={5}
-                sx={{ marginBottom: !matches ? 5 : 0 }}
-              >
-                <Grid item xs={12} lg={6} />
-                <Grid item xs={12} lg={6}>
-                  <Typography
-                    variant='h4'
-                    fontWeight={600}
-                    color='primary.main'
-                  >
-                    {contents[id]}
-                  </Typography>
-                </Grid>
-              </Grid>
-            )}
-          </Fragment>
-        ))}
-      </section>
-    </HomeContainer>
+      <MarketplaceContent>
+        <TrendingSection trendingProject={trendingProject} />
+        <TopProjectsSection topProjects={topProjects} />
+        <CategorySection categories={categories} />
+        <AboutSukuri />
+        <TwitterCTA />
+      </MarketplaceContent>
+    </MarketplaceContainer>
   );
 };
 
-export default Home;
+export default Marketplace;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const page = 0;
+  const pageSize = 10;
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/project/featured?page=${page}&pageSize=${pageSize}`,
+  );
+  const projects = await res.json();
+  return { props: { projects } };
+};
