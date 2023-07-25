@@ -10,6 +10,7 @@ const user: Prisma.UserCreateInput = {
   address: '0xe7A5839F8F978037B72bd48d3777E58Aa6093588',
 };
 
+
 const paymentOptions: Prisma.PaymentOptionCreateInput[] = [
   {
     token: '0x0000000000000000000000000000000000000000',
