@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -11,9 +12,14 @@ import { SubscriptionEntryCardContainer } from './styles';
 
 const SubscriptionEntryCard = () => {
   const matches = useMediaQuery('(min-width:600px)');
+  const router = useRouter();
+
+  const handleRouter = () => {
+    router.push('/subscription-management');
+  };
 
   return (
-    <SubscriptionEntryCardContainer>
+    <SubscriptionEntryCardContainer onClick={handleRouter}>
       <FlexBox className='subscription-entry-header'>
         <Image
           src='/images/v2/subscription.png'
