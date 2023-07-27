@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { TrendingSectionContainer } from './styles';
 import Typography from '@mui/material/Typography';
 import { StyledHr } from '@/components/v2/Common/Splitter/styles';
@@ -8,8 +9,14 @@ export type TrendingSectionProps = {
   trendingProject: NFTType[];
 };
 const TrendingSection = ({ trendingProject }: TrendingSectionProps) => {
+  const router = useRouter();
+
+  const handleProduct = () => {
+    router.push(`/product/${trendingProject[0]?.id}`);
+  };
+
   return (
-    <TrendingSectionContainer>
+    <TrendingSectionContainer onClick={handleProduct}>
       <Typography variant='h3' className='section-title'>
         Trending
       </Typography>

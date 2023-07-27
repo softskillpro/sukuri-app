@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 
 export const TrendingSectionContainer = styled(Box)(({ theme }) => ({
   width: '100%',
+  cursor: 'pointer',
 
   '.section-title': {
     marginLeft: 30,
