@@ -52,7 +52,7 @@ const TierCard = ({
               textAlign: 'center',
             }}
           >
-            {tier.descripton}
+            {tier.description}
           </Typography>
 
           <Typography
