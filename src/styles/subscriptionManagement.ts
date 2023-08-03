@@ -28,8 +28,8 @@ export const SubscriptionManagementContainer = styled('div')(({ theme }) => ({
     '.subscription-management-body': {
       width: '100%',
       display: 'grid',
-      gridTemplateColumns: '2fr 3fr',
-      gap: 10,
+      gridTemplateColumns: '1fr',
+      gap: 40,
       padding: '0 10px',
 
       '.deactivate-wrapper': {
@@ -64,11 +64,6 @@ export const SubscriptionManagementContainer = styled('div')(({ theme }) => ({
     '.sidebar-layout-body': {
       '.subscription-management-header': {
         padding: 15,
-      },
-
-      '.subscription-management-body': {
-        gridTemplateColumns: '1fr',
-        gap: 40,
       },
     },
   },

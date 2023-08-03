@@ -13,6 +13,7 @@ export const ProjectInfoCardContainer = styled(FlexBox)(({ theme }) => ({
   backdropFilter: 'blur(2.5px)',
 
   '.project-info-card-header': {
+    width: '100%',
     display: 'grid',
     gridTemplateColumns: '1fr',
 
@@ -68,7 +69,7 @@ export const ProjectInfoCardContainer = styled(FlexBox)(({ theme }) => ({
 
   [theme.breakpoints.down('xl')]: {
     '.project-info-card-header': {
-      gridTemplateColumns: '8fr 2fr',
+      // gridTemplateColumns: '8fr 2fr',
 
       '.project-info-img-social-wrapper': {
         '.project-info-social-group': {
@@ -79,12 +80,6 @@ export const ProjectInfoCardContainer = styled(FlexBox)(({ theme }) => ({
           padding: 10,
         },
       },
-    },
-  },
-
-  [theme.breakpoints.down('sm')]: {
-    '.project-info-card-header': {
-      gridTemplateColumns: '1fr',
     },
   },
 }));

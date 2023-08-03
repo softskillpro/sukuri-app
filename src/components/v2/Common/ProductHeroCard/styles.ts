@@ -4,7 +4,7 @@ export const ProductHeroCardContainer = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: 15,
   zIndex: 50,
-  margin: "0px 15px",
+  margin: '0px 30px',
   boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.6)',
 
   '.product-hero-img': {
@@ -17,7 +17,7 @@ export const ProductHeroCardContainer = styled('div')(({ theme }) => ({
 
     [theme.breakpoints.down('md')]: {
       borderRadius: 10,
-    }
+    },
   },
 
   '.product-hero=img::after': {
@@ -68,7 +68,6 @@ export const ProductHeroCardContainer = styled('div')(({ theme }) => ({
   },
 
   [theme.breakpoints.down('md')]: {
-
     borderRadius: 10,
 
     '.product-hero-card-wrapper': {
@@ -89,5 +88,9 @@ export const ProductHeroCardContainer = styled('div')(({ theme }) => ({
         width: '100%',
       },
     },
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    margin: 0,
   },
 }));
