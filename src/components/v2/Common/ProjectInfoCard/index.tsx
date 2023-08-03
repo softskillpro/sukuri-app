@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Typography from '@mui/material/Typography';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import FlexBox from '@/components/v2/Common/FlexBox';
 import { StyledButton } from '@/components/v2/Common/StyledButton';
 import SubscriptionCard from '@/components/v2/Common/SubscriptionCard';
@@ -10,9 +9,6 @@ import { inter } from '@/components/v2/Common/CustomFont';
 import { ProjectInfoCardContainer } from './styles';
 
 const ProjectInfoCard = () => {
-  const matches = useMediaQuery('(min-width:1400px)');
-  const mobiles = useMediaQuery('(min-width:600px)');
-
   return (
     <ProjectInfoCardContainer>
       <div className='project-info-card-header'>
@@ -53,21 +49,21 @@ const ProjectInfoCard = () => {
               price='0.05Ξ'
               period='secondary'
               variant='secondary'
-              orientation={matches || !mobiles ? 'horizontal' : 'vertical'}
+              orientation='horizontal'
               className='project-subscription-card'
             />
             <SubscriptionCard
               price='0.05Ξ'
               period='secondary'
               variant='secondary'
-              orientation={matches || !mobiles ? 'horizontal' : 'vertical'}
+              orientation='horizontal'
               className='project-subscription-card'
             />
             <SubscriptionCard
               price='0.05Ξ'
               period='secondary'
               variant='secondary'
-              orientation={matches || !mobiles ? 'horizontal' : 'vertical'}
+              orientation='horizontal'
               className='project-subscription-card'
             />
           </FlexBox>

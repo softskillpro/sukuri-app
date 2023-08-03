@@ -82,5 +82,5 @@ export const SidebarComboContainer = styled('section')(({ theme }) => ({
 
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
-  }
-}))
+  },
+}));

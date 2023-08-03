@@ -15,8 +15,6 @@ const products = ['boat.png', 'project_info.png', 'project_info.png'];
 const Product = ({
   project,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  console.log(project);
-
   return (
     <ProductContainer>
       <ProductHeroCard
