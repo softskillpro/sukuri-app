@@ -51,10 +51,10 @@ model UserProject {
   id        String      @id @default(uuid())
   userId    String
   projectId String
-  tierId    Int
+  tierId    String
   user      User        @relation(fields: [userId], references: [id])
   project   Project     @relation(fields: [projectId], references: [id])
-  tier      ProjectTier @relation(fields: [tierId], references: [tier_id])
+  tier      ProjectTier @relation(fields: [tierId], references: [id])
 
   @@unique([userId, projectId, tierId])
 }
@@ -76,8 +76,8 @@ model SukuriPass {
 }
 
 model Project {
-  id                String          @id @unique @default(uuid())
-  name              String          @unique
+  id                String           @id @unique @default(uuid())
+  name              String           @unique
   short_description String
   long_description  String
   thumbnail_image   String?
@@ -86,7 +86,7 @@ model Project {
   member_count      Int?
   is_erc721         Boolean
   is_featured       Boolean?
-  accepted_payments ProjectPayment[]  // <- Here
+  accepted_payments ProjectPayment[] // <- Here
   tiers             ProjectTier[]
   subscriptions     UserProject[]
   userId            String?
@@ -94,18 +94,18 @@ model Project {
 }
 
 model PaymentOption {
-  token          String           @id
-  name           String
-  symbol         String
-  is_eth         Boolean
-  projects       ProjectPayment[] // <- Here
+  token    String           @id
+  name     String
+  symbol   String
+  is_eth   Boolean
+  projects ProjectPayment[] // <- Here
 }
 
 model ProjectPayment {
-  projectId   String
-  token   String
-  Project     Project       @relation(fields: [projectId], references: [id])
-  Payment     PaymentOption @relation(fields: [token], references: [token])
+  projectId String
+  token     String
+  Project   Project       @relation(fields: [projectId], references: [id])
+  Payment   PaymentOption @relation(fields: [token], references: [token])
 
   @@id([projectId, token])
 }
@@ -113,7 +113,7 @@ model ProjectPayment {
 model ProjectTier {
   id                       String        @id @unique @default(uuid())
   address                  String
-  tier_id                  Int           @unique
+  tier_id                  Int
   name                     String
   price                    String
   unit                     String
