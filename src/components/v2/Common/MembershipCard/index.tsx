@@ -41,7 +41,7 @@ const MembershipCard = ({
             style={{ width: `calc(100% / ${memberships.length}` }}
           >
             <Typography
-              variant='labelMd'
+              variant='labelXl'
               component='div'
               lineHeight={1}
               textAlign='center'

@@ -2,18 +2,27 @@ import { styled } from '@mui/material/styles';
 import FlexBox from '@/components/common/FlexBox';
 
 export const TierCardContainer = styled(FlexBox)(({ theme }) => ({
+  flex: 1,
   flexDirection: 'column',
   alignItems: 'center',
+  minWidth: 170,
   width: '100%',
   borderRadius: 10,
   border: `1px solid ${theme.palette.lightInternalGlassBorder.main}`,
   boxShadow: theme.palette.shadow.main,
   backdropFilter: 'blur(30px) brightness(120%)',
 
+  '.tier-card-header': {
+    flexDirection: 'column',
+    width: '100%',
+    padding: 12,
+    borderRadius: '10px 10px 0 0',
+  },
+
   '.tier-card-body': {
     flexDirection: 'column',
     width: '100%',
-    padding: '15px',
+    padding: 12,
 
     '.tier-card-content': {
       width: '100%',
@@ -21,6 +30,10 @@ export const TierCardContainer = styled(FlexBox)(({ theme }) => ({
       padding: 10,
       borderRadius: 10,
       background: 'rgba(255, 255, 255, 0.10)',
+
+      li: {
+        '::marker': { fontSize: 12 },
+      },
     },
 
     '.more-info-btn': {
@@ -39,9 +52,9 @@ export const TierCardContainer = styled(FlexBox)(({ theme }) => ({
   },
 
   '.tier-card-footer': {
-    justifyContent: 'center',
+    flexDirection: 'column',
     width: '100%',
-    padding: '10px 80px',
+    padding: 12,
     borderRadius: '0px 0px 10px 10px',
     background: theme.palette.blue.main,
   },

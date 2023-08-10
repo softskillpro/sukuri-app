@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Inter } from 'next/font/google';
 import Typography from '@mui/material/Typography';
 
@@ -19,20 +18,20 @@ interface TierCardProps {
 }
 
 const TierCard = ({ tier, active = false }: TierCardProps) => {
-  const [more, setMore] = useState(false);
+  // const [more, setMore] = useState(false);
 
-  const handleMore = () => {
-    setMore((prev) => !prev);
-  };
+  // const handleMore = () => {
+  //   setMore((prev) => !prev);
+  // };
 
   return (
     <TierCardContainer>
-      <FlexBox sx={{ height: 40 }}>
+      <FlexBox className='tier-card-header'>
         <Typography variant='labelLg' textTransform='uppercase'>
           {tier?.type}
         </Typography>
 
-        <Typography variant='labelXl' textTransform='uppercase' ml={5.5}>
+        <Typography variant='labelXl' textTransform='uppercase'>
           TierCard
         </Typography>
       </FlexBox>
@@ -42,45 +41,46 @@ const TierCard = ({ tier, active = false }: TierCardProps) => {
       <FlexBox className='tier-card-body'>
         <Typography
           variant='paragraph'
-          mt={4}
-          mb={1.5}
+          textAlign='center'
+          my={4}
           px={1.5}
           sx={{ fontFamily: inter.style.fontFamily }}
         >
           {tier?.description}
         </Typography>
 
-        {more && (
+        {/* {more && (
           <div className='tier-card-content'>
-            <Typography
-              variant='paragraph'
-              sx={{ fontFamily: inter.style.fontFamily }}
-            >
-              {tier?.option}
-            </Typography>
+            {tier?.options.map((option, id) => (
+              <li key={`tier-option-${id}`}>
+                <Typography
+                  variant='paragraph'
+                  sx={{ fontFamily: inter.style.fontFamily }}
+                >
+                  {option}
+                </Typography>
+              </li>
+            ))}
           </div>
-        )}
+        )} */}
 
-        <button
+        {/* <button
           className='more-info-btn'
           style={{ fontFamily: inter.style.fontFamily }}
           onClick={handleMore}
         >
           {more ? 'Less' : 'More'} Info
-        </button>
+        </button> */}
       </FlexBox>
 
       <FlexBox className='tier-card-footer'>
-        <FlexBox mr={5.5} sx={{ flexDirection: 'column' }}>
-          <Typography variant='labelXl'>{tier?.price}</Typography>
-          <Typography
-            variant='labelMd'
-            textTransform='uppercase'
-            sx={{ lineHeight: 1 }}
-          >
-            {tier?.period}
-          </Typography>
-        </FlexBox>
+        <Typography variant='labelXl' mt='5px'>
+          {tier?.price}
+        </Typography>
+
+        <Typography variant='labelMd' textTransform='uppercase' mb='5px'>
+          {tier?.period}
+        </Typography>
 
         <StyledButton disabled={active}>subscribe</StyledButton>
       </FlexBox>

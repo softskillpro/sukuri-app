@@ -32,6 +32,15 @@ export const SubscriptionManagementContainer = styled('div')(({ theme }) => ({
       gap: 40,
       padding: '0 10px',
 
+      '.tier-card-group': {
+        width: '100%',
+        flexWrap: 'wrap',
+        gap: 24,
+        marginBottom: 40,
+        alignItems: 'center',
+        justifyItems: 'center',
+      },
+
       '.deactivate-wrapper': {
         flexDirection: 'column',
         alignItems: 'flex-start',
@@ -76,6 +85,28 @@ export const SubscriptionManagementContainer = styled('div')(({ theme }) => ({
             flexDirection: 'column',
             marginBottom: 20,
           },
+        },
+      },
+    },
+  },
+
+  [theme.breakpoints.down(900)]: {
+    '.sidebar-layout-body': {
+      '.subscription-management-body': {
+        '.tier-card-group': {
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+        },
+      },
+    },
+  },
+
+  [theme.breakpoints.down(500)]: {
+    '.sidebar-layout-body': {
+      '.subscription-management-body': {
+        '.tier-card-group': {
+          display: 'grid',
+          gridTemplateColumns: '1fr',
         },
       },
     },
