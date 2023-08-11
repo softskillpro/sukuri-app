@@ -4,5 +4,6 @@ export interface Tier {
   price: string;
   period: string;
   description: string;
-  option: string;
+  options: string[];
+  active: boolean;
 }

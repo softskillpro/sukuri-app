@@ -26,7 +26,8 @@ const tiers: Tier[] = [
     price: '0.005Ξ',
     period: 'monthly',
     description: 'this section more lines than the dot points they both expand',
-    option: 'dot point 1',
+    options: ['dot point 1'],
+    active: true,
   },
   {
     type: 'tier 2',
@@ -34,7 +35,8 @@ const tiers: Tier[] = [
     price: '0.015Ξ',
     period: 'monthly',
     description: 'this section more lines than the dot points they both expand',
-    option: 'dot point 2',
+    options: ['dot point 1', 'dot point 2', 'dot point 3'],
+    active: false,
   },
   {
     type: 'tier 3',
@@ -42,7 +44,17 @@ const tiers: Tier[] = [
     price: '0.025Ξ',
     period: 'monthly',
     description: 'this section more lines than the dot points they both expand',
-    option: 'dot point 3',
+    options: ['dot point 3'],
+    active: false,
+  },
+  {
+    type: 'tier 4',
+    title: 'pleb',
+    price: '0.005Ξ',
+    period: 'monthly',
+    description: 'this section more lines than the dot points they both expand',
+    options: ['dot point 1'],
+    active: false,
   },
 ];
 
@@ -102,21 +114,15 @@ const SubscriptionManagement = () => {
                   overflow: 'auto',
                 }}
               >
-                <Typography
-                  variant='h5'
-                  textTransform='uppercase'
-                  m='0 15px 15px'
-                >
-                  Your Subscription
-                </Typography>
-
-                <TierCard tier={tiers[0]} active />
-
-                <Typography variant='h5' textTransform='uppercase' m='15px'>
-                  Upgrade
-                </Typography>
-
-                <TierCard tier={tiers[1]} />
+                <FlexBox className='tier-card-group'>
+                  {tiers.map((tier) => (
+                    <TierCard
+                      key={tier.type}
+                      tier={tier}
+                      active={tier.active}
+                    />
+                  ))}
+                </FlexBox>
 
                 <FlexBox
                   sx={{
