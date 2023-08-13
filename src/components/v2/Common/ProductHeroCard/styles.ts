@@ -4,7 +4,6 @@ export const ProductHeroCardContainer = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: 15,
   zIndex: 50,
-  margin: '0px 30px',
   boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.6)',
 
   '.product-hero-img': {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import Image from 'next/image';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -14,6 +14,10 @@ import { AuthContainer } from '@/styles/auth';
 const SignUp = () => {
   const [status, setStatus] = useState(1);
 
+  const handleStepper = useCallback((_status: number) => {
+    setStatus(_status);
+  }, []);
+
   const handleSubmit = () => {
     setStatus((prev) => prev + 1);
   };
@@ -28,6 +32,7 @@ const SignUp = () => {
               ? 'Connect your wallet, pick a display name and link external accounts.'
               : 'Claim your VIP pass! This will grant perks in the future.'
           }
+          handleStepper={handleStepper}
         />
 
         {status === 1 ? (
@@ -78,7 +83,7 @@ const SignUp = () => {
                 <Grid
                   item
                   xs={12}
-                  sm={6}
+                  sm={12}
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -110,11 +115,12 @@ const SignUp = () => {
                 <Grid
                   item
                   xs={12}
-                  sm={6}
+                  sm={12}
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
+                    pt: '16px !important',
                   }}
                 >
                   <Typography
@@ -212,7 +218,11 @@ const SignUp = () => {
             </Box>
 
             <StyledButton
-              sx={{ height: 30 }}
+              sx={{
+                height: 30,
+                backgroundColor: 'transparent !important',
+                border: 'none !important',
+              }}
               status='Unavailable'
               onClick={handleSubmit}
             >

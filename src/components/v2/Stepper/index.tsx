@@ -8,9 +8,10 @@ import { StepperContainer, OutlinedNumber } from './styles';
 interface StepperProps {
   status: number;
   content: string;
+  handleStepper: (_status: number) => void;
 }
 
-const Stepper = ({ status, content }: StepperProps) => {
+const Stepper = ({ status, content, handleStepper }: StepperProps) => {
   return (
     <StepperContainer>
       <Typography
@@ -34,7 +35,10 @@ const Stepper = ({ status, content }: StepperProps) => {
       </Typography>
 
       <FlexBox mb={3.75}>
-        <OutlinedNumber active={`${status === 1}`}>
+        <OutlinedNumber
+          active={`${status === 1}`}
+          onClick={() => handleStepper(1)}
+        >
           <Typography
             variant='signupNumber'
             sx={{ fontFamily: inter.style.fontFamily }}

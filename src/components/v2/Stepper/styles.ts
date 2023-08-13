@@ -16,5 +16,6 @@ export const OutlinedNumber = styled(FlexBox)(
     border: '1px solid #FFF',
     background:
       active === 'true' ? 'rgba(255, 255, 255, 0.50);' : 'transparent',
+    cursor: 'pointer',
   }),
 );
