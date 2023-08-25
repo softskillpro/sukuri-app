@@ -1,6 +1,121 @@
 import { Prisma, PrismaClient, User, Project } from '@prisma/client';
+import * as fs from 'fs';
 
 const prisma = new PrismaClient();
+
+interface ProjectData {
+  id: string;
+  name: string;
+  short_description: string;
+  long_description: string;
+  thumbnail_image: string;
+  large_image: string;
+  chain_id: number;
+  member_count: number;
+  is_erc721: boolean;
+  is_featured: boolean;
+  userId: string;
+}
+
+interface ProjectTierData {
+  id: string;
+  address: string;
+  tier_id: number;
+  name: string;
+  price: string;
+  unit: string;
+  supply: number;
+  filled: number;
+  subscription_length: number;
+  subscription_length_unit: string;
+  description: string;
+  features: string[];
+  projectId: string;
+}
+
+function csvToObject(filePath: string) {
+  const csv = fs.readFileSync(filePath, 'utf-8');
+
+  if (!csv) return [];
+
+  const lines = getCSVLines(csv);  // We'll use a new utility function here
+
+  if (!lines || lines.length === 0) return [];
+
+  const headers = parseCSVLine(lines[0] ?? '');
+
+  if (!headers || headers.length === 0) return [];
+
+  const data: any[] = [];
+
+  for (let i = 1; i < lines.length; i++) {
+    const currentline = parseCSVLine(lines[i] ?? '');
+
+    if (!currentline || currentline.length === 0) continue;
+
+    const obj: any = {};
+
+    for (let j = 0; j < headers.length; j++) {
+      const ind: any = headers[j];
+      obj[ind] = currentline[j];
+    }
+
+    data.push(obj);
+  }
+
+  return data;
+}
+
+// A utility function to parse a CSV line, considering quoted values
+function parseCSVLine(line: string): string[] {
+  const result: string[] = [];
+  let startValueIndex = 0;
+  let insideQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    if (line[i] === '"') {
+      insideQuotes = !insideQuotes;
+    } else if (line[i] === ',' && !insideQuotes) {
+      result.push(line.substring(startValueIndex, i).trim().replace(/^"|"$/g, ''));
+      startValueIndex = i + 1;
+    }
+  }
+  result.push(line.substring(startValueIndex).trim().replace(/^"|"$/g, ''));
+
+  return result;
+}
+
+// A utility function to split CSV into lines, considering multiline data inside double quotes
+function getCSVLines(csv: string): string[] {
+  const lines: string[] = [];
+  let buffer = '';
+  let insideQuotes = false;
+
+  for (let i = 0; i < csv.length; i++) {
+    if (csv[i] === '"') {
+      insideQuotes = !insideQuotes;
+    }
+
+    buffer += csv[i];
+
+    if (csv[i] === '\n' && !insideQuotes) {
+      lines.push(buffer.trim());
+      buffer = '';
+    }
+  }
+
+  if (buffer) {
+    lines.push(buffer.trim());
+  }
+
+  return lines;
+}
+
+const projectCsvPath = './prisma/Mock_Project_rows.csv';
+const projectTiersCsvPath = './prisma/Mock_ProjectTier_rows.csv';
+
+const projectData = csvToObject(projectCsvPath);
+const projectTiersData = csvToObject(projectTiersCsvPath);
 
 const user: Prisma.UserCreateInput = {
   id: 'af7d39af-84a9-4a4b-b6a2-18563e42bc6e',
@@ -24,107 +139,21 @@ const paymentOptions: Prisma.PaymentOptionCreateInput[] = [
     is_eth: false,
   },
 ];
-const projects = (_user: User): Prisma.ProjectCreateInput[] => [
-  {
-    id: '1afb19ba-9e01-4a7d-b5c7-9e9943693232',
-    name: 'Nifty Island Battle Pass',
-    short_description: 'A battle pass for Nifty Island games.',
-    long_description:
-      'With the Nifty Island Battle Pass, you are able to gain extra rewards in game every week, take part in battle pass only minigames, and more!',
-    thumbnail_image: 'https://example.com',
-    large_image: 'https://example.com',
-    chain_id: 1,
-    member_count: 1722,
-    is_erc721: false,
-    is_featured: false,
-    User: { connect: { id: _user.id } },
-  },
-  {
-    id: 'e7971323-9781-461b-b34a-bdd588dc6ff9',
-    name: 'Resell Calendar VIP',
-    short_description: 'Gain access to the #1 reselling group!',
-    long_description:
-      'Resell Calendar VIP status offers existing and new RC users access to advanced tools for finding the cheapest deals, price glitches, and drops. Join today and increase your revenue! ',
-    thumbnail_image: 'https://example.com',
-    large_image: 'https://example.com',
-    chain_id: 1,
-    member_count: 1572,
-    is_erc721: true,
-    is_featured: true,
-    User: { connect: { id: _user.id } },
-  },
-  {
-    id: '7263849a-b234-496d-97a2-987654321011',
-    name: 'Bored Ape Yacht Club Membership',
-    short_description: 'Gain access to the Bored Ape Yacht Club community.',
-    long_description:
-      'The Bored Ape Yacht Club is a collection of 10,000 unique NFTs. Members of the club have access to exclusive benefits, such as early access to new projects, discounts on merchandise, and more.',
-    thumbnail_image: 'https://example.com',
-    large_image: 'https://example.com',
-    chain_id: 1,
-    member_count: 12400,
-    is_erc721: true,
-    is_featured: false,
-    User: { connect: { id: _user.id } },
-  },
-  {
-    id: '3c97d7b2-5647-4c1a-87d7-2fbfc97b5f0c',
-    name: 'Exclusive DAO Alpha Group',
-    short_description: 'Premium access to DAO Alpha strategies and insights.',
-    long_description:
-      'Get exclusive access to the DAO Alpha Group. It offers insights, strategies, and discussions around DAOs. Make informed decisions and leverage the collective knowledge of the group!',
-    thumbnail_image: 'https://example.com',
-    large_image: 'https://example.com',
-    chain_id: 1,
-    member_count: 1985,
-    is_erc721: false,
-    is_featured: true,
-    User: { connect: { id: _user.id } },
-  },
-  {
-    id: '54321011-9876-5432-1011-7263849a-b234',
-    name: 'Axie Infinity Scholarship Program',
-    short_description: 'Earn money by playing Axie Infinity.',
-    long_description:
-      'The Axie Infinity Scholarship Program is a way for people to earn money by playing the game Axie Infinity. Players who are accepted into the program are given a team of Axies, which are digital pets that can be used to battle, earn rewards, and more. Players can then use their Axies to earn Smooth Love Potion (SLP), which can be converted into real money.',
-    thumbnail_image: 'https://example.com',
-    large_image: 'https://example.com',
-    chain_id: 1,
-    member_count: 14600,
-    is_erc721: true,
-    is_featured: true,
-    User: { connect: { id: _user.id } },
-  },
-  {
-    id: '456789ab-cdef-4567-89ab-cdef01234567',
-    name: 'Blockchain Gaming Club',
-    short_description: 'A gaming platform for blockchain gamers.',
-    long_description:
-      'Blockchain Gaming Club is a gaming platform for blockchain gamers. We offer a variety of games to choose from, all of which are powered by blockchain technology. Our members have access to exclusive features, such as early access to new games, discounts on in-game items, and more. Join today and start gaming on the blockchain! ',
-    thumbnail_image: 'https://example.com',
-    large_image: 'https://example.com',
-    chain_id: 1,
-    member_count: 1000,
-    is_erc721: false,
-    is_featured: false,
-    User: { connect: { id: _user.id } },
-  },
-  {
-    id: '789abced-def0-4567-89ab-cdef01234567',
-    name: 'The Crypto Guy',
-    short_description:
-      'The most informative and entertaining cryptocurrency YouTuber on the internet.',
-    long_description:
-      'The Crypto Guy is your one-stop shop for all things cryptocurrency. He covers the latest news, provides in-depth analysis, and teaches you how to make money in the crypto market. His videos are informative and entertaining, and he has a large following of subscribers. Join his Patreon today and get access to exclusive content, such as early access to new videos, behind-the-scenes content, and more. ',
-    thumbnail_image: 'https://example.com/the-crypto-guy.jpg',
-    large_image: 'https://example.com/the-crypto-guy-large.jpg',
-    chain_id: 1,
-    member_count: 124,
-    is_erc721: false,
-    is_featured: true,
-    User: { connect: { id: _user.id } },
-  },
-];
+const projects = (_user: User): Prisma.ProjectCreateInput[] => {
+  return projectData.map(project => ({
+    id: project.id,
+    name: project.name,
+    short_description: project.short_description,
+    long_description: project.long_description,
+    thumbnail_image: project.thumbnail_image,
+    large_image: project.large_image,
+    chain_id: parseInt(project.chain_id)??1,
+    member_count: parseInt(project.member_count)??0,
+    is_erc721: project.is_erc721.toLowerCase() === 'true',
+    is_featured: project.is_featured.toLowerCase() === 'true',
+    User: { connect: { id: _user.id } }
+  }));
+};
 
 const projectPayments = (
   _projects: Project[],
@@ -143,260 +172,22 @@ const projectPayments = (
 
 const projectTiers = (
   _projects: Project[],
-): Prisma.ProjectTierCreateInput[] => [
-    {
-      address: '0xe7A5839F8F978037B72bd48d3777E58Aa6093588',
-      tier_id: 1,
-      name: 'Bronze Battle Pass',
-      price: '25000000000000000000',
-      unit: 'wei',
-      supply: 5000,
-      filled: 1222,
-      subscription_length: 90,
-      subscription_length_unit: 'days',
-      description: 'Basic Bronze Battle Pass',
-      features: ['Online Membership Access', '5 Star Points per Month'],
-      Project: { connect: { id: _projects[0]?.id } },
-    },
-    {
-      address: '0xe7A5839F8F978037B72bd48d3777E58Aa6093588',
-      tier_id: 2,
-      name: 'Silver Battle Pass',
-      price: '40000000000000000000',
-      unit: 'wei',
-      supply: 1000,
-      filled: 254,
-      subscription_length: 90,
-      subscription_length_unit: 'days',
-      description: 'Upgraded Silver Battle Pass',
-      features: [
-        'Online Membership Access',
-        '10 Star Points per Month',
-        'Unique Island Rental',
-      ],
-      Project: { connect: { id: _projects[0]?.id } },
-    },
-    {
-      address: '0xe7A5839F8F978037B72bd48d3777E58Aa6093588',
-      tier_id: 3,
-      name: 'Gold Battle Pass',
-      price: '55000000000000000000',
-      unit: 'wei',
-      supply: 500,
-      filled: 246,
-      subscription_length: 90,
-      subscription_length_unit: 'days',
-      description: 'Ultra Gold Battle Pass',
-      features: [
-        'Online Membership Access',
-        '25 Star Points per Month',
-        'Unique Island Rental',
-        'Unique House Rental',
-      ],
-      Project: { connect: { id: _projects[0]?.id } },
-    },
-    {
-      address: '0xe7A5839F8F978037B72bd48d3777E58Aa6093588',
-      tier_id: 1,
-      name: 'Bronze Battle Pass',
-      price: '25000000000000000000',
-      unit: 'wei',
-      supply: 5000,
-      filled: 1222,
-      subscription_length: 90,
-      subscription_length_unit: 'days',
-      description: 'Basic Bronze Battle Pass',
-      features: ['Online Membership Access', '5 Star Points per Month'],
-      Project: { connect: { id: _projects[1]?.id } },
-    },
-    {
-      address: '0xe7A5839F8F978037B72bd48d3777E58Aa6093588',
-      tier_id: 2,
-      name: 'Silver Battle Pass',
-      price: '40000000000000000000',
-      unit: 'wei',
-      supply: 1000,
-      filled: 254,
-      subscription_length: 90,
-      subscription_length_unit: 'days',
-      description: 'Upgraded Silver Battle Pass',
-      features: [
-        'Online Membership Access',
-        '10 Star Points per Month',
-        'Unique Island Rental',
-      ],
-      Project: { connect: { id: _projects[1]?.id } },
-    },
-    {
-      address: '0xe7A5839F8F978037B72bd48d3777E58Aa6093588',
-      tier_id: 3,
-      name: 'Gold Battle Pass',
-      price: '55000000000000000000',
-      unit: 'wei',
-      supply: 500,
-      filled: 246,
-      subscription_length: 90,
-      subscription_length_unit: 'days',
-      description: 'Ultra Gold Battle Pass',
-      features: [
-        'Online Membership Access',
-        '25 Star Points per Month',
-        'Unique Island Rental',
-        'Unique House Rental',
-      ],
-      Project: { connect: { id: _projects[1]?.id } },
-    },
-    {
-      address: '0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d',
-      tier_id: 1,
-      name: 'Insight Tier',
-      price: '10000000000000000000',
-      unit: 'wei',
-      supply: 1,
-      filled: 523,
-      subscription_length: 30,
-      subscription_length_unit: 'days',
-      description:
-        'Gain valuable insights to new tokens, NFTs, and Web3 projects.',
-      features: ['Private Discord Access', 'Voting Rights to DAO Alpha Group'],
-      Project: { connect: { id: _projects[2]?.id } },
-    },
-    {
-      address: '0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d',
-      tier_id: 2,
-      name: 'Strategy Tier',
-      price: '20000000000000000000',
-      unit: 'wei',
-      supply: 1,
-      filled: 573,
-      subscription_length: 60,
-      subscription_length_unit: 'days',
-      description:
-        'Everything Insight tier includes plus toolkits for building your own trading strategies.',
-      features: [
-        'Access to internal toolkits',
-        '1 on 1 strategy building with experts',
-      ],
-      Project: { connect: { id: _projects[2]?.id } },
-    },
-    {
-      address: '0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d',
-      tier_id: 3,
-      name: 'Elite Tier',
-      price: '50000000000000000000',
-      unit: 'wei',
-      supply: 1,
-      filled: 889,
-      subscription_length: 90,
-      subscription_length_unit: 'days',
-      description: 'The all inclusive Elite tier, access to everything and more!',
-      features: [
-        'Access to all internal tooling and servers',
-        'Seat at the table with the board.',
-      ],
-      Project: { connect: { id: _projects[2]?.id } },
-    },
-    {
-      address: '0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d',
-      tier_id: 1,
-      name: 'Insight Tier',
-      price: '10000000000000000000',
-      unit: 'wei',
-      supply: 1,
-      filled: 523,
-      subscription_length: 30,
-      subscription_length_unit: 'days',
-      description:
-        'Gain valuable insights to new tokens, NFTs, and Web3 projects.',
-      features: ['Private Discord Access', 'Voting Rights to DAO Alpha Group'],
-      Project: { connect: { id: _projects[3]?.id } },
-    },
-    {
-      address: '0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d',
-      tier_id: 2,
-      name: 'Strategy Tier',
-      price: '20000000000000000000',
-      unit: 'wei',
-      supply: 1,
-      filled: 573,
-      subscription_length: 60,
-      subscription_length_unit: 'days',
-      description:
-        'Everything Insight tier includes plus toolkits for building your own trading strategies.',
-      features: [
-        'Access to internal toolkits',
-        '1 on 1 strategy building with experts',
-      ],
-      Project: { connect: { id: _projects[3]?.id } },
-    },
-    {
-      address: '0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d',
-      tier_id: 3,
-      name: 'Elite Tier',
-      price: '50000000000000000000',
-      unit: 'wei',
-      supply: 1,
-      filled: 889,
-      subscription_length: 90,
-      subscription_length_unit: 'days',
-      description: 'The all inclusive Elite tier, access to everything and more!',
-      features: [
-        'Access to all internal tooling and servers',
-        'Seat at the table with the board.',
-      ],
-      Project: { connect: { id: _projects[3]?.id } },
-    },
-    {
-      address: '0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d',
-      tier_id: 1,
-      name: 'Insight Tier',
-      price: '10000000000000000000',
-      unit: 'wei',
-      supply: 1,
-      filled: 523,
-      subscription_length: 30,
-      subscription_length_unit: 'days',
-      description:
-        'Gain valuable insights to new tokens, NFTs, and Web3 projects.',
-      features: ['Private Discord Access', 'Voting Rights to DAO Alpha Group'],
-      Project: { connect: { id: _projects[4]?.id } },
-    },
-    {
-      address: '0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d',
-      tier_id: 2,
-      name: 'Strategy Tier',
-      price: '20000000000000000000',
-      unit: 'wei',
-      supply: 1,
-      filled: 573,
-      subscription_length: 60,
-      subscription_length_unit: 'days',
-      description:
-        'Everything Insight tier includes plus toolkits for building your own trading strategies.',
-      features: [
-        'Access to internal toolkits',
-        '1 on 1 strategy building with experts',
-      ],
-      Project: { connect: { id: _projects[4]?.id } },
-    },
-    {
-      address: '0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d',
-      tier_id: 3,
-      name: 'Elite Tier',
-      price: '50000000000000000000',
-      unit: 'wei',
-      supply: 1,
-      filled: 889,
-      subscription_length: 90,
-      subscription_length_unit: 'days',
-      description: 'The all inclusive Elite tier, access to everything and more!',
-      features: [
-        'Access to all internal tooling and servers',
-        'Seat at the table with the board.',
-      ],
-      Project: { connect: { id: _projects[4]?.id } },
-    },
-  ];
+): Prisma.ProjectTierCreateInput[] => {
+  return projectTiersData.map(tier => ({
+    address: tier.address,
+    tier_id: Number.isNaN(parseInt(tier.tier_id)) ? 1 : parseInt(tier.tier_id),
+    name: tier.name,
+    price: tier.price,
+    unit: tier.unit,
+    supply: Number.isNaN(parseInt(tier.supply))?0:parseInt(tier.supply),
+    filled: Number.isNaN(parseInt(tier.filled)) ? 0 :parseInt(tier.filled),
+    subscription_length: Number.isNaN(parseInt(tier.subscription_length)) ? 0 : parseInt(tier.subscription_length),
+    subscription_length_unit: tier.subscription_length_unit,
+    description: tier.description,
+    features: tier.features.split('-').filter(Boolean),
+    Project: { connect: { id: tier.projectId } }
+  }));
+};
 
 const main = async () => {
   const newUser = await prisma.user.create({

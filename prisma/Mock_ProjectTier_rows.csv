@@ -1,0 +1,19 @@
+id,address,tier_id,name,price,unit,supply,filled,subscription_length,subscription_length_unit,description,features,projectId
+,,1,1 Month,$225.00,USD,,,30,days,Wealth Group,"-Livestreams
+-One-on-one Sessions
+-Trading Education
+-Comprehensive Charts
+-$1k→$10k Challenge",936db2b6-72bd-4722-a4a0-bd397124883b
+,,2,6 Months,"$1,275.00",USD,,,180,days,Wealth Group,"-Livestreams
+-One-on-one Sessions
+-Trading Education
+-Comprehensive Charts
+-$1k→$10k Challenge",936db2b6-72bd-4722-a4a0-bd397124883b
+,,3,1 Year,"$2,400.00",USD,,,365,days,Wealth Group,"-Livestreams
+-One-on-one Sessions
+-Trading Education
+-Comprehensive Charts
+-$1k→$10k Challenge",936db2b6-72bd-4722-a4a0-bd397124883b
+,,1,The Incubator,$0.00,USD,,,0,days,,"-Discord Access
+-Online Course",1fed04fd-96ba-4197-a95a-890ed8dcd2fa
+,,2,The Accelerator,$119.99,USD,,,,,,,1fed04fd-96ba-4197-a95a-890ed8dcd2fa
