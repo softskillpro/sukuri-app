@@ -4,7 +4,6 @@ import { FlexBox } from '@/components/Common/FlexBox';
 export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
   justifyContent: 'space-between',
   height: 100,
-  padding: '0 80px',
 
   '.company-logo-wrapper': {
     '.beta-wrapper': {
@@ -35,14 +34,6 @@ export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
     background: theme.palette.greyGradient.main,
     cursor: 'pointer',
     border: 'none',
-  },
-
-  [theme.breakpoints.down('lg')]: {
-    padding: '0 50px',
-  },
-
-  [theme.breakpoints.down('md')]: {
-    padding: '0 30px',
   },
 
   [theme.breakpoints.down('sm')]: {

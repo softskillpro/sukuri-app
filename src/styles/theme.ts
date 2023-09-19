@@ -172,7 +172,6 @@ declare module '@mui/material/styles' {
     body4: React.CSSProperties;
     body5: React.CSSProperties;
     body6: React.CSSProperties;
-    body7: React.CSSProperties;
     bodyBold: React.CSSProperties;
     bodyTitle: React.CSSProperties;
     h1Mobile: React.CSSProperties;
@@ -191,7 +190,6 @@ declare module '@mui/material/styles' {
     body4?: React.CSSProperties;
     body5?: React.CSSProperties;
     body6?: React.CSSProperties;
-    body7?: React.CSSProperties;
     bodyBold?: React.CSSProperties;
     bodyTitle?: React.CSSProperties;
     h1Mobile?: React.CSSProperties;
@@ -212,7 +210,6 @@ declare module '@mui/material/Typography' {
     body4: true;
     body5: true;
     body6: true;
-    body7: true;
     bodyBold: true;
     bodyTitle: true;
     h1Mobile: true;
@@ -231,36 +228,42 @@ theme.typography.h1 = {
   fontSize: 66,
   fontWeight: 700,
   lineHeight: '100%',
+  fontFamily: 'var(--Inter)',
 };
 
 theme.typography.h2 = {
   fontSize: 48,
   fontWeight: 700,
   lineHeight: '117%',
+  fontFamily: 'var(--Inter)',
 };
 
 theme.typography.h3 = {
   fontSize: 34,
   fontWeight: 700,
   lineHeight: '117%',
+  fontFamily: 'var(--Inter)',
 };
 
 theme.typography.h4 = {
   fontSize: 26,
   fontWeight: 700,
   lineHeight: '117%',
+  fontFamily: 'var(--Inter)',
 };
 
 theme.typography.h5 = {
   fontSize: 20,
   fontWeight: 700,
   lineHeight: '117%',
+  fontFamily: 'var(--Inter)',
 };
 
 theme.typography.h6 = {
   fontSize: 22,
   fontWeight: 700,
   lineHeight: '117%',
+  fontFamily: 'var(--Inter)',
 };
 
 theme.typography.body1 = {
@@ -384,6 +387,16 @@ theme.typography.bodyBoldMobile = {
   lineHeight: '150.5%',
   letterSpacing: '-0.32px',
   fontFamily: 'var(--Inter)',
+};
+
+theme.typography.body6 = {
+  fontSize: 18,
+  fontWeight: 700,
+  fontFamily: 'var(--Inter)',
+
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 16,
+  },
 };
 
 declare module '@mui/material/styles' {

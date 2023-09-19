@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { LayoutContainer } from './styles';
@@ -10,7 +11,19 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <LayoutContainer>
       <Header />
-      {children}
+
+      <main>
+        <Image
+          src='/images/background.png'
+          width={500}
+          height={500}
+          alt='Background'
+          className='background-img'
+        />
+
+        {children}
+      </main>
+
       <Footer />
     </LayoutContainer>
   );

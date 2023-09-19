@@ -55,30 +55,17 @@ const Header = () => {
 
   return (
     <>
-      <header>
+      <header style={{ width: '100%' }}>
         <HeaderContainer>
           <FlexBox className='company-logo-wrapper'>
-            <Image
-              src='/images/logo.png'
-              width={40}
-              height={40}
-              alt='Logo'
-              className='company-logo'
-            />
+            <Image src='/images/logo.png' width={36} height={36} alt='Logo' />
 
-            <Typography
-              variant='h5'
-              lineHeight={1}
-              ml={1}
-              className='company-name'
-            >
+            <Typography variant='body6' ml={1}>
               Sukuri Protocol
             </Typography>
 
             <FlexBox className='beta-wrapper'>
-              <Typography variant='body7' fontWeight={700}>
-                BETA
-              </Typography>
+              <Typography variant='h4Mobile'>BETA</Typography>
             </FlexBox>
           </FlexBox>
 

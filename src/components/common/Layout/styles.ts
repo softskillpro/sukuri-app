@@ -1,7 +1,26 @@
 import { styled } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
 
-export const LayoutContainer = styled(FlexBox)(() => ({
+export const LayoutContainer = styled(FlexBox)(({ theme }) => ({
   flexDirection: 'column',
   maxWidth: 1440,
+  margin: '0 auto',
+  padding: '0 80px',
+
+  '.background-img': {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: 'auto',
+    zIndex: -100,
+  },
+
+  [theme.breakpoints.down('lg')]: {
+    padding: '0 50px',
+  },
+
+  [theme.breakpoints.down('md')]: {
+    padding: '0 30px',
+  },
 }));
