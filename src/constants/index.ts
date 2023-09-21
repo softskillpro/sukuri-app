@@ -134,3 +134,5 @@ export const company: FooterLink[] = [
     href: '/contact',
   },
 ];
+
+export const currencies = ['USD', 'ETH'];

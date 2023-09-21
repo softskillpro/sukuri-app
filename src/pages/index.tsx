@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import Typography from '@mui/material/Typography';
+import MarketplaceHero from '@/components/MarketplaceHero';
+import { MarketplaceContainer } from '@/styles/home';
 
 // TODO: check if there's a list of categories that should be passed to component
 // for now, hardcoded strings used
@@ -23,7 +25,11 @@ const Marketplace = ({
   // TODO: mock top Projects data
   const topProjects = Array.from(projects?.slice(0, 3));
 
-  return <div>marketplace</div>;
+  return (
+    <MarketplaceContainer>
+      <MarketplaceHero />
+    </MarketplaceContainer>
+  );
 };
 
 export default Marketplace;

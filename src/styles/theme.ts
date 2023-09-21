@@ -65,6 +65,8 @@ const theme = createTheme({
     },
     topProductsGradient: {
       main: 'linear-gradient(183deg, rgba(235, 242, 255, 0.24) 2.41%, rgba(200, 222, 255, 0.10) 103.36%)',
+      light:
+        'linear-gradient(180deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.40) 100%)',
     },
     greyGradient: {
       main: 'linear-gradient(183deg, rgba(217, 217, 217, 0.24) 2.41%, rgba(217, 217, 217, 0.00) 103.36%)',

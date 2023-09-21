@@ -12,7 +12,7 @@ const Layout = ({ children }: LayoutProps) => {
     <LayoutContainer>
       <Header />
 
-      <main>
+      <main style={{ width: '100%' }}>
         <Image
           src='/images/background.png'
           width={500}
