@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Typography } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
 import { FooterContainer } from './styles';
 import { socials, links, resources, company } from '@/constants';
@@ -13,13 +13,13 @@ interface FooterItemProps {
 
 const FooterItem = ({ title, navs, className }: FooterItemProps) => (
   <section className={className || 'footer-item'}>
-    <Typography variant='h5' fontWeight={500}>
+    <Typography variant='h5' fontWeight={500} color='text.secondary' mb={0.5}>
       {title}
     </Typography>
 
     {navs.map((nav: FooterLink) => (
       <Link key={nav.title} href={nav.href}>
-        <Typography fontSize={14} color='text.secondary'>
+        <Typography variant='body3Mobile' color='text.secondary'>
           {nav.title}
         </Typography>
       </Link>
@@ -28,22 +28,17 @@ const FooterItem = ({ title, navs, className }: FooterItemProps) => (
 );
 
 const Footer = () => {
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
-
   return (
-    <footer>
+    <footer style={{ width: '100%' }}>
       <FooterContainer>
         <section className='company-info'>
-          <Typography
-            variant={matches ? 'bodyBold' : 'h5'}
-            color='text.secondary'
-          >
+          <Typography variant='h5' color='text.secondary'>
             Sukuri Protocol
           </Typography>
 
-          <Typography fontSize={14}>
-            Redefining subscriptions on-chain
+          <Typography variant='body3Mobile' color='text.secondary'>
+            Redefining subscriptions <br />
+            on-chain
           </Typography>
 
           <FlexBox className='social-group'>
