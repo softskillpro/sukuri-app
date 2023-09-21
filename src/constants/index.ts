@@ -4,19 +4,19 @@ import type { NFT, Partner, Product, Social, FooterLink } from '@/types';
 export const navs = [
   {
     title: 'Marketplace',
-    link: 'https://sukuri.notion.site/Sukuri-Protocol-c254d45224b14afabbd9e79d1e05d035',
+    link: '/',
   },
   {
-    title: 'About',
-    link: 'about',
+    title: 'Resources',
+    link: '/resources',
   },
   {
-    title: 'Docs',
-    link: 'https://sukuri.notion.site/Sukuri-Protocol-c254d45224b14afabbd9e79d1e05d035',
+    title: 'Affiliates',
+    link: '/affiliates',
   },
   {
-    title: 'FAQ',
-    link: 'https://sukuri.notion.site/General-Information-43309074f84f4d4690699548f52b279f',
+    title: 'Start Selling',
+    link: '/start-selling',
   },
 ];
 

@@ -8,8 +8,8 @@ export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
   '.company-logo-wrapper': {
     '.beta-wrapper': {
       justifyContent: 'center',
-      marginLeft: 20,
-      padding: '8px 30px',
+      marginLeft: 16,
+      padding: '8px 32px',
       borderRadius: 4,
       border: '1.37px solid #FFF',
     },
@@ -20,7 +20,6 @@ export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
 
     a: {
       textDecoration: 'none',
-      color: theme.palette.text.secondary,
     },
   },
 
@@ -56,8 +55,15 @@ export const HeaderModalContainer = styled(Modal)(({ theme }) => ({
 
     '.company-logo-wrapper': {
       height: 100,
-      marginTop: 18,
-      padding: '18px 30px 0',
+      padding: '0 30px 0',
+
+      '.beta-wrapper': {
+        justifyContent: 'center',
+        marginLeft: 12,
+        padding: '6px 12px',
+        borderRadius: 4,
+        border: '1.37px solid #FFF',
+      },
 
       '.close-btn': {
         border: 'none',

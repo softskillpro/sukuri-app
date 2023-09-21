@@ -26,7 +26,7 @@ const theme = createTheme({
     values: {
       xs: 0,
       sm: 600,
-      md: 1080,
+      md: 1024,
       lg: 1200,
       xl: 1440,
     },
@@ -123,6 +123,12 @@ const theme = createTheme({
         'linear-gradient(183deg, rgba(0, 0, 0, 0.00) 2.41%, rgba(0, 0, 0, 0.10) 66.87%, rgba(0, 0, 0, 0.24) 103.36%)',
       dark: 'linear-gradient(90deg, #F4F4F4 0%, rgba(244, 244, 244, 0.00) 61.11%)',
     },
+    accent: {
+      main: '#ABD2FF',
+    },
+    buttonGradient: {
+      main: 'linear-gradient(90deg, rgba(255, 255, 255, 0.70) -2.15%, rgba(255, 255, 255, 0.12) 102.01%)',
+    },
   },
 });
 
@@ -145,6 +151,8 @@ declare module '@mui/material/styles' {
     dividerBg: Palette['primary'];
     dark: Palette['primary'];
     fadeGradient: Palette['primary'];
+    accent: Palette['primary'];
+    buttonGradient: Palette['primary'];
   }
 
   interface PaletteOptions {
@@ -165,6 +173,8 @@ declare module '@mui/material/styles' {
     dividerBg?: PaletteOptions['primary'];
     dark?: PaletteOptions['primary'];
     fadeGradient?: PaletteOptions['primary'];
+    accent?: PaletteOptions['primary'];
+    buttonGradient?: PaletteOptions['primary'];
   }
 
   interface TypographyVariants {
