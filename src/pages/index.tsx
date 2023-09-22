@@ -5,6 +5,7 @@ import NewProducts from '@/components/NewProducts';
 import Explorer from '@/components/Explorer';
 import IntroSukuri from '@/components/IntroSukuri';
 import BecomeAffiliate from '@/components/BecomeAffiliate';
+import Newsletter from '@/components/Newsletter';
 import { MarketplaceContainer } from '@/styles/home';
 
 // TODO: check if there's a list of categories that should be passed to component
@@ -35,6 +36,8 @@ const Marketplace = ({
       <IntroSukuri />
 
       <BecomeAffiliate />
+
+      <Newsletter />
     </MarketplaceContainer>
   );
 };

@@ -1,17 +1,26 @@
 import Image from 'next/image';
-import { Typography } from '@mui/material';
+import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { StyledButton } from '@/components/Common/StyledButton';
 import { IntroSukuriContainer } from './styles';
 
 const IntroSukuri = () => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
   return (
     <IntroSukuriContainer>
-      <section>
-        <Typography variant='h2' className='intro-title'>
+      <section className='intro-content-wrapper'>
+        <Typography
+          variant={matches ? 'h2' : 'h2Mobile'}
+          className='intro-title'
+        >
           Why Sukuri?
         </Typography>
 
-        <Typography variant='body1' className='intro-content'>
+        <Typography
+          variant={matches ? 'body1' : 'body1Mobile'}
+          className='intro-content'
+        >
           Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi.
           Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla,
           mattis ligula consectetur, ultrices.

@@ -11,7 +11,11 @@ import { MenuIcon, CloseIcon } from '@/components/Icons';
 import { HeaderContainer } from './styles';
 import { navs } from '@/constants';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--Inter',
+});
 
 const Header = () => {
   const router = useRouter();

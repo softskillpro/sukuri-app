@@ -12,12 +12,18 @@ export const IntroSukuriContainer = styled('div')(({ theme }) => ({
   boxShadow: theme.palette.boxShadow.main,
   backdropFilter: 'blur(5px)',
 
-  '.intro-title': {
-    marginBottom: 20,
-  },
+  '.intro-content-wrapper': {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
 
-  '.intro-content': {
-    marginBottom: 48,
+    '.intro-title': {
+      marginBottom: 20,
+    },
+
+    '.intro-content': {
+      marginBottom: 48,
+    },
   },
 
   '.subscribe-img': {

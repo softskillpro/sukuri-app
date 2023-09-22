@@ -23,11 +23,11 @@ export const navs = [
 export const socials: Social[] = [
   {
     asset: DiscordIcon,
-    href: 'https://discord.org',
+    href: 'https://discord.gg/2PNxNZVG6N',
   },
   {
     asset: TwitterIcon,
-    href: 'https://twitter.org',
+    href: 'https://twitter.com/sukuriprotocol',
   },
 ];
 
