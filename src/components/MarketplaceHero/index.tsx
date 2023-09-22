@@ -57,6 +57,7 @@ const MarketplaceHero = () => {
             src='/images/marketplace-hero.png'
             width={400}
             height={400}
+            priority
             alt='Marketplace Hero'
             className='hero-img'
           />
