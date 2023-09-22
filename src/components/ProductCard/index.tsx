@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Typography } from '@mui/material';
+import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { FavoriteIcon } from '@/components/Icons';
 import { FlexBox } from '@/components/Common/FlexBox';
 import { StarIcon, StarIcon2 } from '@/components/Icons';
@@ -12,6 +12,9 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, className }: ProductCardProps) => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
   return (
     <ProductCardContainer className={className || 'product-card'}>
       <Image
@@ -26,12 +29,16 @@ const ProductCard = ({ product, className }: ProductCardProps) => {
         <FavoriteIcon sx={{ fontSize: 36 }} />
       </div>
 
-      <div className='product-info'>
-        <Typography variant='h6' ml={2.5}>
+      <FlexBox className='product-info'>
+        <Typography variant={matches ? 'h6' : 'priceMobile'} ml={2.5}>
           $9.00
         </Typography>
 
-        <Typography variant='body7' ml={2.5}>
+        <Typography
+          variant={matches ? 'body7' : 'body3Mobile'}
+          ml={2.5}
+          mb={1.5}
+        >
           /Month
         </Typography>
 
@@ -47,16 +54,22 @@ const ProductCard = ({ product, className }: ProductCardProps) => {
               <FlexBox gap={0.45}>
                 {[0, 1, 2, 3, 4].map((id) =>
                   id < 4 ? (
-                    <StarIcon key={`star-${id}`} sx={{ fontSize: 14 }} />
+                    <StarIcon
+                      key={`star-${id}`}
+                      sx={{ fontSize: matches ? 14 : 11 }}
+                    />
                   ) : (
-                    <StarIcon2 key={`star-${id}`} sx={{ fontSize: 14 }} />
+                    <StarIcon2
+                      key={`star-${id}`}
+                      sx={{ fontSize: matches ? 14 : 11 }}
+                    />
                   ),
                 )}
               </FlexBox>
             </FlexBox>
           </FlexBox>
         </FlexBox>
-      </div>
+      </FlexBox>
     </ProductCardContainer>
   );
 };

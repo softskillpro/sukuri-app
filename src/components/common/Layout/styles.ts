@@ -23,4 +23,8 @@ export const LayoutContainer = styled(FlexBox)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     padding: '0 30px',
   },
+
+  [theme.breakpoints.down('sm')]: {
+    padding: '0 16px',
+  },
 }));

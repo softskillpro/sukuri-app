@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { ExplorerCardContainer } from './styles';
 import { Explorer } from '@/types';
 
@@ -8,6 +9,9 @@ interface ExplorerCardProps {
 }
 
 const ExplorerCard = ({ item, className }: ExplorerCardProps) => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
   return (
     <ExplorerCardContainer className={className || 'explorer-card'}>
       <Image
@@ -17,6 +21,15 @@ const ExplorerCard = ({ item, className }: ExplorerCardProps) => {
         alt='Explorer Img'
         className='explorer-img'
       />
+
+      <Typography
+        variant={matches ? 'h5' : 'body4'}
+        fontWeight={700}
+        component='div'
+        className='explorer-title'
+      >
+        {item.title}
+      </Typography>
     </ExplorerCardContainer>
   );
 };

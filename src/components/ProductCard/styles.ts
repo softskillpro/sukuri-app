@@ -4,6 +4,7 @@ export const ProductCardContainer = styled('div')(({ theme }) => ({
   position: 'relative',
   height: 320,
   borderRadius: 7,
+  cursor: 'pointer',
 
   '.product-img': {
     width: '100%',
@@ -22,6 +23,8 @@ export const ProductCardContainer = styled('div')(({ theme }) => ({
     position: 'absolute',
     left: 0,
     bottom: 0,
+    flexDirection: 'column',
+    alignItems: 'flex-start',
     width: '100%',
 
     '.product-contents-wrapper': {
@@ -37,6 +40,7 @@ export const ProductCardContainer = styled('div')(({ theme }) => ({
 
       '.product-contents': {
         justifyContent: 'space-between',
+        alignItems: 'flex-end',
         width: '100%',
 
         '.ratings': {

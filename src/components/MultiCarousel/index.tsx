@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { IconButton, Typography } from '@mui/material';
+import { IconButton, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useKeenSlider } from 'keen-slider/react';
 import { FlexBox } from '@/components/Common/FlexBox';
 import { ArrowLeftIcon2, ArrowRightIcon2 } from '@/components/Icons';
@@ -21,6 +21,9 @@ const MultiCarousel = ({
   breakpoints,
   slides,
 }: MultiCarouselProps) => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
 
@@ -64,7 +67,7 @@ const MultiCarousel = ({
         <Typography variant='h5'>{title}</Typography>
 
         <FlexBox gap={3}>
-          {loaded && instanceRef.current && (
+          {loaded && instanceRef.current && matches && (
             <FlexBox gap={0.5}>
               <IconButton
                 disabled={currentSlide === 0}
