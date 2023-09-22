@@ -3,17 +3,17 @@ import { Typography } from '@mui/material';
 import { FavoriteIcon } from '@/components/Icons';
 import { FlexBox } from '@/components/Common/FlexBox';
 import { StarIcon, StarIcon2 } from '@/components/Icons';
-import { ProductContainer } from './styles';
+import { ProductCardContainer } from './styles';
 import { NFT } from '@/types';
 
-interface ProductProps {
+interface ProductCardProps {
   product: NFT;
   className?: string;
 }
 
-const Product = ({ product, className }: ProductProps) => {
+const ProductCard = ({ product, className }: ProductCardProps) => {
   return (
-    <ProductContainer className={className || 'product-card'}>
+    <ProductCardContainer className={className || 'product-card'}>
       <Image
         src='/images/product.jpeg'
         width={400}
@@ -57,8 +57,8 @@ const Product = ({ product, className }: ProductProps) => {
           </FlexBox>
         </FlexBox>
       </div>
-    </ProductContainer>
+    </ProductCardContainer>
   );
 };
 
-export default Product;
+export default ProductCard;

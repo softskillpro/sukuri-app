@@ -10,12 +10,16 @@ interface MultiCarouselProps {
   title: string;
   children: React.ReactNode;
   hasAll?: boolean;
+  breakpoints?: any;
+  slides?: any;
 }
 
 const MultiCarousel = ({
   title,
   children,
   hasAll = true,
+  breakpoints,
+  slides,
 }: MultiCarouselProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
@@ -24,7 +28,7 @@ const MultiCarousel = ({
     loop: false,
     mode: 'snap',
     rtl: false,
-    breakpoints: {
+    breakpoints: breakpoints || {
       '(min-width: 700px)': {
         slides: { perView: 2, spacing: 20 },
       },
@@ -32,7 +36,7 @@ const MultiCarousel = ({
         slides: { perView: 3, spacing: 20 },
       },
     },
-    slides: {
+    slides: slides || {
       perView: 1.3,
       spacing: 20,
     },

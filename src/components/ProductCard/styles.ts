@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 
-export const ProductContainer = styled('div')(({ theme }) => ({
+export const ProductCardContainer = styled('div')(({ theme }) => ({
   position: 'relative',
   height: 320,
   borderRadius: 7,

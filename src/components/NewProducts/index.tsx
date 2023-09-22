@@ -1,16 +1,16 @@
 import ProductCard from '@/components/ProductCard';
 import MultiCarousel from '@/components/MultiCarousel';
-import { FeaturedProductsContainer } from './styles';
+import { NewProductsContainer } from './styles';
 import type { NFT } from '@/types';
 
-interface FeaturedProductsProps {
+interface NewProductsProps {
   products: NFT[];
 }
 
-const FeaturedProducts = ({ products }: FeaturedProductsProps) => {
+const NewProducts = ({ products }: NewProductsProps) => {
   return (
-    <FeaturedProductsContainer>
-      <MultiCarousel title='Featured Products'>
+    <NewProductsContainer>
+      <MultiCarousel title='New Products'>
         {products &&
           products.map((product: NFT) => (
             <ProductCard
@@ -20,8 +20,8 @@ const FeaturedProducts = ({ products }: FeaturedProductsProps) => {
             />
           ))}
       </MultiCarousel>
-    </FeaturedProductsContainer>
+    </NewProductsContainer>
   );
 };
 
-export default FeaturedProducts;
+export default NewProducts;

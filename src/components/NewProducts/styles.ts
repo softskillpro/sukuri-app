@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
 
-export const FeaturedProductsContainer = styled('div')(() => ({
+export const NewProductsContainer = styled('div')(() => ({
   padding: '18px 0',
 }));
