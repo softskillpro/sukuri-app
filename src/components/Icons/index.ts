@@ -15,6 +15,7 @@ import CircleIcon from './CircleIcon';
 import FavoriteIcon from './FavoriteIcon';
 import StarIcon from './StarIcon';
 import StarIcon2 from './StarIcon2';
+import SearchIcon from './SearchIcon';
 
 export {
   ArrowRightIcon,
@@ -34,4 +35,5 @@ export {
   FavoriteIcon,
   StarIcon,
   StarIcon2,
+  SearchIcon,
 };

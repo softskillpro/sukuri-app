@@ -24,6 +24,10 @@ export const IntroSukuriContainer = styled('div')(({ theme }) => ({
     '.intro-content': {
       marginBottom: 48,
     },
+
+    '.sell-btn': {
+      fontSize: 17,
+    },
   },
 
   '.subscribe-img': {
@@ -40,5 +44,12 @@ export const IntroSukuriContainer = styled('div')(({ theme }) => ({
     margin: 0,
     padding: '50px 18px',
     background: 'transparent',
+
+    '.intro-content-wrapper': {
+      '.sell-btn': {
+        width: '80%',
+        fontSize: 14,
+      },
+    },
   },
 }));

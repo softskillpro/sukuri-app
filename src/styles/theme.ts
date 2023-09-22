@@ -132,6 +132,8 @@ const theme = createTheme({
     },
     buttonGradient: {
       main: 'linear-gradient(90deg, rgba(255, 255, 255, 0.70) -2.15%, rgba(255, 255, 255, 0.12) 102.01%)',
+      light:
+        'linear-gradient(90deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.40) 17.83%, rgba(255, 255, 255, 0.56) 53.65%, rgba(255, 255, 255, 0.39) 83.57%, rgba(255, 255, 255, 0.24) 100%)',
     },
   },
 });

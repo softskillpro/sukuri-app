@@ -88,3 +88,12 @@ export const explorers: Explorer[] = [
     asset: '/images/daos.jpeg',
   },
 ];
+
+export const categories = [
+  { title: 'Trading', width: 77 },
+  { title: 'Sports Betting', width: 121 },
+  { title: 'E-commerce', width: 111 },
+  { title: 'Gaming', width: 78 },
+  { title: 'Business', width: 87 },
+  { title: 'DAOS', width: 39 },
+];

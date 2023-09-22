@@ -142,4 +142,8 @@ export const NewsletterContainer = styled('div')(({ theme }) => ({
       },
     },
   },
+
+  [theme.breakpoints.down('sm')]: {
+    margin: '20px 0 70px',
+  },
 }));

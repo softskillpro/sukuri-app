@@ -12,7 +12,6 @@ import { HeaderContainer } from './styles';
 import { navs } from '@/constants';
 
 const inter = Inter({
-  weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
   variable: '--Inter',
 });

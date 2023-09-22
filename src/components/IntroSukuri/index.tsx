@@ -26,7 +26,7 @@ const IntroSukuri = () => {
           mattis ligula consectetur, ultrices.
         </Typography>
 
-        <StyledButton>Start Selling</StyledButton>
+        <StyledButton className='sell-btn'>Start Selling</StyledButton>
       </section>
 
       <section>

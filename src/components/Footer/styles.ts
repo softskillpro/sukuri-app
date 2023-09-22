@@ -50,7 +50,7 @@ export const FooterContainer = styled('div')(({ theme }) => ({
     '.footer-link,.footer-resources,.footer-company': {
       display: 'flex',
       flexDirection: 'column',
-      gap: 16,
+      gap: 8,
     },
 
     '.footer-link': {

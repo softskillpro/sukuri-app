@@ -1,5 +1,6 @@
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import MarketplaceHero from '@/components/MarketplaceHero';
+import CategorySearch from '@/components/CategorySearch';
 import FeaturedProducts from '@/components/FeaturedProducts';
 import NewProducts from '@/components/NewProducts';
 import Explorer from '@/components/Explorer';
@@ -8,24 +9,14 @@ import BecomeAffiliate from '@/components/BecomeAffiliate';
 import Newsletter from '@/components/Newsletter';
 import { MarketplaceContainer } from '@/styles/home';
 
-// TODO: check if there's a list of categories that should be passed to component
-// for now, hardcoded strings used
-// const categories = [
-//   { name: 'utility', image: '/images/v2/recommend.png', count: 50 },
-//   { name: 'gaming', image: '/images/v2/recommend.png', count: 50 },
-//   { name: 'content', image: '/images/v2/recommend.png' },
-//   { name: 'dao', image: '/images/v2/recommend.png', count: 50 },
-//   { name: 'alpha', image: '/images/v2/recommend.png' },
-// ];
-
-// import mock from '@/utils/mock';
-
 const Marketplace = ({
   products,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <MarketplaceContainer>
       <MarketplaceHero />
+
+      <CategorySearch />
 
       <FeaturedProducts products={products} />
 

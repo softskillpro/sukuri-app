@@ -16,6 +16,10 @@ export const StyledButton = styled('button')(({ theme }) => ({
   fontFamily: 'var(--Inter)',
   color: theme.palette.text.primary,
 
+  ':hover': {
+    background: theme.palette.buttonGradient.light,
+  },
+
   [theme.breakpoints.down('md')]: {
     fontSize: 10,
     fontWeight: 600,
