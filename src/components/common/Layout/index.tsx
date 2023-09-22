@@ -10,19 +10,17 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <LayoutContainer>
+      <Image
+        src='/images/background.png'
+        width={500}
+        height={500}
+        alt='Background'
+        className='background-img'
+      />
+
       <Header />
 
-      <main style={{ width: '100%' }}>
-        <Image
-          src='/images/background.png'
-          width={500}
-          height={500}
-          alt='Background'
-          className='background-img'
-        />
-
-        {children}
-      </main>
+      <main style={{ width: '100%' }}>{children}</main>
 
       <Footer />
     </LayoutContainer>

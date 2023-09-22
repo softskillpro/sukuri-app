@@ -3,6 +3,7 @@ import MarketplaceHero from '@/components/MarketplaceHero';
 import FeaturedProducts from '@/components/FeaturedProducts';
 import NewProducts from '@/components/NewProducts';
 import Explorer from '@/components/Explorer';
+import IntroSukuri from '@/components/IntroSukuri';
 import { MarketplaceContainer } from '@/styles/home';
 
 // TODO: check if there's a list of categories that should be passed to component
@@ -29,6 +30,8 @@ const Marketplace = ({
       <NewProducts products={products} />
 
       <Explorer />
+
+      <IntroSukuri />
     </MarketplaceContainer>
   );
 };

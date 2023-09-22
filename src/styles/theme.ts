@@ -124,6 +124,8 @@ const theme = createTheme({
       light:
         'linear-gradient(183deg, rgba(0, 0, 0, 0.00) 2.41%, rgba(0, 0, 0, 0.10) 66.87%, rgba(0, 0, 0, 0.24) 103.36%)',
       dark: 'linear-gradient(90deg, #F4F4F4 0%, rgba(244, 244, 244, 0.00) 61.11%)',
+      contrastText:
+        'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(69, 72, 78, 0.25) 33.33%, rgba(58, 70, 113, 0.43) 66.67%, rgba(9, 13, 17, 0.00) 100%)',
     },
     accent: {
       main: '#ABD2FF',

@@ -12,7 +12,7 @@ export const LayoutContainer = styled(FlexBox)(({ theme }) => ({
     top: 0,
     left: 0,
     width: '100%',
-    height: 'auto',
+    height: 6000,
     zIndex: -100,
   },
 

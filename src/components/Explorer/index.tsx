@@ -5,16 +5,16 @@ import { explorers } from '@/constants';
 
 const breakpoints = {
   '(min-width: 800px)': {
-    slides: { perView: 3, spacing: 20 },
+    slides: { perView: 3, spacing: 16 },
   },
   '(min-width: 1024px)': {
-    slides: { perView: 4, spacing: 20 },
+    slides: { perView: 4, spacing: 16 },
   },
 };
 
 const slides = {
   perView: 2.3,
-  spacing: 20,
+  spacing: 16,
 };
 
 const Explorer = () => {

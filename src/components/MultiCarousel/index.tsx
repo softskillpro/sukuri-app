@@ -33,15 +33,15 @@ const MultiCarousel = ({
     rtl: false,
     breakpoints: breakpoints || {
       '(min-width: 700px)': {
-        slides: { perView: 2, spacing: 20 },
+        slides: { perView: 2, spacing: 16 },
       },
       '(min-width: 1024px)': {
-        slides: { perView: 3, spacing: 20 },
+        slides: { perView: 3, spacing: 16 },
       },
     },
     slides: slides || {
       perView: 1.3,
-      spacing: 20,
+      spacing: 16,
     },
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel);
