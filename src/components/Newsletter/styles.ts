@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles';
 export const NewsletterContainer = styled('div')(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(2,1fr)',
-  gap: 20,
   margin: '100px 0',
   borderRadius: 7,
   border: '1px solid rgba(254, 254, 254, 0.50)',
@@ -21,19 +20,20 @@ export const NewsletterContainer = styled('div')(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    padding: '80px 60px',
+    padding: '80px 50px',
 
     '.subscribe-form': {
       position: 'relative',
+      width: '90%',
 
       '.input-subscribe': {
-        width: 460,
-        height: 50,
-        padding: '15px 32px',
+        width: '100%',
+        padding: '20px 32px',
         borderRadius: 11,
         background: '#D9D9D9',
         outline: 'none',
         border: 'none',
+        fontSize: 20,
         fontFamily: 'var(--Inter)',
       },
 
@@ -42,9 +42,9 @@ export const NewsletterContainer = styled('div')(({ theme }) => ({
         top: 0,
         right: 0,
         height: '100%',
-        padding: '15px 26px',
+        padding: '20px 32px',
         borderRadius: '0 11px 11px 0',
-        fontSize: 15,
+        fontSize: 20,
         fontFamily: 'var(--Inter)',
         cursor: 'pointer',
         border: 'none',
@@ -58,7 +58,7 @@ export const NewsletterContainer = styled('div')(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    padding: '80px 60px',
+    padding: '80px 50px',
     borderRadius: '0px 7px 7px 0px',
     background:
       'linear-gradient(212deg, #7C97FA 36.06%, rgba(153, 71, 214, 0.00) 90.15%)',
@@ -80,13 +80,64 @@ export const NewsletterContainer = styled('div')(({ theme }) => ({
     },
   },
 
-  [theme.breakpoints.down('md')]: {
+  [theme.breakpoints.down('lg')]: {
     '.newsletter': {
+      padding: '60px 30px',
+
+      '.subscribe-form': {
+        width: '100%',
+
+        '.input-subscribe': {
+          padding: 20,
+        },
+
+        '.subscribe-btn': {
+          padding: 20,
+        },
+      },
+    },
+
+    '.community': {
+      padding: '60px 30px',
+    },
+  },
+
+  [theme.breakpoints.down('md')]: {
+    gridTemplateColumns: '1fr',
+
+    '.newsletter-content': {
+      marginBottom: 15,
+    },
+
+    '.newsletter': {
+      padding: '60px 36px',
+
       '.subscribe-form': {
         width: '100%',
 
         '.input-subscribe': {
           width: '100%',
+          padding: '12px 20px',
+          fontSize: 12,
+        },
+
+        '.subscribe-btn': {
+          padding: '12px 20px 12px 14px',
+          fontSize: 12,
+        },
+      },
+    },
+
+    '.community': {
+      padding: '60px 36px',
+      borderRadius: '0px 0 7px 7px',
+
+      '.social-group': {
+        gap: 8,
+
+        '.social-item': {
+          width: 34,
+          height: 32,
         },
       },
     },

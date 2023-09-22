@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
-import { Typography } from '@mui/material';
+import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
 import { NewsletterContainer } from './styles';
 import { socials } from '@/constants';
@@ -14,6 +14,9 @@ const inter = Inter({
 });
 
 const Newsletter = () => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
   const [email, setEmail] = useState('');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,11 +30,17 @@ const Newsletter = () => {
   return (
     <NewsletterContainer>
       <section className='newsletter'>
-        <Typography variant='h3' className='newsletter-title'>
+        <Typography
+          variant={matches ? 'h3' : 'h2Mobile'}
+          className='newsletter-title'
+        >
           Sukuri Substack
         </Typography>
 
-        <Typography variant='body1' className='newsletter-content'>
+        <Typography
+          variant={matches ? 'body1' : 'body1Mobile'}
+          className='newsletter-content'
+        >
           Subscribe to get the latest offers and updates
         </Typography>
 
@@ -56,11 +65,17 @@ const Newsletter = () => {
       </section>
 
       <section className='community'>
-        <Typography variant='h3' className='newsletter-title'>
+        <Typography
+          variant={matches ? 'h3' : 'h2Mobile'}
+          className='newsletter-title'
+        >
           Join our community
         </Typography>
 
-        <Typography variant='body1' className='newsletter-content'>
+        <Typography
+          variant={matches ? 'body1' : 'body1Mobile'}
+          className='newsletter-content'
+        >
           Follow our social channels
         </Typography>
 
@@ -75,7 +90,7 @@ const Newsletter = () => {
                 target='_blank'
                 className='social-item'
               >
-                <SocialIcon sx={{ fontSize: 26 }} />
+                <SocialIcon sx={{ fontSize: matches ? 26 : 18 }} />
               </Link>
             );
           })}
