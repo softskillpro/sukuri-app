@@ -7,8 +7,8 @@ export const navs = [
     link: '/',
   },
   {
-    title: 'Resources',
-    link: '/resources',
+    title: 'Subscription',
+    link: '/subscription',
   },
   {
     title: 'Affiliates',

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
+import { HeroGlow } from '@/components/Common/HeroGlow';
 import CurrencySwitcher from '@/components/CurrencySwitcher';
 import { CircleIcon } from '@/components/Icons';
 import { MarketplaceHeroContainer } from './styles';
@@ -11,7 +12,7 @@ const MarketplaceHero = () => {
 
   return (
     <MarketplaceHeroContainer>
-      <div className='marketplace-hero-glow' />
+      <HeroGlow />
 
       <div className='currency-switcher-wrapper'>
         <CurrencySwitcher />
