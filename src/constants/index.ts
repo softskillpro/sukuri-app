@@ -1,5 +1,10 @@
 import { DiscordIcon, TwitterIcon } from '@/components/Icons';
-import type { Social, FooterLink, Explorer } from '@/types';
+import type {
+  Social,
+  FooterLink,
+  Explorer,
+  CategoryOfSubscription,
+} from '@/types';
 
 export const navs = [
   {
@@ -96,4 +101,23 @@ export const categories = [
   { title: 'Gaming', width: 78 },
   { title: 'Business', width: 87 },
   { title: 'DAOS', width: 39 },
+];
+
+export const categoriesOfSubscription: CategoryOfSubscription[] = [
+  {
+    name: 'Active',
+    value: 'active',
+  },
+  {
+    name: 'Inactive',
+    value: 'inactive',
+  },
+  {
+    name: 'Ending Soon',
+    value: 'ending -soon',
+  },
+  {
+    name: 'View All',
+    value: 'view-all',
+  },
 ];

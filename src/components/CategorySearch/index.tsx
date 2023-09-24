@@ -1,20 +1,16 @@
-import { Inter } from 'next/font/google';
-import { useState, ChangeEvent, FormEvent } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
 import { Typography, useMediaQuery, useTheme } from '@mui/material';
+import SearchBar from '@/components/SearchBar';
 import { FlexBox } from '@/components/Common/FlexBox';
-import { SearchIcon } from '@/components/Icons';
 import { CategorySearchContainer } from './styles';
 import { categories } from '@/constants';
 import 'keen-slider/keen-slider.min.css';
 
-const inter = Inter({
-  weight: ['400', '500', '600', '700'],
-  subsets: ['latin'],
-  variable: '--Inter',
-});
+interface CategorySearchProps {
+  handleSearch: (search?: string) => void;
+}
 
-const CategorySearch = () => {
+const CategorySearch = ({ handleSearch }: CategorySearchProps) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up(500));
 
@@ -25,32 +21,9 @@ const CategorySearch = () => {
     slides: { perView: 'auto' },
   });
 
-  const [search, setSearch] = useState('');
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
-
   return (
     <CategorySearchContainer>
-      <section className='search-bar'>
-        <div className='input-glow' />
-
-        <form className={`${inter.className}`} onSubmit={handleSubmit}>
-          <input
-            value={search}
-            placeholder='Search'
-            className='search'
-            onChange={handleChange}
-          />
-
-          <SearchIcon sx={{ fontSize: 16 }} />
-        </form>
-      </section>
+      <SearchBar handleSearch={handleSearch} />
 
       <section className='category-group-wrapper'>
         {matches ? (

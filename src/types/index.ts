@@ -43,3 +43,8 @@ export interface Explorer {
   title: string;
   asset: string;
 }
+
+export interface CategoryOfSubscription {
+  name: string;
+  value: string;
+}

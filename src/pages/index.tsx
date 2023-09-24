@@ -1,3 +1,4 @@
+import { useCallback, useState } from 'react';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import MarketplaceHero from '@/components/MarketplaceHero';
 import CategorySearch from '@/components/CategorySearch';
@@ -12,11 +13,18 @@ import { MarketplaceContainer } from '@/styles/home';
 const Marketplace = ({
   products,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const [search, setSearch] = useState<string | undefined>(undefined);
+  console.log(search);
+
+  const handleSearch = useCallback((_search?: string) => {
+    setSearch(_search);
+  }, []);
+
   return (
     <MarketplaceContainer>
       <MarketplaceHero />
 
-      <CategorySearch />
+      <CategorySearch handleSearch={handleSearch} />
 
       <FeaturedProducts products={products} />
 

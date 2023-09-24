@@ -36,11 +36,6 @@ export const BecomeAffiliateContainer = styled('div')(({ theme }) => ({
     alignContent: 'center',
     gap: 32,
     flexWrap: 'wrap',
-
-    '.avatar': {
-      width: 98,
-      height: 'auto',
-    },
   },
 
   [theme.breakpoints.down('lg')]: {
