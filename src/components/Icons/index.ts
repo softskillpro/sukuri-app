@@ -17,6 +17,7 @@ import StarIcon from './StarIcon';
 import StarIcon2 from './StarIcon2';
 import SearchIcon from './SearchIcon';
 import ETHIcon from './ETHIcon';
+import EllipseIcon from './EllipseIcon';
 
 export {
   ArrowRightIcon,
@@ -38,4 +39,5 @@ export {
   StarIcon2,
   SearchIcon,
   ETHIcon,
+  EllipseIcon,
 };

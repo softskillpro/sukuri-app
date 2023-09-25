@@ -1,10 +1,14 @@
 import { useCallback, useState } from 'react';
+import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import SubscriptionHero from '@/components/SubscriptionHero';
 import SubscriptionManagement from '@/components/SubscriptionManagement';
+import ActiveSubscriptions from '@/components/ActiveSubscriptions';
 import { SubscriptionContainer } from '@/styles/subscription';
 import { categoriesOfSubscription } from '@/constants';
 
-const Subscription = () => {
+const Subscription = ({
+  products,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [search, setSearch] = useState<string | undefined>(undefined);
   const [activeCategory, setActiveCategory] = useState(
     categoriesOfSubscription[4]?.value || 'view-all',
@@ -29,8 +33,21 @@ const Subscription = () => {
         handleSearch={handleSearch}
         handleCategoryChange={handleCategoryChange}
       />
+
+      <ActiveSubscriptions products={products} />
     </SubscriptionContainer>
   );
 };
 
 export default Subscription;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const page = 0;
+  const pageSize = 10;
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/project/featured?page=${page}&pageSize=${pageSize}`,
+  );
+  const products = await res.json();
+  return { props: { products } };
+};

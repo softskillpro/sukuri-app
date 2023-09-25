@@ -2,13 +2,21 @@ import { styled } from '@mui/material/styles';
 
 export const SubscriptionManagementContainer = styled('div')(({ theme }) => ({
   display: 'grid',
-  gridTemplateColumns: '7.3fr 4.7fr',
+  gridTemplateColumns: '8.5fr 3.5fr',
   alignItems: 'center',
   gap: 10,
   padding: '15px 0 48px',
 
   '.btn-group': {
     justifyContent: 'flex-end',
+  },
+
+  [theme.breakpoints.down('xl')]: {
+    gridTemplateColumns: '8fr 4fr',
+  },
+
+  [theme.breakpoints.down(1240)]: {
+    gridTemplateColumns: '7.3fr 4.7fr',
   },
 
   [theme.breakpoints.down('md')]: {

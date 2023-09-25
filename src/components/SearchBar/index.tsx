@@ -18,7 +18,6 @@ interface SearchBarProps {
 
 const SearchBar = ({ handleSearch }: SearchBarProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  console.log(222);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

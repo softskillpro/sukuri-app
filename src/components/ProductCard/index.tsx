@@ -1,8 +1,7 @@
 import Image from 'next/image';
 import { Typography, useMediaQuery, useTheme } from '@mui/material';
-import { FavoriteIcon } from '@/components/Icons';
 import { FlexBox } from '@/components/Common/FlexBox';
-import { StarIcon, StarIcon2 } from '@/components/Icons';
+import { FavoriteIcon, StarIcon, StarIcon2 } from '@/components/Icons';
 import { ProductCardContainer } from './styles';
 import { NFT } from '@/types';
 

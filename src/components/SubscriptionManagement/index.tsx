@@ -16,7 +16,6 @@ const SubscriptionManagement = ({
   handleSearch,
   handleCategoryChange,
 }: SubscriptionManagementProps) => {
-  console.log(111);
   return (
     <SubscriptionManagementContainer>
       <SearchBar handleSearch={handleSearch} />
