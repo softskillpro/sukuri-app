@@ -3,6 +3,8 @@ import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import SubscriptionHero from '@/components/SubscriptionHero';
 import SubscriptionManagement from '@/components/SubscriptionManagement';
 import ActiveSubscriptions from '@/components/ActiveSubscriptions';
+import LikedProducts from '@/components/LikedProducts';
+import Explorer from '@/components/Explorer';
 import { SubscriptionContainer } from '@/styles/subscription';
 import { categoriesOfSubscription } from '@/constants';
 
@@ -35,6 +37,10 @@ const Subscription = ({
       />
 
       <ActiveSubscriptions products={products} />
+
+      <LikedProducts products={products} />
+
+      <Explorer />
     </SubscriptionContainer>
   );
 };
