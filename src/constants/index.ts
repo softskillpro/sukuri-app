@@ -4,6 +4,7 @@ import type {
   FooterLink,
   Explorer,
   CategoryOfSubscription,
+  Subscription,
 } from '@/types';
 
 export const navs = [
@@ -119,5 +120,56 @@ export const categoriesOfSubscription: CategoryOfSubscription[] = [
   {
     name: 'View All',
     value: 'view-all',
+  },
+];
+
+export const subscriptions: Subscription[] = [
+  {
+    address: '0xe7A5839F8F978037B72bd48d3777E58Aa6093588',
+    tier_id: 1,
+    name: 'Bronze Battle Pass',
+    price: '25000000000000000000',
+    unit: 'wei',
+    supply: 5000,
+    filled: 1222,
+    subscription_length: 90,
+    subscription_length_unit: 'days',
+    description: 'Basic Bronze Battle Pass',
+    features: ['Online Membership Access', '5 Star Points per Month'],
+  },
+  {
+    address: '0xe7A5839F8F978037B72bd48d3777E58Aa6093588',
+    tier_id: 2,
+    name: 'Silver Battle Pass',
+    price: '40000000000000000000',
+    unit: 'wei',
+    supply: 1000,
+    filled: 254,
+    subscription_length: 90,
+    subscription_length_unit: 'days',
+    description: 'Upgraded Silver Battle Pass',
+    features: [
+      'Online Membership Access',
+      '10 Star Points per Month',
+      'Unique Island Rental',
+    ],
+  },
+  {
+    address: '0xe7A5839F8F978037B72bd48d3777E58Aa6093588',
+    tier_id: 3,
+    name: 'Gold Battle Pass',
+    price: '55000000000000000000',
+    unit: 'wei',
+    supply: 500,
+    filled: 246,
+    subscription_length: 90,
+    subscription_length_unit: 'days',
+    description: 'Ultra Gold Battle Pass',
+    features: [
+      'Online Membership Access',
+      '25 Star Points per Month',
+      'Unique Island Rental',
+      'Unique House Rental',
+    ],
   },
 ];

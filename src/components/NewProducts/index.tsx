@@ -1,10 +1,10 @@
 import ProductCard from '@/components/ProductCard';
 import MultiCarousel from '@/components/MultiCarousel';
 import { NewProductsContainer } from './styles';
-import type { NFT } from '@/types';
+import type { Product } from '@/types';
 
 interface NewProductsProps {
-  products: NFT[];
+  products: Product[];
 }
 
 const NewProducts = ({ products }: NewProductsProps) => {
@@ -12,7 +12,7 @@ const NewProducts = ({ products }: NewProductsProps) => {
     <NewProductsContainer>
       <MultiCarousel title='New Products'>
         {products &&
-          products.map((product: NFT) => (
+          products.map((product: Product) => (
             <ProductCard
               key={product.id}
               product={product}

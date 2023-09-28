@@ -24,7 +24,7 @@ export interface Tier {
   projectId: string;
 }
 
-export interface NFT {
+export interface Product {
   id: string;
   name: string;
   short_description: string;
@@ -47,4 +47,18 @@ export interface Explorer {
 export interface CategoryOfSubscription {
   name: string;
   value: string;
+}
+
+export interface Subscription {
+  address: string;
+  tier_id: number;
+  name: string;
+  price: string;
+  unit: string;
+  supply: number;
+  filled: number;
+  subscription_length: number;
+  subscription_length_unit: string;
+  description: string;
+  features: string[];
 }

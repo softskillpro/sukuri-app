@@ -2,10 +2,10 @@ import { Typography } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
 import SecondaryProductCard from '@/components/SecondaryProductCard';
 import { LikedProductsContainer } from './styles';
-import type { NFT } from '@/types';
+import type { Product } from '@/types';
 
 interface LikedProductsProps {
-  products: NFT[];
+  products: Product[];
 }
 
 const LikedProducts = ({ products }: LikedProductsProps) => {
@@ -26,7 +26,7 @@ const LikedProducts = ({ products }: LikedProductsProps) => {
 
       <div className='product-group'>
         {products &&
-          products.map((product: NFT) => (
+          products.map((product: Product) => (
             <SecondaryProductCard key={product.id} product={product} />
           ))}
       </div>
