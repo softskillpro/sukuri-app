@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
-import SubscriptionCard from '@/components/SubscriptionCard';
+import ProductSubscriptionCard from '@/components/ProductSubscriptionCard';
 import { ActiveSubscriptionsContainer } from './styles';
 import type { NFT } from '@/types';
 
@@ -27,7 +27,7 @@ const ActiveSubscriptions = ({ products }: ActiveSubscriptionsProps) => {
       <div className='product-group'>
         {products &&
           products.map((product: NFT) => (
-            <SubscriptionCard key={product.id} product={product} />
+            <ProductSubscriptionCard key={product.id} product={product} />
           ))}
       </div>
 

@@ -3,20 +3,23 @@ import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
 import { StarIcon, StarIcon2 } from '@/components/Icons';
 import EllipseIconList from '@/components/EllipseIconList';
-import { SubscriptionCardContainer } from './styles';
+import { ProductSubscriptionCardContainer } from './styles';
 import { NFT } from '@/types';
 
-interface SubscriptionCardProps {
+interface ProductSubscriptionCardProps {
   product: NFT;
   className?: string;
 }
 
-const SubscriptionCard = ({ product, className }: SubscriptionCardProps) => {
+const ProductSubscriptionCard = ({
+  product,
+  className,
+}: ProductSubscriptionCardProps) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
   return (
-    <SubscriptionCardContainer className={className || 'product-card'}>
+    <ProductSubscriptionCardContainer className={className || 'product-card'}>
       <Image
         src='/images/product.jpeg'
         width={400}
@@ -91,8 +94,8 @@ const SubscriptionCard = ({ product, className }: SubscriptionCardProps) => {
           </FlexBox>
         </FlexBox>
       </FlexBox>
-    </SubscriptionCardContainer>
+    </ProductSubscriptionCardContainer>
   );
 };
 
-export default SubscriptionCard;
+export default ProductSubscriptionCard;
