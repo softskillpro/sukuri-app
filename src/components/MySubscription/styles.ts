@@ -6,7 +6,7 @@ export const MySubscriptionContainer = styled('div')(({ theme }) => ({
   gridTemplateColumns: 'repeat(2, 1fr)',
   gap: 100,
   margin: '22px 0',
-  padding: '96px 80px',
+  padding: '70px 80px',
 
   '.subscription-header': {
     height: 92,
@@ -38,19 +38,20 @@ export const MySubscriptionContainer = styled('div')(({ theme }) => ({
 
       '.cancel-btn': {
         cursor: 'pointer',
+        zIndex: 10,
       },
     },
   },
 
   [theme.breakpoints.down('lg')]: {
     gap: 70,
-    padding: '96px 60px',
+    padding: '70px 60px',
   },
 
   [theme.breakpoints.down('md')]: {
     gridTemplateColumns: '1fr',
     gap: 40,
-    padding: '112px 40px 40px',
+    padding: '70px 40px',
 
     '.subscription-header': {
       height: 'auto',

@@ -5,6 +5,7 @@ import type {
   Explorer,
   CategoryOfSubscription,
   Subscription,
+  Transaction,
 } from '@/types';
 
 export const navs = [
@@ -171,5 +172,46 @@ export const subscriptions: Subscription[] = [
       'Unique Island Rental',
       'Unique House Rental',
     ],
+  },
+];
+
+export const txTableHeader = ['TIER', 'AMOUNT', 'DATE', 'TRANSACTION'];
+
+export const txData: Transaction[] = [
+  {
+    tier: '1',
+    amount: '$22',
+    date: '28/09/2023',
+    tx: '0x1234567891234567891234567...',
+  },
+  {
+    tier: '2',
+    amount: '$22',
+    date: '28/09/2023',
+    tx: '0x1234567891234567891234567...',
+  },
+  {
+    tier: '3',
+    amount: '$22',
+    date: '28/09/2023',
+    tx: '0x1234567891234567891234567...',
+  },
+  {
+    tier: '4',
+    amount: '$22',
+    date: '28/09/2023 ',
+    tx: '0x1234567891234567891234567...',
+  },
+  {
+    tier: '5',
+    amount: '$22',
+    date: '28/09/2023',
+    tx: '0x1234567891234567891234567...',
+  },
+  {
+    tier: '6',
+    amount: '$22',
+    date: '28/09/2023',
+    tx: '0x1234567891234567891234567...',
   },
 ];

@@ -1,5 +1,6 @@
 import SubscriptionManagementHero from '@/components/SubManagementHero';
 import MySubscription from '@/components/MySubscription';
+import BillingHistory from '@/components/BillingHistory';
 import { SubscriptionManagementContainer } from '@/styles/sub-management';
 
 const SubscriptionManagement = () => {
@@ -8,6 +9,8 @@ const SubscriptionManagement = () => {
       <SubscriptionManagementHero />
 
       <MySubscription />
+
+      <BillingHistory />
     </SubscriptionManagementContainer>
   );
 };

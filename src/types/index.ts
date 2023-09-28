@@ -62,3 +62,10 @@ export interface Subscription {
   description: string;
   features: string[];
 }
+
+export interface Transaction {
+  tier: string;
+  amount: string;
+  date: string;
+  tx: string;
+}
