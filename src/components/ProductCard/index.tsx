@@ -3,10 +3,10 @@ import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
 import { FavoriteIcon, StarIcon, StarIcon2 } from '@/components/Icons';
 import { ProductCardContainer } from './styles';
-import { NFT } from '@/types';
+import type { Product } from '@/types';
 
 interface ProductCardProps {
-  product: NFT;
+  product: Product;
   className?: string;
 }
 

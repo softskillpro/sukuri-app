@@ -38,7 +38,7 @@ const Subscription = ({
 
       <ActiveSubscriptions products={products} />
 
-      <LikedProducts products={products} />
+      <LikedProducts title='Products you might like' products={products} />
 
       <Explorer />
     </SubscriptionContainer>

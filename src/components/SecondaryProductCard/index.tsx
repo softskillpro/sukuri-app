@@ -4,10 +4,10 @@ import { FlexBox } from '@/components/Common/FlexBox';
 import { SecondaryGlassMorph } from '@/components/Common/GlassMorph';
 import { FavoriteIcon, StarIcon, StarIcon2 } from '@/components/Icons';
 import { SecondaryProductCardContainer } from './styles';
-import { NFT } from '@/types';
+import { Product } from '@/types';
 
 interface SecondaryProductCardProps {
-  product: NFT;
+  product: Product;
   className?: string;
 }
 
@@ -53,12 +53,12 @@ const SecondaryProductCard = ({
             id < 4 ? (
               <StarIcon
                 key={`star-${id}`}
-                sx={{ fontSize: matches ? 18 : 11 }}
+                sx={{ fontSize: matches ? 16 : 11 }}
               />
             ) : (
               <StarIcon2
                 key={`star-${id}`}
-                sx={{ fontSize: matches ? 18 : 11 }}
+                sx={{ fontSize: matches ? 16 : 11 }}
               />
             ),
           )}

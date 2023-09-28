@@ -6,7 +6,7 @@ export const BillingHistoryContainer = styled(FlexBox)(({ theme }) => ({
   flexDirection: 'column',
   alignItems: 'flex-start',
   gap: 45,
-  margin: '22px 0',
+  margin: '22px 0 47px',
   padding: '70px 80px',
 
   '.tx-table-wrapper': {

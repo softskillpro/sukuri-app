@@ -5,14 +5,15 @@ import { LikedProductsContainer } from './styles';
 import type { Product } from '@/types';
 
 interface LikedProductsProps {
+  title: string;
   products: Product[];
 }
 
-const LikedProducts = ({ products }: LikedProductsProps) => {
+const LikedProducts = ({ title, products }: LikedProductsProps) => {
   return (
     <LikedProductsContainer>
       <FlexBox className='active-subscription-header'>
-        <Typography variant='h5'>Products you might like</Typography>
+        <Typography variant='h5'>{title}</Typography>
 
         <Typography
           variant='body4'

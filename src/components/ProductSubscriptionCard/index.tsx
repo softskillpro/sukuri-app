@@ -4,10 +4,10 @@ import { FlexBox } from '@/components/Common/FlexBox';
 import { StarIcon, StarIcon2 } from '@/components/Icons';
 import EllipseIconList from '@/components/EllipseIconList';
 import { ProductSubscriptionCardContainer } from './styles';
-import { NFT } from '@/types';
+import type { Product } from '@/types';
 
 interface ProductSubscriptionCardProps {
-  product: NFT;
+  product: Product;
   className?: string;
 }
 
