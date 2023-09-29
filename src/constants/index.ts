@@ -215,3 +215,5 @@ export const txData: Transaction[] = [
     tx: '0x1234567891234567891234567...',
   },
 ];
+
+export const numberEn = ['One', 'Two', 'Three', 'Four', 'Five', 'Six'];
