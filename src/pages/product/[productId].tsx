@@ -1,5 +1,6 @@
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import ProductHero from '@/components/ProductHero';
+import ProductDetail from '@/components/ProductDetail';
 import { ProductContainer } from '@/styles/product';
 
 const Product = ({
@@ -9,6 +10,8 @@ const Product = ({
   return (
     <ProductContainer>
       <ProductHero product={product} />
+
+      <ProductDetail product={product} />
     </ProductContainer>
   );
 };

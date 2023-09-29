@@ -11,4 +11,5 @@ export const HeroGlow = styled('div')(({ theme }) => ({
   background: theme.palette.topProductsGradient.light,
   boxShadow: theme.palette.boxShadow.main,
   backdropFilter: 'blur(5px)',
+  zIndex: -3,
 }));

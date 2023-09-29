@@ -5,6 +5,7 @@ export const ProductHeroContainer = styled('div')(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
   gap: 100,
+  marginTop: 20,
   padding: '136px 80px 90px',
 
   '.currency-switcher-wrapper': {
@@ -137,27 +138,6 @@ export const ProductHeroContainer = styled('div')(({ theme }) => ({
         width: '100%',
         padding: '18px 20px',
       },
-
-      // '.product-detail': {
-      //   '.membership-tier': {
-      //     position: 'relative',
-      //     width: '100%',
-
-      //     '.membership': {
-      //       width: 140,
-      //       padding: '0px 15px 0 25px',
-      //     },
-
-      //     '.tier': {
-      //       width: 'calc(100% - 140px)',
-      //       padding: '38px 0 38px 30px',
-      //       borderRadius: 7,
-      //       background: theme.palette.topProductsGradient.light,
-      //       boxShadow: theme.palette.boxShadow.main,
-      //       backdropFilter: 'blur(5px)',
-      //     },
-      //   },
-      // },
     },
   },
 }));

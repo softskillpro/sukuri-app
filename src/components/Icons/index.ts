@@ -18,6 +18,10 @@ import StarIcon2 from './StarIcon2';
 import SearchIcon from './SearchIcon';
 import ETHIcon from './ETHIcon';
 import EllipseIcon from './EllipseIcon';
+import LinkIcon from './LinkIcon';
+import MediumIcon from './MediumIcon';
+import InstagramIcon from './InstagramIcon';
+import WebsiteIcon from './WebsiteIcon';
 
 export {
   ArrowRightIcon,
@@ -40,4 +44,8 @@ export {
   SearchIcon,
   ETHIcon,
   EllipseIcon,
+  LinkIcon,
+  MediumIcon,
+  InstagramIcon,
+  WebsiteIcon,
 };

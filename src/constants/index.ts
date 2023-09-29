@@ -1,4 +1,10 @@
-import { DiscordIcon, TwitterIcon } from '@/components/Icons';
+import {
+  DiscordIcon,
+  TwitterIcon,
+  MediumIcon,
+  LinkIcon,
+  WebsiteIcon,
+} from '@/components/Icons';
 import type {
   Social,
   FooterLink,
@@ -217,3 +223,26 @@ export const txData: Transaction[] = [
 ];
 
 export const numberEn = ['One', 'Two', 'Three', 'Four', 'Five', 'Six'];
+
+export const socialList: Social[] = [
+  {
+    asset: LinkIcon,
+    href: 'https://discord.gg/2PNxNZVG6N',
+  },
+  {
+    asset: TwitterIcon,
+    href: 'https://twitter.com/sukuriprotocol',
+  },
+  {
+    asset: DiscordIcon,
+    href: 'https://discord.gg/2PNxNZVG6N',
+  },
+  {
+    asset: MediumIcon,
+    href: 'https://discord.gg/2PNxNZVG6N',
+  },
+  {
+    asset: WebsiteIcon,
+    href: 'https://sukuri.io',
+  },
+];
