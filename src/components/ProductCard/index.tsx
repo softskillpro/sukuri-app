@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
@@ -11,11 +12,20 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, className }: ProductCardProps) => {
+  const router = useRouter();
+
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
+  const handleClick = () => {
+    router.push(`/product/${product.id}`);
+  };
+
   return (
-    <ProductCardContainer className={className || 'product-card'}>
+    <ProductCardContainer
+      className={className || 'product-card'}
+      onClick={handleClick}
+    >
       <Image
         src='/images/product.jpeg'
         width={400}
