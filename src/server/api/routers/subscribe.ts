@@ -1,5 +1,6 @@
 import { z } from 'zod';
-import { protectedProcedure, createTRPCRouter } from '@/server/api/trpc';
+import { protectedProcedure, publicProcedure, createTRPCRouter } from '@/server/api/trpc';
+import { ProjectTier } from '@prisma/client';
 
 const SubscriptionInput = z.object({
   projectId: z.string(),
@@ -11,6 +12,20 @@ const SubscriptionInput = z.object({
  * @type {TRPCRouter}
  */
 export const subscriptionRouter = createTRPCRouter({
+  /**
+ * @function get
+ * Get a subscription by its ID.
+ *
+ * @param {string} id - The ID of the subscription.
+ * @returns {ProjectTier} - The requested subscription.
+ */
+  create: publicProcedure
+    .input(z.string()).query(async ({ input, ctx }) => {
+      const subscription = await ctx.prisma.projectTier.findUnique({
+        where: { id: input },
+      });
+      return subscription;
+    }),
   /**
    * subscribe is a protected procedure that creates a new subscription given a projectId and a tierId.
    * It throws an error if the user is not authenticated, if the user, project, or tier do not exist,
