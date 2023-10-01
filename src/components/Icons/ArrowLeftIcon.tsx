@@ -15,6 +15,7 @@ const ArrowLeftIcon = ({ ...props }) => {
         strokeWidth='1.76363'
         strokeLinecap='round'
         strokeLinejoin='round'
+        fill='transparent'
       />
     </SvgIcon>
   );

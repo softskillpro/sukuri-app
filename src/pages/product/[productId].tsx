@@ -2,6 +2,7 @@ import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import ProductHero from '@/components/ProductHero';
 import ProductDetail from '@/components/ProductDetail';
 import SelectSubscription from '@/components/SelectSubscription';
+import ImageCarousel from '@/components/ImageCarousel';
 import { ProductContainer } from '@/styles/product';
 
 const Product = ({
@@ -15,6 +16,8 @@ const Product = ({
       <ProductDetail product={product} />
 
       <SelectSubscription />
+
+      <ImageCarousel />
     </ProductContainer>
   );
 };

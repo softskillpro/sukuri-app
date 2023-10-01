@@ -278,3 +278,5 @@ export const tiers: TierInfo[] = [
     features: ['Everything in Tier Two', '24h support', 'VIP Tips'],
   },
 ];
+
+export const productImgs = ['product_badge', 'carousel1', 'carousel2'];

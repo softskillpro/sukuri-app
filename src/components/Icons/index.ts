@@ -23,6 +23,7 @@ import MediumIcon from './MediumIcon';
 import InstagramIcon from './InstagramIcon';
 import WebsiteIcon from './WebsiteIcon';
 import DividerIcon from './DividerIcon';
+import ArrowRightIcon3 from './ArrowRightIcon3';
 
 export {
   ArrowRightIcon,
@@ -50,4 +51,5 @@ export {
   InstagramIcon,
   WebsiteIcon,
   DividerIcon,
+  ArrowRightIcon3,
 };

@@ -9,7 +9,7 @@ import type { TierInfo } from '@/types';
 import { SelectSubscriptionContainer } from './styles';
 
 const SelectSubscription = () => {
-  const [activeId, setActiveId] = useState(2);
+  const [activeId, setActiveId] = useState(1);
   const [active, setActive] = useState(false);
 
   const handleActiveChange = useCallback(() => {
