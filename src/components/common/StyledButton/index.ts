@@ -1,17 +1,19 @@
 import { styled } from '@mui/material';
 
-export const StyledButton = styled('button')(({ theme }) => ({
+export const StyledButton = styled('button')<{
+  variant: 'Primay' | 'Secondary';
+}>(({ theme, variant = 'Primary' }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: '12px 30px',
+  padding: variant === 'Primay' ? '12px 30px' : '15px 38px',
   borderRadius: 6,
   border: 'none',
   background: theme.palette.buttonGradient.main,
   boxShadow: theme.palette.boxShadow.main,
   backdropFilter: 'blur(20px)',
   cursor: 'pointer',
-  fontSize: 12.5,
+  fontSize: variant === 'Primay' ? 12.5 : 14,
   fontWeight: 700,
   fontFamily: 'var(--Inter)',
   color: theme.palette.text.primary,
@@ -20,10 +22,14 @@ export const StyledButton = styled('button')(({ theme }) => ({
     background: theme.palette.buttonGradient.light,
   },
 
+  ':disabled': {
+    background: theme.palette.buttonGradient.dark,
+  },
+
   [theme.breakpoints.down('md')]: {
-    fontSize: 10,
+    fontSize: variant === 'Primay' ? 10 : 14,
     fontWeight: 600,
-    padding: '9px 24px',
+    padding: variant === 'Primay' ? '9px 24px' : '15px 38px',
   },
 }));
 

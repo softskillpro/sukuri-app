@@ -69,3 +69,11 @@ export interface Transaction {
   date: string;
   tx: string;
 }
+
+export interface TierInfo {
+  title: string;
+  description: string;
+  price: string;
+  btn: string;
+  features: string[];
+}

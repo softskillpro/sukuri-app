@@ -73,6 +73,8 @@ const theme = createTheme({
     },
     cardGradient: {
       main: 'linear-gradient(180deg, rgba(166, 212, 255, 0.60) 0%, rgba(83, 104, 184, 0.43) 100%, rgba(83, 104, 184, 0.60) 100%)',
+      light:
+        'linear-gradient(180deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.00) 100%)',
     },
     shapeFill: {
       main: 'linear-gradient(211deg, rgba(124, 151, 250, 0.50) 18.86%, rgba(153, 71, 214, 0.00) 56.35%)',
@@ -129,11 +131,13 @@ const theme = createTheme({
     },
     accent: {
       main: '#ABD2FF',
+      light: '#8E919B',
     },
     buttonGradient: {
       main: 'linear-gradient(90deg, rgba(255, 255, 255, 0.70) -2.15%, rgba(255, 255, 255, 0.12) 102.01%)',
       light:
         'linear-gradient(90deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.40) 17.83%, rgba(255, 255, 255, 0.56) 53.65%, rgba(255, 255, 255, 0.39) 83.57%, rgba(255, 255, 255, 0.24) 100%)',
+      dark: 'linear-gradient(94deg, rgba(255, 255, 255, 0.10) 46.77%, rgba(255, 239, 239, 0.10) 90.93%)',
     },
   },
 });
