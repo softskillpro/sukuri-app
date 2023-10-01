@@ -1,10 +1,12 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
 import { StarIcon, StarIcon2 } from '@/components/Icons';
 import EllipseIconList from '@/components/EllipseIconList';
 import { ProductSubscriptionCardContainer } from './styles';
 import type { Product } from '@/types';
+import useRuntimeContext from '@/hooks/useRuntimeContext';
 
 interface ProductSubscriptionCardProps {
   product: Product;
@@ -15,11 +17,22 @@ const ProductSubscriptionCard = ({
   product,
   className,
 }: ProductSubscriptionCardProps) => {
+  const router = useRouter();
+  const { fetchHandler } = useRuntimeContext();
+
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
+  const handleClick = () => {
+    fetchHandler(true);
+    router.push(`product/${product.id}`);
+  };
+
   return (
-    <ProductSubscriptionCardContainer className={className || 'product-card'}>
+    <ProductSubscriptionCardContainer
+      className={className || 'product-card'}
+      onClick={handleClick}
+    >
       <Image
         src='/images/product.jpeg'
         width={400}

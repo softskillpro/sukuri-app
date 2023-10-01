@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import MarketplaceHero from '@/components/MarketplaceHero';
 import CategorySearch from '@/components/CategorySearch';
@@ -9,12 +9,20 @@ import IntroSukuri from '@/components/IntroSukuri';
 import BecomeAffiliate from '@/components/BecomeAffiliate';
 import Newsletter from '@/components/Newsletter';
 import { MarketplaceContainer } from '@/styles/home';
+import useRuntimeContext from '@/hooks/useRuntimeContext';
 
 const Marketplace = ({
   products,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const { fetchHandler } = useRuntimeContext();
+
   const [search, setSearch] = useState<string | undefined>(undefined);
-  console.log(search);
+
+  useEffect(() => {
+    console.log(search);
+    fetchHandler(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSearch = useCallback((_search?: string) => {
     setSearch(_search);

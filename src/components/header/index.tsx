@@ -8,6 +8,8 @@ import { FlexBox } from '@/components/Common/FlexBox';
 import { StyledButton } from '@/components/Common/StyledButton';
 import HeaderModal from './HeaderModal';
 import { MenuIcon, CloseIcon } from '@/components/Icons';
+import LinearDeterminate from '@/components/LinearDeterminate';
+import useRuntimeContext from '@/hooks/useRuntimeContext';
 import { HeaderContainer } from './styles';
 import { navs } from '@/constants';
 
@@ -19,6 +21,9 @@ const inter = Inter({
 const Header = () => {
   const router = useRouter();
   const currentUrl = router.asPath;
+  const { isLoading, fetchHandler } = useRuntimeContext();
+
+  console.log(isLoading);
 
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
@@ -29,6 +34,7 @@ const Header = () => {
   const handleClick = (url: string) => {
     setSelected(url);
     setOpen(false);
+    fetchHandler(true);
   };
 
   const handleOpen = () => {
@@ -45,6 +51,8 @@ const Header = () => {
 
   return (
     <>
+      {isLoading && <LinearDeterminate />}
+
       <header style={{ width: '100%' }}>
         <HeaderContainer>
           <FlexBox className='company-logo-wrapper'>

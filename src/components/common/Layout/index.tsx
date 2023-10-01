@@ -18,11 +18,13 @@ const Layout = ({ children }: LayoutProps) => {
         className='background-img'
       />
 
-      <Header />
+      <div className='main-wrapper'>
+        <Header />
 
-      <main style={{ width: '100%' }}>{children}</main>
+        <main style={{ width: '100%' }}>{children}</main>
 
-      <Footer />
+        <Footer />
+      </div>
     </LayoutContainer>
   );
 };

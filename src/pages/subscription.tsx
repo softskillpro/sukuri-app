@@ -1,22 +1,29 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import SubscriptionHero from '@/components/SubscriptionHero';
 import SubscriptionManagement from '@/components/SubscriptionManagement';
 import ActiveSubscriptions from '@/components/ActiveSubscriptions';
 import LikedProducts from '@/components/LikedProducts';
 import Explorer from '@/components/Explorer';
+import useRuntimeContext from '@/hooks/useRuntimeContext';
 import { SubscriptionContainer } from '@/styles/subscription';
 import { categoriesOfSubscription } from '@/constants';
 
 const Subscription = ({
   products,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const { fetchHandler } = useRuntimeContext();
+
   const [search, setSearch] = useState<string | undefined>(undefined);
   const [activeCategory, setActiveCategory] = useState(
     categoriesOfSubscription[4]?.value || 'view-all',
   );
 
-  console.log(search);
+  useEffect(() => {
+    console.log(search);
+    fetchHandler(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSearch = useCallback((_search?: string) => {
     setSearch(_search);

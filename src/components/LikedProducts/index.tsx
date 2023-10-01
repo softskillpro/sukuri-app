@@ -21,7 +21,7 @@ const LikedProducts = ({ title, products }: LikedProductsProps) => {
           component='div'
           className='filter-btn'
         >
-          Filter
+          See All
         </Typography>
       </FlexBox>
 
@@ -32,14 +32,14 @@ const LikedProducts = ({ title, products }: LikedProductsProps) => {
           ))}
       </div>
 
-      <Typography
+      {/* <Typography
         variant='bodyBoldMobile'
         component='div'
         textAlign='center'
         className='filter-btn see-all-btn'
       >
         See All
-      </Typography>
+      </Typography> */}
     </LikedProductsContainer>
   );
 };

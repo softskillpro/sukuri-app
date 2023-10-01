@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
 import { FavoriteIcon, StarIcon, StarIcon2 } from '@/components/Icons';
+import useRuntimeContext from '@/hooks/useRuntimeContext';
 import { ProductCardContainer } from './styles';
 import type { Product } from '@/types';
 
@@ -13,11 +14,13 @@ interface ProductCardProps {
 
 const ProductCard = ({ product, className }: ProductCardProps) => {
   const router = useRouter();
+  const { fetchHandler } = useRuntimeContext();
 
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
   const handleClick = () => {
+    fetchHandler(true);
     router.push(`/product/${product.id}`);
   };
 

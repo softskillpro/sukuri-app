@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 
+import RuntimeContextProvider from '@/provider/RuntimeContextProvider';
 import Layout from '@/components/Common/Layout';
 import { api } from '@/utils/api';
 import createEmotionCache from '@/utils/create-emotion-cache';
@@ -33,17 +34,19 @@ const MyApp: AppType<{
   return (
     <SessionProvider session={session}>
       <WagmiConfig config={wagmiConfig}>
-        <CacheProvider value={emotionCache}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <div className={inter.variable}>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-              <ToastContainer />
-            </div>
-          </ThemeProvider>
-        </CacheProvider>
+        <RuntimeContextProvider>
+          <CacheProvider value={emotionCache}>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <div className={inter.variable}>
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+                <ToastContainer />
+              </div>
+            </ThemeProvider>
+          </CacheProvider>
+        </RuntimeContextProvider>
       </WagmiConfig>
     </SessionProvider>
   );

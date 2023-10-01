@@ -1,13 +1,22 @@
+import { useEffect } from 'react';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import SubscriptionManagementHero from '@/components/SubManagementHero';
 import MySubscription from '@/components/MySubscription';
 import BillingHistory from '@/components/BillingHistory';
 import LikedProducts from '@/components/LikedProducts';
 import { SubscriptionManagementContainer } from '@/styles/sub-management';
+import useRuntimeContext from '@/hooks/useRuntimeContext';
 
 const SubscriptionManagement = ({
   products,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const { fetchHandler } = useRuntimeContext();
+
+  useEffect(() => {
+    fetchHandler(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <SubscriptionManagementContainer>
       <SubscriptionManagementHero />

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import ProductHero from '@/components/ProductHero';
 import ProductDetail from '@/components/ProductDetail';
@@ -5,11 +6,18 @@ import SelectSubscription from '@/components/SelectSubscription';
 import ImageCarousel from '@/components/ImageCarousel';
 import LikedProducts from '@/components/LikedProducts';
 import { ProductContainer } from '@/styles/product';
+import useRuntimeContext from '@/hooks/useRuntimeContext';
 
 const Product = ({
   product,
   products,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const { fetchHandler } = useRuntimeContext();
+
+  useEffect(() => {
+    fetchHandler(false);
+  }, [fetchHandler]);
+
   return (
     <ProductContainer>
       <ProductHero product={product} />

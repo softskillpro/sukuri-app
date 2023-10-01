@@ -4,9 +4,6 @@ import { FlexBox } from '@/components/Common/FlexBox';
 export const LayoutContainer = styled(FlexBox)(({ theme }) => ({
   position: 'relative',
   flexDirection: 'column',
-  maxWidth: 1440,
-  margin: '0 auto',
-  padding: '0 80px',
 
   '.background-img': {
     position: 'absolute',
@@ -18,15 +15,28 @@ export const LayoutContainer = styled(FlexBox)(({ theme }) => ({
     zIndex: -100,
   },
 
+  '.main-wrapper': {
+    width: '100%',
+    maxWidth: 1440,
+    margin: '0 auto',
+    padding: '0 80px',
+  },
+
   [theme.breakpoints.down('lg')]: {
-    padding: '0 50px',
+    '.main-wrapper': {
+      padding: '0 50px',
+    },
   },
 
   [theme.breakpoints.down('md')]: {
-    padding: '0 30px',
+    '.main-wrapper': {
+      padding: '0 30px',
+    },
   },
 
   [theme.breakpoints.down('sm')]: {
-    padding: '0 16px',
+    '.main-wrapper': {
+      padding: '0 16px',
+    },
   },
 }));
