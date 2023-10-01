@@ -81,7 +81,7 @@ const ProductHero = ({ product }: ProductHeroProps) => {
               </Typography>
 
               <Typography variant='h3' textAlign='center'>
-                {product.tiers.length > 0 &&
+                {product.tiers?.length > 0 &&
                   formatUnits(product.tiers[0]?.price, product.tiers[0]?.unit)}
               </Typography>
             </FlexBox>

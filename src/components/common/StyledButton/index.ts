@@ -1,7 +1,7 @@
 import { styled } from '@mui/material';
 
 export const StyledButton = styled('button')<{
-  variant: 'Primay' | 'Secondary';
+  variant?: 'Primay' | 'Secondary';
 }>(({ theme, variant = 'Primary' }) => ({
   display: 'flex',
   alignItems: 'center',
