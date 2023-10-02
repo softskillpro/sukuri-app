@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
+import { GlassMorph } from '@/components/Common/GlassMorph';
 import { NewsletterContainer } from './styles';
 import { socials } from '@/constants';
 import type { Social } from '@/types';
@@ -13,7 +14,11 @@ const inter = Inter({
   variable: '--Inter',
 });
 
-const Newsletter = () => {
+interface NewsletterProps {
+  className?: string;
+}
+
+const Newsletter = ({ className }: NewsletterProps) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
@@ -28,7 +33,9 @@ const Newsletter = () => {
   };
 
   return (
-    <NewsletterContainer>
+    <NewsletterContainer className={className || 'newsletter-container'}>
+      <GlassMorph className='newsletter-glow' />
+
       <section className='newsletter'>
         <Typography
           variant={matches ? 'h3' : 'h2Mobile'}
@@ -65,6 +72,8 @@ const Newsletter = () => {
       </section>
 
       <section className='community'>
+        <GlassMorph className='community-glow' />
+
         <Typography
           variant={matches ? 'h3' : 'h2Mobile'}
           className='newsletter-title'

@@ -1,12 +1,18 @@
 import { styled } from '@mui/material/styles';
 
 export const NewsletterContainer = styled('div')(({ theme }) => ({
+  position: 'relative',
   display: 'grid',
   gridTemplateColumns: 'repeat(2,1fr)',
   margin: '100px 0',
   borderRadius: 7,
-  border: '1px solid rgba(254, 254, 254, 0.50)',
-  background: theme.palette.glassMorphGradient.main,
+
+  '.newsletter-glow': {
+    background: theme.palette.topProductsGradient.light,
+    border: '1px solid rgba(254, 254, 254, 0.50)',
+    borderRadius: 7,
+    opacity: 0.2,
+  },
 
   '.newsletter-title': {
     marginBottom: 10,
@@ -55,13 +61,19 @@ export const NewsletterContainer = styled('div')(({ theme }) => ({
   },
 
   '.community': {
+    position: 'relative',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
     padding: '80px 50px',
     borderRadius: '0px 7px 7px 0px',
-    background:
-      'linear-gradient(212deg, #7C97FA 36.06%, rgba(153, 71, 214, 0.00) 90.15%)',
+
+    '.community-glow': {
+      opacity: 0.4,
+      borderRadius: '0px 7px 7px 0px',
+      background:
+        'linear-gradient(212deg, #7C97FA 36.06%, rgba(153, 71, 214, 0.00) 90.15%)',
+    },
 
     '.social-group': {
       gap: 12,
