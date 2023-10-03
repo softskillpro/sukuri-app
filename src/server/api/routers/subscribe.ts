@@ -7,32 +7,56 @@ const SubscriptionInput = z.object({
   tierId: z.string(),
 });
 
+const GetInput = z.object({
+  id: z.string().optional(),
+  sortBy: z.string().optional(),
+  asc: z.boolean().optional().default(true),
+});
+
 /**
  * subscriptionRouter defines the necessary operations for managing subscriptions.
  * @type {TRPCRouter}
  */
 export const subscriptionRouter = createTRPCRouter({
+
   /**
- * @function get
- * Get a subscription by its ID.
- *
- * @param {string} id - The ID of the subscription.
- * @returns {ProjectTier} - The requested subscription.
- */
+   * @function get
+   * Get a subscription by its ID or get all subscriptions if no ID is provided.
+   *
+   * @param {object} input - The input object.
+   * @param {string} [input.id] - Optional ID of the subscription to retrieve.
+   * @param {string} [input.sortBy] - Optional attribute to sort by when retrieving multiple subscriptions.
+   * @param {boolean} [input.asc] - Optional flag to order results in ascending or descending order. Defaults to true (ascending) if not provided.
+   * @returns {Promise<Subscription | Subscription[] | null>} - The requested subscription, or an array of subscriptions, or null if not found.
+   */
   get: publicProcedure
-    .input(z.string()).query(async ({ input, ctx }) => {
-      const subscription = await ctx.prisma.subscription.findUnique({
-        where: { id: input },
+    .input(GetInput)
+    .query(async ({ input, ctx }) => {
+      if (input.id) {
+        const subscription = await ctx.prisma.subscription.findUnique({
+          where: { id: input.id },
+        });
+        return subscription || null;
+      }
+
+      const sortBy = input.sortBy || 'last_processed'; 
+      const order = input.asc ? 'asc' : 'desc';
+
+      const subscriptions = await ctx.prisma.subscription.findMany({
+        orderBy: {
+          [sortBy]: order,
+        },
       });
-      return subscription;
+      return subscriptions || null;
     }),
+
   /**
    * subscribe is a protected procedure that creates a new subscription given a projectId and a tierId.
    * It throws an error if the user is not authenticated, if the user, project, or tier do not exist,
    * or if the user is already subscribed to the tier.
    * @returns {Promise<{success: boolean, message: string, data: Prisma.SubscriptionCreateOutput}>}
    */
-  subscribe: protectedProcedure
+  subscribe: publicProcedure // Update to protectedProcedure when auth ready
     .input(SubscriptionInput)
     .mutation(async ({ input, ctx }) => {
       const userId = ctx.session?.user?.id;
