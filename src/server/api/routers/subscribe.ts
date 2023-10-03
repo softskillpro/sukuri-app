@@ -13,6 +13,11 @@ const GetInput = z.object({
   asc: z.boolean().optional().default(true),
 });
 
+const GetSortInput = z.object({
+  sortBy: z.string().optional(),
+  asc: z.boolean().optional().default(true),
+});
+
 /**
  * subscriptionRouter defines the necessary operations for managing subscriptions.
  * @type {TRPCRouter}
@@ -39,7 +44,7 @@ export const subscriptionRouter = createTRPCRouter({
         return subscription || null;
       }
 
-      const sortBy = input.sortBy || 'last_processed'; 
+      const sortBy = input.sortBy || 'last_processed';
       const order = input.asc ? 'asc' : 'desc';
 
       const subscriptions = await ctx.prisma.subscription.findMany({
@@ -49,7 +54,35 @@ export const subscriptionRouter = createTRPCRouter({
       });
       return subscriptions || null;
     }),
+  /**
+ * @function getActive
+ * Get all Active subscriptions orderd by expires or a column of choice
+ *
+ * @param {object} input - The input object.
+ * @param {string} [input.sortBy] - Optional attribute to sort by when retrieving multiple subscriptions.
+ * @param {boolean} [input.asc] - Optional flag to order results in ascending or descending order. Defaults to true (ascending) if not provided.
+ * @returns {Promise<Subscription | Subscription[] | null>} - The requested subscription, or an array of subscriptions, or null if not found.
+ */
+  getActive: publicProcedure
+    .input(GetSortInput)
+    .query(async ({ input, ctx }) => {
+      const sortBy = input.sortBy || 'expires';
+      const order = input.asc ? 'asc' : 'desc';
 
+      const now = new Date();
+
+      const activeSubscriptions = await ctx.prisma.subscription.findMany({
+        where: {
+          expires: {
+            gt: now,
+          },
+        },
+        orderBy: {
+          [sortBy]: order,
+        },
+      });
+      return activeSubscriptions || null;
+    }),
   /**
    * subscribe is a protected procedure that creates a new subscription given a projectId and a tierId.
    * It throws an error if the user is not authenticated, if the user, project, or tier do not exist,
