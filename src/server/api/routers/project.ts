@@ -1,34 +1,16 @@
 import { z } from 'zod';
 import { createTRPCRouter, publicProcedure } from '@/server/api/trpc';
-import { Prisma, Project } from '@prisma/client';
+import { Prisma, Project as PrismaProject } from '@prisma/client';
 
-/**
- * @typedef {Object} ProjectPaymentInput
- * @property {string} token - The payment token.
- */
 const ProjectPaymentInput = z.object({
   token: z.string(),
 });
 
 const GetInput = z.object({
-  id: z.string(),
+  id: z.string().optional(),
   sortBy: z.string().optional(),
   asc: z.boolean().optional().default(true),
 });
-
-/**
- * @typedef {Object} Project
- * @property {string} name - The name of the project.
- * @property {string} short_description - A short description of the project.
- * @property {string} long_description - A detailed description of the project.
- * @property {string} [thumbnail_image] - A URL for the project's thumbnail image.
- * @property {string} [large_image] - A URL for the project's large image.
- * @property {number} chain_id - The chain id of the project.
- * @property {number} [member_count] - The number of members in the project.
- * @property {boolean} is_erc721 - A flag indicating if the project is ERC721.
- * @property {boolean} [is_featured] - A flag indicating if the project is featured.
- * @property {ProjectPaymentInput[]} [accepted_payments] - A list of accepted payment methods.
- */
 
 const ProjectInput = z.object({
   name: z.string(),
@@ -56,7 +38,7 @@ export const projectRouter = createTRPCRouter({
    * Get a project by its ID.
    *
    * @param {string} id - The ID of the project.
-   * @returns {Project} - The requested project.
+   * @returns {Project/Project[]} - The requested project.
    */
   get: publicProcedure
     .input(GetInput)
@@ -68,7 +50,7 @@ export const projectRouter = createTRPCRouter({
             tiers: true,
           },
         });
-        return project || null;
+        return project as PrismaProject || null;
       }
 
       const sortBy = input.sortBy || 'name';
@@ -82,7 +64,7 @@ export const projectRouter = createTRPCRouter({
           tiers: true, 
         },
       });
-      return projects || null;
+      return projects as PrismaProject[] || null;
     }),
 
   /**
@@ -136,7 +118,7 @@ export const projectRouter = createTRPCRouter({
         data: projectData,
       });
 
-      return project;
+      return project as PrismaProject;
     }),
 
   /**
@@ -196,7 +178,7 @@ export const projectRouter = createTRPCRouter({
           ),
         );
       }
-      return project;
+      return project as PrismaProject;
     }),
   /**
    * @function delete
