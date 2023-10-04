@@ -42,6 +42,7 @@ export const subscriptionRouter = createTRPCRouter({
           where: { id: input.id },
           include: {
             tier: true,
+            project: true
           },
         });
         return subscription as PrismSubscription || null;
@@ -56,6 +57,7 @@ export const subscriptionRouter = createTRPCRouter({
         },
         include: {
           tier: true,
+          project: true
         },
       });
       return subscriptions as PrismSubscription[] || null;
@@ -85,6 +87,7 @@ export const subscriptionRouter = createTRPCRouter({
         },
         include: {
           tier: true,
+          project: true
         },
         orderBy: {
           [sortBy]: order,
