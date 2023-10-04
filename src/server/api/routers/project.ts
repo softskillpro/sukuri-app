@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { createTRPCRouter, publicProcedure } from '@/server/api/trpc';
-import { Prisma } from '@prisma/client';
+import { Prisma, Project } from '@prisma/client';
 
 /**
  * @typedef {Object} ProjectPaymentInput
@@ -64,19 +64,25 @@ export const projectRouter = createTRPCRouter({
       if (input.id) {
         const project = await ctx.prisma.project.findUnique({
           where: { id: input.id },
+          include: {
+            tiers: true,
+          },
         });
         return project || null;
       }
 
-      const sortBy = input.sortBy || 'name'; // replace 'name' with your default sortable field
+      const sortBy = input.sortBy || 'name';
       const order = input.asc ? 'asc' : 'desc';
 
       const projects = await ctx.prisma.project.findMany({
         orderBy: {
           [sortBy]: order,
         },
+        include: {
+          tiers: true, 
+        },
       });
-      return projects || null; // return null if no projects are found
+      return projects || null;
     }),
 
   /**
