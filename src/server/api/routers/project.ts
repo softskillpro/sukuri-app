@@ -11,7 +11,7 @@ const ProjectPaymentInput = z.object({
 });
 
 const GetInput = z.object({
-  id: z.string(),
+  id: z.string().optional(),
   sortBy: z.string().optional(),
   asc: z.boolean().optional().default(true),
 });
