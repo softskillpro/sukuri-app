@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { protectedProcedure, publicProcedure, createTRPCRouter } from '@/server/api/trpc';
-import { Subscription } from '@prisma/client';
+import { Subscription as PrismSubscription } from '@prisma/client';
 
 const SubscriptionInput = z.object({
   projectId: z.string(),
@@ -40,8 +40,11 @@ export const subscriptionRouter = createTRPCRouter({
       if (input.id) {
         const subscription = await ctx.prisma.subscription.findUnique({
           where: { id: input.id },
+          include: {
+            tier: true,
+          },
         });
-        return subscription || null;
+        return subscription as PrismSubscription || null;
       }
 
       const sortBy = input.sortBy || 'last_processed';
@@ -51,8 +54,11 @@ export const subscriptionRouter = createTRPCRouter({
         orderBy: {
           [sortBy]: order,
         },
+        include: {
+          tier: true,
+        },
       });
-      return subscriptions || null;
+      return subscriptions as PrismSubscription[] || null;
     }),
   /**
  * @function getActive
@@ -77,11 +83,14 @@ export const subscriptionRouter = createTRPCRouter({
             gt: now,
           },
         },
+        include: {
+          tier: true,
+        },
         orderBy: {
           [sortBy]: order,
         },
       });
-      return activeSubscriptions || null;
+      return activeSubscriptions as PrismSubscription[]|| null;
     }),
   /**
    * subscribe is a protected procedure that creates a new subscription given a projectId and a tierId.
