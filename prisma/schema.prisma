@@ -91,6 +91,7 @@ model Project {
   member_count      Int?
   is_erc721         Boolean
   is_featured       Boolean?
+  created_date      DateTime         @default(now())
   accepted_payments ProjectPayment[]
   tiers             ProjectTier[]
   subscriptions     Subscription[]

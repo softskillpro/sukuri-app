@@ -10,19 +10,11 @@ const ProjectPaymentInput = z.object({
   token: z.string(),
 });
 
-/**
- * @typedef {Object} PaymentOption
- * @property {string} token - The token of the payment option.
- * @property {string} name - The name of the payment option.
- * @property {string} symbol - The symbol of the payment option.
- * @property {boolean} is_eth - A flag indicating if the payment option is Ethereum.
- */
-// const PaymentOption = z.object({
-//   token: z.string(),
-//   name: z.string(),
-//   symbol: z.string(),
-//   is_eth: z.boolean(),
-// });
+const GetInput = z.object({
+  id: z.string(),
+  sortBy: z.string().optional(),
+  asc: z.boolean().optional().default(true),
+});
 
 /**
  * @typedef {Object} Project
@@ -66,12 +58,27 @@ export const projectRouter = createTRPCRouter({
    * @param {string} id - The ID of the project.
    * @returns {Project} - The requested project.
    */
-  get: publicProcedure.input(z.string()).query(async ({ input, ctx }) => {
-    const project = await ctx.prisma.project.findUnique({
-      where: { id: input },
-    });
-    return project;
-  }),
+  get: publicProcedure
+    .input(GetInput)
+    .query(async ({ input, ctx }) => {
+      if (input.id) {
+        const project = await ctx.prisma.project.findUnique({
+          where: { id: input.id },
+        });
+        return project || null;
+      }
+
+      const sortBy = input.sortBy || 'name'; // replace 'name' with your default sortable field
+      const order = input.asc ? 'asc' : 'desc';
+
+      const projects = await ctx.prisma.project.findMany({
+        orderBy: {
+          [sortBy]: order,
+        },
+      });
+      return projects || null; // return null if no projects are found
+    }),
+
   /**
    * @function create
    * Create a new project.
@@ -99,23 +106,23 @@ export const projectRouter = createTRPCRouter({
         },
         accepted_payments: accepted_payments
           ? {
-              create: await Promise.all(
-                accepted_payments.map(async (payment) => {
-                  const paymentOption =
-                    await ctx.prisma.paymentOption.findUnique({
-                      where: { token: payment.token },
-                    });
+            create: await Promise.all(
+              accepted_payments.map(async (payment) => {
+                const paymentOption =
+                  await ctx.prisma.paymentOption.findUnique({
+                    where: { token: payment.token },
+                  });
 
-                  if (!paymentOption) {
-                    throw new Error(
-                      `Payment option for token "${payment.token}" not found.`,
-                    );
-                  }
+                if (!paymentOption) {
+                  throw new Error(
+                    `Payment option for token "${payment.token}" not found.`,
+                  );
+                }
 
-                  return { token: payment.token };
-                }),
-              ),
-            }
+                return { token: payment.token };
+              }),
+            ),
+          }
           : undefined,
       };
 
