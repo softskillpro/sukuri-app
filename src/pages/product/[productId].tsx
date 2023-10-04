@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+// import NextError from 'next/error';
+// import { useRouter } from 'next/router';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import ProductHero from '@/components/ProductHero';
 import ProductDetail from '@/components/ProductDetail';
@@ -7,16 +9,41 @@ import ImageCarousel from '@/components/ImageCarousel';
 import LikedProducts from '@/components/LikedProducts';
 import { ProductContainer } from '@/styles/product';
 import useRuntimeContext from '@/hooks/useRuntimeContext';
+// import { api } from '@/utils/api';
 
 const Product = ({
   product,
   products,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  // const productId = useRouter().query.productId as string;
+  // const productQuery = api.project.get.useQuery(productId);
+
+  console.log(product);
+
   const { fetchHandler } = useRuntimeContext();
 
   useEffect(() => {
     fetchHandler(false);
   }, [fetchHandler]);
+
+  // if (productQuery.error) {
+  //   return (
+  //     <NextError
+  //       title={productQuery.error.message}
+  //       statusCode={productQuery.error.data?.httpStatus ?? 500}
+  //     />
+  //   );
+  // }
+
+  // if (productQuery.status === 'loading') {
+  //   return <div>Loading...</div>;
+  // }
+
+  // const product = productQuery.data;
+
+  // if (!product) {
+  //   return <div>Product does not exist</div>;
+  // }
 
   return (
     <ProductContainer>
@@ -24,7 +51,7 @@ const Product = ({
 
       <ProductDetail product={product} />
 
-      <SelectSubscription />
+      <SelectSubscription product={product} />
 
       <ImageCarousel />
 

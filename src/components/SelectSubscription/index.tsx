@@ -3,12 +3,15 @@ import { Typography } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
 import ToggleButton from '@/components/Common/ToggleButton';
 import TierCard from '@/components/TierCard';
-import { tiers } from '@/constants';
-import type { TierInfo } from '@/types';
+import type { Product, Tier } from '@/types';
 
 import { SelectSubscriptionContainer } from './styles';
 
-const SelectSubscription = () => {
+interface SelectSubscriptionProps {
+  product: Product;
+}
+
+const SelectSubscription = ({ product }: SelectSubscriptionProps) => {
   const [activeId, setActiveId] = useState(1);
   const [active, setActive] = useState(false);
 
@@ -41,14 +44,18 @@ const SelectSubscription = () => {
       </FlexBox>
 
       <div className='tier-card-list'>
-        {tiers.map((tier: TierInfo, id: number) => (
-          <TierCard
-            key={`tier-${id}`}
-            active={activeId === id}
-            tier={tier}
-            handleClick={() => handleClick(id)}
-          />
-        ))}
+        {product.tiers.map(
+          (tier: Tier, id: number) =>
+            id < 3 && (
+              <TierCard
+                key={`tier-${id}`}
+                active={activeId === id}
+                productId={product.id}
+                tier={tier}
+                handleClick={() => handleClick(id)}
+              />
+            ),
+        )}
       </div>
     </SelectSubscriptionContainer>
   );

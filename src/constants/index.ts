@@ -12,7 +12,6 @@ import type {
   CategoryOfSubscription,
   Subscription,
   Transaction,
-  TierInfo,
 } from '@/types';
 
 export const navs = [
@@ -248,35 +247,35 @@ export const socialList: Social[] = [
   },
 ];
 
-export const tiers: TierInfo[] = [
-  {
-    title: 'Basic',
-    description: 'For newbies ',
-    price: '0',
-    btn: 'Subscribe for free',
-    features: ['Team support', 'Fleet loan', 'Exclusive chat access'],
-  },
-  {
-    title: 'Tier One',
-    description: 'For starters',
-    price: '9',
-    btn: 'Subscribe to Tier 1',
-    features: ['Team support', 'Fleet loan', 'Exclusive chat access'],
-  },
-  {
-    title: 'Tier Two',
-    description: 'For pros',
-    price: '19.99',
-    btn: 'Subscribe to Tier 2',
-    features: ['Everything in Tier One', 'Unlimited access', 'Daily calls'],
-  },
-  {
-    title: 'Tier Three',
-    description: 'Legends are here',
-    price: '29.99',
-    btn: 'Subscribe to Tier 3',
-    features: ['Everything in Tier Two', '24h support', 'VIP Tips'],
-  },
-];
+// export const tiers: TierInfo[] = [
+//   {
+//     title: 'Basic',
+//     description: 'For newbies ',
+//     price: '0',
+//     btn: 'Subscribe for free',
+//     features: ['Team support', 'Fleet loan', 'Exclusive chat access'],
+//   },
+//   {
+//     title: 'Tier One',
+//     description: 'For starters',
+//     price: '9',
+//     btn: 'Subscribe to Tier 1',
+//     features: ['Team support', 'Fleet loan', 'Exclusive chat access'],
+//   },
+//   {
+//     title: 'Tier Two',
+//     description: 'For pros',
+//     price: '19.99',
+//     btn: 'Subscribe to Tier 2',
+//     features: ['Everything in Tier One', 'Unlimited access', 'Daily calls'],
+//   },
+//   {
+//     title: 'Tier Three',
+//     description: 'Legends are here',
+//     price: '29.99',
+//     btn: 'Subscribe to Tier 3',
+//     features: ['Everything in Tier Two', '24h support', 'VIP Tips'],
+//   },
+// ];
 
 export const productImgs = ['product_badge', 'carousel1', 'carousel2'];

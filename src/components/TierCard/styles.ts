@@ -22,9 +22,19 @@ export const TierCardContainer = styled('div')<{ active: string }>(
     ul: {
       margin: '16px 0 0 0',
       paddingLeft: 20,
+
+      li: {
+        '::marker': {
+          color: '#8E919B',
+        },
+      },
     },
 
     svg: {
+      width: '100%',
+    },
+
+    '.subscribe-btn': {
       width: '100%',
     },
   }),

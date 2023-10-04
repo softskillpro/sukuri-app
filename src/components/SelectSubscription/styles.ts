@@ -13,7 +13,7 @@ export const SelectSubscriptionContainer = styled(FlexBox)(({ theme }) => ({
 
   '.tier-card-list': {
     display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
+    gridTemplateColumns: 'repeat(3, 1fr)',
     gap: 28,
     width: '100%',
   },
