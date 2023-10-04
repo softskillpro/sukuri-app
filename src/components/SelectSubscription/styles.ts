@@ -12,23 +12,18 @@ export const SelectSubscriptionContainer = styled(FlexBox)(({ theme }) => ({
   },
 
   '.tier-card-list': {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
     gap: 28,
     width: '100%',
   },
 
   [theme.breakpoints.down(1255)]: {},
 
-  [theme.breakpoints.down('md')]: {
-    '.tier-card-list': {
-      gridTemplateColumns: 'repeat(2, 1fr)',
-    },
-  },
+  [theme.breakpoints.down('md')]: {},
 
   [theme.breakpoints.down('sm')]: {
-    '.tier-card-list': {
-      gridTemplateColumns: '1fr',
-    },
+    '.tier-card-list': {},
   },
 }));

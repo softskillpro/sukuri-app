@@ -9,7 +9,7 @@ import ImageCarousel from '@/components/ImageCarousel';
 import LikedProducts from '@/components/LikedProducts';
 import { ProductContainer } from '@/styles/product';
 import useRuntimeContext from '@/hooks/useRuntimeContext';
-// import { api } from '@/utils/api';
+import { api } from '@/utils/api';
 
 const Product = ({
   product,
@@ -18,9 +18,13 @@ const Product = ({
   // const productId = useRouter().query.productId as string;
   // const productQuery = api.project.get.useQuery(productId);
 
-  console.log(product);
-
   const { fetchHandler } = useRuntimeContext();
+
+  const subscribed = api.subscribe.subscribed.useQuery({
+    id: product.id,
+  });
+
+  const tierId = subscribed.data?.tierId;
 
   useEffect(() => {
     fetchHandler(false);
@@ -47,11 +51,11 @@ const Product = ({
 
   return (
     <ProductContainer>
-      <ProductHero product={product} />
+      <ProductHero tierId={tierId} product={product} />
 
       <ProductDetail product={product} />
 
-      <SelectSubscription product={product} />
+      <SelectSubscription tierId={tierId} product={product} />
 
       <ImageCarousel />
 

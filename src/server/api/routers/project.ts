@@ -58,32 +58,30 @@ export const projectRouter = createTRPCRouter({
    * @param {string} id - The ID of the project.
    * @returns {Project} - The requested project.
    */
-  get: publicProcedure
-    .input(GetInput)
-    .query(async ({ input, ctx }) => {
-      if (input.id) {
-        const project = await ctx.prisma.project.findUnique({
-          where: { id: input.id },
-          include: {
-            tiers: true,
-          },
-        });
-        return project || null;
-      }
-
-      const sortBy = input.sortBy || 'name';
-      const order = input.asc ? 'asc' : 'desc';
-
-      const projects = await ctx.prisma.project.findMany({
-        orderBy: {
-          [sortBy]: order,
-        },
+  get: publicProcedure.input(GetInput).query(async ({ input, ctx }) => {
+    if (input.id) {
+      const project = await ctx.prisma.project.findUnique({
+        where: { id: input.id },
         include: {
-          tiers: true, 
+          tiers: true,
         },
       });
-      return projects || null;
-    }),
+      return project || null;
+    }
+
+    const sortBy = input.sortBy || 'name';
+    const order = input.asc ? 'asc' : 'desc';
+
+    const projects = await ctx.prisma.project.findMany({
+      orderBy: {
+        [sortBy]: order,
+      },
+      include: {
+        tiers: true,
+      },
+    });
+    return projects || null;
+  }),
 
   /**
    * @function create
@@ -112,23 +110,23 @@ export const projectRouter = createTRPCRouter({
         },
         accepted_payments: accepted_payments
           ? {
-            create: await Promise.all(
-              accepted_payments.map(async (payment) => {
-                const paymentOption =
-                  await ctx.prisma.paymentOption.findUnique({
-                    where: { token: payment.token },
-                  });
+              create: await Promise.all(
+                accepted_payments.map(async (payment) => {
+                  const paymentOption =
+                    await ctx.prisma.paymentOption.findUnique({
+                      where: { token: payment.token },
+                    });
 
-                if (!paymentOption) {
-                  throw new Error(
-                    `Payment option for token "${payment.token}" not found.`,
-                  );
-                }
+                  if (!paymentOption) {
+                    throw new Error(
+                      `Payment option for token "${payment.token}" not found.`,
+                    );
+                  }
 
-                return { token: payment.token };
-              }),
-            ),
-          }
+                  return { token: payment.token };
+                }),
+              ),
+            }
           : undefined,
       };
 

@@ -8,10 +8,16 @@ import Explorer from '@/components/Explorer';
 import useRuntimeContext from '@/hooks/useRuntimeContext';
 import { SubscriptionContainer } from '@/styles/subscription';
 import { categoriesOfSubscription } from '@/constants';
+import { api } from '@/utils/api';
 
 const Subscription = ({
   products,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  // const Subscription = () => {
+  const { data: subscribedProducts } = api.subscribe.getActive.useQuery({
+    asc: true,
+  });
+
   const { fetchHandler } = useRuntimeContext();
 
   const [search, setSearch] = useState<string | undefined>(undefined);

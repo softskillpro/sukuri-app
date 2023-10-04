@@ -1,5 +1,9 @@
 import { z } from 'zod';
-import { protectedProcedure, publicProcedure, createTRPCRouter } from '@/server/api/trpc';
+import {
+  protectedProcedure,
+  publicProcedure,
+  createTRPCRouter,
+} from '@/server/api/trpc';
 import { Subscription } from '@prisma/client';
 
 const SubscriptionInput = z.object({
@@ -23,7 +27,6 @@ const GetSortInput = z.object({
  * @type {TRPCRouter}
  */
 export const subscriptionRouter = createTRPCRouter({
-
   /**
    * @function get
    * Get a subscription by its ID or get all subscriptions if no ID is provided.
@@ -34,35 +37,54 @@ export const subscriptionRouter = createTRPCRouter({
    * @param {boolean} [input.asc] - Optional flag to order results in ascending or descending order. Defaults to true (ascending) if not provided.
    * @returns {Promise<Subscription | Subscription[] | null>} - The requested subscription, or an array of subscriptions, or null if not found.
    */
-  get: publicProcedure
-    .input(GetInput)
-    .query(async ({ input, ctx }) => {
-      if (input.id) {
-        const subscription = await ctx.prisma.subscription.findUnique({
-          where: { id: input.id },
-        });
-        return subscription || null;
-      }
-
-      const sortBy = input.sortBy || 'last_processed';
-      const order = input.asc ? 'asc' : 'desc';
-
-      const subscriptions = await ctx.prisma.subscription.findMany({
-        orderBy: {
-          [sortBy]: order,
-        },
+  get: publicProcedure.input(GetInput).query(async ({ input, ctx }) => {
+    if (input.id) {
+      const subscription = await ctx.prisma.subscription.findUnique({
+        where: { id: input.id },
       });
-      return subscriptions || null;
-    }),
+      return subscription || null;
+    }
+
+    const sortBy = input.sortBy || 'last_processed';
+    const order = input.asc ? 'asc' : 'desc';
+
+    const subscriptions = await ctx.prisma.subscription.findMany({
+      orderBy: {
+        [sortBy]: order,
+      },
+    });
+    return subscriptions || null;
+  }),
+
   /**
- * @function getActive
- * Get all Active subscriptions orderd by expires or a column of choice
- *
- * @param {object} input - The input object.
- * @param {string} [input.sortBy] - Optional attribute to sort by when retrieving multiple subscriptions.
- * @param {boolean} [input.asc] - Optional flag to order results in ascending or descending order. Defaults to true (ascending) if not provided.
- * @returns {Promise<Subscription | Subscription[] | null>} - The requested subscription, or an array of subscriptions, or null if not found.
- */
+   * @function subscribed
+   * Check if the current project is subscribed or not.
+   *
+   * @param {object} input - The input object.
+   * @param {string} [input.id] - Optional projectId of the subscription to retrieve.
+   * @param {string} [input.sortBy] - Optional attribute to sort by when retrieving multiple subscriptions.
+   * @param {boolean} [input.asc] - Optional flag to order results in ascending or descending order. Defaults to true (ascending) if not provided.
+   * @returns {Promise<Subscription | null>} - The requested subscription, or an array of subscriptions, or null if not found.
+   */
+  subscribed: publicProcedure.input(GetInput).query(async ({ input, ctx }) => {
+    if (input.id) {
+      const subscription = await ctx.prisma.subscription.findFirst({
+        where: { projectId: input.id },
+      });
+
+      return subscription || null;
+    }
+  }),
+
+  /**
+   * @function getActive
+   * Get all Active subscriptions orderd by expires or a column of choice
+   *
+   * @param {object} input - The input object.
+   * @param {string} [input.sortBy] - Optional attribute to sort by when retrieving multiple subscriptions.
+   * @param {boolean} [input.asc] - Optional flag to order results in ascending or descending order. Defaults to true (ascending) if not provided.
+   * @returns {Promise<Subscription | Subscription[] | null>} - The requested subscription, or an array of subscriptions, or null if not found.
+   */
   getActive: publicProcedure
     .input(GetSortInput)
     .query(async ({ input, ctx }) => {
@@ -92,7 +114,8 @@ export const subscriptionRouter = createTRPCRouter({
   subscribe: publicProcedure // Update to protectedProcedure when auth ready
     .input(SubscriptionInput)
     .mutation(async ({ input, ctx }) => {
-      const userId = ctx.session?.user?.id;
+      const userId =
+        ctx.session?.user?.id || 'af7d39af-84a9-4a4b-b6a2-18563e42bc6e';
       if (!userId) {
         throw new Error('Not authenticated');
       }
@@ -142,7 +165,7 @@ export const subscriptionRouter = createTRPCRouter({
           last_processed: new Date(),
           expires: new Date(),
           should_continue: true,
-          priority: 1
+          priority: 1,
         },
       });
 

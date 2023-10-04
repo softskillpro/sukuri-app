@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 export const TierCardContainer = styled('div')<{ active: string }>(
   ({ active = 'false', theme }) => ({
     position: 'relative',
+    maxWidth: 360,
     padding: '30px 34px',
     cursor: 'pointer',
 

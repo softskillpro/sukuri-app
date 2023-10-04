@@ -12,28 +12,34 @@ interface TierCardProps {
   productId: string;
   tier: Tier;
   active: boolean;
-  handleClick: () => void;
 }
 
-const TierCard = ({ productId, active, tier, handleClick }: TierCardProps) => {
-  const subscribeProject = api.subscribe.subscribe.useMutation();
+const TierCard = ({ productId, active, tier }: TierCardProps) => {
+  const subscribed = api.subscribe.subscribed.useQuery({
+    id: productId,
+  });
+
+  const subscribeMutationProject = api.subscribe.subscribe.useMutation();
 
   const handleSubscribe = async () => {
     const input = {
       projectId: productId as string,
-      tierId: tier.tier_id as number,
+      tierId: tier.id as string,
     };
 
     try {
-      await subscribeProject.mutateAsync(input);
+      await subscribeMutationProject.mutateAsync(input);
+
       toast.success('Successfully subscribed');
+
+      subscribed.refetch();
     } catch (error: any) {
       toast.error(error?.message || error);
     }
   };
 
   return (
-    <TierCardContainer active={`${active}`} onClick={handleClick}>
+    <TierCardContainer active={`${active}`} className='tier-card'>
       <div className='tier-card-glow' />
 
       <Typography variant='h5' mb={1}>
@@ -58,11 +64,11 @@ const TierCard = ({ productId, active, tier, handleClick }: TierCardProps) => {
 
       <StyledButton
         variant='Secondary'
-        disabled={!active}
+        disabled={active}
         className='subscribe-btn'
         onClick={handleSubscribe}
       >
-        Subscribe
+        {active ? 'Subscribed' : 'Subscribe'}
       </StyledButton>
 
       <DividerIcon />

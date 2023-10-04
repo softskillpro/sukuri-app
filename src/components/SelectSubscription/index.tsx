@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
 import ToggleButton from '@/components/Common/ToggleButton';
@@ -8,20 +8,32 @@ import type { Product, Tier } from '@/types';
 import { SelectSubscriptionContainer } from './styles';
 
 interface SelectSubscriptionProps {
+  tierId?: string;
   product: Product;
 }
 
-const SelectSubscription = ({ product }: SelectSubscriptionProps) => {
-  const [activeId, setActiveId] = useState(1);
+const SelectSubscription = ({ tierId, product }: SelectSubscriptionProps) => {
   const [active, setActive] = useState(false);
+
+  const [productTier, setProductTier] = useState<Tier | undefined>(undefined);
+
+  useEffect(() => {
+    if (product.tiers) {
+      product.tiers.map((tier: Tier) => {
+        if (tier.id === tierId) {
+          setProductTier(tier);
+        }
+      });
+    }
+  }, [product, tierId]);
 
   const handleActiveChange = useCallback(() => {
     setActive((prev) => !prev);
   }, []);
 
-  const handleClick = useCallback((id: number) => {
-    setActiveId(id);
-  }, []);
+  // const handleClick = (tier: Tier) => {
+  //   setProductTier(tier);
+  // };
 
   return (
     <SelectSubscriptionContainer>
@@ -44,18 +56,21 @@ const SelectSubscription = ({ product }: SelectSubscriptionProps) => {
       </FlexBox>
 
       <div className='tier-card-list'>
-        {product.tiers.map(
-          (tier: Tier, id: number) =>
-            id < 3 && (
-              <TierCard
-                key={`tier-${id}`}
-                active={activeId === id}
-                productId={product.id}
-                tier={tier}
-                handleClick={() => handleClick(id)}
-              />
-            ),
-        )}
+        {product.tiers.map((tier: Tier, id: number) => (
+          <div
+            key={`tier-${id}`}
+            role='button'
+            tabIndex={0}
+            // onClick={() => handleClick(tier)}
+            // onKeyDown={() => handleClick(tier)}
+          >
+            <TierCard
+              active={tier.id === productTier?.id}
+              productId={product.id}
+              tier={tier}
+            />
+          </div>
+        ))}
       </div>
     </SelectSubscriptionContainer>
   );
