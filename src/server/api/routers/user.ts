@@ -1,16 +1,7 @@
 import { z } from 'zod';
 import { createTRPCRouter, publicProcedure } from '@/server/api/trpc';
-import { Prisma } from '@prisma/client';
+import { Prisma, User as PrismaUser } from '@prisma/client';
 
-/**
- * User input validation schema
- * @typedef {Object} UserInputSchema
- * @property {string} [name] - The name of the user.
- * @property {string} [email] - The email of the user.
- * @property {string} username - The username of the user.
- * @property {string} address - The address of the user.
- * @property {string} [sukuriPassId] - The SukuriPass ID of the user.
- */
 const UserInput = z.object({
     name: z.string().optional(),
     email: z.string().optional(),
@@ -18,6 +9,13 @@ const UserInput = z.object({
     address: z.string(),
     sukuriPassId: z.string().optional(),
 });
+
+const GetInput = z.object({
+    id: z.string().optional(),
+    sortBy: z.string().optional(),
+    asc: z.boolean().optional().default(true),
+});
+
 
 const PartialUserInput = UserInput.partial();
 
@@ -27,20 +25,37 @@ const PartialUserInput = UserInput.partial();
  * Uses tRPC, a toolkit for building end-to-end typesafe APIs.
  */
 export const userRouter = createTRPCRouter({
+
     /**
      * Fetch a user by their ID.
      *
      * @function get
      * @param {string} input - The ID of the user.
      * @param {Object} ctx - The context object.
-     * @returns {Object} - The requested user.
+     * @returns {User/User[]} - The requested user/users.
      */
-    get: publicProcedure.input(z.string()).query(async ({ input, ctx }) => {
-        const user = await ctx.prisma.user.findUnique({
-            where: { id: input },
-        });
-        return user;
-    }),
+    get: publicProcedure
+        .input(GetInput)
+        .query(async ({ input, ctx }) => {
+            if (input.id) {
+                const user = await ctx.prisma.user.findUnique({
+                    where: { id: input.id },
+                });
+                return user as PrismaUser | null;
+
+            }
+
+            const sortBy = input.sortBy || 'created_date';
+            const order = input.asc ? 'asc' : 'desc';
+
+            const users = await ctx.prisma.user.findMany({
+                orderBy: {
+                    [sortBy]: order,
+                },
+            });
+            return users as PrismaUser[] | null;
+
+        }),
 
     /**
      * Add a new user.
@@ -58,7 +73,7 @@ export const userRouter = createTRPCRouter({
             data: userData,
         });
 
-        return user;
+        return user as PrismaUser;
     }),
 
     /**
@@ -87,7 +102,7 @@ export const userRouter = createTRPCRouter({
             data: input.data,
         });
 
-        return user;
+        return user as PrismaUser;
     }),
 
     /**

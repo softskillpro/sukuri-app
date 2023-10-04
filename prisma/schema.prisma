@@ -41,6 +41,7 @@ model User {
   sessions      Session[]
   username      String         @unique
   address       String         @unique
+  created_date      DateTime         @default(now())
   subscriptions Subscription[]
   pass          SukuriPass?    @relation(fields: [sukuriPassId], references: [id])
   sukuriPassId  String?
@@ -53,6 +54,7 @@ model Subscription {
   userId          String
   projectId       String
   tierId          String
+  created_date      DateTime         @default(now())
   last_processed  DateTime
   expires         DateTime
   should_continue Boolean
@@ -142,6 +144,7 @@ model ProjectTier {
   subscription_length_unit String
   description              String
   features                 String[]
+  created_date      DateTime         @default(now())
   Project                  Project?       @relation(fields: [projectId], references: [id])
   projectId                String?
   Subscription             Subscription[]
