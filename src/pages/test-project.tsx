@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { api } from '@/utils/api';
-import {z} from 'zod';
+import { z } from 'zod';
 
 const GetInput = z.object({
   id: z.string().optional(),
@@ -16,7 +16,6 @@ const GetInput = z.object({
  * - Deleting a project
  * It was assisted by ChatGPT from OpenAI.
  */
-
 
 const TestProjectPage: React.FC = () => {
   const [projectId, setProjectId] = useState<string | undefined>(undefined);

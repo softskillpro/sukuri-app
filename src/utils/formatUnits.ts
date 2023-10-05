@@ -1,11 +1,18 @@
 import { formatEther } from 'ethers';
 
-const formatUnits = (price?: string, unit?: string) => {
+const formatUnits = (price?: string, unit?: string, newCurrency?: string) => {
   if (!price || !unit) return;
 
   if (unit === 'wei') {
     const etherValue = formatEther(price);
-    return `${etherValue}Ξ`;
+    if (!newCurrency) return `${etherValue}Ξ`;
+    else {
+      if (newCurrency === 'USD') {
+        return `$${Number(etherValue) * 1930}`;
+      } else {
+        return `${etherValue}Ξ`;
+      }
+    }
   }
 
   return price;

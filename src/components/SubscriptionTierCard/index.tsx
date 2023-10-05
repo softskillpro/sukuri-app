@@ -9,12 +9,14 @@ import type { Subscription } from '@/types';
 import formatUnits from '@/utils/formatUnits';
 
 interface SubscriptionTierCardProps {
+  currency: string;
   subscription: Subscription;
   active?: boolean;
   handleClick: () => void;
 }
 
 const SubscriptionTierCard = ({
+  currency,
   subscription,
   active = false,
   handleClick,
@@ -71,7 +73,7 @@ const SubscriptionTierCard = ({
         >
           {subscription.price &&
             subscription.unit &&
-            formatUnits(subscription.price, subscription.unit)}
+            formatUnits(subscription.price, subscription.unit, currency)}
         </Typography>
       </FlexBox>
     </SubscriptionTierCardContainer>

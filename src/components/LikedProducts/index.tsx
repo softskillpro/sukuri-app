@@ -18,13 +18,13 @@ const LikedProducts = ({
   products: likedProducts,
 }: LikedProductsProps) => {
   const [isAll, setIsAll] = useState(false);
-  const [products, setProducts] = useState(likedProducts.slice(4));
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     if (isAll) {
       setProducts(likedProducts);
     } else {
-      setProducts(likedProducts.slice(4));
+      if (likedProducts) setProducts(likedProducts.slice(4));
     }
   }, [isAll, likedProducts]);
 
@@ -48,7 +48,7 @@ const LikedProducts = ({
         </Typography>
       </FlexBox>
 
-      {products.length > 0 ? (
+      {products && products.length > 0 ? (
         <div className='product-group'>
           {products.map((product: Product) => (
             <SecondaryProductCard

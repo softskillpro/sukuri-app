@@ -21,7 +21,11 @@ const inter = Inter({
   variable: '--Inter',
 });
 
-const MySubscription = () => {
+interface MySubscriptionProps {
+  currency: string;
+}
+
+const MySubscription = ({ currency }: MySubscriptionProps) => {
   const router = useRouter();
 
   const [selectedId, setSelectedId] = useState(0);
@@ -71,6 +75,7 @@ const MySubscription = () => {
               <SubscriptionTierCard
                 key={`tier-${id}`}
                 active={id === 0 ? true : false}
+                currency={currency}
                 subscription={subscription}
                 handleClick={() => handleClick(id)}
               />
