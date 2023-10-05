@@ -8,7 +8,7 @@ export const MintContainer = styled('div')(({ theme }) => ({
     gridTemplateColumns: 'repeat(2, 1fr)',
     alignItems: 'center',
     gap: 100,
-    padding: '0 80px',
+    padding: '80px 80px',
 
     '.mint-contents': {
       flexDirection: 'column',
@@ -17,8 +17,24 @@ export const MintContainer = styled('div')(({ theme }) => ({
     },
 
     '.mint-asset': {
-      width: 456,
-      height: 456,
+      width: '100%',
+      height: 'auto',
+      margin: '0 auto',
+    },
+
+    '.mint-asset1': {
+      width: 'auto',
+      height: 320,
+    },
+
+    '.mint-asset2': {
+      width: 'auto',
+      height: 200,
+    },
+
+    '.mint-asset3': {
+      width: 'auto',
+      height: 380,
     },
   },
 
@@ -31,7 +47,7 @@ export const MintContainer = styled('div')(({ theme }) => ({
   [theme.breakpoints.down('lg')]: {
     '.mint-grid': {
       gap: 70,
-      padding: '0 60px',
+      padding: 60,
     },
 
     '.mint-newsletter': {
@@ -49,11 +65,11 @@ export const MintContainer = styled('div')(({ theme }) => ({
       gap: 30,
       padding: '70px 0 0',
 
-      '.mint-asset': {
-        width: 308,
-        height: 308,
-        margin: '0 auto',
-      },
+      // '.mint-asset': {
+      //   width: 308,
+      //   height: 308,
+      //   margin: '0 auto',
+      // },
 
       ':nth-of-type(2)': {
         '.mint-contents': {
@@ -76,6 +92,21 @@ export const MintContainer = styled('div')(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
     '.mint-grid': {
       padding: '70px 0 0',
+
+      '.mint-asset1': {
+        width: '100%',
+        height: 'auto',
+      },
+
+      '.mint-asset2': {
+        width: '100%',
+        height: 'auto',
+      },
+
+      '.mint-asset3': {
+        width: '100%',
+        height: 'auto',
+      },
     },
 
     '.mint-newsletter': {

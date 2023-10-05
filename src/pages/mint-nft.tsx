@@ -20,7 +20,10 @@ const Mint = () => {
             Be the first to know...
           </Typography>
 
-          <Typography variant={matches ? 'body1' : 'body2Mobile'}>
+          <Typography
+            variant={matches ? 'body1' : 'body2Mobile'}
+            color='accent.light'
+          >
             As a valued early supporter, you will be the first to see updates to
             our protocol as we build in public. Enjoy access to a private
             channel in our discord where you can chat with the founders and
@@ -33,7 +36,7 @@ const Mint = () => {
           width={300}
           height={300}
           alt='First To Know'
-          className='mint-asset'
+          className='mint-asset mint-asset1'
         />
       </Section>
 
@@ -43,7 +46,7 @@ const Mint = () => {
           width={300}
           height={300}
           alt='First To Know'
-          className='mint-asset'
+          className='mint-asset mint-asset2'
         />
 
         <FlexBox className='mint-contents'>
@@ -51,7 +54,10 @@ const Mint = () => {
             Earn rewards!
           </Typography>
 
-          <Typography variant={matches ? 'body1' : 'body2Mobile'}>
+          <Typography
+            variant={matches ? 'body1' : 'body2Mobile'}
+            color='accent.light'
+          >
             Once you have purchased a Prime Pass, complete quests, provide
             feedback and earn badges that are dynamically added to your pass.
             Collect all the badges to get access to prizes down the road!
@@ -65,7 +71,10 @@ const Mint = () => {
             Additional perks
           </Typography>
 
-          <Typography variant={matches ? 'body1' : 'body2Mobile'}>
+          <Typography
+            variant={matches ? 'body1' : 'body2Mobile'}
+            color='accent.light'
+          >
             All prime pass holders will receive perks once Sukuri has fully
             launched. The more quests you complete, the better the perks will
             be. Examples of these perks may include: free access to select
@@ -79,7 +88,7 @@ const Mint = () => {
           width={300}
           height={300}
           alt='First To Know'
-          className='mint-asset'
+          className='mint-asset mint-asset3'
         />
       </Section>
 
