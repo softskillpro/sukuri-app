@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
-// import NextError from 'next/error';
-// import { useRouter } from 'next/router';
+import { useCallback, useEffect, useState } from 'react';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import ProductHero from '@/components/ProductHero';
 import ProductDetail from '@/components/ProductDetail';
@@ -10,15 +8,17 @@ import LikedProducts from '@/components/LikedProducts';
 import { ProductContainer } from '@/styles/product';
 import useRuntimeContext from '@/hooks/useRuntimeContext';
 import { api } from '@/utils/api';
+import { currencies } from '@/constants';
 
 const Product = ({
   product,
   products,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  // const productId = useRouter().query.productId as string;
-  // const productQuery = api.project.get.useQuery(productId);
-
   const { fetchHandler } = useRuntimeContext();
+
+  const { data: likedProducts }: any = api.project.get.useQuery({
+    asc: true,
+  });
 
   const subscribed = api.subscribe.subscribed.useQuery({
     id: product.id,
@@ -26,32 +26,24 @@ const Product = ({
 
   const tierId = subscribed.data?.tierId;
 
+  const [currency, setCurrency] = useState(currencies[0] || 'USD');
+
   useEffect(() => {
     fetchHandler(false);
   }, [fetchHandler]);
 
-  // if (productQuery.error) {
-  //   return (
-  //     <NextError
-  //       title={productQuery.error.message}
-  //       statusCode={productQuery.error.data?.httpStatus ?? 500}
-  //     />
-  //   );
-  // }
-
-  // if (productQuery.status === 'loading') {
-  //   return <div>Loading...</div>;
-  // }
-
-  // const product = productQuery.data;
-
-  // if (!product) {
-  //   return <div>Product does not exist</div>;
-  // }
+  const handleCurrencyChange = useCallback((_currency: string) => {
+    setCurrency(_currency);
+  }, []);
 
   return (
     <ProductContainer>
-      <ProductHero tierId={tierId} product={product} />
+      <ProductHero
+        tierId={tierId}
+        product={product}
+        currency={currency}
+        handleCurrencyChange={handleCurrencyChange}
+      />
 
       <ProductDetail product={product} />
 
@@ -59,7 +51,11 @@ const Product = ({
 
       <ImageCarousel />
 
-      <LikedProducts title='Discover more' products={products} />
+      <LikedProducts
+        title='Discover more'
+        currency={likedProducts}
+        products={products}
+      />
     </ProductContainer>
   );
 };
@@ -68,7 +64,7 @@ export default Product;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const page = 0;
-  const pageSize = 10;
+  const pageSize = 20;
   const { params } = context;
 
   try {

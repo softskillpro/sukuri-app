@@ -17,9 +17,16 @@ import { api } from '@/utils/api';
 interface ProductHeroProps {
   tierId?: string;
   product: Product;
+  currency: string;
+  handleCurrencyChange: (_currency: string) => void;
 }
 
-const ProductHero = ({ tierId, product }: ProductHeroProps) => {
+const ProductHero = ({
+  tierId,
+  product,
+  currency,
+  handleCurrencyChange,
+}: ProductHeroProps) => {
   const productId = product.id;
 
   const theme = useTheme();
@@ -74,12 +81,16 @@ const ProductHero = ({ tierId, product }: ProductHeroProps) => {
         src='/images/product_badge.jpeg'
         width={92}
         height={92}
+        priority
         alt='Product Badge'
         className='product-badge'
       />
 
       <div className='currency-switcher-wrapper'>
-        <CurrencySwitcher />
+        <CurrencySwitcher
+          currency={currency}
+          handleCurrencyChange={handleCurrencyChange}
+        />
       </div>
 
       <Section className='hero-contents'>

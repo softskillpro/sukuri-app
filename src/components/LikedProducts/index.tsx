@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 import { Typography } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
 import { Loader } from '@/components/Common/Loader';
@@ -24,7 +24,9 @@ const LikedProducts = ({
     if (isAll) {
       setProducts(likedProducts);
     } else {
-      if (likedProducts) setProducts(likedProducts.slice(4));
+      if (likedProducts && likedProducts.length > 0) {
+        setProducts(likedProducts.slice(0, 4));
+      }
     }
   }, [isAll, likedProducts]);
 
@@ -76,4 +78,4 @@ const LikedProducts = ({
   );
 };
 
-export default LikedProducts;
+export default memo(LikedProducts);

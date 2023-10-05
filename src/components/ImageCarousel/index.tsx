@@ -14,6 +14,7 @@ const ImageCarousel = () => {
               src={`/images/${product}.jpeg`}
               width={400}
               height={400}
+              priority
               alt='Product Image'
               className='keen-slider__slide'
             />
