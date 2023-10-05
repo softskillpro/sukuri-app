@@ -41,12 +41,14 @@ model User {
   sessions      Session[]
   username      String         @unique
   address       String         @unique
-  created_date      DateTime         @default(now())
+  created_date  DateTime       @default(now())
+  updated_date  DateTime       @default(now()) @updatedAt
   subscriptions Subscription[]
   pass          SukuriPass?    @relation(fields: [sukuriPassId], references: [id])
   sukuriPassId  String?
   Project       Project[]
   balances      Balance[]
+  Image         Image[]
 }
 
 model Subscription {
@@ -54,7 +56,8 @@ model Subscription {
   userId          String
   projectId       String
   tierId          String
-  created_date      DateTime         @default(now())
+  created_date    DateTime    @default(now())
+  updated_date    DateTime    @default(now()) @updatedAt
   last_processed  DateTime
   expires         DateTime
   should_continue Boolean
@@ -94,11 +97,13 @@ model Project {
   is_erc721         Boolean
   is_featured       Boolean?
   created_date      DateTime         @default(now())
+  updated_date      DateTime         @default(now()) @updatedAt
   accepted_payments ProjectPayment[]
   tiers             ProjectTier[]
   subscriptions     Subscription[]
   userId            String?
   User              User?            @relation(fields: [userId], references: [id])
+  Image             Image[]
 }
 
 model Balance {
@@ -144,9 +149,31 @@ model ProjectTier {
   subscription_length_unit String
   description              String
   features                 String[]
-  created_date      DateTime         @default(now())
+  created_date             DateTime       @default(now())
+  updated_date             DateTime       @default(now()) @updatedAt
   Project                  Project?       @relation(fields: [projectId], references: [id])
   projectId                String?
   Subscription             Subscription[]
-  
+
+  Image Image[]
+}
+
+model Image {
+  id            String       @id @unique @default(uuid())
+  key           String
+  url           String
+  type          String
+  description   String?
+  created_date  DateTime     @default(now())
+  updated_date  DateTime     @default(now()) @updatedAt
+  projectId     String?
+  project       Project?     @relation(fields: [projectId], references: [id])
+  projectTierId String?
+  projectTier   ProjectTier? @relation(fields: [projectTierId], references: [id])
+  userId        String?
+  user          User?        @relation(fields: [userId], references: [id])
+
+  @@index([projectId])
+  @@index([projectTierId])
+  @@index([userId])
 }
