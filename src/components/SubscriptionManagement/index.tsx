@@ -6,9 +6,9 @@ import { categoriesOfSubscription } from '@/constants';
 import { CategoryOfSubscription } from '@/types';
 
 interface SubscriptionManagementProps {
-  activeCategory: string;
+  activeCategory: CategoryOfSubscription;
   handleSearch: (search?: string) => void;
-  handleCategoryChange: (category: string) => void;
+  handleCategoryChange: (category: CategoryOfSubscription) => void;
 }
 
 const SubscriptionManagement = ({
@@ -24,8 +24,8 @@ const SubscriptionManagement = ({
         {categoriesOfSubscription.map((category: CategoryOfSubscription) => (
           <CategoryButton
             key={category.value}
-            active={activeCategory === category.value}
-            onClick={() => handleCategoryChange(category.value)}
+            active={activeCategory.value === category.value}
+            onClick={() => handleCategoryChange(category)}
           >
             {category.name}
           </CategoryButton>

@@ -1,6 +1,8 @@
 import { styled } from '@mui/material/styles';
 
 export const ActiveSubscriptionsContainer = styled('div')(({ theme }) => ({
+  marginBottom: 20,
+
   '.active-subscription-header': {
     justifyContent: 'space-between',
     marginBottom: 12,

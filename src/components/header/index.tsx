@@ -23,8 +23,6 @@ const Header = () => {
   const currentUrl = router.asPath;
   const { isLoading, fetchHandler } = useRuntimeContext();
 
-  console.log(isLoading);
-
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 

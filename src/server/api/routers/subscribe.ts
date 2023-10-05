@@ -63,6 +63,27 @@ export const subscriptionRouter = createTRPCRouter({
     });
     return (subscriptions as PrismSubscription[]) || null;
   }),
+
+  /**
+   * @function subscribed
+   * Check if the current project is subscribed or not.
+   *
+   * @param {object} input - The input object.
+   * @param {string} [input.id] - Optional projectId of the subscription to retrieve.
+   * @param {string} [input.sortBy] - Optional attribute to sort by when retrieving multiple subscriptions.
+   * @param {boolean} [input.asc] - Optional flag to order results in ascending or descending order. Defaults to true (ascending) if not provided.
+   * @returns {Promise<Subscription | null>} - The requested subscription, or an array of subscriptions, or null if not found.
+   */
+  subscribed: publicProcedure.input(GetInput).query(async ({ input, ctx }) => {
+    if (input.id) {
+      const subscription = await ctx.prisma.subscription.findFirst({
+        where: { projectId: input.id },
+      });
+
+      return subscription || null;
+    }
+  }),
+
   /**
    * @function getActive
    * Get all Active subscriptions orderd by expires or a column of choice
@@ -70,7 +91,7 @@ export const subscriptionRouter = createTRPCRouter({
    * @param {object} input - The input object.
    * @param {string} [input.sortBy] - Optional attribute to sort by when retrieving multiple subscriptions.
    * @param {boolean} [input.asc] - Optional flag to order results in ascending or descending order. Defaults to true (ascending) if not provided.
-   * @returns {Promise<Subscription | Subscription[] | null>} - The requested subscription, or an array of subscriptions, or null if not found.
+   * @returns {Promise<Subscription | Subscription[] | []>} - The requested subscription, or an array of subscriptions, or null if not found.
    */
   getActive: publicProcedure
     .input(GetSortInput)
@@ -81,11 +102,11 @@ export const subscriptionRouter = createTRPCRouter({
       const now = new Date();
 
       const activeSubscriptions = await ctx.prisma.subscription.findMany({
-        where: {
-          expires: {
-            gt: now,
-          },
-        },
+        // where: {
+        //   expires: {
+        //     gt: now,
+        //   },
+        // },
         include: {
           tier: true,
           project: true,
@@ -94,7 +115,8 @@ export const subscriptionRouter = createTRPCRouter({
           [sortBy]: order,
         },
       });
-      return (activeSubscriptions as PrismSubscription[]) || null;
+
+      return (activeSubscriptions as PrismSubscription[]) || [];
     }),
   /**
    * subscribe is a protected procedure that creates a new subscription given a projectId and a tierId.
@@ -105,7 +127,7 @@ export const subscriptionRouter = createTRPCRouter({
   subscribe: publicProcedure // Update to protectedProcedure when auth ready
     .input(SubscriptionInput)
     .mutation(async ({ input, ctx }) => {
-      const userId = ctx.session?.user?.id;
+      const userId = 'af7d39af-84a9-4a4b-b6a2-18563e42bc6e'; //ctx.session?.user?.id;
       if (!userId) {
         throw new Error('Not authenticated');
       }

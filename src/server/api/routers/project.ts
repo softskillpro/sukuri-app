@@ -48,7 +48,7 @@ export const projectRouter = createTRPCRouter({
           tiers: true,
         },
       });
-      return (project as PrismaProject) || null;
+      return ([project] as PrismaProject[]) || [];
     }
 
     const sortBy = input.sortBy || 'name';
@@ -62,7 +62,7 @@ export const projectRouter = createTRPCRouter({
         tiers: true,
       },
     });
-    return (projects as PrismaProject[]) || null;
+    return (projects as PrismaProject[]) || [];
   }),
 
   /**

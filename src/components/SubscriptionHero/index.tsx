@@ -6,7 +6,11 @@ import SubscriptionInfoCard from '@/components/SubscriptionInfoCard';
 import { ETHIcon } from '@/components/Icons';
 import { SubscriptionHeroContainer } from './styles';
 
-const SubscriptionHero = () => {
+interface SubscriptionHeroProps {
+  numOfActive?: number;
+}
+
+const SubscriptionHero = ({ numOfActive = 0 }: SubscriptionHeroProps) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -34,7 +38,7 @@ const SubscriptionHero = () => {
       <Section className='hero-assets'>
         <SubscriptionInfoCard
           title={'Active\nSubscriptions'}
-          value='12'
+          value={numOfActive.toString()}
           className='active-subscriptions'
         />
 
