@@ -9,11 +9,13 @@ import { Product } from '@/types';
 import useRuntimeContext from '@/hooks/useRuntimeContext';
 
 interface SecondaryProductCardProps {
+  currency: string;
   product: Product;
   className?: string;
 }
 
 const SecondaryProductCard = ({
+  currency,
   product,
   className,
 }: SecondaryProductCardProps) => {
@@ -53,7 +55,9 @@ const SecondaryProductCard = ({
 
       <FlexBox className='product-info'>
         <FlexBox className='product-price'>
-          <Typography variant={matches ? 'h6' : 'h4Mobile'}>$9.00</Typography>
+          <Typography variant={matches ? 'h6' : 'h4Mobile'}>
+            {currency === 'USD' ? '$24.00' : 'Ξ0.015'}
+          </Typography>
 
           <Typography
             variant={matches ? 'body4' : 'body7'}

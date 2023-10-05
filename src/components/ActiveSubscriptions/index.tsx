@@ -8,6 +8,7 @@ import type { CategoryOfSubscription, Product } from '@/types';
 
 interface ActiveSubscriptionsProps {
   loading: boolean;
+  currency: string;
   activeCategory: CategoryOfSubscription;
   products: Product[];
   handleFilter: () => void;
@@ -15,6 +16,7 @@ interface ActiveSubscriptionsProps {
 
 const ActiveSubscriptions = ({
   loading,
+  currency,
   activeCategory,
   products,
   handleFilter,
@@ -46,7 +48,11 @@ const ActiveSubscriptions = ({
         products.length > 0 && (
           <div className='product-group'>
             {products.map((product: Product) => (
-              <ProductSubscriptionCard key={product.id} product={product} />
+              <ProductSubscriptionCard
+                key={product.id}
+                currency={currency}
+                product={product}
+              />
             ))}
           </div>
         )

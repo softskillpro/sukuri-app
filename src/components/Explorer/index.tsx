@@ -25,6 +25,8 @@ const Explorer = () => {
         hasAll={false}
         breakpoints={breakpoints}
         slides={slides}
+        loading={false}
+        products={explorers}
       >
         {explorers.map((item) => (
           <ExplorerCard

@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { IconButton, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useKeenSlider } from 'keen-slider/react';
 import { FlexBox } from '@/components/Common/FlexBox';
+import { Loader } from '@/components/Common/Loader';
 import { ArrowLeftIcon2, ArrowRightIcon2 } from '@/components/Icons';
 import { ManagementContainer, MultiCarouselContainer } from './styles';
 import 'keen-slider/keen-slider.min.css';
@@ -12,6 +13,8 @@ interface MultiCarouselProps {
   hasAll?: boolean;
   breakpoints?: any;
   slides?: any;
+  products?: any[];
+  loading: boolean;
 }
 
 const MultiCarousel = ({
@@ -20,6 +23,8 @@ const MultiCarousel = ({
   hasAll = true,
   breakpoints,
   slides,
+  products,
+  loading,
 }: MultiCarouselProps) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
@@ -103,11 +108,20 @@ const MultiCarousel = ({
         </FlexBox>
       </ManagementContainer>
 
-      <MultiCarouselContainer>
-        <div ref={sliderRef} className='keen-slider'>
-          {children}
-        </div>
-      </MultiCarouselContainer>
+      {loading ? (
+        <FlexBox justifyContent='center'>
+          <Loader variant='Secondary' />
+        </FlexBox>
+      ) : (
+        products &&
+        products.length > 0 && (
+          <MultiCarouselContainer>
+            <div ref={sliderRef} className='keen-slider'>
+              {children}
+            </div>
+          </MultiCarouselContainer>
+        )
+      )}
     </>
   );
 };

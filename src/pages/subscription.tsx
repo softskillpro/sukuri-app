@@ -9,10 +9,12 @@ import { SubscriptionContainer } from '@/styles/subscription';
 import { categoriesOfSubscription } from '@/constants';
 import type { CategoryOfSubscription, Product } from '@/types';
 import { api } from '@/utils/api';
+import { currencies } from '@/constants';
 
 const Subscription = () => {
   const { fetchHandler } = useRuntimeContext();
 
+  const [currency, setCurrency] = useState(currencies[0] || 'USD');
   const [subscriptionProducts, setSubscriptionProducts] = useState<Product[]>(
     [],
   );
@@ -75,6 +77,10 @@ const Subscription = () => {
     }
   }, [allProducts]);
 
+  const handleCurrencyChange = useCallback((_currency: string) => {
+    setCurrency(_currency);
+  }, []);
+
   const handleSearch = useCallback((_search?: string) => {
     setSearch(_search);
   }, []);
@@ -92,7 +98,11 @@ const Subscription = () => {
 
   return (
     <SubscriptionContainer>
-      <SubscriptionHero numOfActive={subscribedProducts?.length} />
+      <SubscriptionHero
+        numOfActive={subscribedProducts?.length}
+        currency={currency}
+        handleCurrencyChange={handleCurrencyChange}
+      />
 
       <SubscriptionManagement
         activeCategory={activeCategory}
@@ -102,12 +112,17 @@ const Subscription = () => {
 
       <ActiveSubscriptions
         loading={loadingSubscribed}
+        currency={currency}
         activeCategory={activeCategory}
         products={subscriptionProducts}
         handleFilter={handleFilter}
       />
 
-      <LikedProducts title='Products you might like' products={likeProducts} />
+      <LikedProducts
+        title='Products you might like'
+        currency={currency}
+        products={likeProducts}
+      />
 
       <Explorer />
     </SubscriptionContainer>

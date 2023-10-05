@@ -8,11 +8,16 @@ import { ProductCardContainer } from './styles';
 import type { Product } from '@/types';
 
 interface ProductCardProps {
+  currency?: string;
   product: Product;
   className?: string;
 }
 
-const ProductCard = ({ product, className }: ProductCardProps) => {
+const ProductCard = ({
+  currency = 'USD',
+  product,
+  className,
+}: ProductCardProps) => {
   const router = useRouter();
   const { fetchHandler } = useRuntimeContext();
 
@@ -44,7 +49,7 @@ const ProductCard = ({ product, className }: ProductCardProps) => {
 
       <FlexBox className='product-info'>
         <Typography variant={matches ? 'h6' : 'priceMobile'} ml={2.5}>
-          $9.00
+          {currency === 'USD' ? '$9.00' : 'Ξ0.007'}
         </Typography>
 
         <Typography

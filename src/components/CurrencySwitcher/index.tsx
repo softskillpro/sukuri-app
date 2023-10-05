@@ -1,25 +1,26 @@
-import { useState } from 'react';
 import { CurrencySwitcherContainer, CurrencyButton } from './styles';
 import { currencies } from '@/constants';
 
-const CurrencySwitcher = () => {
-  const [selected, setSelected] = useState(currencies[0]);
+interface CurrencySwitcher {
+  currency: string;
+  handleCurrencyChange: (_currency: string) => void;
+}
 
-  const handleClick = (_currency: string) => {
-    setSelected(_currency);
-  };
-
+const CurrencySwitcher = ({
+  currency,
+  handleCurrencyChange,
+}: CurrencySwitcher) => {
   return (
     <CurrencySwitcherContainer>
       <div className='currency-switcher-glow' />
 
-      {currencies.map((currency) => (
+      {currencies.map((item) => (
         <CurrencyButton
-          key={currency}
-          active={selected === currency}
-          onClick={() => handleClick(currency)}
+          key={item}
+          active={item === currency}
+          onClick={() => handleCurrencyChange(item)}
         >
-          {currency}
+          {item}
         </CurrencyButton>
       ))}
     </CurrencySwitcherContainer>

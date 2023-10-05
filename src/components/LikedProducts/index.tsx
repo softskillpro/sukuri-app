@@ -7,11 +7,13 @@ import { LikedProductsContainer } from './styles';
 import type { Product } from '@/types';
 
 interface LikedProductsProps {
+  currency: string;
   title: string;
   products: Product[];
 }
 
 const LikedProducts = ({
+  currency,
   title,
   products: likedProducts,
 }: LikedProductsProps) => {
@@ -49,7 +51,11 @@ const LikedProducts = ({
       {products.length > 0 ? (
         <div className='product-group'>
           {products.map((product: Product) => (
-            <SecondaryProductCard key={product.id} product={product} />
+            <SecondaryProductCard
+              key={product.id}
+              currency={currency}
+              product={product}
+            />
           ))}
         </div>
       ) : (

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Image from 'next/image';
 import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
@@ -6,7 +7,15 @@ import CurrencySwitcher from '@/components/CurrencySwitcher';
 import { CircleIcon } from '@/components/Icons';
 import { MarketplaceHeroContainer } from './styles';
 
-const MarketplaceHero = () => {
+interface MarketplaceHeroProps {
+  currency: string;
+  handleCurrencyChange: (_currency: string) => void;
+}
+
+const MarketplaceHero = ({
+  currency,
+  handleCurrencyChange,
+}: MarketplaceHeroProps) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -15,7 +24,10 @@ const MarketplaceHero = () => {
       <HeroGlow />
 
       <div className='currency-switcher-wrapper'>
-        <CurrencySwitcher />
+        <CurrencySwitcher
+          currency={currency}
+          handleCurrencyChange={handleCurrencyChange}
+        />
       </div>
 
       <FlexBox className='hero-contents-wrapper'>
@@ -94,4 +106,4 @@ const MarketplaceHero = () => {
   );
 };
 
-export default MarketplaceHero;
+export default memo(MarketplaceHero);

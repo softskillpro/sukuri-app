@@ -9,11 +9,13 @@ import type { Product } from '@/types';
 import useRuntimeContext from '@/hooks/useRuntimeContext';
 
 interface ProductSubscriptionCardProps {
+  currency: string;
   product: Product;
   className?: string;
 }
 
 const ProductSubscriptionCard = ({
+  currency,
   product,
   className,
 }: ProductSubscriptionCardProps) => {
@@ -50,7 +52,7 @@ const ProductSubscriptionCard = ({
         <FlexBox className='product-info-price'>
           <FlexBox className='product-info-item'>
             <Typography variant={matches ? 'h6' : 'priceMobile'}>
-              $9.00
+              {currency === 'USD' ? '$12.00' : 'Ξ0.007'}
             </Typography>
 
             <Typography variant={matches ? 'body7' : 'body3Mobile'}>
@@ -66,7 +68,7 @@ const ProductSubscriptionCard = ({
             >
               Ends on
               <br />
-              30/Sept/2023
+              30/Oct/2023
             </Typography>
           </FlexBox>
         </FlexBox>

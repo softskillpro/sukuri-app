@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react';
-import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import MarketplaceHero from '@/components/MarketplaceHero';
 import CategorySearch from '@/components/CategorySearch';
 import FeaturedProducts from '@/components/FeaturedProducts';
@@ -10,18 +9,26 @@ import BecomeAffiliate from '@/components/BecomeAffiliate';
 import Newsletter from '@/components/Newsletter';
 import { MarketplaceContainer } from '@/styles/home';
 import useRuntimeContext from '@/hooks/useRuntimeContext';
+import { api } from '@/utils/api';
+import { currencies } from '@/constants';
 
-const Marketplace = ({
-  products,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Marketplace = () => {
+  const { data: allProducts, status }: any = api.project.get.useQuery({
+    asc: true,
+  });
+
   const { fetchHandler } = useRuntimeContext();
 
+  const [currency, setCurrency] = useState(currencies[0] || 'USD');
   const [search, setSearch] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    console.log(search);
     fetchHandler(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleCurrencyChange = useCallback((_currency: string) => {
+    setCurrency(_currency);
   }, []);
 
   const handleSearch = useCallback((_search?: string) => {
@@ -30,13 +37,24 @@ const Marketplace = ({
 
   return (
     <MarketplaceContainer>
-      <MarketplaceHero />
+      <MarketplaceHero
+        currency={currency}
+        handleCurrencyChange={handleCurrencyChange}
+      />
 
       <CategorySearch handleSearch={handleSearch} />
 
-      <FeaturedProducts products={products} />
+      <FeaturedProducts
+        loading={status === 'loading'}
+        products={allProducts}
+        currency={currency}
+      />
 
-      <NewProducts products={products} />
+      <NewProducts
+        loading={status === 'loading'}
+        products={allProducts}
+        currency={currency}
+      />
 
       <Explorer />
 
@@ -50,14 +68,3 @@ const Marketplace = ({
 };
 
 export default Marketplace;
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const page = 0;
-  const pageSize = 10;
-
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/project/featured?page=${page}&pageSize=${pageSize}`,
-  );
-  const products = await res.json();
-  return { props: { products } };
-};

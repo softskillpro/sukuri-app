@@ -34,6 +34,7 @@ const IntroSukuri = () => {
           src='/images/subscribe.png'
           width={400}
           height={400}
+          priority
           alt='Subscribe'
           className='subscribe-img'
         />

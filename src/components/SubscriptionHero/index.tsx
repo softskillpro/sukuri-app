@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { HeroGlow } from '@/components/Common/HeroGlow';
 import { Section } from '@/components/Common/Section';
@@ -8,9 +9,15 @@ import { SubscriptionHeroContainer } from './styles';
 
 interface SubscriptionHeroProps {
   numOfActive?: number;
+  currency: string;
+  handleCurrencyChange: (_currency: string) => void;
 }
 
-const SubscriptionHero = ({ numOfActive = 0 }: SubscriptionHeroProps) => {
+const SubscriptionHero = ({
+  numOfActive = 0,
+  currency,
+  handleCurrencyChange,
+}: SubscriptionHeroProps) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -19,7 +26,10 @@ const SubscriptionHero = ({ numOfActive = 0 }: SubscriptionHeroProps) => {
       <HeroGlow />
 
       <div className='currency-switcher-wrapper'>
-        <CurrencySwitcher />
+        <CurrencySwitcher
+          currency={currency}
+          handleCurrencyChange={handleCurrencyChange}
+        />
       </div>
 
       <Section className='hero-contents'>
@@ -59,4 +69,4 @@ const SubscriptionHero = ({ numOfActive = 0 }: SubscriptionHeroProps) => {
   );
 };
 
-export default SubscriptionHero;
+export default memo(SubscriptionHero);
