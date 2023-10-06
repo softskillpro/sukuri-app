@@ -58,15 +58,11 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
   // Get the session from the server using the getServerSession wrapper function
   const session = await getServerAuthSession({ req, res });
 
-  let user;
-  if (session?.user.id) {
-    user = await prisma.user.findUnique({
-      where: { id: session.user.id },
-    });
-  }
+  const userId = session?.user?.id;
 
   return createInnerTRPCContext({
-    session
+    session,
+    user: userId ? { id: userId } : undefined,
   });
 };
 

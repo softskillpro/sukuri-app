@@ -5,7 +5,7 @@ import { Prisma, User as PrismaUser } from '@prisma/client';
 const UserInput = z.object({
     name: z.string().optional(),
     email: z.string().optional(),
-    username: z.string(),
+    username: z.string().optional(),
     address: z.string(),
     sukuriPassId: z.string().optional(),
 });
@@ -66,9 +66,11 @@ export const userRouter = createTRPCRouter({
      * @returns {Object} - The newly created user.
      */
     create: publicProcedure.input(UserInput).mutation(async ({ input, ctx }) => {
-
-        const userData: Prisma.UserCreateInput = { ...input };
-
+        const username = input.username || input.address;
+        const userData: Prisma.UserCreateInput = {
+            ...input,
+            username,
+        };
         const user = await ctx.prisma.user.create({
             data: userData,
         });
