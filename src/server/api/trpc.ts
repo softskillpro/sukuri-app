@@ -20,10 +20,6 @@ import { type Session } from 'next-auth';
 import { getServerAuthSession } from '@/server/auth';
 import { prisma } from '@/server/db';
 
-import { verify } from 'jsonwebtoken';
-
-const SECRET_KEY = 'YOUR_SECRET_KEY';
-
 type CreateContextOptions = {
   session: Session | null;
   user?: {
@@ -63,19 +59,14 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
   const session = await getServerAuthSession({ req, res });
 
   let user;
-  try {
-    const token = req.headers.authorization?.split(' ')[1];
-    const payload: any = verify(token, SECRET_KEY);
+  if (session?.user.id) {
     user = await prisma.user.findUnique({
-      where: { id: payload.userId },
+      where: { id: session.user.id },
     });
-  } catch (error) {
-    // If there's an error in the token verification or fetching the user, the user remains undefined.
   }
 
   return createInnerTRPCContext({
-    session,
-    user,
+    session
   });
 };
 
