@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import Image from 'next/image';
+import { Inter } from 'next/font/google';
 import { useRouter } from 'next/router';
 import { Typography } from '@mui/material';
 import { useAccount, useConnect } from 'wagmi';
@@ -8,6 +10,11 @@ import { FlexBox } from '@/components/Common/FlexBox';
 import { Loader } from '@/components/Common/Loader';
 import { ConnectWalletModalContainer, WalletButton } from './styles';
 import { wallets } from '@/constants';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--Inter',
+});
 
 interface ConnectWalletModalProps {
   open: boolean;
@@ -27,9 +34,17 @@ const ConnectWalletModal = ({ open, handleClose }: ConnectWalletModalProps) => {
       if (!isConnected) {
         await connectAsync({ connector });
       }
-      router.push('/marketplace');
+      handleClose();
+
+      router.push('/');
     } catch (err: any) {
-      console.log(err?.message || err);
+      if (err?.message === 'Connector not found') {
+        toast.error(
+          `It looks like you haven't installed the wallet extension. Please install a wallet extension`,
+        );
+      } else {
+        toast.error(err?.message || err);
+      }
     }
   };
 
@@ -40,35 +55,56 @@ const ConnectWalletModal = ({ open, handleClose }: ConnectWalletModalProps) => {
       aria-labelledby='connect-wallet-modal-title'
       aria-describedby='connect-wallet-modal-description'
     >
-      <div className='connect-wallet-body'>
-        <Typography variant='h4'>Connect Wallet</Typography>
-        <Typography variant='bodyBoldMobile'>
-          Select your favourite wallet to log in to Sukuri
-        </Typography>
+      <FlexBox className='modal-wrapper'>
+        <FlexBox className={`${inter.className} connect-wallet-body`}>
+          <Typography variant='h4' mb={1.5}>
+            Connect Wallet
+          </Typography>
 
-        <div className='button-list'>
-          {connectors.map((connector, id) => (
-            <WalletButton
-              key={connector.id}
-              disabled={isLoading}
-              onClick={() => handleConnectWallet(connector)}
-              style={{ justifyContent: 'space-between' }}
-            >
-              <FlexBox>
-                <Image
-                  src={wallets[id]?.icon || ''}
-                  width={20}
-                  height={20}
-                  alt='Wallet'
-                  style={{ marginRight: 9 }}
-                />
-                {connector.name}
-              </FlexBox>
-              {isLoading && current === connector.id && <Loader />}
-            </WalletButton>
-          ))}
-        </div>
-      </div>
+          <Typography variant='bodyBoldMobile' mb={1.5}>
+            Select your favourite wallet to log in to Sukuri
+          </Typography>
+
+          <Typography variant='bodyBoldMobile' mb={1.25}>
+            Popular
+          </Typography>
+
+          <FlexBox flexDirection='column' className='button-list'>
+            {connectors.map((connector, id) => {
+              return (
+                <WalletButton
+                  key={connector.id}
+                  disabled={isLoading}
+                  onClick={() => handleConnectWallet(connector)}
+                  style={{ justifyContent: 'space-between' }}
+                >
+                  <FlexBox>
+                    <Image
+                      src={wallets[id]?.icon || ''}
+                      width={20}
+                      height={20}
+                      alt='Wallet'
+                      style={{ marginRight: 9 }}
+                    />
+                    {connector.name}
+                  </FlexBox>
+                  {isLoading && current === connector.id && <Loader />}
+                </WalletButton>
+              );
+            })}
+          </FlexBox>
+
+          <Typography
+            variant='body5'
+            mt={1.5}
+            textAlign='center'
+            maxWidth='70%'
+          >
+            By using Sukuri, you agree to our Terms of Service and our Privacy
+            Policy.
+          </Typography>
+        </FlexBox>
+      </FlexBox>
     </ConnectWalletModalContainer>
   );
 };

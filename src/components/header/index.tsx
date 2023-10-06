@@ -3,15 +3,18 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Inter } from 'next/font/google';
+import { useAccount } from 'wagmi';
 import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
 import { StyledButton } from '@/components/Common/StyledButton';
 import HeaderModal from './HeaderModal';
 import { MenuIcon, CloseIcon } from '@/components/Icons';
 import LinearDeterminate from '@/components/LinearDeterminate';
+import ConnectWalletModal from '@/components/ConnectWalletModal';
 import useRuntimeContext from '@/hooks/useRuntimeContext';
 import { HeaderContainer } from './styles';
 import { navs } from '@/constants';
+import formatAddress from '@/utils/formatAddress';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -23,28 +26,30 @@ const Header = () => {
   const currentUrl = router.asPath;
   const { isLoading, fetchHandler } = useRuntimeContext();
 
+  const { address, isConnected } = useAccount();
+
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(0);
   const [selected, setSelected] = useState(currentUrl);
 
   const handleClick = (url: string) => {
     setSelected(url);
-    setOpen(false);
+    setOpen(0);
     fetchHandler(true);
   };
 
   const handleOpen = () => {
-    setOpen(true);
+    setOpen(1);
   };
 
   const handleClose = useCallback(() => {
-    setOpen(false);
+    setOpen(0);
   }, []);
 
   const handleConnect = useCallback(() => {
-    setOpen(false);
+    setOpen(2);
   }, []);
 
   return (
@@ -83,7 +88,9 @@ const Header = () => {
                 </Link>
               ))}
 
-              <StyledButton onClick={handleConnect}>Connect</StyledButton>
+              <StyledButton disabled={isConnected} onClick={handleConnect}>
+                {!isConnected ? 'Connect' : formatAddress(address)}
+              </StyledButton>
             </FlexBox>
           ) : (
             <button className='menu-btn' onClick={handleOpen}>
@@ -93,7 +100,7 @@ const Header = () => {
         </HeaderContainer>
       </header>
 
-      <HeaderModal open={open} handleClose={handleClose}>
+      <HeaderModal open={open === 1} handleClose={handleClose}>
         <div className={`${inter.className} header-body-wrapper`}>
           <FlexBox
             justifyContent='space-between'
@@ -142,14 +149,19 @@ const Header = () => {
 
           <div className='connect-btn-wrapper'>
             <StyledButton
+              disabled={isConnected}
               onClick={handleConnect}
               sx={{ fontSize: '16px !important' }}
             >
-              Connect
+              {!isConnected ? 'Connect' : formatAddress(address)}
             </StyledButton>
           </div>
         </div>
       </HeaderModal>
+
+      {open === 2 && (
+        <ConnectWalletModal open={open === 2} handleClose={handleClose} />
+      )}
     </>
   );
 };

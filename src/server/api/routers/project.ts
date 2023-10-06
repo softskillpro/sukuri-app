@@ -39,9 +39,7 @@ const ProjectInput = z.object({
   images: z.array(ImageInput).optional(),
 });
 
-
 const PartialProjectInput = ProjectInput.partial();
-
 
 /**
  * @module projectRouter
@@ -128,13 +126,13 @@ export const projectRouter = createTRPCRouter({
           : undefined,
         Image: images
           ? {
-            create: images.map((image) => ({
-              key: image.key,
-              url: image.url,
-              type: image.type,
-              description: image.description,
-            })),
-          }
+              create: images.map((image) => ({
+                key: image.key,
+                url: image.url,
+                type: image.type,
+                description: image.description,
+              })),
+            }
           : undefined,
       };
 
@@ -206,15 +204,15 @@ export const projectRouter = createTRPCRouter({
     }),
 
   /**
-  * @function updateImages
-  * Update an existing image on a project. Can delete all images or just append.
-  *
-  * @param {Object} args - An object containing the ID and the new image data of the project.
-  * @param {string} args.id - The ID of the project to update.
-  * @param {Partial<ProjectInput>} args.data - The new project data.
-  * @returns {Object} - Response with success and message.
-  * @throws {Error} - If the user is not authenticated.
-  */
+   * @function updateImages
+   * Update an existing image on a project. Can delete all images or just append.
+   *
+   * @param {Object} args - An object containing the ID and the new image data of the project.
+   * @param {string} args.id - The ID of the project to update.
+   * @param {Partial<ProjectInput>} args.data - The new project data.
+   * @returns {Object} - Response with success and message.
+   * @throws {Error} - If the user is not authenticated.
+   */
   // Change to ownerProcedure when auth is working
   updateImages: publicProcedure
     .input(
@@ -227,7 +225,7 @@ export const projectRouter = createTRPCRouter({
     .mutation(async ({ input, ctx }) => {
       const { projectId, images, delete: deleteImages } = input;
 
-      await ctx.prisma.$transaction(async prisma => {
+      await ctx.prisma.$transaction(async (prisma) => {
         if (deleteImages) {
           await prisma.image.deleteMany({
             where: { projectId },
@@ -236,7 +234,7 @@ export const projectRouter = createTRPCRouter({
 
         if (images && images.length > 0) {
           await prisma.image.createMany({
-            data: images.map(image => ({
+            data: images.map((image) => ({
               ...image,
               projectId,
             })),

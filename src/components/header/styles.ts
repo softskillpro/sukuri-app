@@ -102,3 +102,20 @@ export const HeaderModalContainer = styled(Modal)(({ theme }) => ({
     },
   },
 }));
+
+export const WalletButton = styled('button')(() => ({
+  width: 456,
+  padding: 20,
+  borderRadius: 7,
+  border: '1px solid rgba(255, 255, 255, 0.40)',
+  background:
+    'linear-gradient(180deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.40) 100%)',
+  cursor: 'pointer',
+  fontSize: 20,
+  fontWeight: 700,
+  color: '#fff',
+
+  ':hover': {
+    opacity: 0.7,
+  },
+}));
