@@ -11,24 +11,25 @@ import { ethers } from 'ethers';
  * @throws Will throw an error if the timestamp is too old.
  */
 export async function verifyEthereumSignature(
-    signature: string,
-    ethAddress: string,
-    timestamp: string,
-    nonce: string
+  signature: string,
+  ethAddress: string,
+  timestamp: string,
+  nonce: string,
 ): Promise<boolean> {
-    // Concatenate the timestamp with the nonce for verification
-    const dataToVerify = timestamp + nonce;
+  // Concatenate the timestamp with the nonce for verification
+  const dataToVerify = timestamp + nonce;
 
-    // Check that the timestamp is within an acceptable range (e.g., 2 minutes)
-    const currentTime = Date.now();
-    const timeDifference = currentTime - parseInt(timestamp, 10);
+  // Check that the timestamp is within an acceptable range (e.g., 2 minutes)
+  const currentTime = Date.now();
+  const timeDifference = currentTime - parseInt(timestamp, 10);
 
-    if (timeDifference > 120000) { // 120,000 milliseconds = 2 minutes
-        throw new Error('Timestamp is too old');
-    }
+  if (timeDifference > 120000) {
+    // 120,000 milliseconds = 2 minutes
+    throw new Error('Timestamp is too old');
+  }
 
-    // Get the signer's address from the signature
-    const signingAddress = ethers.verifyMessage(dataToVerify, signature);
+  // Get the signer's address from the signature
+  const signingAddress = ethers.verifyMessage(dataToVerify, signature);
 
-    return signingAddress.toLowerCase() === ethAddress.toLowerCase();
+  return signingAddress.toLowerCase() === ethAddress.toLowerCase();
 }

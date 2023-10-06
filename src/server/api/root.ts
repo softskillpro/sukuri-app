@@ -16,9 +16,7 @@ export const appRouter = createTRPCRouter({
   subscribe: subscriptionRouter,
   user: userRouter,
   login: loginRouter,
-  signin: signinRouter
-  
-  
+  signin: signinRouter,
 });
 
 // export type definition of API

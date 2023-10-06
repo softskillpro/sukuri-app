@@ -45,7 +45,6 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
   };
 };
 
-
 /**
  * This is the actual context you will use in your router. It will be used to process every request
  * that goes through your tRPC endpoint.
@@ -66,10 +65,9 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
   }
 
   return createInnerTRPCContext({
-    session
+    session,
   });
 };
-
 
 /**
  * 2. INITIALIZATION

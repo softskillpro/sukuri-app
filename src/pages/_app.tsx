@@ -1,12 +1,13 @@
 import { type AppType } from 'next/app';
 import { type Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
-import { Montserrat } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import { ToastContainer } from 'react-toastify';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 
-import Layout from '@/components/v2/Common/Layout';
+import RuntimeContextProvider from '@/provider/RuntimeContextProvider';
+import Layout from '@/components/Common/Layout';
 import { api } from '@/utils/api';
 import createEmotionCache from '@/utils/create-emotion-cache';
 import theme from '@/styles/theme';
@@ -15,14 +16,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { WagmiConfig } from 'wagmi';
 import wagmiConfig from '@/configure/wagmi';
 
-import '@/styles/globals.css';
-
 const clientSideEmotionCache = createEmotionCache();
 
-const montserrat = Montserrat({
+const inter = Inter({
   weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
-  variable: '--Montserrat',
+  variable: '--Inter',
 });
 
 const MyApp: AppType<{
@@ -35,17 +34,19 @@ const MyApp: AppType<{
   return (
     <SessionProvider session={session}>
       <WagmiConfig config={wagmiConfig}>
-        <CacheProvider value={emotionCache}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <div className={montserrat.variable}>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-              <ToastContainer />
-            </div>
-          </ThemeProvider>
-        </CacheProvider>
+        <RuntimeContextProvider>
+          <CacheProvider value={emotionCache}>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <div className={inter.variable}>
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+                <ToastContainer />
+              </div>
+            </ThemeProvider>
+          </CacheProvider>
+        </RuntimeContextProvider>
       </WagmiConfig>
     </SessionProvider>
   );

@@ -1,91 +1,70 @@
-import Link from 'next/link';
-import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
-import Typography from '@mui/material/Typography';
-import AboutSukuri from '@/components/v2/AboutSukuri';
-import TwitterCTA from '@/components/v2/TwitterCta';
-import { StyledHr } from '@/components/v2/Common/Splitter/styles';
-import { CategoryTileProps } from '@/components/v2/Common/CategoryTile';
+import { useCallback, useEffect, useState } from 'react';
+import MarketplaceHero from '@/components/MarketplaceHero';
+import CategorySearch from '@/components/CategorySearch';
+import FeaturedProducts from '@/components/FeaturedProducts';
+import NewProducts from '@/components/NewProducts';
+import Explorer from '@/components/Explorer';
+import IntroSukuri from '@/components/IntroSukuri';
+import BecomeAffiliate from '@/components/BecomeAffiliate';
+import Newsletter from '@/components/Newsletter';
+import { MarketplaceContainer } from '@/styles/home';
+import useRuntimeContext from '@/hooks/useRuntimeContext';
+import { api } from '@/utils/api';
+import { currencies } from '@/constants';
 
-import {
-  MarketplaceContainer,
-  MarketplaceIntro,
-  MarketplaceContent,
-  CategoryList,
-} from '@/styles/marketplace';
-import TrendingSection from '@/components/v2/TrendingSection';
-import CategorySection from '@/components/v2/CategorySection';
-import TopProjectsSection from '@/components/v2/TopProjectsSection';
-import { NFTType } from '@/interface/Nft.interface';
+const Marketplace = () => {
+  const { data: allProducts, status }: any = api.project.get.useQuery({
+    asc: true,
+  });
 
-// TODO: check if there's a list of categories that should be passed to component
-// for now, hardcoded strings used
-const categories: CategoryTileProps[] = [
-  { name: 'utility', image: '/images/v2/recommend.png', count: 50 },
-  { name: 'gaming', image: '/images/v2/recommend.png', count: 50 },
-  { name: 'content', image: '/images/v2/recommend.png' },
-  { name: 'dao', image: '/images/v2/recommend.png', count: 50 },
-  { name: 'alpha', image: '/images/v2/recommend.png' },
-];
+  const { fetchHandler } = useRuntimeContext();
 
-// import mock from '@/utils/mock';
+  const [currency, setCurrency] = useState(currencies[0] || 'USD');
+  const [search, setSearch] = useState<string | undefined>(undefined);
 
-const Marketplace = ({
-  projects,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  // TODO: mock trending data
-  const trendingProject: NFTType[] = Array.from(projects.slice(0, 1));
+  useEffect(() => {
+    fetchHandler(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  // TODO: mock top Projects data
-  const topProjects: NFTType[] = Array.from(projects.slice(0, 3));
+  const handleCurrencyChange = useCallback((_currency: string) => {
+    setCurrency(_currency);
+  }, []);
+
+  const handleSearch = useCallback((_search?: string) => {
+    setSearch(_search);
+  }, []);
 
   return (
     <MarketplaceContainer>
-      <MarketplaceIntro>
-        <Typography variant='wordmarkMarketplace' align='center'>
-          SUKURI <span style={{ fontWeight: 400 }}>PROTOCOL</span>
-        </Typography>
-        <input placeholder='SEARCH' className='marketplace-search' />
-        <Typography
-          variant='subHeading'
-          align='center'
-          sx={{ lineHeight: '120%' }}
-        >
-          Explore new ways to buy, sell and create subscriptions.
-          <br />
-          All on the blockchain.
-        </Typography>
-        <StyledHr />
-        <CategoryList>
-          {categories.map((category, id) => (
-            <Link href='/' key={id}>
-              <Typography variant='labelMd' align='center' key={id}>
-                {category.name}
-              </Typography>
-            </Link>
-          ))}
-        </CategoryList>
-      </MarketplaceIntro>
+      <MarketplaceHero
+        currency={currency}
+        handleCurrencyChange={handleCurrencyChange}
+      />
 
-      <MarketplaceContent>
-        <TrendingSection trendingProject={trendingProject} />
-        <TopProjectsSection topProjects={topProjects} />
-        <CategorySection categories={categories} />
-        <AboutSukuri />
-        <TwitterCTA />
-      </MarketplaceContent>
+      <CategorySearch handleSearch={handleSearch} />
+
+      <FeaturedProducts
+        loading={status === 'loading'}
+        products={allProducts}
+        currency={currency}
+      />
+
+      <NewProducts
+        loading={status === 'loading'}
+        products={allProducts}
+        currency={currency}
+      />
+
+      <Explorer />
+
+      <IntroSukuri />
+
+      <BecomeAffiliate />
+
+      <Newsletter />
     </MarketplaceContainer>
   );
 };
 
 export default Marketplace;
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const page = 0;
-  const pageSize = 10;
-
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/project/featured?page=${page}&pageSize=${pageSize}`,
-  );
-  const projects = await res.json();
-  return { props: { projects } };
-};
