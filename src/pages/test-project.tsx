@@ -79,6 +79,7 @@ const TestProjectPage: React.FC = () => {
   };
 
   const { data: project, status } = getProjectQuery;
+  const projectData = Array.isArray(project) ? project[0] : project;
 
   return (
     <>
@@ -86,14 +87,14 @@ const TestProjectPage: React.FC = () => {
       <button onClick={() => setProjectId(projectId)}>Get Project</button>
       <button onClick={updateProject}>Update Project</button>
       <button onClick={deleteProject}>Delete Project</button>
-      {status === 'success' && project && (
+      {status === 'success' && projectData && (
         <div>
           <h2>Project Details</h2>
-          <p>Name: {project.name}</p>
-          <p>Short Description: {project.short_description}</p>
-          <p>Long Description: {project.long_description}</p>
-          <p>Chain ID: {project.chain_id}</p>
-          <p>Is ERC721: {project.is_erc721 ? 'Yes' : 'No'}</p>
+          <p>Name: {projectData.name}</p>
+          <p>Short Description: {projectData.short_description}</p>
+          <p>Long Description: {projectData.long_description}</p>
+          <p>Chain ID: {projectData.chain_id}</p>
+          <p>Is ERC721: {projectData.is_erc721 ? 'Yes' : 'No'}</p>
         </div>
       )}
     </>
