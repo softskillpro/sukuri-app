@@ -10,6 +10,7 @@ import { FlexBox } from '@/components/Common/FlexBox';
 import { Loader } from '@/components/Common/Loader';
 import { ConnectWalletModalContainer, WalletButton } from './styles';
 import { wallets } from '@/constants';
+import { api } from '@/utils/api';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -26,13 +27,22 @@ const ConnectWalletModal = ({ open, handleClose }: ConnectWalletModalProps) => {
   const { isConnected } = useAccount();
   const { connectAsync, connectors, isLoading } = useConnect();
 
+  const createUserMutation = api.user.create.useMutation();
+
   const [current, setCurrent] = useState('');
 
   const handleConnectWallet = async (connector: Connector) => {
     try {
       setCurrent(connector.id);
       if (!isConnected) {
-        await connectAsync({ connector });
+        const wallet = await connectAsync({ connector });
+
+        await createUserMutation.mutateAsync({
+          name: 'Test User2',
+          username: 'tester',
+          address: wallet.account,
+          email: 'tester@gmail.com',
+        });
       }
       handleClose();
 
