@@ -74,3 +74,4 @@
     "seed": "ts-node --esm prisma/seed.ts"
   }
 }
+
