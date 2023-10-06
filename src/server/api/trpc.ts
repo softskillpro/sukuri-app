@@ -61,10 +61,7 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
 
   return createInnerTRPCContext({
     session,
-<<<<<<< HEAD
     user: userId ? { id: userId } : undefined,
-=======
->>>>>>> fba2f431abde19faac8e2c605e2d73ec55180f97
   });
 };
 

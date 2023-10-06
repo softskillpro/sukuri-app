@@ -214,12 +214,7 @@ export const subscriptionRouter = createTRPCRouter({
           tierId: tierId,
           last_processed: new Date(),
           expires: new Date(),
-<<<<<<< HEAD
           should_continue: true
-=======
-          should_continue: true,
-          priority: 1,
->>>>>>> fba2f431abde19faac8e2c605e2d73ec55180f97
         },
       });
 
