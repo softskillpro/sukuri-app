@@ -34,37 +34,39 @@ model Session {
 }
 
 model User {
-  id            String         @id @default(uuid())
-  name          String?
-  email         String?        @unique
-  accounts      Account[]
-  sessions      Session[]
-  username      String         @unique
-  address       String         @unique
-  created_date  DateTime       @default(now())
-  updated_date  DateTime       @default(now()) @updatedAt
-  subscriptions Subscription[]
-  pass          SukuriPass?    @relation(fields: [sukuriPassId], references: [id])
-  sukuriPassId  String?
-  Project       Project[]
-  balances      Balance[]
-  Image         Image[]
+  id             String           @id @default(uuid())
+  name           String?
+  email          String?          @unique
+  accounts       Account[]
+  sessions       Session[]
+  username       String           @unique
+  address        String           @unique
+  created_date   DateTime         @default(now())
+  updated_date   DateTime         @default(now()) @updatedAt
+  subscriptions  Subscription[]
+  pass           SukuriPass?      @relation(fields: [sukuriPassId], references: [id])
+  sukuriPassId   String?
+  Project        Project[]
+  balances       Balance[]
+  Image          Image[]
+  PaymentHistory PaymentHistory[]
 }
 
 model Subscription {
-  id              String      @id @default(uuid())
+  id              String           @id @default(uuid())
   userId          String
   projectId       String
   tierId          String
-  created_date    DateTime    @default(now())
-  updated_date    DateTime    @default(now()) @updatedAt
+  created_date    DateTime         @default(now())
+  updated_date    DateTime         @default(now()) @updatedAt
   last_processed  DateTime
   expires         DateTime
   should_continue Boolean
-  priority        Int         @unique
-  user            User        @relation(fields: [userId], references: [id])
-  project         Project     @relation(fields: [projectId], references: [id])
-  tier            ProjectTier @relation(fields: [tierId], references: [id])
+  priority        Int              @unique
+  user            User             @relation(fields: [userId], references: [id])
+  project         Project          @relation(fields: [projectId], references: [id])
+  tier            ProjectTier      @relation(fields: [tierId], references: [id])
+  PaymentHistory  PaymentHistory[]
 
   @@unique([userId, projectId, tierId])
 }
@@ -104,6 +106,13 @@ model Project {
   userId            String?
   User              User?            @relation(fields: [userId], references: [id])
   Image             Image[]
+  website_url       String?
+  twitter_url       String?
+  instagram_url     String?
+  medium_url        String?
+  telegram_url      String?
+  discord_url       String?
+  PaymentHistory    PaymentHistory[]
 }
 
 model Balance {
@@ -176,4 +185,24 @@ model Image {
   @@index([projectId])
   @@index([projectTierId])
   @@index([userId])
+}
+
+model PaymentHistory {
+  id             String       @id @unique @default(uuid())
+  userId         String
+  user           User         @relation(fields: [userId], references: [id])
+  subscriptionId String
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id])
+  txn_date       DateTime
+  txn_hash       String
+  price          String
+  token_paid_in  String
+  confirmation   Boolean
+  created_date   DateTime     @default(now())
+  Project        Project?     @relation(fields: [projectId], references: [id])
+  projectId      String?
+
+  @@index([userId])
+  @@index([subscriptionId])
+  @@index([txn_hash])
 }
