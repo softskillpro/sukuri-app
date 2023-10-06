@@ -77,19 +77,19 @@ const TestUserPage: React.FC = () => {
     };
 
     const { data: user, status } = getUserQuery;
-
+    const userData = Array.isArray(user) ? user[0] : user;
     return (
         <>
             <button onClick={createProject}>Create Project</button>
             <button onClick={() => setUserId(userId)}>Get Project</button>
             <button onClick={updateProject}>Update Project</button>
             <button onClick={deleteProject}>Delete Project</button>
-            {status === 'success' && user && (
+            {status === 'success' && userData && (
                 <div>
                     <h2>User Details</h2>
-                    <p>Name: {user.name}</p>
-                    <p>Username: {user.username}</p>
-                    <p>Emal: {user.email}</p>
+                    <p>Name: {userData.name}</p>
+                    <p>Username: {userData.username}</p>
+                    <p>Emal: {userData.email}</p>
                 </div>
             )}
         </>
