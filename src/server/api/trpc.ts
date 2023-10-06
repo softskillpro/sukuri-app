@@ -49,7 +49,6 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
   };
 };
 
-
 /**
  * This is the actual context you will use in your router. It will be used to process every request
  * that goes through your tRPC endpoint.
@@ -64,7 +63,7 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
 
   let user;
   try {
-    const token = req.headers.authorization?.split(' ')[1];
+    const token = req.headers.authorization?.split(' ')[1] || '';
     const payload: any = verify(token, SECRET_KEY);
     user = await prisma.user.findUnique({
       where: { id: payload.userId },
@@ -78,7 +77,6 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
     user,
   });
 };
-
 
 /**
  * 2. INITIALIZATION

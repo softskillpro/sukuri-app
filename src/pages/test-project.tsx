@@ -88,11 +88,11 @@ const TestProjectPage: React.FC = () => {
       {status === 'success' && project && (
         <div>
           <h2>Project Details</h2>
-          <p>Name: {project.name}</p>
+          {/* <p>Name: {project.name}</p>
           <p>Short Description: {project.short_description}</p>
           <p>Long Description: {project.long_description}</p>
           <p>Chain ID: {project.chain_id}</p>
-          <p>Is ERC721: {project.is_erc721 ? 'Yes' : 'No'}</p>
+          <p>Is ERC721: {project.is_erc721 ? 'Yes' : 'No'}</p> */}
         </div>
       )}
     </>

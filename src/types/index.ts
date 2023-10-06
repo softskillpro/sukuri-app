@@ -69,3 +69,8 @@ export interface Transaction {
   date: string;
   tx: string;
 }
+
+export interface Wallet {
+  name: string;
+  icon: string;
+}

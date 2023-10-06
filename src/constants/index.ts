@@ -12,6 +12,7 @@ import type {
   CategoryOfSubscription,
   Subscription,
   Transaction,
+  Wallet,
 } from '@/types';
 
 export const navs = [
@@ -279,3 +280,22 @@ export const socialList: Social[] = [
 // ];
 
 export const productImgs = ['product_badge', 'carousel1', 'carousel2'];
+
+export const wallets: Wallet[] = [
+  {
+    name: 'Metamask',
+    icon: '/images/metamask.png',
+  },
+  {
+    name: 'WalletConnect',
+    icon: '/images/walletconnect.png',
+  },
+  {
+    name: 'Coinbase Wallet',
+    icon: '/images/coinbase.png',
+  },
+  {
+    name: 'OKX Wallet',
+    icon: '/images/okx.png',
+  },
+];
