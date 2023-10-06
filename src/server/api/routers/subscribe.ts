@@ -17,6 +17,12 @@ const GetInput = z.object({
   asc: z.boolean().optional().default(true),
 });
 
+const GetProjectInput = z.object({
+  id: z.string(),
+  sortBy: z.string().optional(),
+  asc: z.boolean().optional().default(true),
+});
+
 const GetSortInput = z.object({
   sortBy: z.string().optional(),
   asc: z.boolean().optional().default(true),
@@ -115,8 +121,40 @@ export const subscriptionRouter = createTRPCRouter({
           [sortBy]: order,
         },
       });
-
       return (activeSubscriptions as PrismSubscription[]) || [];
+    }),
+
+  /**
+   * @function getByProject
+   * Get a subscription by its ID or get all subscriptions if no ID is provided.
+   *
+   * @param {object} input - The input object.
+   * @param {string} [input.id] - ID of the project to retrieve subscriptions from.
+   * @param {string} [input.sortBy] - Optional attribute to sort by when retrieving multiple subscriptions.
+   * @param {boolean} [input.asc] - Optional flag to order results in ascending or descending order. Defaults to true (ascending) if not provided.
+   * @returns {Promise<Subscription | Subscription[] | null>} - The requested subscription, or an array of subscriptions, or null if not found.
+   */
+  getByProject: publicProcedure
+    .input(GetProjectInput)
+    .query(async ({ input, ctx }) => {
+      const sortBy = input.sortBy || 'created_date';
+      const order = input.asc ? 'asc' : 'desc';
+
+      const now = new Date();
+
+      const projectSubscriptions = await ctx.prisma.subscription.findMany({
+        where: {
+          projectId: input.id,
+        },
+        include: {
+          tier: true,
+          project: true,
+        },
+        orderBy: {
+          [sortBy]: order,
+        },
+      });
+      return (projectSubscriptions as PrismSubscription[]) || null;
     }),
   /**
    * subscribe is a protected procedure that creates a new subscription given a projectId and a tierId.

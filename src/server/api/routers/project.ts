@@ -12,6 +12,13 @@ const GetInput = z.object({
   asc: z.boolean().optional().default(true),
 });
 
+const ImageInput = z.object({
+  key: z.string(),
+  url: z.string(),
+  type: z.string(),
+  description: z.string().optional(),
+});
+
 const ProjectInput = z.object({
   name: z.string(),
   short_description: z.string(),
@@ -23,9 +30,18 @@ const ProjectInput = z.object({
   is_erc721: z.boolean(),
   is_featured: z.boolean().optional(),
   accepted_payments: z.array(ProjectPaymentInput).optional(),
+  website_url: z.string().optional(),
+  twitter_url: z.string().optional(),
+  instagram_url: z.string().optional(),
+  medium_url: z.string().optional(),
+  telegram_url: z.string().optional(),
+  discord_url: z.string().optional(),
+  images: z.array(ImageInput).optional(),
 });
 
+
 const PartialProjectInput = ProjectInput.partial();
+
 
 /**
  * @module projectRouter
@@ -81,7 +97,7 @@ export const projectRouter = createTRPCRouter({
       if (!userId) {
         throw new Error('Not authenticated');
       }
-      const { accepted_payments, ...rest } = input;
+      const { accepted_payments, images, ...rest } = input;
 
       const projectData: Prisma.ProjectCreateInput = {
         ...rest,
@@ -110,6 +126,16 @@ export const projectRouter = createTRPCRouter({
               ),
             }
           : undefined,
+        Image: images
+          ? {
+            create: images.map((image) => ({
+              key: image.key,
+              url: image.url,
+              type: image.type,
+              description: image.description,
+            })),
+          }
+          : undefined,
       };
 
       const project = await ctx.prisma.project.create({
@@ -131,7 +157,7 @@ export const projectRouter = createTRPCRouter({
    * @returns {Project} - The updated project.
    * @throws {Error} - If the user is not authenticated.
    */
-  // Change to protectedProcedure when auth is working
+  // Change to ownerProcedure when auth is working
   update: publicProcedure
     .input(
       z.object({
@@ -178,6 +204,49 @@ export const projectRouter = createTRPCRouter({
       }
       return project as PrismaProject;
     }),
+
+  /**
+  * @function updateImages
+  * Update an existing image on a project. Can delete all images or just append.
+  *
+  * @param {Object} args - An object containing the ID and the new image data of the project.
+  * @param {string} args.id - The ID of the project to update.
+  * @param {Partial<ProjectInput>} args.data - The new project data.
+  * @returns {Object} - Response with success and message.
+  * @throws {Error} - If the user is not authenticated.
+  */
+  // Change to ownerProcedure when auth is working
+  updateImages: publicProcedure
+    .input(
+      z.object({
+        projectId: z.string(),
+        images: z.array(ImageInput),
+        delete: z.boolean(),
+      }),
+    )
+    .mutation(async ({ input, ctx }) => {
+      const { projectId, images, delete: deleteImages } = input;
+
+      await ctx.prisma.$transaction(async prisma => {
+        if (deleteImages) {
+          await prisma.image.deleteMany({
+            where: { projectId },
+          });
+        }
+
+        if (images && images.length > 0) {
+          await prisma.image.createMany({
+            data: images.map(image => ({
+              ...image,
+              projectId,
+            })),
+          });
+        }
+      });
+
+      return { success: true, message: 'Images updated successfully' };
+    }),
+
   /**
    * @function delete
    * Deletes an existing project and its associated payments.
