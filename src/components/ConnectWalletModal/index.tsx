@@ -45,6 +45,7 @@ const ConnectWalletModal = ({ open, handleClose }: ConnectWalletModalProps) => {
       } else {
         toast.error(err?.message || err);
       }
+      handleClose();
     }
   };
 
