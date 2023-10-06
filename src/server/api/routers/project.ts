@@ -39,9 +39,7 @@ const ProjectInput = z.object({
   images: z.array(ImageInput).optional(),
 });
 
-
 const PartialProjectInput = ProjectInput.partial();
-
 
 /**
  * @module projectRouter
@@ -56,32 +54,30 @@ export const projectRouter = createTRPCRouter({
    * @param {string} id - The ID of the project.
    * @returns {Project/Project[]} - The requested project.
    */
-  get: publicProcedure
-    .input(GetInput)
-    .query(async ({ input, ctx }) => {
-      if (input.id) {
-        const project = await ctx.prisma.project.findUnique({
-          where: { id: input.id },
-          include: {
-            tiers: true,
-          },
-        });
-        return project as PrismaProject || null;
-      }
-
-      const sortBy = input.sortBy || 'name';
-      const order = input.asc ? 'asc' : 'desc';
-
-      const projects = await ctx.prisma.project.findMany({
-        orderBy: {
-          [sortBy]: order,
-        },
+  get: publicProcedure.input(GetInput).query(async ({ input, ctx }) => {
+    if (input.id) {
+      const project = await ctx.prisma.project.findUnique({
+        where: { id: input.id },
         include: {
           tiers: true,
         },
       });
-      return projects as PrismaProject[] || null;
-    }),
+      return ([project] as PrismaProject[]) || [];
+    }
+
+    const sortBy = input.sortBy || 'name';
+    const order = input.asc ? 'asc' : 'desc';
+
+    const projects = await ctx.prisma.project.findMany({
+      orderBy: {
+        [sortBy]: order,
+      },
+      include: {
+        tiers: true,
+      },
+    });
+    return (projects as PrismaProject[]) || [];
+  }),
 
   /**
    * @function create
@@ -110,33 +106,33 @@ export const projectRouter = createTRPCRouter({
         },
         accepted_payments: accepted_payments
           ? {
-            create: await Promise.all(
-              accepted_payments.map(async (payment) => {
-                const paymentOption =
-                  await ctx.prisma.paymentOption.findUnique({
-                    where: { token: payment.token },
-                  });
+              create: await Promise.all(
+                accepted_payments.map(async (payment) => {
+                  const paymentOption =
+                    await ctx.prisma.paymentOption.findUnique({
+                      where: { token: payment.token },
+                    });
 
-                if (!paymentOption) {
-                  throw new Error(
-                    `Payment option for token "${payment.token}" not found.`,
-                  );
-                }
+                  if (!paymentOption) {
+                    throw new Error(
+                      `Payment option for token "${payment.token}" not found.`,
+                    );
+                  }
 
-                return { token: payment.token };
-              }),
-            ),
-          }
+                  return { token: payment.token };
+                }),
+              ),
+            }
           : undefined,
         Image: images
           ? {
-            create: images.map((image) => ({
-              key: image.key,
-              url: image.url,
-              type: image.type,
-              description: image.description,
-            })),
-          }
+              create: images.map((image) => ({
+                key: image.key,
+                url: image.url,
+                type: image.type,
+                description: image.description,
+              })),
+            }
           : undefined,
       };
 
@@ -208,15 +204,15 @@ export const projectRouter = createTRPCRouter({
     }),
 
   /**
-  * @function updateImages
-  * Update an existing image on a project. Can delete all images or just append.
-  *
-  * @param {Object} args - An object containing the ID and the new image data of the project.
-  * @param {string} args.id - The ID of the project to update.
-  * @param {Partial<ProjectInput>} args.data - The new project data.
-  * @returns {Object} - Response with success and message.
-  * @throws {Error} - If the user is not authenticated.
-  */
+   * @function updateImages
+   * Update an existing image on a project. Can delete all images or just append.
+   *
+   * @param {Object} args - An object containing the ID and the new image data of the project.
+   * @param {string} args.id - The ID of the project to update.
+   * @param {Partial<ProjectInput>} args.data - The new project data.
+   * @returns {Object} - Response with success and message.
+   * @throws {Error} - If the user is not authenticated.
+   */
   // Change to ownerProcedure when auth is working
   updateImages: publicProcedure
     .input(
@@ -229,7 +225,7 @@ export const projectRouter = createTRPCRouter({
     .mutation(async ({ input, ctx }) => {
       const { projectId, images, delete: deleteImages } = input;
 
-      await ctx.prisma.$transaction(async prisma => {
+      await ctx.prisma.$transaction(async (prisma) => {
         if (deleteImages) {
           await prisma.image.deleteMany({
             where: { projectId },
@@ -238,7 +234,7 @@ export const projectRouter = createTRPCRouter({
 
         if (images && images.length > 0) {
           await prisma.image.createMany({
-            data: images.map(image => ({
+            data: images.map((image) => ({
               ...image,
               projectId,
             })),

@@ -62,7 +62,11 @@ model Subscription {
   last_processed  DateTime
   expires         DateTime
   should_continue Boolean
+<<<<<<< HEAD
   priority        Int              @unique @default(autoincrement())
+=======
+  priority        Int              // @unique
+>>>>>>> fba2f431abde19faac8e2c605e2d73ec55180f97
   user            User             @relation(fields: [userId], references: [id])
   project         Project          @relation(fields: [projectId], references: [id])
   tier            ProjectTier      @relation(fields: [tierId], references: [id])
