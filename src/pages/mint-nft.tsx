@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Image from 'next/image';
 import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import MintHero from '@/components/MintHero';
@@ -5,10 +6,18 @@ import { FlexBox } from '@/components/Common/FlexBox';
 import { Section } from '@/components/Common/Section';
 import Newsletter from '@/components/Newsletter';
 import { MintContainer } from '@/styles/mint';
+import useRuntimeContext from '@/hooks/useRuntimeContext';
 
 const Mint = () => {
+  const { fetchHandler } = useRuntimeContext();
+
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
+
+  useEffect(() => {
+    fetchHandler(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <MintContainer>

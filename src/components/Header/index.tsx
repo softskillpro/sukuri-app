@@ -59,7 +59,13 @@ const Header = () => {
       <header style={{ width: '100%' }}>
         <HeaderContainer>
           <FlexBox className='company-logo-wrapper'>
-            <Image src='/images/logo.png' width={36} height={36} alt='Logo' />
+            <Image
+              src='/images/logo.png'
+              priority
+              width={36}
+              height={36}
+              alt='Logo'
+            />
 
             <Typography variant='body6' ml={1}>
               Sukuri Protocol
@@ -111,6 +117,7 @@ const Header = () => {
                 src='/images/logo.png'
                 width={36}
                 height={36}
+                priority
                 alt='Logo'
                 className='company-logo'
               />

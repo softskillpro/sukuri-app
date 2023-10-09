@@ -44,7 +44,6 @@ const ConnectWalletModal = ({ open, handleClose }: ConnectWalletModalProps) => {
           email: 'tester@gmail.com',
         });
       }
-      handleClose();
 
       router.push('/');
     } catch (err: any) {
@@ -55,6 +54,7 @@ const ConnectWalletModal = ({ open, handleClose }: ConnectWalletModalProps) => {
       } else {
         toast.error(err?.message || err);
       }
+    } finally {
       handleClose();
     }
   };

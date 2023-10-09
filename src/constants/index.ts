@@ -25,13 +25,17 @@ export const navs = [
     link: '/subscription',
   },
   {
+    title: 'Mint NFT',
+    link: '/mint-nft',
+  },
+  {
     title: 'Affiliates',
     link: '/affiliates',
   },
-  {
-    title: 'Start Selling',
-    link: '/start-selling',
-  },
+  // {
+  //   title: 'Start Selling',
+  //   link: '/start-selling',
+  // },
 ];
 
 export const socials: Social[] = [
