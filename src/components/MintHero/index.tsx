@@ -1,6 +1,7 @@
-import { memo, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Inter } from 'next/font/google';
 import { toast } from 'react-toastify';
 import { ethers } from 'ethers';
@@ -21,6 +22,8 @@ const inter = Inter({
   variable: '--Inter',
 });
 
+const whiteListed = ['0xA94da37c7A81874661D49BA06a12D8B262Fa99c3'];
+
 function CustomToast({ linkUrl }: { linkUrl: string }) {
   const url = `https://goerli.etherscan.io/tx/${linkUrl}`;
   return (
@@ -34,9 +37,12 @@ function CustomToast({ linkUrl }: { linkUrl: string }) {
 }
 
 const MintHero = () => {
+  const router = useRouter();
+  const { ref }: any = router.query;
+
   const { primeContract } = useContract();
 
-  const { isConnected } = useAccount();
+  const { isConnected, address } = useAccount();
 
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
@@ -46,13 +52,28 @@ const MintHero = () => {
 
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    if (ref && inputCodeRef.current) {
+      inputCodeRef.current.value = ref;
+    }
+  }, [ref]);
+
   const handleMint = async () => {
     const name = inputNameRef.current?.value;
     const code = inputCodeRef.current?.value || '';
 
-    let price = '0.0169'; // '0.0142';
+    // Check if user is whitelisted
+    const user = whiteListed.map((_user: string) => {
+      if (_user.toLowerCase() === address?.toLowerCase()) return _user;
+    });
 
-    if (code) price = (0.9 * Number(price)).toString();
+    let price = '0.018777';
+
+    if (user[0]) {
+      price = '0.0142';
+    } else if (code) {
+      price = '0.0169';
+    }
 
     if (!name) {
       toast.error('Name is required');
@@ -120,6 +141,7 @@ const MintHero = () => {
 
           <input
             ref={inputCodeRef}
+            readOnly
             required
             name='email'
             type='text'
