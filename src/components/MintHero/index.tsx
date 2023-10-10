@@ -133,6 +133,7 @@ const MintHero = () => {
             <StyledButton
               variant='Secondary'
               className='mint-btn'
+              disabled={loading}
               onClick={handleMint}
             >
               Purchase
