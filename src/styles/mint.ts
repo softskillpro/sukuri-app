@@ -38,6 +38,10 @@ export const MintContainer = styled('div')(({ theme }) => ({
     },
   },
 
+  '.refer-friends': {
+    marginTop: 48,
+  },
+
   '.mint-newsletter': {
     '.newsletter, .community': {
       padding: '80px 80px',
@@ -107,6 +111,10 @@ export const MintContainer = styled('div')(({ theme }) => ({
         width: '100%',
         height: 'auto',
       },
+    },
+
+    '.refer-friends': {
+      marginTop: 0,
     },
 
     '.mint-newsletter': {

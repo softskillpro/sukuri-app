@@ -16,7 +16,7 @@ import useContract from '@/hooks/useContract';
 import { MintHeroContainer } from './styles';
 
 const inter = Inter({
-  weight: ['400', '500', '600', '700'],
+  // weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
   variable: '--Inter',
 });
@@ -41,12 +41,20 @@ const MintHero = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputNameRef = useRef<HTMLInputElement>(null);
+  const inputCodeRef = useRef<HTMLInputElement>(null);
 
   const [loading, setLoading] = useState(false);
 
   const handleMint = async () => {
-    if (!inputRef.current?.value) {
+    const name = inputNameRef.current?.value;
+    const code = inputCodeRef.current?.value || '';
+
+    let price = '0.0169'; // '0.0142';
+
+    if (code) price = (0.9 * Number(price)).toString();
+
+    if (!name) {
       toast.error('Name is required');
       return;
     }
@@ -59,21 +67,16 @@ const MintHero = () => {
     try {
       setLoading(true);
 
-      const contract = await primeContract;
-      if (contract) {
-        const valueInWei = ethers.parseEther('0.0169');
+      if (primeContract && primeContract.mint) {
+        const valueInWei = ethers.parseEther(price);
         const gasLimit = 200000;
         const gasPrice = ethers.parseUnits('20', 'gwei');
 
-        const res = await contract.mint(
-          'tester',
-          '0x00B737Ec66cEBdAf45B33bCB5f00a52E41ee4397',
-          {
-            value: valueInWei,
-            gasLimit: gasLimit,
-            gasPrice: gasPrice,
-          },
-        );
+        const res = await primeContract.mint(name, code, {
+          value: valueInWei,
+          gasLimit: gasLimit,
+          gasPrice: gasPrice,
+        });
 
         toast.info(<CustomToast linkUrl={res.hash} />, { autoClose: false });
       }
@@ -103,11 +106,24 @@ const MintHero = () => {
           <div className='input-glow' />
 
           <input
-            ref={inputRef}
+            ref={inputNameRef}
             required
             name='email'
             type='text'
-            placeholder='Enter your name'
+            placeholder='Enter your display name'
+            className='input-email'
+          />
+        </form>
+
+        <form className={`${inter.className}`}>
+          <div className='input-glow' />
+
+          <input
+            ref={inputCodeRef}
+            required
+            name='email'
+            type='text'
+            placeholder='Enter a referral code (optional)'
             className='input-email'
           />
         </form>
@@ -119,7 +135,7 @@ const MintHero = () => {
               className='mint-btn'
               onClick={handleMint}
             >
-              Mint
+              Purchase
               {loading && <Loader />}
             </StyledButton>
 

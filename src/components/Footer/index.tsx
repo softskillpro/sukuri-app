@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Typography } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
 import { FooterContainer } from './styles';
-import { socials, links, resources, company } from '@/constants';
+import { socials, links, resources } from '@/constants';
 import type { Social, FooterLink } from '@/types';
 
 interface FooterItemProps {
@@ -18,11 +18,21 @@ const FooterItem = ({ title, navs, className }: FooterItemProps) => (
     </Typography>
 
     {navs.map((nav: FooterLink) => (
-      <Link key={nav.title} href={nav.href}>
+      <FlexBox
+        key={nav.title}
+        sx={{
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          cursor: 'pointer',
+        }}
+      >
+        <Typography variant='body7' color='accent.light'>
+          Coming soon
+        </Typography>
         <Typography variant='body3Mobile' color='text.secondary'>
           {nav.title}
         </Typography>
-      </Link>
+      </FlexBox>
     ))}
   </section>
 );
@@ -66,11 +76,11 @@ const Footer = () => {
           className='footer-resources footer-item'
         />
 
-        <FooterItem
+        {/* <FooterItem
           title='Company'
           navs={company}
           className='footer-company footer-item'
-        />
+        /> */}
       </FooterContainer>
     </footer>
   );

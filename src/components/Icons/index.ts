@@ -24,6 +24,7 @@ import InstagramIcon from './InstagramIcon';
 import WebsiteIcon from './WebsiteIcon';
 import DividerIcon from './DividerIcon';
 import ArrowRightIcon3 from './ArrowRightIcon3';
+import LogoutIcon from './LogoutIcon';
 
 export {
   ArrowRightIcon,
@@ -52,4 +53,5 @@ export {
   WebsiteIcon,
   DividerIcon,
   ArrowRightIcon3,
+  LogoutIcon,
 };
