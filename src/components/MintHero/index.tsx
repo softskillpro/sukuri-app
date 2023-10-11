@@ -27,14 +27,13 @@ import { CircleIcon } from '@/components/Icons';
 import { MintHeroContainer } from './styles';
 import { getAddress, parseEther } from 'viem';
 import ABI from '@/contract/primeAbi.json';
+import axios from 'axios';
 
 const inter = Inter({
   // weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
   variable: '--Inter',
 });
-
-const whiteListed = ['0xA94da37c7A81874661D49BA06a12D8B262Fa99c3'];
 
 const MintHero = () => {
   const router = useRouter();
@@ -52,6 +51,7 @@ const MintHero = () => {
   const [open, setOpen] = useState(0);
   const [txHash, setTxHash] = useState<`0x${string}` | undefined>(undefined);
   const [price, setPrice] = useState(0.018777);
+  const [isWhitelisted, setIsWhitelisted] = useState(false);
 
   useEffect(() => {
     if (ref && inputCodeRef.current) {
@@ -60,23 +60,35 @@ const MintHero = () => {
   }, [ref]);
 
   useEffect(() => {
-    const code = ref;
+    const fetchWhitelist = async () => {
+      try {
+        const response = await fetch(`/api/whitelist?address=${address}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const { result } = await response.json();
+        setIsWhitelisted(result);
+      } catch (error: any) {
+        toast.error(error?.message || error);
+      }
+    };
 
-    // Check if user is whitelisted
-    const user = whiteListed.map((_user: string) => {
-      if (_user.toLowerCase() === address?.toLowerCase()) return _user;
-    });
+    if (address) {
+      fetchWhitelist();
+    }
+  }, [address]);
 
+  useEffect(() => {
     let _price = 0.018777;
 
-    if (user[0]) {
+    if (isWhitelisted) {
       _price = 0.0142;
-    } else if (code) {
+    } else if (ref) {
       _price = 0.0169;
     }
 
     setPrice(_price);
-  }, [address, ref]);
+  }, [isWhitelisted, ref]);
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     let _name = e.target.value;
@@ -113,11 +125,23 @@ const MintHero = () => {
     try {
       setLoading(true);
 
+      let whitelistData;
+
+      if (isWhitelisted) {
+        const { data } = await axios.post('/api/whitelist', {
+          address,
+          name,
+          referral: code,
+        });
+
+        whitelistData = [data.name, data.referral, data.signature];
+      }
+
       const config = await prepareWriteContract({
         address: getAddress(`${process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}`),
         abi: ABI,
-        functionName: 'mint',
-        args: [name, code],
+        functionName: isWhitelisted ? 'whitelistMint' : 'mint',
+        args: isWhitelisted ? whitelistData : [name, code],
         value: parseEther(`${price}`),
       });
 
