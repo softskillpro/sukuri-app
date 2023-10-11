@@ -52,19 +52,19 @@ export const SpinnerModalContainer = styled(Modal)(({ theme }) => ({
           },
         },
 
-        ':hover': {
-          svg: {
-            path: {
-              fill: '#fff',
-              transition: '0.5s all ease-in-out',
-              filter: 'drop-shadow(0px 0px 30px #fff)',
-              strokeWidth: 10,
-              stroke: '#fff',
-              animation: 'animate-glow 3s ease-in-out infinite',
-              transitionProperty: 'fill',
-            },
-          },
-        },
+        // ':hover': {
+        //   svg: {
+        //     path: {
+        //       fill: '#fff',
+        //       transition: '0.5s all ease-in-out',
+        //       filter: 'drop-shadow(0px 0px 30px #fff)',
+        //       strokeWidth: 10,
+        //       stroke: '#fff',
+        //       animation: 'animate-glow 3s ease-in-out infinite',
+        //       transitionProperty: 'fill',
+        //     },
+        //   },
+        // },
       },
 
       '.mint-hero-bg': {
@@ -109,20 +109,20 @@ export const SpinnerModalContainer = styled(Modal)(({ theme }) => ({
     },
   },
 
-  '@keyframes animate-glow': {
-    '0%': {
-      filter: 'drop-shadow(0px 0px 30px #fff)',
-    },
-    '35%': {
-      filter: 'drop-shadow(0px 0px 35px #fff)',
-    },
-    '65%': {
-      filter: 'drop-shadow(0px 0px 25px #fff)',
-    },
-    '100%': {
-      filter: 'drop-shadow(0px 0px 30px #fff)',
-    },
-  },
+  // '@keyframes animate-glow': {
+  //   '0%': {
+  //     filter: 'drop-shadow(0px 0px 30px #fff)',
+  //   },
+  //   '35%': {
+  //     filter: 'drop-shadow(0px 0px 35px #fff)',
+  //   },
+  //   '65%': {
+  //     filter: 'drop-shadow(0px 0px 25px #fff)',
+  //   },
+  //   '100%': {
+  //     filter: 'drop-shadow(0px 0px 30px #fff)',
+  //   },
+  // },
 
   '@keyframes animate-flower': {
     '0%': {
@@ -130,8 +130,8 @@ export const SpinnerModalContainer = styled(Modal)(({ theme }) => ({
     },
     '50%': {
       strokeDashoffset: 2935,
-      filter: 'drop-shadow(0px 0px 35px #fff)',
-      fill: '#fff',
+      // filter: 'drop-shadow(0px 0px 35px #fff)',
+      // fill: '#fff',
     },
     '100%': {
       strokeDashoffset: 5870,
