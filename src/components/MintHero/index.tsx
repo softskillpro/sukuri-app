@@ -116,7 +116,7 @@ const MintHero = () => {
         abi: ABI,
         functionName: 'mint',
         args: [name, code],
-        value: parseEther('0.0169'),
+        value: code.length == 0 ? parseEther('0.018777') : parseEther('0.0169'),
       });
 
       setTxHash(hash);
