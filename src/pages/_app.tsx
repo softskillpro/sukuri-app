@@ -47,7 +47,13 @@ const MyApp: AppType<{
           </CacheProvider>
         </RuntimeContextProvider>
       </WagmiConfig>
-      <ToastContainer />
+      <ToastContainer
+        theme='dark'
+        style={{
+          fontFamily: 'Inter',
+          fontWeight: '400',
+        }}
+      />
     </SessionProvider>
   );
 };
