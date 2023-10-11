@@ -121,35 +121,7 @@ const MintHero = () => {
         value: parseEther(`${price}`),
       });
 
-      const { hash } = await writeContract(config).catch((err: any) => {
-        console.error(err);
-        switch (err.metaMessages?.[0]) {
-          case 'Error: InvalidValue()':
-            toast.error('Invalid Value Provided. Please try again.');
-            break;
-          case 'Error: NameUsed()':
-            toast.error('Name has been claimed already.');
-            break;
-          case 'Error: AlreadyUsedRef()':
-            toast.error(
-              'You may only use a ref code one time. Please try again without a reference code.',
-            );
-            break;
-          case 'Error: InvalidReferral()':
-            toast.error(
-              'You have entered an invalid referral code. Please check your code and try again.',
-            );
-            break;
-          case 'Error: InvalidDiscountValue()':
-            toast.error('Invalid Value Provided. Please try again.');
-            break;
-          default:
-            toast.error(
-              'An unknown error has occurred. Do you have enough ETH?',
-            );
-            break;
-        }
-      });
+      const { hash } = await writeContract(config);
 
       setTxHash(hash);
 
@@ -163,7 +135,31 @@ const MintHero = () => {
         setOpen(2);
       });
     } catch (err: any) {
-      toast.error(err?.message || err);
+      console.error(err);
+      switch (err.metaMessages?.[0]) {
+        case 'Error: InvalidValue()':
+          toast.error('Invalid Value Provided. Please try again.');
+          break;
+        case 'Error: NameUsed()':
+          toast.error('Name has been claimed already.');
+          break;
+        case 'Error: AlreadyUsedRef()':
+          toast.error(
+            'You may only use a ref code one time. Please try again without a reference code.',
+          );
+          break;
+        case 'Error: InvalidReferral()':
+          toast.error(
+            'You have entered an invalid referral code. Please check your code and try again.',
+          );
+          break;
+        case 'Error: InvalidDiscountValue()':
+          toast.error('Invalid Value Provided. Please try again.');
+          break;
+        default:
+          toast.error('An unknown error has occurred. Do you have enough ETH?');
+          break;
+      }
       setOpen(0);
     } finally {
       setLoading(false);
