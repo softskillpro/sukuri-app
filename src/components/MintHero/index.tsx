@@ -1,4 +1,11 @@
-import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  memo,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  ChangeEvent,
+} from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Inter } from 'next/font/google';
@@ -36,9 +43,9 @@ const MintHero = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
-  const inputNameRef = useRef<HTMLInputElement>(null);
   const inputCodeRef = useRef<HTMLInputElement>(null);
 
+  const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(0);
   const [txHash, setTxHash] = useState<`0x${string}` | undefined>(undefined);
@@ -69,8 +76,25 @@ const MintHero = () => {
     setPrice(_price);
   }, [address, ref]);
 
+  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let _name = e.target.value;
+
+    // Strip leading and trailing spaces
+    _name = _name.trim();
+
+    // Remove special characters, allowing only A-Z and 0-9
+    _name = _name.replace(/[^A-Za-z0-9]/g, '');
+
+    // Convert to uppercase
+    _name = _name.toUpperCase();
+
+    // Limit the name to 12 characters
+    _name = _name.slice(0, 12);
+
+    setName(_name);
+  };
+
   const handleMint = async () => {
-    const name = inputNameRef.current?.value;
     const code = inputCodeRef.current?.value || '';
 
     if (!name) {
@@ -141,12 +165,14 @@ const MintHero = () => {
             <div className='input-glow' />
 
             <input
-              ref={inputNameRef}
+              value={name}
               required
-              name='email'
+              name='name'
               type='text'
               placeholder='Enter your display name'
+              maxLength={12}
               className='input-email'
+              onChange={handleNameChange}
             />
           </form>
 
