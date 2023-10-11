@@ -30,7 +30,7 @@ export default async function handle(
         )();
 
         if (id) {
-          if (totalSupply > BigInt(parseInt(id))) {
+          if (totalSupply >= BigInt(parseInt(id))) {
             return res.status(404).json('Not found.');
           }
           // const name: string = await contract.namespace?.(parseInt(id));
