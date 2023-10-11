@@ -30,7 +30,7 @@ export default async function handle(
         )();
 
         if (id) {
-          if (totalSupply > BigInt(parseInt(id))) {
+          if (totalSupply < BigInt(parseInt(id))) {
             return res.status(200).json({
               animation_url: `https://mbcdn.sfo2.digitaloceanspaces.com/Final%20Layout.png`,
               name: `SUKURI PRIME PASS`,

@@ -12,7 +12,7 @@ import { Inter } from 'next/font/google';
 import { toast } from 'react-toastify';
 import { ethers } from 'ethers';
 import { useAccount } from 'wagmi';
-import { waitForTransaction } from '@wagmi/core';
+import { waitForTransaction, getContract, writeContract } from '@wagmi/core';
 import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { HeroGlow } from '@/components/Common/HeroGlow';
 import { Section } from '@/components/Common/Section';
@@ -23,6 +23,8 @@ import SpinnerModal from '@/components/SpinnerModal';
 import { CircleIcon } from '@/components/Icons';
 import useContract from '@/hooks/useContract';
 import { MintHeroContainer } from './styles';
+import { getAddress } from 'viem';
+import ABI from '@/contract/primeAbi.json';
 
 const inter = Inter({
   // weight: ['400', '500', '600', '700'],
@@ -35,8 +37,6 @@ const whiteListed = ['0xA94da37c7A81874661D49BA06a12D8B262Fa99c3'];
 const MintHero = () => {
   const router = useRouter();
   const { ref }: any = router.query;
-
-  const { primeContract } = useContract();
 
   const { isConnected, address } = useAccount();
 
@@ -111,29 +111,28 @@ const MintHero = () => {
     try {
       setLoading(true);
 
-      if (primeContract && primeContract.mint) {
-        const valueInWei = ethers.parseEther(price);
-        const gasLimit = 200000;
-        const gasPrice = ethers.parseUnits('20', 'gwei');
+      const { hash } = await writeContract({
+        address: getAddress(`${process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}`),
+        abi: ABI,
+        functionName: 'mint',
+        value:
+          code.length > 0
+            ? BigInt(16900000000000000)
+            : BigInt(18777000000000000),
+        args: [name, code],
+      });
 
-        const { hash } = await primeContract.mint(name, code, {
-          value: valueInWei,
-          gasLimit: gasLimit,
-          gasPrice: gasPrice,
-        });
+      setTxHash(hash);
 
-        setTxHash(hash);
+      setOpen(1);
 
-        setOpen(1);
-
-        await waitForTransaction({
-          chainId: 5,
-          hash,
-          timeout: 50000,
-        });
-
+      waitForTransaction({
+        chainId: 5,
+        hash,
+        timeout: 50000,
+      }).then(() => {
         setOpen(2);
-      }
+      });
     } catch (err: any) {
       toast.error(err?.message || err);
       setOpen(0);
