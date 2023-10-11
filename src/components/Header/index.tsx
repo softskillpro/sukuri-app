@@ -62,23 +62,25 @@ const Header = () => {
 
       <header style={{ width: '100%' }}>
         <HeaderContainer>
-          <FlexBox className='company-logo-wrapper'>
-            <Image
-              src='/images/logo.png'
-              priority
-              width={36}
-              height={36}
-              alt='Logo'
-            />
+          <Link href={'https://sukuri.io'} className='logo-navigation'>
+            <FlexBox className='company-logo-wrapper'>
+              <Image
+                src='/images/logo.png'
+                priority
+                width={36}
+                height={36}
+                alt='Logo'
+              />
 
-            <Typography variant='body6' ml={1}>
-              Sukuri Protocol
-            </Typography>
+              <Typography variant='body6' ml={1}>
+                Sukuri Protocol
+              </Typography>
 
-            <FlexBox className='beta-wrapper'>
-              <Typography variant='h4Mobile'>BETA</Typography>
+              <FlexBox className='beta-wrapper'>
+                <Typography variant='h4Mobile'>BETA</Typography>
+              </FlexBox>
             </FlexBox>
-          </FlexBox>
+          </Link>
 
           {matches ? (
             <FlexBox className='header-body'>
@@ -135,24 +137,26 @@ const Header = () => {
             justifyContent='space-between'
             className='company-logo-wrapper'
           >
-            <FlexBox>
-              <Image
-                src='/images/logo.png'
-                width={36}
-                height={36}
-                priority
-                alt='Logo'
-                className='company-logo'
-              />
+            <Link href={'https://sukuri.io'} className='logo-navigation'>
+              <FlexBox>
+                <Image
+                  src='/images/logo.png'
+                  width={36}
+                  height={36}
+                  priority
+                  alt='Logo'
+                  className='company-logo'
+                />
 
-              <Typography variant='body6' ml={1}>
-                Sukuri Protocol
-              </Typography>
+                <Typography variant='body6' ml={1}>
+                  Sukuri Protocol
+                </Typography>
 
-              <FlexBox className='beta-wrapper'>
-                <Typography variant='h4Mobile'>BETA</Typography>
+                <FlexBox className='beta-wrapper'>
+                  <Typography variant='h4Mobile'>BETA</Typography>
+                </FlexBox>
               </FlexBox>
-            </FlexBox>
+            </Link>
 
             <button className='close-btn' onClick={handleClose}>
               <CloseIcon sx={{ fontSize: 16 }} />
@@ -161,10 +165,13 @@ const Header = () => {
 
           <FlexBox className='header-body'>
             {navs.map((nav) => (
-              <Link
+              <FlexBox
                 key={nav.title}
-                href={nav.link}
+                // href={nav.link}
                 style={{
+                  flexDirection: 'column',
+                  alignItems: 'flex-end',
+                  cursor: 'pointer',
                   color:
                     selected === nav.link
                       ? theme.palette.accent.main
@@ -172,8 +179,11 @@ const Header = () => {
                 }}
                 onClick={() => handleClick(nav.link)}
               >
+                <Typography variant='body7' color='accent.light'>
+                  Coming soon
+                </Typography>
                 <Typography variant='h4Mobile'>{nav.title}</Typography>
-              </Link>
+              </FlexBox>
             ))}
           </FlexBox>
 
@@ -182,7 +192,10 @@ const Header = () => {
               disabled={isConnected}
               onClick={handleConnect}
               className='connect-btn'
-              sx={{ fontSize: '16px !important' }}
+              sx={{
+                fontSize: '16px !important',
+                height: isConnected ? 54.5 : 'auto',
+              }}
             >
               {!isConnected ? 'Connect' : formatAddress(address)}
             </ConnectButton>
