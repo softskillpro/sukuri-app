@@ -23,7 +23,7 @@ import SpinnerModal from '@/components/SpinnerModal';
 import { CircleIcon } from '@/components/Icons';
 import useContract from '@/hooks/useContract';
 import { MintHeroContainer } from './styles';
-import { getAddress } from 'viem';
+import { getAddress, parseEther } from 'viem';
 import ABI from '@/contract/primeAbi.json';
 
 const inter = Inter({
@@ -115,11 +115,8 @@ const MintHero = () => {
         address: getAddress(`${process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}`),
         abi: ABI,
         functionName: 'mint',
-        value:
-          code.length > 0
-            ? BigInt(16900000000000000)
-            : BigInt(18777000000000000),
         args: [name, code],
+        value: parseEther('0.0169'),
       });
 
       setTxHash(hash);
