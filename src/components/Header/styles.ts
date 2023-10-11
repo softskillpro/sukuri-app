@@ -1,5 +1,6 @@
 import { Modal, styled } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
+import { StyledButton } from '@/components/Common/StyledButton';
 
 export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
   justifyContent: 'space-between',
@@ -17,6 +18,7 @@ export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
 
   '.header-body': {
     gap: 24,
+    alignItems: 'flex-end',
 
     a: {
       textDecoration: 'none',
@@ -89,9 +91,11 @@ export const HeaderModalContainer = styled(Modal)(({ theme }) => ({
       position: 'absolute',
       left: 30,
       bottom: 50,
+      display: 'flex',
+      alignItems: 'center',
       width: 'calc(100% - 60px)',
 
-      button: {
+      '.connect-btn': {
         width: '100%',
         padding: '16px 24px',
       },
@@ -117,5 +121,28 @@ export const WalletButton = styled('button')(() => ({
 
   ':hover': {
     opacity: 0.7,
+  },
+}));
+
+export const DisconnectButton = styled('button')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '54.5px',
+  padding: 15,
+  borderRadius: 7,
+  border: 'none',
+  background: theme.palette.topProductsGradient.light,
+  cursor: 'pointer',
+  color: '#fff',
+}));
+
+export const ConnectButton = styled(StyledButton)(({ theme }) => ({
+  ':disabled': {
+    background: theme.palette.topProductsGradient.light,
+  },
+
+  ':hover': {
+    background: theme.palette.topProductsGradient.light,
   },
 }));

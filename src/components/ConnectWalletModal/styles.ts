@@ -26,9 +26,22 @@ export const ConnectWalletModalContainer = styled(Modal)(({ theme }) => ({
       },
     },
   },
+
+  [theme.breakpoints.down('sm')]: {
+    '.modal-wrapper': {
+      '.connect-wallet-body': {
+        width: 'calc(100% - 40px)',
+        padding: '45px 20px 35px',
+
+        '.button-list': {
+          width: '100%',
+        },
+      },
+    },
+  },
 }));
 
-export const WalletButton = styled('button')(() => ({
+export const WalletButton = styled('button')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   width: 456,
@@ -44,5 +57,9 @@ export const WalletButton = styled('button')(() => ({
 
   ':hover': {
     opacity: 0.7,
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    width: '100%',
   },
 }));

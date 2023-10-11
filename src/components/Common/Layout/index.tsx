@@ -14,6 +14,7 @@ const Layout = ({ children }: LayoutProps) => {
         src='/images/background.png'
         width={500}
         height={500}
+        priority
         alt='Background'
         className='background-img'
       />

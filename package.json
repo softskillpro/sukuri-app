@@ -25,13 +25,14 @@
     "@trpc/react-query": "^10.18.0",
     "@trpc/server": "^10.18.0",
     "axios": "^1.4.0",
-    "ethers": "^6.3.0",
+    "ethers": "^6.7.1",
     "formik": "^2.4.0",
     "jsonwebtoken": "^9.0.2",
     "keen-slider": "^6.8.5",
     "next": "^13.2.4",
     "next-auth": "^4.21.0",
     "react": "18.2.0",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "18.2.0",
     "react-redux": "^8.1.1",
     "react-responsive-carousel": "^3.2.23",
@@ -49,6 +50,7 @@
     "@types/jsonwebtoken": "^9.0.3",
     "@types/node": "^20.2.5",
     "@types/react": "^18.0.28",
+    "@types/react-copy-to-clipboard": "^5.0.5",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
@@ -74,4 +76,3 @@
     "seed": "ts-node --esm prisma/seed.ts"
   }
 }
-

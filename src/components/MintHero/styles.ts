@@ -73,6 +73,35 @@ export const MintHeroContainer = styled('div')(({ theme }) => ({
     },
   },
 
+  '.mint-asset': {
+    position: 'relative',
+
+    '.mint-hero-img': {
+      position: 'absolute',
+      top: -200,
+      left: 40,
+      width: 400,
+      height: 'auto',
+      transform: 'rotate(7.027deg)',
+    },
+  },
+
+  [theme.breakpoints.down(1350)]: {
+    '.mint-asset': {
+      '.mint-hero-img': {
+        width: 350,
+      },
+    },
+  },
+
+  [theme.breakpoints.down(1250)]: {
+    '.mint-asset': {
+      '.mint-hero-img': {
+        width: 300,
+      },
+    },
+  },
+
   [theme.breakpoints.down('lg')]: {
     gap: 70,
     padding: '96px 60px',
@@ -84,6 +113,8 @@ export const MintHeroContainer = styled('div')(({ theme }) => ({
     padding: '40px 40px 40px',
 
     '.mint-section': {
+      order: 2,
+
       '.mint-btn-wrapper': {
         '.mint-btn-wrap': {
           '.mint-btn': {
@@ -98,10 +129,26 @@ export const MintHeroContainer = styled('div')(({ theme }) => ({
         },
       },
     },
+
+    '.mint-asset': {
+      order: 1,
+
+      '.mint-hero-img': {
+        position: 'initial',
+        width: 300,
+        margin: '0px auto 10px',
+      },
+    },
   },
 
   [theme.breakpoints.down('sm')]: {
-    gap: 32,
+    gap: 40,
     padding: '40px 24px 40px',
+
+    '.mint-asset': {
+      '.mint-hero-img': {
+        width: 270,
+      },
+    },
   },
 }));
