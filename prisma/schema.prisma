@@ -37,19 +37,19 @@ model User {
   id             String           @id @default(uuid())
   name           String?
   email          String?          @unique
-  accounts       Account[]
-  sessions       Session[]
   username       String           @unique
   address        String           @unique
+  sukuriPassId   String?
   created_date   DateTime         @default(now())
   updated_date   DateTime         @default(now()) @updatedAt
-  subscriptions  Subscription[]
-  pass           SukuriPass?      @relation(fields: [sukuriPassId], references: [id])
-  sukuriPassId   String?
-  Project        Project[]
+  accounts       Account[]
   balances       Balance[]
   Image          Image[]
   PaymentHistory PaymentHistory[]
+  Project        Project[]
+  sessions       Session[]
+  subscriptions  Subscription[]
+  pass           SukuriPass?      @relation(fields: [sukuriPassId], references: [id])
 }
 
 model Subscription {
@@ -57,16 +57,16 @@ model Subscription {
   userId          String
   projectId       String
   tierId          String
-  created_date    DateTime         @default(now())
-  updated_date    DateTime         @default(now()) @updatedAt
   last_processed  DateTime
   expires         DateTime
   should_continue Boolean
-  priority        Int              // @unique
-  user            User             @relation(fields: [userId], references: [id])
+  priority        Int              @unique @default(autoincrement())
+  created_date    DateTime         @default(now())
+  updated_date    DateTime         @default(now()) @updatedAt
+  PaymentHistory  PaymentHistory[]
   project         Project          @relation(fields: [projectId], references: [id])
   tier            ProjectTier      @relation(fields: [tierId], references: [id])
-  PaymentHistory  PaymentHistory[]
+  user            User             @relation(fields: [userId], references: [id])
 
   @@unique([userId, projectId, tierId])
 }
@@ -98,21 +98,21 @@ model Project {
   member_count      Int?
   is_erc721         Boolean
   is_featured       Boolean?
+  userId            String?
   created_date      DateTime         @default(now())
   updated_date      DateTime         @default(now()) @updatedAt
-  accepted_payments ProjectPayment[]
-  tiers             ProjectTier[]
-  subscriptions     Subscription[]
-  userId            String?
-  User              User?            @relation(fields: [userId], references: [id])
-  Image             Image[]
-  website_url       String?
-  twitter_url       String?
+  discord_url       String?
   instagram_url     String?
   medium_url        String?
   telegram_url      String?
-  discord_url       String?
+  twitter_url       String?
+  website_url       String?
+  Image             Image[]
   PaymentHistory    PaymentHistory[]
+  User              User?            @relation(fields: [userId], references: [id])
+  accepted_payments ProjectPayment[]
+  tiers             ProjectTier[]
+  subscriptions     Subscription[]
 }
 
 model Balance {
@@ -121,8 +121,8 @@ model Balance {
   token         String
   balance       BigInt
   updatedAt     DateTime      @default(now())
-  user          User          @relation(fields: [userId], references: [id])
   PaymentOption PaymentOption @relation(fields: [token], references: [token])
+  user          User          @relation(fields: [userId], references: [id])
 
   @@unique([userId, token])
 }
@@ -132,8 +132,8 @@ model PaymentOption {
   name     String
   symbol   String
   is_eth   Boolean
-  projects ProjectPayment[]
   balances Balance[]
+  projects ProjectPayment[]
 }
 
 model ProjectPayment {
@@ -158,13 +158,12 @@ model ProjectTier {
   subscription_length_unit String
   description              String
   features                 String[]
+  projectId                String?
   created_date             DateTime       @default(now())
   updated_date             DateTime       @default(now()) @updatedAt
+  Image                    Image[]
   Project                  Project?       @relation(fields: [projectId], references: [id])
-  projectId                String?
   Subscription             Subscription[]
-
-  Image Image[]
 }
 
 model Image {
@@ -176,10 +175,10 @@ model Image {
   created_date  DateTime     @default(now())
   updated_date  DateTime     @default(now()) @updatedAt
   projectId     String?
-  project       Project?     @relation(fields: [projectId], references: [id])
   projectTierId String?
-  projectTier   ProjectTier? @relation(fields: [projectTierId], references: [id])
   userId        String?
+  project       Project?     @relation(fields: [projectId], references: [id])
+  projectTier   ProjectTier? @relation(fields: [projectTierId], references: [id])
   user          User?        @relation(fields: [userId], references: [id])
 
   @@index([projectId])
@@ -190,19 +189,25 @@ model Image {
 model PaymentHistory {
   id             String       @id @unique @default(uuid())
   userId         String
-  user           User         @relation(fields: [userId], references: [id])
   subscriptionId String
-  subscription   Subscription @relation(fields: [subscriptionId], references: [id])
   txn_date       DateTime
   txn_hash       String
   price          String
   token_paid_in  String
   confirmation   Boolean
   created_date   DateTime     @default(now())
-  Project        Project?     @relation(fields: [projectId], references: [id])
   projectId      String?
+  Project        Project?     @relation(fields: [projectId], references: [id])
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id])
+  user           User         @relation(fields: [userId], references: [id])
 
   @@index([userId])
   @@index([subscriptionId])
   @@index([txn_hash])
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model Whitelist {
+  id      BigInt @id @default(autoincrement())
+  address String @unique
 }
