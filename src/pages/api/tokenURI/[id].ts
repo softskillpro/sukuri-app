@@ -33,7 +33,7 @@ export default async function handle(
           if (totalSupply > BigInt(parseInt(id))) {
             return res.status(200).json({
               animation_url: `https://mbcdn.sfo2.digitaloceanspaces.com/Final%20Layout.png`,
-              name: `Sukuri Prime Pass #${id}`,
+              name: `SUKURI PRIME PASS`,
               image_url:
                 'https://mbcdn.sfo2.digitaloceanspaces.com/Final%20Layout.png',
               description:
@@ -47,9 +47,10 @@ export default async function handle(
               background_color: '020202',
             });
           }
+          const name: string = await contract.namespace?.(parseInt(id));
           return res.status(200).json({
             animation_url: `https://sukuri-app.vercel.app/api/animation/${id}`,
-            name: `Sukuri Prime Pass #${id}`,
+            name: `SUKURI PRIME PASS: ${name.toUpperCase()}`,
             image:
               'https://mbcdn.sfo2.digitaloceanspaces.com/Final%20Layout.png',
             description:

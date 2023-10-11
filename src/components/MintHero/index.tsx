@@ -92,6 +92,7 @@ const MintHero = () => {
     _name = _name.slice(0, 12);
 
     setName(_name);
+    e.target.value = _name;
   };
 
   const handleMint = async () => {
