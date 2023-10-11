@@ -12,9 +12,10 @@ const Layout = ({ children }: LayoutProps) => {
     <LayoutContainer>
       <Image
         src='/images/background.png'
-        width={500}
-        height={500}
+        width={1000}
+        height={5000}
         priority
+        quality={100}
         alt='Background'
         className='background-img'
       />
