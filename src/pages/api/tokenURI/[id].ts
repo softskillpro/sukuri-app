@@ -48,9 +48,9 @@ export default async function handle(
             });
           }
           return res.status(200).json({
-            animation_url: `https://app.sukuri.io/api/animation/${id}`,
+            animation_url: `https://sukuri-app.vercel.app/api/animation/${id}`,
             name: `Sukuri Prime Pass #${id}`,
-            image_url:
+            image:
               'https://mbcdn.sfo2.digitaloceanspaces.com/Final%20Layout.png',
             description:
               'The Sukuri Prime pass is an all-access membership to the Sukuri Protocol Beta where you can level up, earn rewards and receive alpha before anyone else! Built on account abstraction, Sukuri Protocol will change the way you view subscriptions, forever.',
