@@ -10,9 +10,12 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Inter } from 'next/font/google';
 import { toast } from 'react-toastify';
-import { ethers } from 'ethers';
 import { useAccount } from 'wagmi';
-import { waitForTransaction, getContract, writeContract } from '@wagmi/core';
+import {
+  prepareWriteContract,
+  waitForTransaction,
+  writeContract,
+} from '@wagmi/core';
 import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { HeroGlow } from '@/components/Common/HeroGlow';
 import { Section } from '@/components/Common/Section';
@@ -21,7 +24,6 @@ import { StyledButton } from '@/components/Common/StyledButton';
 import { Loader } from '@/components/Common/Loader';
 import SpinnerModal from '@/components/SpinnerModal';
 import { CircleIcon } from '@/components/Icons';
-import useContract from '@/hooks/useContract';
 import { MintHeroContainer } from './styles';
 import { getAddress, parseEther } from 'viem';
 import ABI from '@/contract/primeAbi.json';
@@ -49,7 +51,7 @@ const MintHero = () => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(0);
   const [txHash, setTxHash] = useState<`0x${string}` | undefined>(undefined);
-  const [price, setPrice] = useState('');
+  const [price, setPrice] = useState(0.018777);
 
   useEffect(() => {
     if (ref && inputCodeRef.current) {
@@ -65,12 +67,12 @@ const MintHero = () => {
       if (_user.toLowerCase() === address?.toLowerCase()) return _user;
     });
 
-    let _price = '0.018777';
+    let _price = 0.018777;
 
     if (user[0]) {
-      _price = '0.0142';
+      _price = 0.0142;
     } else if (code) {
-      _price = '0.0169';
+      _price = 0.0169;
     }
 
     setPrice(_price);
@@ -111,12 +113,42 @@ const MintHero = () => {
     try {
       setLoading(true);
 
-      const { hash } = await writeContract({
+      const config = await prepareWriteContract({
         address: getAddress(`${process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}`),
         abi: ABI,
         functionName: 'mint',
         args: [name, code],
-        value: code.length == 0 ? parseEther('0.018777') : parseEther('0.0169'),
+        value: parseEther(`${price}`),
+      });
+
+      const { hash } = await writeContract(config).catch((err: any) => {
+        console.error(err);
+        switch (err.metaMessages?.[0]) {
+          case 'Error: InvalidValue()':
+            toast.error('Invalid Value Provided. Please try again.');
+            break;
+          case 'Error: NameUsed()':
+            toast.error('Name has been claimed already.');
+            break;
+          case 'Error: AlreadyUsedRef()':
+            toast.error(
+              'You may only use a ref code one time. Please try again without a reference code.',
+            );
+            break;
+          case 'Error: InvalidReferral()':
+            toast.error(
+              'You have entered an invalid referral code. Please check your code and try again.',
+            );
+            break;
+          case 'Error: InvalidDiscountValue()':
+            toast.error('Invalid Value Provided. Please try again.');
+            break;
+          default:
+            toast.error(
+              'An unknown error has occurred. Do you have enough ETH?',
+            );
+            break;
+        }
       });
 
       setTxHash(hash);
