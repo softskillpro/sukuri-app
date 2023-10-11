@@ -138,7 +138,7 @@ const MintHero = () => {
       console.error(err);
       switch (err.metaMessages?.[0]) {
         case 'Error: InvalidValue()':
-          toast.error('Invalid Value Provided. Please try again.');
+          toast.error('Invalid ETH Value Provided. Please try again.');
           break;
         case 'Error: NameUsed()':
           toast.error('Name has been claimed already.');
