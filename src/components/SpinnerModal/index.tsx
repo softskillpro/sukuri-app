@@ -21,6 +21,7 @@ const inter = Inter({
 interface SpinnerModalProps {
   open: boolean;
   state: number;
+  code: string;
   txHash?: `0x${string}`;
   handleClose: () => void;
 }
@@ -28,6 +29,7 @@ interface SpinnerModalProps {
 const SpinnerModal = ({
   open,
   state,
+  code,
   txHash,
   handleClose,
 }: SpinnerModalProps) => {
@@ -126,8 +128,8 @@ const SpinnerModal = ({
                   I just purchased Sukuri Prime to gain early access to
                   @sukuriprotocol.
                   <br />
-                  Use my referral link to receive 10% off!
-                  app.sukuri.io/prime?ref=GRITCULT
+                  Use my referral link to receive 10% off! app.sukuri.io/?ref=
+                  {code}
                 </Typography>
 
                 <Image
@@ -140,7 +142,7 @@ const SpinnerModal = ({
               </div>
 
               <FlexBox my={3} gap={2} className='button-list'>
-                <CopyToClipboard text={'app.sukuri.io/prime?ref=GRITCULT'}>
+                <CopyToClipboard text={`app.sukuri.io/?ref=${code}`}>
                   <button className='spinner-btn' onClick={handleClose}>
                     Copy Ref{' '}
                     <CopyIcon

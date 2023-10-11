@@ -206,7 +206,6 @@ const MintHero = () => {
 
             <input
               ref={inputCodeRef}
-              readOnly
               required
               name='email'
               type='text'
@@ -251,6 +250,7 @@ const MintHero = () => {
       <SpinnerModal
         open={open !== 0}
         state={open}
+        code={ref}
         txHash={txHash}
         handleClose={handleClose}
       />
