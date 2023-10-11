@@ -40,8 +40,9 @@ const MintHero = () => {
   const inputCodeRef = useRef<HTMLInputElement>(null);
 
   const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(3);
-  const [txHash, setTxHash] = useState('');
+  const [open, setOpen] = useState(0);
+  const [txHash, setTxHash] = useState<`0x${string}` | undefined>(undefined);
+  const [price, setPrice] = useState('');
 
   useEffect(() => {
     if (ref && inputCodeRef.current) {
@@ -49,22 +50,28 @@ const MintHero = () => {
     }
   }, [ref]);
 
-  const handleMint = async () => {
-    const name = inputNameRef.current?.value;
-    const code = inputCodeRef.current?.value || '';
+  useEffect(() => {
+    const code = ref;
 
     // Check if user is whitelisted
     const user = whiteListed.map((_user: string) => {
       if (_user.toLowerCase() === address?.toLowerCase()) return _user;
     });
 
-    let price = '0.018777';
+    let _price = '0.018777';
 
     if (user[0]) {
-      price = '0.0142';
+      _price = '0.0142';
     } else if (code) {
-      price = '0.0169';
+      _price = '0.0169';
     }
+
+    setPrice(_price);
+  }, [address, ref]);
+
+  const handleMint = async () => {
+    const name = inputNameRef.current?.value;
+    const code = inputCodeRef.current?.value || '';
 
     if (!name) {
       toast.error('Name is required');
@@ -97,12 +104,14 @@ const MintHero = () => {
         await waitForTransaction({
           chainId: 5,
           hash,
+          timeout: 50000,
         });
 
         setOpen(2);
       }
     } catch (err: any) {
       toast.error(err?.message || err);
+      setOpen(0);
     } finally {
       setLoading(false);
     }
@@ -171,7 +180,7 @@ const MintHero = () => {
             </div>
 
             <Typography variant={matches ? 'h5' : 'h4Mobile'}>
-              Price: 0.0169 ETH
+              Price: {price} ETH
             </Typography>
           </FlexBox>
         </Section>

@@ -21,7 +21,7 @@ const inter = Inter({
 interface SpinnerModalProps {
   open: boolean;
   state: number;
-  txHash: string;
+  txHash?: `0x${string}`;
   handleClose: () => void;
 }
 

@@ -6,13 +6,18 @@ export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
   justifyContent: 'space-between',
   height: 100,
 
-  '.company-logo-wrapper': {
-    '.beta-wrapper': {
-      justifyContent: 'center',
-      marginLeft: 16,
-      padding: '8px 32px',
-      borderRadius: 4,
-      border: '1.37px solid #FFF',
+  '.logo-navigation': {
+    textDecoration: 'none',
+    color: '#fff',
+
+    '.company-logo-wrapper': {
+      '.beta-wrapper': {
+        justifyContent: 'center',
+        marginLeft: 16,
+        padding: '8px 32px',
+        borderRadius: 4,
+        border: '1.37px solid #FFF',
+      },
     },
   },
 
@@ -38,10 +43,12 @@ export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
   },
 
   [theme.breakpoints.down('sm')]: {
-    '.company-logo-wrapper': {
-      '.beta-wrapper': {
-        marginLeft: 12,
-        padding: '6px 12px',
+    '.logo-navigation': {
+      '.company-logo-wrapper': {
+        '.beta-wrapper': {
+          marginLeft: 12,
+          padding: '6px 12px',
+        },
       },
     },
   },
@@ -59,12 +66,17 @@ export const HeaderModalContainer = styled(Modal)(({ theme }) => ({
       height: 100,
       padding: '0 30px 0',
 
-      '.beta-wrapper': {
-        justifyContent: 'center',
-        marginLeft: 12,
-        padding: '6px 12px',
-        borderRadius: 4,
-        border: '1.37px solid #FFF',
+      '.logo-navigation': {
+        textDecoration: 'none',
+        color: '#fff',
+
+        '.beta-wrapper': {
+          justifyContent: 'center',
+          marginLeft: 12,
+          padding: '6px 12px',
+          borderRadius: 4,
+          border: '1.37px solid #FFF',
+        },
       },
 
       '.close-btn': {
