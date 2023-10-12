@@ -82,8 +82,8 @@ const MintHero = () => {
         });
         if ((hasClaimed as bigint) > BigInt(0)) {
           setIsWhitelisted(false);
-          setIsFetching(false);
         }
+        setIsFetching(false);
       } catch (error: any) {
         toast.error(error?.message || error);
         setIsFetching(false);
