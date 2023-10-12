@@ -305,8 +305,6 @@ const MintHero = () => {
                 Purchase
                 {loading && <Loader />}
               </StyledButton>
-
-              <CircleIcon sx={{ fontSize: matches ? 54 : 40 }} />
             </div>
 
             <Typography variant={matches ? 'h5' : 'h4Mobile'}>
