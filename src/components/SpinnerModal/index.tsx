@@ -129,6 +129,7 @@ Use my referral link to get 10% off!`);
                 mt={1}
                 textAlign='center'
                 maxWidth='70%'
+                color={'#ABD2FF'}
               >
                 Share your link to get extra points and earn ETH
               </Typography>
