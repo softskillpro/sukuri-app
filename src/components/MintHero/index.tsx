@@ -207,6 +207,9 @@ const MintHero = () => {
         hash,
         timeout: 50000,
       }).then(() => {
+        if (isWhitelisted) {
+          setIsWhitelisted(false);
+        }
         setOpen(2);
       });
     } catch (err: any) {
