@@ -77,6 +77,17 @@
     "type": "error"
   },
   {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "code",
+        "type": "string"
+      }
+    ],
+    "name": "MustUseSameRefCode",
+    "type": "error"
+  },
+  {
     "inputs": [],
     "name": "NameUsed",
     "type": "error"
@@ -874,12 +885,12 @@
         "type": "address"
       }
     ],
-    "name": "usedRef",
+    "name": "usedRefs",
     "outputs": [
       {
-        "internalType": "address",
-        "name": "referrer",
-        "type": "address"
+        "internalType": "string",
+        "name": "referral",
+        "type": "string"
       }
     ],
     "stateMutability": "view",
@@ -913,6 +924,25 @@
     "name": "withdraw",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "whitelistee",
+        "type": "address"
+      }
+    ],
+    "name": "wlClaim",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "claimed",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   }
 ]

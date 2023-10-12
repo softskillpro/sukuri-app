@@ -5,6 +5,7 @@ import {
   useRef,
   useState,
   ChangeEvent,
+  useMemo,
 } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -15,8 +16,9 @@ import {
   prepareWriteContract,
   waitForTransaction,
   writeContract,
+  readContract,
 } from '@wagmi/core';
-import { Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Typography, setRef, useMediaQuery, useTheme } from '@mui/material';
 import { HeroGlow } from '@/components/Common/HeroGlow';
 import { Section } from '@/components/Common/Section';
 import { FlexBox } from '@/components/Common/FlexBox';
@@ -28,6 +30,7 @@ import { MintHeroContainer } from './styles';
 import { getAddress, parseEther } from 'viem';
 import ABI from '@/contract/primeAbi.json';
 import axios from 'axios';
+import { bigint } from 'zod';
 
 const inter = Inter({
   // weight: ['400', '500', '600', '700'],
@@ -47,11 +50,14 @@ const MintHero = () => {
   const inputCodeRef = useRef<HTMLInputElement>(null);
 
   const [name, setName] = useState('');
+  const [referral, setReferral] = useState(ref);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(0);
   const [txHash, setTxHash] = useState<`0x${string}` | undefined>(undefined);
   const [price, setPrice] = useState(0.018777);
   const [isWhitelisted, setIsWhitelisted] = useState(false);
+
+  const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
     if (ref && inputCodeRef.current) {
@@ -68,8 +74,19 @@ const MintHero = () => {
         }
         const { result } = await response.json();
         setIsWhitelisted(result);
+        const hasClaimed = await readContract({
+          address: getAddress(`${process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}`),
+          abi: ABI,
+          functionName: 'wlClaim',
+          args: [address],
+        });
+        if ((hasClaimed as bigint) > BigInt(0)) {
+          setIsWhitelisted(false);
+          setIsFetching(false);
+        }
       } catch (error: any) {
         toast.error(error?.message || error);
+        setIsFetching(false);
       }
     };
 
@@ -77,6 +94,18 @@ const MintHero = () => {
       fetchWhitelist();
     }
   }, [address]);
+
+  useEffect(() => {
+    if (referral && referral.length > 0 && !isWhitelisted) {
+      setPrice(0.0169);
+      return;
+    }
+    if (isWhitelisted) {
+      setPrice(0.0142);
+      return;
+    }
+    setPrice(0.018777);
+  }, [referral, isWhitelisted]);
 
   useEffect(() => {
     let _price = 0.018777;
@@ -109,7 +138,29 @@ const MintHero = () => {
     e.target.value = _name;
   };
 
+  const handleRefChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let _referral = e.target.value;
+
+    // Strip leading and trailing spaces
+    _referral = _referral.trim();
+
+    // Remove special characters, allowing only A-Z and 0-9
+    _referral = _referral.replace(/[^A-Za-z0-9]/g, '');
+
+    // Convert to uppercase
+    _referral = _referral.toUpperCase();
+
+    // Limit the name to 12 characters
+    _referral = _referral.slice(0, 12);
+
+    setReferral(_referral);
+    e.target.value = _referral;
+  };
+
   const handleMint = async () => {
+    if (isFetching) {
+      return;
+    }
     const code = inputCodeRef.current?.value || '';
 
     if (!name) {
@@ -167,9 +218,9 @@ const MintHero = () => {
         case 'Error: NameUsed()':
           toast.error('Name has been claimed already.');
           break;
-        case 'Error: AlreadyUsedRef()':
+        case 'Error: CanOnlyUseOneRef()':
           toast.error(
-            'You may only use a ref code one time. Please try again without a reference code.',
+            'You have already used a referral code. If you wish to purchase more Prime Passes, you will have to use the same referral code.',
           );
           break;
         case 'Error: InvalidReferral()':
@@ -181,6 +232,10 @@ const MintHero = () => {
           toast.error('Invalid Value Provided. Please try again.');
           break;
         default:
+          if (err.metaMessages?.[0].contains('MustUseSameRefCode')) {
+            toast.error(err.metaMessages?.[0]);
+            break;
+          }
           toast.error('An unknown error has occurred. Do you have enough ETH?');
           break;
       }
@@ -205,7 +260,7 @@ const MintHero = () => {
           </Typography>
 
           <Typography variant={matches ? 'body1' : 'body1Mobile'}>
-            In celebration of Sukuri’s initial launch, join us in minting a
+            In celebration of Sukuri’s initial launch, join us in purchasing a
             Prime Pass that represents your participation in our off-chain beta,
             but that’s not all...
           </Typography>
@@ -230,6 +285,7 @@ const MintHero = () => {
 
             <input
               ref={inputCodeRef}
+              onChange={handleRefChange}
               required
               name='email'
               type='text'
@@ -254,7 +310,7 @@ const MintHero = () => {
             </div>
 
             <Typography variant={matches ? 'h5' : 'h4Mobile'}>
-              Price: {price} ETH
+              Price: {isFetching ? 'Fetching...' : <>{price} ETH</>}
             </Typography>
           </FlexBox>
         </Section>
@@ -274,7 +330,8 @@ const MintHero = () => {
       <SpinnerModal
         open={open !== 0}
         state={open}
-        code={ref}
+        name={name}
+        code={referral}
         txHash={txHash}
         handleClose={handleClose}
       />
