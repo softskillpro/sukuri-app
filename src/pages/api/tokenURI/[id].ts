@@ -4,7 +4,7 @@ import ABI from '@/contract/primeAbi.json';
 
 const provider = new ethers.AlchemyProvider(
   'goerli',
-  'YEMLhQ2S7F77trGq9ARxCKBVRjxolpBR',
+  '0Q9iGJmMqbs7aRqeWXGYLKzy9E45BdDn',
 );
 const contract = new ethers.Contract(
   `${process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}`,
