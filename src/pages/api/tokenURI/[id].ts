@@ -59,8 +59,10 @@ export default async function handle(
               'The Sukuri Prime pass is an all-access membership to the Sukuri Protocol Beta where you can level up, earn rewards and receive alpha before anyone else! Built on account abstraction, Sukuri Protocol will change the way you view subscriptions, forever.',
             attributes: [
               {
-                trait_type: 'Badge Count',
-                value: '0',
+                display_type: 'number',
+                trait_type: 'Badges',
+                value: 0,
+                max_value: 5,
               },
             ],
             background_color: '020202',
