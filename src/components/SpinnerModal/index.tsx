@@ -118,8 +118,9 @@ Use my referral link to get 10% off!`);
 
               <Typography
                 variant='bodyBoldMobile'
-                sx={{ cursor: 'pointer', color: 'ABD2FF' }}
+                sx={{ cursor: 'pointer', color: '#ABD2FF' }}
                 onClick={handleClick}
+                color={'#ABD2FF'}
               >
                 {'Share Your Referral Link >'}
               </Typography>
@@ -129,7 +130,6 @@ Use my referral link to get 10% off!`);
                 mt={1}
                 textAlign='center'
                 maxWidth='70%'
-                color={'#ABD2FF'}
               >
                 Share your link to get extra points and earn ETH
               </Typography>
