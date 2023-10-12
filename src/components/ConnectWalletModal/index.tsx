@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import Image from 'next/image';
 import { Inter } from 'next/font/google';
@@ -10,6 +10,7 @@ import { FlexBox } from '@/components/Common/FlexBox';
 import { Loader } from '@/components/Common/Loader';
 import { ConnectWalletModalContainer, WalletButton } from './styles';
 import { wallets } from '@/constants';
+import useOnClickOutside from '@/hooks/useOnClickOutside';
 // import { api } from '@/utils/api';
 
 const inter = Inter({
@@ -23,6 +24,8 @@ interface ConnectWalletModalProps {
 }
 
 const ConnectWalletModal = ({ open, handleClose }: ConnectWalletModalProps) => {
+  const myRef = useRef(null);
+
   // const router = useRouter();
   const { isConnected } = useAccount();
   const { connectAsync, connectors, isLoading } = useConnect();
@@ -59,6 +62,13 @@ const ConnectWalletModal = ({ open, handleClose }: ConnectWalletModalProps) => {
     }
   };
 
+  const handleClickOutside = () => {
+    handleClose();
+  };
+
+  // Attach the click outside handler to the ref
+  useOnClickOutside(myRef, handleClickOutside);
+
   return (
     <ConnectWalletModalContainer
       open={open}
@@ -67,7 +77,10 @@ const ConnectWalletModal = ({ open, handleClose }: ConnectWalletModalProps) => {
       aria-describedby='connect-wallet-modal-description'
     >
       <FlexBox className='modal-wrapper'>
-        <FlexBox className={`${inter.className} connect-wallet-body`}>
+        <FlexBox
+          className={`${inter.className} connect-wallet-body`}
+          ref={myRef}
+        >
           <Typography variant='h4' mb={1.5}>
             Connect Wallet
           </Typography>
