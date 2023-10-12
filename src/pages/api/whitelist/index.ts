@@ -68,7 +68,7 @@ export default async function handle(
         ),
       );
       const sig = await wallet.signMessage(msg);
-      return res.status(200).json({
+      return res.status(200).send({
         name: _name,
         referral: referral,
         signature: sig,

@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Inter } from 'next/font/google';
@@ -22,6 +22,7 @@ interface SpinnerModalProps {
   open: boolean;
   state: number;
   code: string;
+  name: string;
   txHash?: `0x${string}`;
   handleClose: () => void;
 }
@@ -30,6 +31,7 @@ const SpinnerModal = ({
   open,
   state,
   code,
+  name,
   txHash,
   handleClose,
 }: SpinnerModalProps) => {
@@ -42,6 +44,19 @@ const SpinnerModal = ({
   const handleClick = () => {
     setStep(3);
   };
+
+  const handleTweetIntent = useCallback(() => {
+    const text =
+      encodeURIComponent(`I just purchased Sukuri Prime to gain early access to @sukuriprotocol 🌸
+    
+Use my referral link to get 10% off!
+`);
+    const url = encodeURIComponent(`https://app.sukuri.io/?ref=${name}`);
+    window.open(
+      `https://twitter.com/intent/tweet?text=${text}&url=${url}&related=twitter%3Asukuriprotocol`,
+      '_blank',
+    );
+  }, [name]);
 
   return (
     <SpinnerModalContainer
@@ -72,10 +87,7 @@ const SpinnerModal = ({
                 <SpinnerIcon sx={{ fontSize: 108 }} />
               </div>
 
-              <Link
-                href={`https://goerli.etherscan.io/tx/${txHash}`}
-                target='_blank'
-              >
+              <Link href={`https://etherscan.io/tx/${txHash}`} target='_blank'>
                 <Typography variant='bodyBoldMobile'>
                   {'View transaction on explorer >'}
                 </Typography>
@@ -106,7 +118,7 @@ const SpinnerModal = ({
 
               <Typography
                 variant='bodyBoldMobile'
-                sx={{ cursor: 'pointer' }}
+                sx={{ cursor: 'pointer', color: 'ABD2FF' }}
                 onClick={handleClick}
               >
                 {'Share your referral link >'}
@@ -128,8 +140,9 @@ const SpinnerModal = ({
                   I just purchased Sukuri Prime to gain early access to
                   @sukuriprotocol.
                   <br />
-                  Use my referral link to receive 10% off! app.sukuri.io/?ref=
-                  {code}
+                  Use my referral link to receive 10% off!
+                  https://app.sukuri.io/?ref=
+                  {name}
                 </Typography>
 
                 <Image
@@ -142,8 +155,8 @@ const SpinnerModal = ({
               </div>
 
               <FlexBox my={3} gap={2} className='button-list'>
-                <CopyToClipboard text={`app.sukuri.io/?ref=${code}`}>
-                  <button className='spinner-btn' onClick={handleClose}>
+                <CopyToClipboard text={`https://app.sukuri.io/?ref=${name}`}>
+                  <button className='spinner-btn'>
                     Copy Ref{' '}
                     <CopyIcon
                       sx={{ marginLeft: 1, fontSize: 20, fill: 'transparent' }}
@@ -151,7 +164,7 @@ const SpinnerModal = ({
                   </button>
                 </CopyToClipboard>
 
-                <button className='spinner-btn' onClick={handleClose}>
+                <button className='spinner-btn' onClick={handleTweetIntent}>
                   Share on{' '}
                   <TwitterIcon2
                     sx={{ marginLeft: 1, fontSize: 20, fill: 'transparent' }}
