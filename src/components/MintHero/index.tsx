@@ -92,6 +92,9 @@ const MintHero = () => {
 
     if (address) {
       fetchWhitelist();
+    } else {
+      setIsWhitelisted(false);
+      setIsFetching(false);
     }
   }, [address]);
 
