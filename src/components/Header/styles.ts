@@ -154,10 +154,6 @@ export const DisconnectButton = styled('button')(({ theme }) => ({
 export const ConnectButton = styled(StyledButton)(({ theme }) => ({
   height: 36,
   maxHeight: 36,
-  paddingLeft: 8,
-  paddingRight: 8,
-  paddingTop: 4,
-  paddingBottom: 4,
   ':disabled': {
     background: theme.palette.topProductsGradient.light,
   },

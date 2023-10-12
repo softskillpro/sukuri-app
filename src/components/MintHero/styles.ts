@@ -59,8 +59,18 @@ export const MintHeroContainer = styled('div')(({ theme }) => ({
         '.mint-btn': {
           background: theme.palette.topProductsGradient.light,
           backdropFilter: 'blur(5px)',
+          border: '2px solid rgba(255, 255, 255, 0.00)',
           width: 184,
           fontSize: 20,
+
+          ':hover': {
+            boxSizing: 'border-box',
+            '-moz-box-sizing': 'border-box',
+            '-webkit-box-sizing': 'border-box',
+            border: '2px solid rgba(255, 255, 255, 0.50)',
+            background: 'transparent',
+            margin: 0,
+          },
         },
 
         svg: {

@@ -4,6 +4,7 @@ import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import MintHero from '@/components/MintHero';
 import { FlexBox } from '@/components/Common/FlexBox';
 import { Section } from '@/components/Common/Section';
+import Head from 'next/head';
 import Newsletter from '@/components/Newsletter';
 import { MintContainer } from '@/styles/mint';
 import useRuntimeContext from '@/hooks/useRuntimeContext';
@@ -21,6 +22,50 @@ const Mint = () => {
 
   return (
     <MintContainer>
+      <Head>
+        <meta
+          property='og:title'
+          content='Sukuri Protocol - Prime Pass LIVE!'
+          key='title'
+        />
+
+        <title>🌸 Sukuri Protocol - Prime Pass Available🌸</title>
+        <meta
+          name='description'
+          content='In celebration of Sukuri’s initial launch, join us in purchasing a Prime Pass that represents your participation in our off-chain beta, but that’s not all...'
+        />
+
+        <meta property='og:url' content='https://sukuri.io' />
+        <meta property='og:type' content='website' />
+        <meta
+          property='og:title'
+          content='🌸 Sukuri Protocol - Prime Pass Available🌸'
+        />
+        <meta
+          property='og:description'
+          content='In celebration of Sukuri’s initial launch, join us in purchasing a Prime Pass that represents your participation in our off-chain beta, but that’s not all...'
+        />
+        <meta
+          property='og:image'
+          content='https://mbcdn.sfo2.digitaloceanspaces.com/Tweet_4.png'
+        />
+
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta property='twitter:domain' content='sukuri.io' />
+        <meta property='twitter:url' content='https://sukuri.io' />
+        <meta
+          name='twitter:title'
+          content='🌸 Sukuri Protocol - Prime Pass Available🌸'
+        />
+        <meta
+          name='twitter:description'
+          content='In celebration of Sukuri’s initial launch, join us in purchasing a Prime Pass that represents your participation in our off-chain beta, but that’s not all...'
+        />
+        <meta
+          name='twitter:image'
+          content='https://mbcdn.sfo2.digitaloceanspaces.com/Tweet_4.png'
+        />
+      </Head>
       <MintHero />
 
       <Section className='mint-grid refer-friends'>
