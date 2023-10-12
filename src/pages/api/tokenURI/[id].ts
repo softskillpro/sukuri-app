@@ -3,8 +3,8 @@ import { ethers } from 'ethers';
 import ABI from '@/contract/primeAbi.json';
 
 const provider = new ethers.AlchemyProvider(
-  'goerli',
-  '0Q9iGJmMqbs7aRqeWXGYLKzy9E45BdDn',
+  'mainnet',
+  'XdsTr2I-Q6AGqgiEK2ZYtN0c0lqmXoku',
 );
 const contract = new ethers.Contract(
   `${process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}`,
