@@ -24,7 +24,8 @@ export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
   '.header-body': {
     gap: 24,
     alignItems: 'flex-end',
-
+    height: 36,
+    maxHeight: 36,
     a: {
       textDecoration: 'none',
     },
@@ -140,8 +141,9 @@ export const DisconnectButton = styled('button')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  height: '54.5px',
-  padding: 15,
+  height: 36,
+  maxHeight: 36,
+  padding: 12,
   borderRadius: 7,
   border: 'none',
   background: theme.palette.topProductsGradient.light,
@@ -150,6 +152,12 @@ export const DisconnectButton = styled('button')(({ theme }) => ({
 }));
 
 export const ConnectButton = styled(StyledButton)(({ theme }) => ({
+  height: 36,
+  maxHeight: 36,
+  paddingLeft: 8,
+  paddingRight: 8,
+  paddingTop: 4,
+  paddingBottom: 4,
   ':disabled': {
     background: theme.palette.topProductsGradient.light,
   },

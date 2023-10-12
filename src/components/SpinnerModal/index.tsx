@@ -49,8 +49,7 @@ const SpinnerModal = ({
     const text =
       encodeURIComponent(`I just purchased Sukuri Prime to gain early access to @sukuriprotocol 🌸
     
-Use my referral link to get 10% off!
-`);
+Use my referral link to get 10% off!`);
     const url = encodeURIComponent(`https://app.sukuri.io/?ref=${name}`);
     window.open(
       `https://twitter.com/intent/tweet?text=${text}&url=${url}&related=twitter%3Asukuriprotocol`,
