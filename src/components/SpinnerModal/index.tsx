@@ -12,6 +12,7 @@ import {
   TwitterIcon2,
 } from '@/components/Icons';
 import { SpinnerModalContainer } from './styles';
+import { toast } from 'react-toastify';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -155,7 +156,12 @@ Use my referral link to get 10% off!`);
 
               <FlexBox my={3} gap={2} className='button-list'>
                 <CopyToClipboard text={`https://app.sukuri.io/?ref=${name}`}>
-                  <button className='spinner-btn'>
+                  <button
+                    className='spinner-btn'
+                    onClick={() => {
+                      toast.success('Copied Referral Link to Clipboard');
+                    }}
+                  >
                     Copy Ref{' '}
                     <CopyIcon
                       sx={{ marginLeft: 1, fontSize: 20, fill: 'transparent' }}

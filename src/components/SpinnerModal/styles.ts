@@ -97,7 +97,6 @@ export const SpinnerModalContainer = styled(Modal)(({ theme }) => ({
         fontSize: 20,
         fontWeight: 700,
         color: '#fff',
-        border: 'none',
         cursor: 'pointer',
         fontFamily: 'var(--Inter)',
         margin: 0,
