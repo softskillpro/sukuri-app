@@ -32,10 +32,9 @@ const Header = () => {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
   const [open, setOpen] = useState(0);
-  const [selected, setSelected] = useState(currentUrl);
 
   const handleClick = (url: string) => {
-    setSelected(url);
+    console.log(url);
     setOpen(0);
     // fetchHandler(true);
   };
@@ -92,10 +91,7 @@ const Header = () => {
                     flexDirection: 'column',
                     alignItems: 'flex-end',
                     cursor: 'pointer',
-                    color:
-                      selected === nav.link
-                        ? theme.palette.accent.main
-                        : theme.palette.text.primary,
+                    color: theme.palette.text.primary,
                   }}
                   onClick={() => handleClick(nav.link)}
                 >
@@ -172,10 +168,7 @@ const Header = () => {
                   flexDirection: 'column',
                   alignItems: 'flex-end',
                   cursor: 'pointer',
-                  color:
-                    selected === nav.link
-                      ? theme.palette.accent.main
-                      : theme.palette.text.primary,
+                  color: theme.palette.text.primary,
                 }}
                 onClick={() => handleClick(nav.link)}
               >
