@@ -1,5 +1,5 @@
 import { createConfig, configureChains } from 'wagmi';
-import { goerli } from 'wagmi/chains';
+import { mainnet, goerli } from 'wagmi/chains';
 import { infuraProvider } from 'wagmi/providers/infura';
 
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet';
@@ -12,7 +12,7 @@ const alchemyKey = process.env.NEXT_PUBLIC_ALCHEMY_KEY as string;
 const projectId = process.env.NEXT_PUBLIC_PROJECT_ID as string;
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [goerli],
+  [mainnet, goerli],
   [infuraProvider({ apiKey: infuraKey })],
 );
 

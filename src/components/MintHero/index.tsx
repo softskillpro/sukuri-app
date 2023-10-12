@@ -260,9 +260,9 @@ const MintHero = () => {
           </Typography>
 
           <Typography variant={matches ? 'body1' : 'body1Mobile'}>
-            In celebration of Sukuri’s initial launch, join us in purchasing a
-            Prime Pass that represents your participation in our off-chain beta,
-            but that’s not all...
+            In celebration of Sukuri&apos;s initial launch, join us in
+            purchasing a Prime Pass that represents your participation in our
+            off-chain beta, but that&apos;s not all...
           </Typography>
 
           <form className={`${inter.className}`}>

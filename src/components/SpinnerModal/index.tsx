@@ -89,7 +89,7 @@ Use my referral link to get 10% off!`);
 
               <Link href={`https://etherscan.io/tx/${txHash}`} target='_blank'>
                 <Typography variant='bodyBoldMobile'>
-                  {'View transaction on explorer >'}
+                  {'View Transaction on Explorer >'}
                 </Typography>
               </Link>
 
@@ -121,7 +121,7 @@ Use my referral link to get 10% off!`);
                 sx={{ cursor: 'pointer', color: 'ABD2FF' }}
                 onClick={handleClick}
               >
-                {'Share your referral link >'}
+                {'Share Your Referral Link >'}
               </Typography>
 
               <Typography
