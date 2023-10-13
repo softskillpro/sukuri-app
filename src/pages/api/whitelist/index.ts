@@ -16,12 +16,15 @@ export default async function handle(
       return res.status(401).json('id should be an address');
     }
 
-    const whitelisted = await prisma.whitelist.findUnique({
+    const whitelisted = await prisma.whitelist.findMany({
       where: {
-        address: address,
+        address: {
+          equals: address,
+          mode: 'insensitive',
+        },
       },
     });
-    if (whitelisted !== null && whitelisted !== undefined) {
+    if (whitelisted.length !== 0) {
       return res.status(200).json({
         result: true,
       });
@@ -52,13 +55,16 @@ export default async function handle(
       return res.status(401).json('address and name should be string');
     }
 
-    const whitelisted = await prisma.whitelist.findUnique({
+    const whitelisted = await prisma.whitelist.findMany({
       where: {
-        address: address,
+        address: {
+          equals: address,
+          mode: 'insensitive',
+        },
       },
     });
 
-    if (whitelisted !== undefined && whitelisted !== null) {
+    if (whitelisted.length != 0) {
       const msg = ethers.getBytes(
         ethers.keccak256(
           ethers.AbiCoder.defaultAbiCoder().encode(
