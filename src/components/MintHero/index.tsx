@@ -11,7 +11,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Inter } from 'next/font/google';
 import { toast } from 'react-toastify';
-import { useAccount } from 'wagmi';
+import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi';
 import {
   prepareWriteContract,
   waitForTransaction,
@@ -43,6 +43,11 @@ const MintHero = () => {
   const { ref }: any = router.query;
 
   const { isConnected, address } = useAccount();
+  const { chain } = useNetwork();
+  const { isLoading: switchingChain, switchNetwork } = useSwitchNetwork({
+    chainId: 1,
+    throwForSwitchChainNotSupported: true,
+  });
 
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
@@ -58,6 +63,13 @@ const MintHero = () => {
   const [isWhitelisted, setIsWhitelisted] = useState(false);
 
   const [isFetching, setIsFetching] = useState(true);
+
+  const isOnCorrectNetwork = useMemo(() => {
+    if (chain && chain.id == 1) {
+      return true;
+    }
+    return false;
+  }, [chain]);
 
   useEffect(() => {
     if (ref && inputCodeRef.current) {
@@ -160,8 +172,22 @@ const MintHero = () => {
     e.target.value = _referral;
   };
 
+  const purchaseButtonText = useMemo(() => {
+    if (isOnCorrectNetwork) {
+      return 'Purchase';
+    }
+    return 'Switch Networks';
+  }, [isOnCorrectNetwork]);
+
   const handleMint = async () => {
     if (isFetching) {
+      return;
+    }
+    if (!isOnCorrectNetwork && !switchingChain) {
+      toast.warning('Please switch your network to mainnet to continue.', {
+        position: 'top-center',
+      });
+      switchNetwork?.(1);
       return;
     }
     const code = inputCodeRef.current?.value || '';
@@ -308,7 +334,7 @@ const MintHero = () => {
                 disabled={loading}
                 onClick={handleMint}
               >
-                Purchase
+                {purchaseButtonText}
                 {loading && <Loader />}
               </StyledButton>
             </div>

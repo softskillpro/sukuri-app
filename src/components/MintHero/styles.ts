@@ -60,7 +60,7 @@ export const MintHeroContainer = styled('div')(({ theme }) => ({
           background: theme.palette.topProductsGradient.light,
           backdropFilter: 'blur(5px)',
           border: '2px solid rgba(255, 255, 255, 0.00)',
-          width: 184,
+          minWidth: 184,
           fontSize: 20,
 
           ':hover': {
