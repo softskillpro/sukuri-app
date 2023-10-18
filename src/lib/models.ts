@@ -128,3 +128,19 @@ export interface ProjectTier {
     Project?: Project;
     Subscription: Subscription[];
 }
+
+export interface SignInInputSchema {
+    signature: string,
+    username: string,
+    ethAddress: string,
+    timestamp: string,
+    nonce: string
+}
+
+export interface SignUpInputSchema {
+    signature: string,
+    username: string,
+    ethAddress: string,
+    timestamp: string,
+    nonce: string
+}

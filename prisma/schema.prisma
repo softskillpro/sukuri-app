@@ -50,6 +50,7 @@ model User {
   balances       Balance[]
   Image          Image[]
   PaymentHistory PaymentHistory[]
+  UserPoints     UserPoints[]
 }
 
 model Subscription {
@@ -205,4 +206,28 @@ model PaymentHistory {
   @@index([userId])
   @@index([subscriptionId])
   @@index([txn_hash])
+}
+
+model Whitelist {
+  id      String @id @default(uuid())
+  address String @unique
+}
+
+model MintedToken {
+  id        Int      @id @default(autoincrement())
+  address   String
+  tokenId   String   @unique
+  name      String
+  timestamp DateTime @default(now())
+}
+
+model UserPoints {
+  id     String   @id @default(uuid())
+  userId String
+  points Int      @default(0)
+  reason String // explains why the points were added or subtracted
+  date   DateTime @default(now())
+  user   User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
 }

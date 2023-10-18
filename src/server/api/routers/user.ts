@@ -67,9 +67,12 @@ export const userRouter = createTRPCRouter({
      */
     create: publicProcedure.input(UserInput).mutation(async ({ input, ctx }) => {
         const username = input.username || input.address;
+        const { address, ...rest } = input;
+        
         const userData: Prisma.UserCreateInput = {
             ...input,
-            username,
+            address: address.toLowerCase(),
+            username: username.toLowerCase(),
         };
         const user = await ctx.prisma.user.create({
             data: userData,
