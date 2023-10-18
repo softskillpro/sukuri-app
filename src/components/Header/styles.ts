@@ -1,23 +1,31 @@
 import { Modal, styled } from '@mui/material';
 import { FlexBox } from '@/components/Common/FlexBox';
+import { StyledButton } from '@/components/Common/StyledButton';
 
 export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
   justifyContent: 'space-between',
   height: 100,
 
-  '.company-logo-wrapper': {
-    '.beta-wrapper': {
-      justifyContent: 'center',
-      marginLeft: 16,
-      padding: '8px 32px',
-      borderRadius: 4,
-      border: '1.37px solid #FFF',
+  '.logo-navigation': {
+    textDecoration: 'none',
+    color: '#fff',
+
+    '.company-logo-wrapper': {
+      '.beta-wrapper': {
+        justifyContent: 'center',
+        marginLeft: 16,
+        padding: '8px 32px',
+        borderRadius: 4,
+        border: '1.37px solid #FFF',
+      },
     },
   },
 
   '.header-body': {
     gap: 24,
-
+    alignItems: 'flex-end',
+    height: 36,
+    maxHeight: 36,
     a: {
       textDecoration: 'none',
     },
@@ -36,10 +44,12 @@ export const HeaderContainer = styled(FlexBox)(({ theme }) => ({
   },
 
   [theme.breakpoints.down('sm')]: {
-    '.company-logo-wrapper': {
-      '.beta-wrapper': {
-        marginLeft: 12,
-        padding: '6px 12px',
+    '.logo-navigation': {
+      '.company-logo-wrapper': {
+        '.beta-wrapper': {
+          marginLeft: 12,
+          padding: '6px 12px',
+        },
       },
     },
   },
@@ -57,12 +67,17 @@ export const HeaderModalContainer = styled(Modal)(({ theme }) => ({
       height: 100,
       padding: '0 30px 0',
 
-      '.beta-wrapper': {
-        justifyContent: 'center',
-        marginLeft: 12,
-        padding: '6px 12px',
-        borderRadius: 4,
-        border: '1.37px solid #FFF',
+      '.logo-navigation': {
+        textDecoration: 'none',
+        color: '#fff',
+
+        '.beta-wrapper': {
+          justifyContent: 'center',
+          marginLeft: 12,
+          padding: '6px 12px',
+          borderRadius: 4,
+          border: '1.37px solid #FFF',
+        },
       },
 
       '.close-btn': {
@@ -89,9 +104,11 @@ export const HeaderModalContainer = styled(Modal)(({ theme }) => ({
       position: 'absolute',
       left: 30,
       bottom: 50,
+      display: 'flex',
+      alignItems: 'center',
       width: 'calc(100% - 60px)',
 
-      button: {
+      '.connect-btn': {
         width: '100%',
         padding: '16px 24px',
       },
@@ -117,5 +134,31 @@ export const WalletButton = styled('button')(() => ({
 
   ':hover': {
     opacity: 0.7,
+  },
+}));
+
+export const DisconnectButton = styled('button')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: 36,
+  maxHeight: 36,
+  padding: 12,
+  borderRadius: 7,
+  border: 'none',
+  background: theme.palette.topProductsGradient.light,
+  cursor: 'pointer',
+  color: '#fff',
+}));
+
+export const ConnectButton = styled(StyledButton)(({ theme }) => ({
+  height: 36,
+  maxHeight: 36,
+  ':disabled': {
+    background: theme.palette.topProductsGradient.light,
+  },
+
+  ':hover': {
+    background: theme.palette.topProductsGradient.light,
   },
 }));

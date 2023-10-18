@@ -24,6 +24,10 @@ export const navs = [
     title: 'Subscription',
     link: '/subscription',
   },
+  // {
+  //   title: 'Mint NFT',
+  //   link: '/mint-nft',
+  // },
   {
     title: 'Affiliates',
     link: '/affiliates',

@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import Image from 'next/image';
 import { Inter } from 'next/font/google';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { Typography } from '@mui/material';
 import { useAccount, useConnect } from 'wagmi';
 import type { Connector } from 'wagmi';
@@ -10,7 +10,8 @@ import { FlexBox } from '@/components/Common/FlexBox';
 import { Loader } from '@/components/Common/Loader';
 import { ConnectWalletModalContainer, WalletButton } from './styles';
 import { wallets } from '@/constants';
-import { api } from '@/utils/api';
+import useOnClickOutside from '@/hooks/useOnClickOutside';
+// import { api } from '@/utils/api';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -23,11 +24,13 @@ interface ConnectWalletModalProps {
 }
 
 const ConnectWalletModal = ({ open, handleClose }: ConnectWalletModalProps) => {
-  const router = useRouter();
+  const myRef = useRef(null);
+
+  // const router = useRouter();
   const { isConnected } = useAccount();
   const { connectAsync, connectors, isLoading } = useConnect();
 
-  const createUserMutation = api.user.create.useMutation();
+  // const createUserMutation = api.user.create.useMutation();
 
   const [current, setCurrent] = useState('');
 
@@ -35,18 +38,17 @@ const ConnectWalletModal = ({ open, handleClose }: ConnectWalletModalProps) => {
     try {
       setCurrent(connector.id);
       if (!isConnected) {
-        const wallet = await connectAsync({ connector });
+        await connectAsync({ connector });
 
-        await createUserMutation.mutateAsync({
-          name: 'Test User2',
-          username: 'tester',
-          address: wallet.account,
-          email: 'tester@gmail.com',
-        });
+        // await createUserMutation.mutateAsync({
+        //   name: 'Test User2',
+        //   username: 'tester',
+        //   address: wallet.account,
+        //   email: 'tester@gmail.com',
+        // });
       }
-      handleClose();
 
-      router.push('/');
+      // router.push('/');
     } catch (err: any) {
       if (err?.message === 'Connector not found') {
         toast.error(
@@ -55,9 +57,17 @@ const ConnectWalletModal = ({ open, handleClose }: ConnectWalletModalProps) => {
       } else {
         toast.error(err?.message || err);
       }
+    } finally {
       handleClose();
     }
   };
+
+  const handleClickOutside = () => {
+    handleClose();
+  };
+
+  // Attach the click outside handler to the ref
+  useOnClickOutside(myRef, handleClickOutside);
 
   return (
     <ConnectWalletModalContainer
@@ -67,7 +77,10 @@ const ConnectWalletModal = ({ open, handleClose }: ConnectWalletModalProps) => {
       aria-describedby='connect-wallet-modal-description'
     >
       <FlexBox className='modal-wrapper'>
-        <FlexBox className={`${inter.className} connect-wallet-body`}>
+        <FlexBox
+          className={`${inter.className} connect-wallet-body`}
+          ref={myRef}
+        >
           <Typography variant='h4' mb={1.5}>
             Connect Wallet
           </Typography>
