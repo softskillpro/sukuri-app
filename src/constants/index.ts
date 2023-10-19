@@ -303,3 +303,5 @@ export const wallets: Wallet[] = [
     icon: '/images/okx.png',
   },
 ];
+
+export const leaderboards = ['Rank', 'Display name', 'Points'];

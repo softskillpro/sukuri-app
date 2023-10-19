@@ -28,6 +28,8 @@ import LogoutIcon from './LogoutIcon';
 import SpinnerIcon from './SpinnerIcon';
 import CopyIcon from './CopyIcon';
 import TwitterIcon2 from './TwitterIcon2';
+import RankIcon from './RankIcon';
+import TrophyIcon from './TrophyIcon';
 
 export {
   ArrowRightIcon,
@@ -60,4 +62,6 @@ export {
   SpinnerIcon,
   CopyIcon,
   TwitterIcon2,
+  RankIcon,
+  TrophyIcon,
 };
