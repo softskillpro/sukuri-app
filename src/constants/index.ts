@@ -379,3 +379,5 @@ export const leaderboards: Leaderboard[] = [
     points: 35,
   },
 ];
+
+export const rowsPerPage = 10;
