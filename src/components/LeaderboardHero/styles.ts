@@ -1,6 +1,7 @@
 import { Divider } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { HeroGlow } from '@/components/Common/HeroGlow';
+import { FlexBox } from '@/components/Common/FlexBox';
 
 export const LeaderboardHeroContainer = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -58,6 +59,13 @@ export const LeaderboardHeroContainer = styled('div')(({ theme }) => ({
       padding: '52px 28px',
     },
   },
+}));
+
+export const ConnectWalletNotify = styled(FlexBox)(() => ({
+  position: 'relative',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  height: 400,
 }));
 
 export const LeaderboardInfoGlow = styled(HeroGlow)(({ theme }) => ({

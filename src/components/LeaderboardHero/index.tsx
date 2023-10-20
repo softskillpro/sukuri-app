@@ -1,12 +1,16 @@
+import { useCallback, useState } from 'react';
+import { useAccount } from 'wagmi';
 import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { HeroGlow } from '@/components/Common/HeroGlow';
 import { TertiaryButton } from '@/components/Common/StyledButton';
 import LeaderboardTag from '@/components/LeaderboardTag';
+import ConnectWalletModal from '@/components/ConnectWalletModal';
 import { TrophyIcon, RankIcon, StarIcon } from '@/components/Icons';
 import {
   LeaderboardHeroContainer,
   LeaderboardInfoGlow,
   // LeaderboardDivider,
+  ConnectWalletNotify,
 } from './styles';
 import PriceTag from '../PriceTag';
 
@@ -18,7 +22,19 @@ const LeaderboardHero = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
-  return (
+  const { isConnected } = useAccount();
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = useCallback(() => {
+    setOpen(false);
+  }, []);
+
+  return isConnected ? (
     <LeaderboardHeroContainer>
       <HeroGlow />
 
@@ -58,6 +74,20 @@ const LeaderboardHero = () => {
         </div>
       </section>
     </LeaderboardHeroContainer>
+  ) : (
+    <>
+      <ConnectWalletNotify>
+        <HeroGlow />
+
+        <Typography variant='body2' mb={5} maxWidth={328} textAlign='center'>
+          Connect your wallet to view your points and rank on the leaderboard
+        </Typography>
+
+        <TertiaryButton onClick={handleOpen}>Connect Wallet</TertiaryButton>
+      </ConnectWalletNotify>
+
+      <ConnectWalletModal open={open} handleClose={handleClose} />
+    </>
   );
 };
 
