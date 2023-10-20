@@ -11,4 +11,11 @@ export const LeaderboardContainer = styled('div')(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     marginBottom: 100,
   },
+
+  [theme.breakpoints.down('sm')]: {
+    '.leaderboard-intro': {
+      maxWidth: '100%',
+      margin: '50px auto',
+    },
+  },
 }));

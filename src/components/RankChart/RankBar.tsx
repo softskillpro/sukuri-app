@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { TrophyIcon } from '@/components/Icons';
 import { FlexBox } from '@/components/Common/FlexBox';
 import { RankBarContainer } from './styles';
@@ -16,25 +16,35 @@ const RankBar = ({
   points,
   className = '',
 }: RankBarProps) => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
+
   return (
     <RankBarContainer className='rank-bar'>
-      <Typography variant='h4' mb={4}>
+      <Typography variant={matches ? 'h4' : 'h4Mobile'} mb={matches ? 4 : 2}>
         {username}
       </Typography>
 
       <div className={`rank-bar-body ${className}`}>
-        <Typography variant={ranking === 1 ? 'h3' : 'h4'}>
+        <Typography variant={ranking === 1 ? 'h3' : 'h4'} className='p-rank'>
           Rank {ranking}
         </Typography>
 
         <TrophyIcon sx={{ fontSize: ranking === 1 ? 46 : 36 }} />
 
         <FlexBox flexDirection='column'>
-          <Typography variant={ranking === 1 ? 'h3' : 'h4'}>
+          <Typography
+            variant={ranking === 1 ? 'h3' : 'h4'}
+            className='p-points-val'
+          >
             {points}
           </Typography>
 
-          <Typography variant='body4' textTransform='uppercase'>
+          <Typography
+            variant='body4'
+            textTransform='uppercase'
+            className='p-points'
+          >
             points
           </Typography>
         </FlexBox>

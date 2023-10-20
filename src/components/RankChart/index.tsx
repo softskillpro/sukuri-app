@@ -1,12 +1,32 @@
 import RankBar from './RankBar';
 import { RankChartContainer } from './styles';
+import type { Leaderboard } from '@/types';
 
-const RankChart = () => {
+interface RankChartProps {
+  leaderboards: Leaderboard[];
+}
+
+const RankChart = ({ leaderboards }: RankChartProps) => {
   return (
     <RankChartContainer>
-      <RankBar username='Max' ranking={2} points={600} />
-      <RankBar username='Grit' ranking={1} points={700} className='ranking-2' />
-      <RankBar username='Fido' ranking={3} points={523} className='ranking-3' />
+      <RankBar
+        username={leaderboards[1]?.name || ''}
+        ranking={2}
+        points={leaderboards[1]?.points || 0}
+        className='ranking-2'
+      />
+      <RankBar
+        username={leaderboards[0]?.name || ''}
+        ranking={1}
+        points={leaderboards[0]?.points || 0}
+        className='ranking-1'
+      />
+      <RankBar
+        username={leaderboards[2]?.name || ''}
+        ranking={3}
+        points={leaderboards[2]?.points || 0}
+        className='ranking-3'
+      />
     </RankChartContainer>
   );
 };
