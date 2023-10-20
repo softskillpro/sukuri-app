@@ -205,14 +205,6 @@ model PaymentHistory {
   @@index([txn_hash])
 }
 
-model MintedToken {
-  id        Int      @id @default(autoincrement())
-  address   String
-  tokenId   String   @unique
-  name      String
-  timestamp DateTime @default(now())
-}
-
 model UserPoints {
   id     String   @id @default(uuid())
   userId String
