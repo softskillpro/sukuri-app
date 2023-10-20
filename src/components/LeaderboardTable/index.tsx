@@ -43,7 +43,7 @@ const LeaderboardTable = ({ leaderboards }: LeaderboardTableProps) => {
 
       <div>
         {leaderboards
-          .slice((page - 1) * rowsPerPage)
+          .slice((page - 1) * rowsPerPage, page * rowsPerPage)
           .map((leaderboard: Leaderboard) => {
             const { ranking, name, points } = leaderboard;
             return (
