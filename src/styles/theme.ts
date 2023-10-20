@@ -1,5 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 
+
 const theme = createTheme({
   components: {
     MuiCssBaseline: {
@@ -138,6 +139,7 @@ const theme = createTheme({
       light:
         'linear-gradient(90deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.40) 17.83%, rgba(255, 255, 255, 0.56) 53.65%, rgba(255, 255, 255, 0.39) 83.57%, rgba(255, 255, 255, 0.24) 100%)',
       dark: 'linear-gradient(94deg, rgba(255, 255, 255, 0.10) 46.77%, rgba(255, 239, 239, 0.10) 90.93%)',
+      contrastText: 'rgba(235, 242, 255, 0.30)',
     },
   },
 });
@@ -189,6 +191,7 @@ declare module '@mui/material/styles' {
 
   interface TypographyVariants {
     body3: React.CSSProperties;
+    body3Bold: React.CSSProperties;
     body4: React.CSSProperties;
     body5: React.CSSProperties;
     body6: React.CSSProperties;
@@ -208,6 +211,7 @@ declare module '@mui/material/styles' {
 
   interface TypographyVariantsOptions {
     body3?: React.CSSProperties;
+    body3Bold?: React.CSSProperties;
     body4?: React.CSSProperties;
     body5?: React.CSSProperties;
     body6?: React.CSSProperties;
@@ -229,6 +233,7 @@ declare module '@mui/material/styles' {
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
     body3: true;
+    body3Bold: true;
     body4: true;
     body5: true;
     body6: true;
@@ -308,6 +313,14 @@ theme.typography.body2 = {
 theme.typography.body3 = {
   fontSize: 16,
   fontWeight: 400,
+  lineHeight: '148%',
+  letterSpacing: '0.16px',
+  fontFamily: 'var(--Inter)',
+};
+
+theme.typography.body3Bold = {
+  fontSize: 16,
+  fontWeight: 700,
   lineHeight: '148%',
   letterSpacing: '0.16px',
   fontFamily: 'var(--Inter)',
