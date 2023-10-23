@@ -1,0 +1,51 @@
+.main {
+    min-width: 1280px;
+    max-width: 1280px;
+    min-height: 585px;
+
+    .backgroundDiv {
+        position: relative;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        flex-shrink: 0;
+        border-radius: 7px;
+        opacity: 0.1;
+        box-shadow: 0px 4px 24px -21px rgba(0, 0, 0, 0.10);
+        backdrop-filter: blur(5px);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.40) 100%);
+    }
+
+    .header {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 19px;
+
+        .title {
+            color: #FFF;
+            leading-trim: both;
+            text-edge: cap;
+
+            /* Desktop | 1440p/H2 */
+            font-family: 'Inter';
+            font-size: 48px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 117%; /* 56.16px */
+        }
+
+        p {
+            color: var(--Text, #F4F4F4);
+
+            /* Desktop | 1440p/Body One */
+            font-family: 'Inter';
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 150.5%; /* 30.1px */
+            letter-spacing: -0.4px;
+        }
+    }
+}
