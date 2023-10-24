@@ -30,6 +30,7 @@ import CopyIcon from './CopyIcon';
 import TwitterIcon2 from './TwitterIcon2';
 import RankIcon from './RankIcon';
 import TrophyIcon from './TrophyIcon';
+import ArrowDownIcon2 from './ArrowDownIcon2';
 
 export {
   ArrowRightIcon,
@@ -64,4 +65,5 @@ export {
   TwitterIcon2,
   RankIcon,
   TrophyIcon,
+  ArrowDownIcon2,
 };
