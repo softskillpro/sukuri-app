@@ -4,7 +4,7 @@ import ABI from '@/contract/primeAbi.json';
 
 const provider = new ethers.AlchemyProvider(
   'mainnet',
-  'XdsTr2I-Q6AGqgiEK2ZYtN0c0lqmXoku',
+  'ZpRfPqogCZIdExCpjRLv9jdq28SyTteR,
 );
 const contract = new ethers.Contract(
   `${process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}`,
