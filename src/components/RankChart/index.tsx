@@ -16,13 +16,13 @@ const RankChart = ({ leaderboards }: RankChartProps) => {
         className='ranking-2'
       />
       <RankBar
-        username={leaderboards[0]?.name || ''}
+        username={leaderboards[0]?.address || ''}
         ranking={1}
         points={leaderboards[0]?.points || 0}
         className='ranking-1'
       />
       <RankBar
-        username={leaderboards[2]?.name || ''}
+        username={leaderboards[2]?.address || ''}
         ranking={3}
         points={leaderboards[2]?.points || 0}
         className='ranking-3'
