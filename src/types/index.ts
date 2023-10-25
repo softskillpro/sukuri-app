@@ -76,7 +76,6 @@ export interface Wallet {
 }
 
 export interface Leaderboard {
-  ranking: number;
-  name: string;
+  address: string;
   points: number;
 }

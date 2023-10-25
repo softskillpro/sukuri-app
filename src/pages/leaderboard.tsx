@@ -31,9 +31,8 @@ const Leaderboard = () => {
           variant={matches ? 'body1' : 'body2Mobile'}
           textAlign='center'
         >
-          Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi.
-          Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla,
-          mattis ligula consectetur, ultrices.
+          Complete challenges, refer friends, and participate in the protocol to
+          earn points and ETH!
         </Typography>
       </FlexBox>
 

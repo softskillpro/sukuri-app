@@ -1,4 +1,5 @@
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import axios from 'axios';
 import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { HeroGlow } from '@/components/Common/HeroGlow';
 import { FlexBox } from '@/components/Common/FlexBox';
@@ -19,10 +20,19 @@ const LeaderboardTable = ({ leaderboards }: LeaderboardTableProps) => {
   const numOfItems = leaderboards.length;
   const count = Math.ceil(numOfItems / rowsPerPage);
 
+  const [lb, setLeaderboard] = useState<Leaderboard[]>([]);
+
   const [page, setPage] = useState(1);
 
   const handlePageChange = useCallback((_page: number) => {
     setPage(_page);
+  }, []);
+
+  useEffect(() => {
+    axios.get('/api/leaderboard/all').then((res) => {
+      const _lb = res.data.results;
+      setLeaderboard(_lb);
+    });
   }, []);
 
   return (
@@ -42,10 +52,10 @@ const LeaderboardTable = ({ leaderboards }: LeaderboardTableProps) => {
       </TableRow>
 
       <div>
-        {leaderboards
+        {lb
           .slice((page - 1) * rowsPerPage, page * rowsPerPage)
-          .map((leaderboard: Leaderboard) => {
-            const { ranking, name, points } = leaderboard;
+          .map((leaderboard: Leaderboard, ranking: number) => {
+            const { address: name, points } = leaderboard;
             return (
               <TableRow
                 key={`leaderboard-${leaderboard.ranking}`}
@@ -62,7 +72,7 @@ const LeaderboardTable = ({ leaderboards }: LeaderboardTableProps) => {
                   variant={matches ? 'h5' : 'body1Mobile'}
                   fontWeight={700}
                 >
-                  {name}
+                  {name.slice(0, 6)}...{name.slice(38)}
                 </Typography>
                 <FlexBox>
                   <TrophyIcon sx={{ fontSize: 22 }} />

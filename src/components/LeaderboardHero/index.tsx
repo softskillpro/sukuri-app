@@ -14,13 +14,17 @@ import {
 } from './styles';
 import PriceTag from '../PriceTag';
 
-const points = '124';
-const rank = '46';
-const rewards = '0.03';
+const points = '0';
+const rank = '0';
+const rewards = '0';
 
 const LeaderboardHero = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
+  // const [points, setPoints] = useState<number>(0);
+  // const [rank, setRank] = useState<number>(0);
+  // const [claim, setClaim] = useState<number>(0);
 
   const { isConnected } = useAccount();
 
