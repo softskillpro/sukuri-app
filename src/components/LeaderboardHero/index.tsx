@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { HeroGlow } from '@/components/Common/HeroGlow';
@@ -29,6 +29,11 @@ const LeaderboardHero = () => {
   const { isConnected } = useAccount();
 
   const [open, setOpen] = useState(false);
+  const [connected, setConnected] = useState(false);
+
+  useEffect(() => {
+    if (isConnected) setConnected(isConnected);
+  }, [isConnected]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -38,7 +43,7 @@ const LeaderboardHero = () => {
     setOpen(false);
   }, []);
 
-  return isConnected ? (
+  return connected ? (
     <LeaderboardHeroContainer>
       <HeroGlow />
 
@@ -90,7 +95,7 @@ const LeaderboardHero = () => {
         <TertiaryButton onClick={handleOpen}>Connect Wallet</TertiaryButton>
       </ConnectWalletNotify>
 
-      <ConnectWalletModal open={open} handleClose={handleClose} />
+      {open && <ConnectWalletModal open={open} handleClose={handleClose} />}
     </>
   );
 };

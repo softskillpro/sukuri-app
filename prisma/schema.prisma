@@ -212,10 +212,9 @@ model Whitelist {
   address String @unique
 }
 
-
 model LeaderboardPosition {
-  id String @id @default(uuid())
-  address String @unique
-  points String
+  id           String @id @default(uuid())
+  address      String @unique
+  points       String
   last_updated String
 }
