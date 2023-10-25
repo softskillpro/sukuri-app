@@ -198,7 +198,7 @@ const MintHero = () => {
     }
     const code = inputCodeRef.current?.value || '';
 
-    if (!name) {
+    if (!name && isConnected && isOnCorrectNetwork) {
       toast.error('Name is required');
       return;
     }
