@@ -65,7 +65,7 @@ const LeaderboardTable = ({ leaderboards }: LeaderboardTableProps) => {
                 variant={matches ? 'h5' : 'body1Mobile'}
                 fontWeight={700}
               >
-                {address ? formatAddress(address, 6) : ''}
+                {address ? formatAddress(address, 6, 6) : ''}
               </Typography>
               <FlexBox>
                 <TrophyIcon sx={{ fontSize: 22 }} />

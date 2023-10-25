@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 import { AlchemyProvider, Contract } from 'ethers';
 import ABI from '@/contract/primeAbi.json';
-import { number } from 'zod';
 
 const provider = new AlchemyProvider(
   'mainnet',
@@ -44,10 +43,11 @@ export default async function handle(
         exists: true,
         points: parseInt(leaderboard.points.toString()),
         last_updated: leaderboard.last_updated.toString(),
-        should_update: leaderboard.last_updated <= new Date().getTime() - 3600,
+        should_update:
+          parseInt(leaderboard.last_updated) <= new Date().getTime() - 3600,
       });
     }
-  } else if (req.method == 'POST') {
+  } else if (req.method === 'POST') {
     const { address } = req.body;
 
     if (!address) {
