@@ -65,11 +65,14 @@ const MintHero = () => {
   const [isFetching, setIsFetching] = useState(true);
 
   const isOnCorrectNetwork = useMemo(() => {
+    if (!isConnected) {
+      return true;
+    }
     if (chain && chain.id == 1) {
       return true;
     }
     return false;
-  }, [chain]);
+  }, [chain, isConnected]);
 
   useEffect(() => {
     if (ref && inputCodeRef.current) {
@@ -173,17 +176,20 @@ const MintHero = () => {
   };
 
   const purchaseButtonText = useMemo(() => {
-    if (isOnCorrectNetwork) {
+    if (!isConnected) {
+      return 'Connect Wallet';
+    }
+    if (isOnCorrectNetwork && isConnected) {
       return 'Purchase';
     }
     return 'Switch Networks';
-  }, [isOnCorrectNetwork]);
+  }, [isOnCorrectNetwork, isConnected]);
 
   const handleMint = async () => {
     if (isFetching) {
       return;
     }
-    if (!isOnCorrectNetwork && !switchingChain) {
+    if (isConnected && !isOnCorrectNetwork && !switchingChain) {
       toast.warning('Please switch your network to mainnet to continue.', {
         position: 'top-center',
       });
