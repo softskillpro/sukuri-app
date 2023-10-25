@@ -10,7 +10,7 @@ const RankChart = ({ leaderboards }: RankChartProps) => {
   return (
     <RankChartContainer>
       <RankBar
-        username={leaderboards[1]?.name || ''}
+        username={leaderboards[1]?.address || ''}
         ranking={2}
         points={leaderboards[1]?.points || 0}
         className='ranking-2'
