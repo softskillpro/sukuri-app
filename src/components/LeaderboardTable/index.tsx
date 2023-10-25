@@ -58,7 +58,7 @@ const LeaderboardTable = ({ leaderboards }: LeaderboardTableProps) => {
             const { address: name, points } = leaderboard;
             return (
               <TableRow
-                key={`leaderboard-${leaderboard.ranking}`}
+                key={`leaderboard-${ranking}`}
                 className='leaderboard-tb'
               >
                 <HeroGlow />
