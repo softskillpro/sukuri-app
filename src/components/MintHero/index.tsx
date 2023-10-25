@@ -189,7 +189,7 @@ const MintHero = () => {
     if (isFetching) {
       return;
     }
-    if (!isOnCorrectNetwork && !switchingChain) {
+    if (isConnected && !isOnCorrectNetwork && !switchingChain) {
       toast.warning('Please switch your network to mainnet to continue.', {
         position: 'top-center',
       });
