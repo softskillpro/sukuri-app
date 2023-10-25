@@ -16,7 +16,6 @@ export default async function handle(
         points: 'desc',
       },
     });
-    console.log(leaderboard);
     res.status(200).json({
       results: leaderboard,
     });

@@ -17,6 +17,14 @@ import type {
 
 export const navs = [
   {
+    title: 'Leaderboard',
+    link: '/leaderboard',
+  },
+  {
+    title: 'Affiliates',
+    link: '/partnerships',
+  },
+  {
     title: 'Marketplace',
     link: '/',
   },
@@ -28,10 +36,6 @@ export const navs = [
   //   title: 'Mint NFT',
   //   link: '/mint-nft',
   // },
-  {
-    title: 'Affiliates',
-    link: '/affiliates',
-  },
   {
     title: 'Start Selling',
     link: '/start-selling',

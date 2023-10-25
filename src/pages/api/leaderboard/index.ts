@@ -26,13 +26,17 @@ export default async function handle(
       return res.status(401).json('');
     }
 
-    const leaderboard = await prisma.leaderboardPosition.findUnique({
-      where: {
-        address: address,
+    const leaderboard = await prisma.leaderboardPosition.findMany({
+      take: 10000,
+      orderBy: {
+        points: 'desc',
       },
     });
 
-    if (leaderboard === undefined || leaderboard === null) {
+    const position = leaderboard.find((entry) => entry.address === address);
+    const index = leaderboard.findIndex((entry) => entry.address === address);
+
+    if (position === undefined || position === null) {
       return res.status(200).json({
         exists: false,
         points: 0,
@@ -41,10 +45,11 @@ export default async function handle(
     } else {
       return res.status(200).json({
         exists: true,
-        points: parseInt(leaderboard.points.toString()),
-        last_updated: leaderboard.last_updated.toString(),
+        rank: index,
+        points: parseInt(position.points.toString()),
+        last_updated: position.last_updated.toString(),
         should_update:
-          parseInt(leaderboard.last_updated) <= new Date().getTime() - 3600,
+          parseInt(position.last_updated) <= new Date().getTime() - 3600,
       });
     }
   } else if (req.method === 'POST') {
@@ -72,7 +77,14 @@ export default async function handle(
       console.log(`Available to claim: ${availableClaim}`);
       const balance = (await contract.balanceOf?.(address)) as bigint;
       console.log(`Balance of tokens: ${balance}`);
-      const balancePoints = balance * BigInt(150);
+      let balancePoints;
+      if (balance > 1) {
+        const baseBalancePoints = BigInt(150);
+        const extraPoints = (balance - BigInt(1)) * BigInt(50);
+        balancePoints = baseBalancePoints + extraPoints;
+      } else {
+        balancePoints = BigInt(150);
+      }
       const referralPoints =
         (availableClaim / BigInt(845000000000000)) * BigInt(15);
       const totalPoints = balancePoints + referralPoints;

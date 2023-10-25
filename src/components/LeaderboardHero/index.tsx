@@ -13,6 +13,7 @@ import {
   ConnectWalletNotify,
 } from './styles';
 import PriceTag from '../PriceTag';
+import axios from 'axios';
 
 const points = '0';
 const rank = '0';
@@ -22,11 +23,11 @@ const LeaderboardHero = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
-  // const [points, setPoints] = useState<number>(0);
-  // const [rank, setRank] = useState<number>(0);
+  const [points, setPoints] = useState<number>(0);
+  const [rank, setRank] = useState<number>(0);
   // const [claim, setClaim] = useState<number>(0);
 
-  const { isConnected } = useAccount();
+  const { isConnected, address } = useAccount();
 
   const [open, setOpen] = useState(false);
   const [connected, setConnected] = useState(false);
@@ -43,15 +44,46 @@ const LeaderboardHero = () => {
     setOpen(false);
   }, []);
 
+  useEffect(() => {
+    if (isConnected && address) {
+      axios
+        .get('/api/leaderboard', {
+          params: {
+            address: address,
+          },
+        })
+        .then((result) => {
+          const data = result.data;
+          if (data.exists == false || data.should_update == true) {
+            axios
+              .post('/api/leaderboard', {
+                data: JSON.stringify({
+                  address: address,
+                }),
+              })
+              .then((res) => {
+                const d = res.data;
+                if (d.exists) {
+                  setPoints(d.points);
+                  setRank(d.rank);
+                }
+              });
+          } else {
+            setPoints(data.points);
+            setRank(data.rank);
+          }
+        });
+    }
+  }, [isConnected, address]);
+
   return connected ? (
     <LeaderboardHeroContainer>
       <HeroGlow />
 
       <section className='user-info'>
         <Typography variant={matches ? 'h2' : 'h1Mobile'} mb={2}>
-          Hello
+          Welcome
           <br />
-          Fido
         </Typography>
 
         <Typography variant={matches ? 'body1' : 'body1Mobile'}>
