@@ -94,11 +94,19 @@ const LeaderboardHero = () => {
       <section className='leaderboard-info'>
         <LeaderboardInfoGlow />
 
-        <LeaderboardTag icon={TrophyIcon} title='Your Points' value={points} />
+        <LeaderboardTag
+          icon={TrophyIcon}
+          title='Your Points'
+          value={points.toString()}
+        />
 
         {/* <LeaderboardDivider orientation='vertical' flexItem /> */}
 
-        <LeaderboardTag icon={RankIcon} title='Your Rank' value={rank} />
+        <LeaderboardTag
+          icon={RankIcon}
+          title='Your Rank'
+          value={rank.toString()}
+        />
 
         {/* <LeaderboardDivider orientation='vertical' flexItem /> */}
 
