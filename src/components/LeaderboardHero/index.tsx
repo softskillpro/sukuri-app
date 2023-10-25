@@ -15,8 +15,6 @@ import {
 import PriceTag from '../PriceTag';
 import axios from 'axios';
 
-const points = '0';
-const rank = '0';
 const rewards = '0';
 
 const LeaderboardHero = () => {
