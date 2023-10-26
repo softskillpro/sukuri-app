@@ -22,7 +22,7 @@ export const navs = [
   },
   {
     title: 'Affiliates',
-    link: '/partnerships',
+    link: '/affiliates',
   },
   {
     title: 'Marketplace',
