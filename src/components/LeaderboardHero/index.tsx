@@ -14,8 +14,9 @@ import {
 } from './styles';
 import PriceTag from '../PriceTag';
 import axios from 'axios';
-
-const rewards = '0';
+import { readContract, writeContract } from '@wagmi/core';
+import ABI from '@/contract/primeAbi.json';
+import { formatEther } from 'viem';
 
 const LeaderboardHero = () => {
   const theme = useTheme();
@@ -23,7 +24,7 @@ const LeaderboardHero = () => {
 
   const [points, setPoints] = useState<number>(0);
   const [rank, setRank] = useState<number>(0);
-  // const [claim, setClaim] = useState<number>(0);
+  const [rewards, setClaim] = useState<string>('0');
 
   const { isConnected, address } = useAccount();
 
@@ -42,6 +43,29 @@ const LeaderboardHero = () => {
     setOpen(false);
   }, []);
 
+  const handleClaim = useCallback(() => {
+    if (isConnected && address && parseFloat(rewards) > 0) {
+      writeContract({
+        address: `${process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}` as `0x${string}`,
+        abi: ABI,
+        functionName: 'claimFees',
+      });
+    }
+  }, [isConnected, address, rewards]);
+
+  useEffect(() => {
+    if (isConnected && address) {
+      readContract({
+        address: `${process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}` as `0x${string}`,
+        abi: ABI,
+        functionName: 'checkClaim',
+        args: [address],
+      }).then((res) => {
+        setClaim(formatEther(res as bigint));
+      });
+    }
+  }, [isConnected, address]);
+
   useEffect(() => {
     if (isConnected && address) {
       axios
@@ -55,15 +79,24 @@ const LeaderboardHero = () => {
           if (data.exists == false || data.should_update == true) {
             axios
               .post('/api/leaderboard', {
-                data: JSON.stringify({
+                data: {
                   address: address,
-                }),
+                },
               })
               .then((res) => {
                 const d = res.data;
                 if (d.exists) {
-                  setPoints(d.points);
-                  setRank(d.rank);
+                  axios
+                    .get('/api/leaderboard', {
+                      params: {
+                        address: address,
+                      },
+                    })
+                    .then((r) => {
+                      const _d = r.data;
+                      setPoints(_d.points);
+                      setRank(_d.rank);
+                    });
                 }
               });
           } else {
@@ -103,7 +136,7 @@ const LeaderboardHero = () => {
         <LeaderboardTag
           icon={RankIcon}
           title='Your Rank'
-          value={rank.toString()}
+          value={(rank + 1).toString()}
         />
 
         {/* <LeaderboardDivider orientation='vertical' flexItem /> */}
@@ -117,7 +150,7 @@ const LeaderboardHero = () => {
         <div className='clain-reward'>
           {matches && <PriceTag price={rewards} />}
 
-          <TertiaryButton>Claim rewards</TertiaryButton>
+          <TertiaryButton onClick={handleClaim}>Claim rewards</TertiaryButton>
         </div>
       </section>
     </LeaderboardHeroContainer>

@@ -23,7 +23,8 @@ export default async function handle(
   if (req.method == 'GET') {
     const { address } = req.query;
     if (typeof address != 'string') {
-      return res.status(401).json('');
+      res.status(401).json('');
+      return;
     }
 
     const leaderboard = await prisma.leaderboardPosition.findMany({
@@ -37,29 +38,32 @@ export default async function handle(
     const index = leaderboard.findIndex((entry) => entry.address === address);
 
     if (position === undefined || position === null) {
-      return res.status(200).json({
+      res.status(200).json({
         exists: false,
         points: 0,
         last_updated: 0,
       });
+      return;
     } else {
-      return res.status(200).json({
+      res.status(200).json({
         exists: true,
         rank: index,
         points: parseInt(position.points.toString()),
         last_updated: position.last_updated.toString(),
         should_update:
-          parseInt(position.last_updated) <= new Date().getTime() - 3600,
+          parseInt(position.last_updated) <= new Date().getTime() - 36000,
       });
+      return;
     }
   } else if (req.method === 'POST') {
-    const { address } = req.body;
+    const {
+      data: { address },
+    } = req.body;
 
     if (!address) {
-      return res.status(404);
+      res.status(404);
+      return;
     }
-
-    console.log('Fetching Leaderboard...');
 
     const leaderboard = await prisma.leaderboardPosition.findUnique({
       where: {
@@ -72,11 +76,8 @@ export default async function handle(
       contract &&
       BigInt(leaderboard?.last_updated) <= BigInt(new Date().getTime() - 3600)
     ) {
-      console.log('Leaderboard Exists and we are going to update');
       const availableClaim = (await contract.checkClaim?.(address)) as bigint;
-      console.log(`Available to claim: ${availableClaim}`);
       const balance = (await contract.balanceOf?.(address)) as bigint;
-      console.log(`Balance of tokens: ${balance}`);
       let balancePoints;
       if (balance > 1) {
         const baseBalancePoints = BigInt(150);
@@ -88,8 +89,6 @@ export default async function handle(
       const referralPoints =
         (availableClaim / BigInt(845000000000000)) * BigInt(15);
       const totalPoints = balancePoints + referralPoints;
-      console.log(`Total Points: ${totalPoints}`);
-      console.log(`Existing Points: ${leaderboard.points}`);
       if (
         totalPoints != BigInt(leaderboard.points) &&
         totalPoints >= BigInt(leaderboard.points)
@@ -115,12 +114,19 @@ export default async function handle(
           points: totalPoints.toString(),
           last_updated: leaderboard.last_updated.toString(),
         });
+        return;
       }
     } else if (!leaderboard && contract) {
-      console.log('Leaderboard does not exist...');
       const availableClaim = (await contract.checkClaim?.(address)) as bigint;
       const balance = (await contract.balanceOf?.(address)) as bigint;
-      const balancePoints = balance * BigInt(150);
+      let balancePoints;
+      if (balance > 1) {
+        const baseBalancePoints = BigInt(150);
+        const extraPoints = (balance - BigInt(1)) * BigInt(50);
+        balancePoints = baseBalancePoints + extraPoints;
+      } else {
+        balancePoints = BigInt(150);
+      }
       const referralPoints =
         (availableClaim / BigInt(710000000000000)) * BigInt(15);
       const totalPoints = balancePoints + referralPoints;
