@@ -74,3 +74,8 @@ export interface Wallet {
   name: string;
   icon: string;
 }
+
+export interface Leaderboard {
+  address: string;
+  points: string;
+}

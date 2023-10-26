@@ -90,6 +90,7 @@ const Mint = () => {
           src='/images/mint-4.png'
           width={300}
           height={300}
+          priority
           alt='First To Know'
           className='mint-asset mint-asset3'
         />

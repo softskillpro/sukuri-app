@@ -31,7 +31,7 @@ export default async function handle(
 
         if (id) {
           if (totalSupply < BigInt(parseInt(id))) {
-            return res.status(200).json({
+            res.status(200).json({
               animation_url: `https://mbcdn.sfo2.cdn.digitaloceanspaces.com/PrimePreview.png`,
               name: `SUKURI PRIME PASS`,
               image_url:
@@ -48,9 +48,10 @@ export default async function handle(
               ],
               background_color: '020202',
             });
+            return;
           }
           const name: string = await contract.namespace?.(parseInt(id));
-          return res.status(200).json({
+          res.status(200).json({
             animation_url: `https://app.sukuri.io/api/animation/${id}`,
             name: `SUKURI PRIME PASS: ${name.toUpperCase()}`,
             image:
@@ -67,6 +68,7 @@ export default async function handle(
             ],
             background_color: '020202',
           });
+          return;
         }
       }
     } catch (e) {

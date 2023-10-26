@@ -211,3 +211,10 @@ model Whitelist {
   id      BigInt @id @default(autoincrement())
   address String @unique
 }
+
+model LeaderboardPosition {
+  id           String @id @default(uuid())
+  address      String @unique
+  points       String
+  last_updated String
+}
