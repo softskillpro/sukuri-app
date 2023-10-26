@@ -54,3 +54,30 @@ export const SecondaryButton = styled(StyledButton)(({ theme }) => ({
     fontSize: 14,
   },
 }));
+
+export const TertiaryButton = styled('button')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: '15px 38px',
+  borderRadius: 7,
+  border: 'none',
+  background: theme.palette.topProductsGradient.light,
+  boxShadow: theme.palette.boxShadow.main,
+  backdropFilter: 'blur(5px)',
+  cursor: 'pointer',
+  fontSize: 18,
+  fontWeight: 700,
+  lineHeight: '117%',
+  fontFamily: 'var(--Inter)',
+  color: theme.palette.text.primary,
+
+  ':hover': {
+    background:
+      'linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.20) 100%)',
+  },
+
+  [theme.breakpoints.down('md')]: {
+    fontSize: 16,
+  },
+}));

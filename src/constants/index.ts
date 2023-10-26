@@ -17,6 +17,14 @@ import type {
 
 export const navs = [
   {
+    title: 'Leaderboard',
+    link: '/leaderboard',
+  },
+  {
+    title: 'Affiliates',
+    link: '/affiliates',
+  },
+  {
     title: 'Marketplace',
     link: '/',
   },
@@ -28,10 +36,6 @@ export const navs = [
   //   title: 'Mint NFT',
   //   link: '/mint-nft',
   // },
-  {
-    title: 'Affiliates',
-    link: '/affiliates',
-  },
   {
     title: 'Start Selling',
     link: '/start-selling',
@@ -303,3 +307,7 @@ export const wallets: Wallet[] = [
     icon: '/images/okx.png',
   },
 ];
+
+export const leaderboardHeader = ['Rank', 'Display name', 'Points'];
+
+export const rowsPerPage = 10;

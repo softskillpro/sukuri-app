@@ -6,7 +6,6 @@
 2. WalletConnect Project ID
 
 
-
 This will be a T3 app that is the main application for the frontend of Sukuri. People will be using this to interact with the Sukuri Protocol and house all the logic for doing so from a user perspective.
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.

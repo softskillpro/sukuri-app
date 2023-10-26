@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { memo, useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import Image from 'next/image';
 import { Inter } from 'next/font/google';
@@ -133,4 +133,4 @@ const ConnectWalletModal = ({ open, handleClose }: ConnectWalletModalProps) => {
   );
 };
 
-export default ConnectWalletModal;
+export default memo(ConnectWalletModal);

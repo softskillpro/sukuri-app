@@ -33,7 +33,7 @@ const MarketplaceHero = ({
       <FlexBox className='hero-contents-wrapper'>
         <FlexBox className='hero-contents'>
           <Typography variant={matches ? 'h2' : 'h2Mobile'}>
-            Take control of your subsctiptions
+            Take control of your subscriptions
           </Typography>
 
           <Typography
