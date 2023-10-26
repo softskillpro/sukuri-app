@@ -79,9 +79,7 @@ const LeaderboardHero = () => {
           if (data.exists == false || data.should_update == true) {
             axios
               .post('/api/leaderboard', {
-                data: {
-                  address: address,
-                },
+                address: address,
               })
               .then((res) => {
                 const d = res.data;

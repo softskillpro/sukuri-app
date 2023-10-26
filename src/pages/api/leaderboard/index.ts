@@ -51,14 +51,14 @@ export default async function handle(
         points: parseInt(position.points.toString()),
         last_updated: position.last_updated.toString(),
         should_update:
-          parseInt(position.last_updated) <= new Date().getTime() - 36000,
+          parseInt(position.last_updated) <= new Date().getTime() - 3600,
       });
       return;
     }
   } else if (req.method === 'POST') {
-    const {
-      data: { address },
-    } = req.body;
+    const { address } = req.body;
+
+    console.log(req.body);
 
     if (!address) {
       res.status(404);
@@ -76,8 +76,11 @@ export default async function handle(
       contract &&
       BigInt(leaderboard?.last_updated) <= BigInt(new Date().getTime() - 3600)
     ) {
+      console.log('Leaderboard Exists and we are going to update');
       const availableClaim = (await contract.checkClaim?.(address)) as bigint;
+      console.log(`Available to claim: ${availableClaim}`);
       const balance = (await contract.balanceOf?.(address)) as bigint;
+      console.log(`Balance of tokens: ${balance}`);
       let balancePoints;
       if (balance > 1) {
         const baseBalancePoints = BigInt(150);
@@ -89,6 +92,8 @@ export default async function handle(
       const referralPoints =
         (availableClaim / BigInt(845000000000000)) * BigInt(15);
       const totalPoints = balancePoints + referralPoints;
+      console.log(`Total Points: ${totalPoints}`);
+      console.log(`Existing Points: ${leaderboard.points}`);
       if (
         totalPoints != BigInt(leaderboard.points) &&
         totalPoints >= BigInt(leaderboard.points)
@@ -117,6 +122,7 @@ export default async function handle(
         return;
       }
     } else if (!leaderboard && contract) {
+      console.log('Leaderboard does not exist...');
       const availableClaim = (await contract.checkClaim?.(address)) as bigint;
       const balance = (await contract.balanceOf?.(address)) as bigint;
       let balancePoints;
