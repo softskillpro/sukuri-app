@@ -29,7 +29,7 @@ export const TableRow = styled('div')(({ theme }) => ({
   padding: '0 40px',
 
   [theme.breakpoints.down('md')]: {
-    gridTemplateColumns: '60px 7fr 5fr',
+    gridTemplateColumns: '40px 7.5fr 4.5fr',
     marginBottom: 7,
     padding: '0 20px',
   },

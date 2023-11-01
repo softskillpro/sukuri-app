@@ -13,10 +13,17 @@ import type {
   Subscription,
   Transaction,
   Wallet,
-  Leaderboard,
 } from '@/types';
 
 export const navs = [
+  {
+    title: 'Leaderboard',
+    link: '/leaderboard',
+  },
+  {
+    title: 'Affiliates',
+    link: '/affiliates',
+  },
   {
     title: 'Marketplace',
     link: '/',
@@ -29,10 +36,6 @@ export const navs = [
   //   title: 'Mint NFT',
   //   link: '/mint-nft',
   // },
-  {
-    title: 'Affiliates',
-    link: '/affiliates',
-  },
   {
     title: 'Start Selling',
     link: '/start-selling',
@@ -306,78 +309,5 @@ export const wallets: Wallet[] = [
 ];
 
 export const leaderboardHeader = ['Rank', 'Display name', 'Points'];
-
-export const leaderboards: Leaderboard[] = [
-  {
-    ranking: 1,
-    name: 'Grit',
-    points: 680,
-  },
-  {
-    ranking: 2,
-    name: 'Max',
-    points: 523,
-  },
-  {
-    ranking: 3,
-    name: 'Fido',
-    points: 456,
-  },
-  {
-    ranking: 4,
-    name: 'Riley',
-    points: 382,
-  },
-  {
-    ranking: 5,
-    name: 'Madison',
-    points: 239,
-  },
-  {
-    ranking: 6,
-    name: 'River',
-    points: 211,
-  },
-  {
-    ranking: 7,
-    name: 'Waylon',
-    points: 187,
-  },
-  {
-    ranking: 8,
-    name: 'Jaxon',
-    points: 120,
-  },
-  {
-    ranking: 9,
-    name: 'Wesley',
-    points: 79,
-  },
-  {
-    ranking: 10,
-    name: 'Walker',
-    points: 70,
-  },
-  {
-    ranking: 11,
-    name: 'Ben',
-    points: 58,
-  },
-  {
-    ranking: 12,
-    name: 'Maxim',
-    points: 46,
-  },
-  {
-    ranking: 13,
-    name: 'Alex',
-    points: 41,
-  },
-  {
-    ranking: 14,
-    name: 'Jack',
-    points: 35,
-  },
-];
 
 export const rowsPerPage = 10;

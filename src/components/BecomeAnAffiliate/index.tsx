@@ -70,6 +70,7 @@ const BecomeAnAffiliate = () => {
             name='email'
             placeholder='Enter your email address'
             handleChange={handleChange}
+            required={false}
           />
 
           <InputWrapper

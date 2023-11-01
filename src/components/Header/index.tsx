@@ -36,6 +36,9 @@ const Header = () => {
   const handleClick = (url: string) => {
     console.log(url);
     setOpen(0);
+    if (url == '/leaderboard' || url == '/affiliates') {
+      router.push(url);
+    }
     // fetchHandler(true);
   };
 
@@ -95,9 +98,12 @@ const Header = () => {
                   }}
                   onClick={() => handleClick(nav.link)}
                 >
-                  <Typography variant='body7' color='accent.light'>
-                    Coming soon
-                  </Typography>
+                  {nav.title !== 'Leaderboard' &&
+                    nav.title !== 'Affiliates' && (
+                      <Typography variant='body7' color='accent.light'>
+                        Coming soon
+                      </Typography>
+                    )}
                   <Typography variant='h4Mobile'>{nav.title}</Typography>
                 </FlexBox>
               ))}
@@ -172,9 +178,11 @@ const Header = () => {
                 }}
                 onClick={() => handleClick(nav.link)}
               >
-                <Typography variant='body7' color='accent.light'>
-                  Coming soon
-                </Typography>
+                {nav.title !== 'Leaderboard' && nav.title !== 'Affiliates' && (
+                  <Typography variant='body7' color='accent.light'>
+                    Coming soon
+                  </Typography>
+                )}
                 <Typography variant='h4Mobile'>{nav.title}</Typography>
               </FlexBox>
             ))}

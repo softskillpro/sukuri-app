@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { HeroGlow } from '@/components/Common/HeroGlow';
@@ -13,18 +13,27 @@ import {
   ConnectWalletNotify,
 } from './styles';
 import PriceTag from '../PriceTag';
-
-const points = '124';
-const rank = '46';
-const rewards = '0.03';
+import axios from 'axios';
+import { readContract, writeContract } from '@wagmi/core';
+import ABI from '@/contract/primeAbi.json';
+import { formatEther } from 'viem';
 
 const LeaderboardHero = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
-  const { isConnected } = useAccount();
+  const [points, setPoints] = useState<number>(0);
+  const [rank, setRank] = useState<number>(0);
+  const [rewards, setClaim] = useState<string>('0');
+
+  const { isConnected, address } = useAccount();
 
   const [open, setOpen] = useState(false);
+  const [connected, setConnected] = useState(false);
+
+  useEffect(() => {
+    if (isConnected) setConnected(isConnected);
+  }, [isConnected]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -34,15 +43,76 @@ const LeaderboardHero = () => {
     setOpen(false);
   }, []);
 
-  return isConnected ? (
+  const handleClaim = useCallback(() => {
+    if (isConnected && address && parseFloat(rewards) > 0) {
+      writeContract({
+        address: `${process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}` as `0x${string}`,
+        abi: ABI,
+        functionName: 'claimFees',
+      });
+    }
+  }, [isConnected, address, rewards]);
+
+  useEffect(() => {
+    if (isConnected && address) {
+      readContract({
+        address: `${process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}` as `0x${string}`,
+        abi: ABI,
+        functionName: 'checkClaim',
+        args: [address],
+      }).then((res) => {
+        setClaim(formatEther(res as bigint));
+      });
+    }
+  }, [isConnected, address]);
+
+  useEffect(() => {
+    if (isConnected && address) {
+      axios
+        .get('/api/leaderboard', {
+          params: {
+            address: address,
+          },
+        })
+        .then((result) => {
+          const data = result.data;
+          if (data.exists == false || data.should_update == true) {
+            axios
+              .post('/api/leaderboard', {
+                address: address,
+              })
+              .then((res) => {
+                const d = res.data;
+                if (d.exists) {
+                  axios
+                    .get('/api/leaderboard', {
+                      params: {
+                        address: address,
+                      },
+                    })
+                    .then((r) => {
+                      const _d = r.data;
+                      setPoints(_d.points);
+                      setRank(_d.rank);
+                    });
+                }
+              });
+          } else {
+            setPoints(data.points);
+            setRank(data.rank);
+          }
+        });
+    }
+  }, [isConnected, address]);
+
+  return connected ? (
     <LeaderboardHeroContainer>
       <HeroGlow />
 
       <section className='user-info'>
         <Typography variant={matches ? 'h2' : 'h1Mobile'} mb={2}>
-          Hello
+          Welcome
           <br />
-          Fido
         </Typography>
 
         <Typography variant={matches ? 'body1' : 'body1Mobile'}>
@@ -53,11 +123,19 @@ const LeaderboardHero = () => {
       <section className='leaderboard-info'>
         <LeaderboardInfoGlow />
 
-        <LeaderboardTag icon={TrophyIcon} title='Your Points' value={points} />
+        <LeaderboardTag
+          icon={TrophyIcon}
+          title='Your Points'
+          value={points.toString()}
+        />
 
         {/* <LeaderboardDivider orientation='vertical' flexItem /> */}
 
-        <LeaderboardTag icon={RankIcon} title='Your Rank' value={rank} />
+        <LeaderboardTag
+          icon={RankIcon}
+          title='Your Rank'
+          value={(rank + 1).toString()}
+        />
 
         {/* <LeaderboardDivider orientation='vertical' flexItem /> */}
 
@@ -70,7 +148,7 @@ const LeaderboardHero = () => {
         <div className='clain-reward'>
           {matches && <PriceTag price={rewards} />}
 
-          <TertiaryButton>Claim rewards</TertiaryButton>
+          <TertiaryButton onClick={handleClaim}>Claim rewards</TertiaryButton>
         </div>
       </section>
     </LeaderboardHeroContainer>
@@ -86,7 +164,7 @@ const LeaderboardHero = () => {
         <TertiaryButton onClick={handleOpen}>Connect Wallet</TertiaryButton>
       </ConnectWalletNotify>
 
-      <ConnectWalletModal open={open} handleClose={handleClose} />
+      {open && <ConnectWalletModal open={open} handleClose={handleClose} />}
     </>
   );
 };
