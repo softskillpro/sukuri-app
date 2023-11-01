@@ -218,3 +218,11 @@ model LeaderboardPosition {
   points       String
   last_updated String
 }
+
+model Affiliate {
+  id          String  @id @default(uuid())
+  email       String?
+  name        String @unique
+  twitter     String
+  description String
+}

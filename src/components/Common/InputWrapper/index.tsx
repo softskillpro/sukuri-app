@@ -20,6 +20,7 @@ const InputWrapper = ({
   placeholder,
   className,
   handleChange,
+  required = false,
 }: InputWrapperProps) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('md'));
@@ -37,10 +38,9 @@ const InputWrapper = ({
           <input
             value={value}
             type={type}
-            required
             name={name}
+            required={required}
             placeholder={placeholder}
-            maxLength={12}
             className={className || 'input-text'}
             onChange={handleChange}
           />

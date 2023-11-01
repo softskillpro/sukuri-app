@@ -7,6 +7,8 @@ import { ArrowRightIcon } from '@/components/Icons';
 import InputWrapper from '@/components/Common/InputWrapper';
 import { TertiaryButton } from '@/components/Common/StyledButton';
 import { BecomeAnAffiliateContainer } from './styles';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -36,6 +38,19 @@ const BecomeAnAffiliate = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    axios
+      .post('/api/affiliate', params)
+      .then((res) => {
+        if (res.status == 201) {
+          toast.success('Affiliate Request Submitted!');
+          setParams({ name: '', email: '', twitter: '', reason: '' });
+        } else if (res.status == 400) {
+          toast.error('Affiliate Request Already Submitted!');
+        }
+      })
+      .catch((reason: any) => {
+        toast.error('Already submitted or something went wrong.');
+      });
   };
 
   return (
@@ -58,6 +73,7 @@ const BecomeAnAffiliate = () => {
             type='text'
             value={params.name}
             name='name'
+            required={true}
             placeholder='Enter your name'
             handleChange={handleChange}
           />
@@ -78,6 +94,7 @@ const BecomeAnAffiliate = () => {
             format='input'
             type='text'
             value={params.twitter}
+            required={true}
             name='twitter'
             placeholder='Enter your twitter handle'
             handleChange={handleChange}
@@ -88,6 +105,7 @@ const BecomeAnAffiliate = () => {
             format='textarea'
             type='text'
             value={params.reason}
+            required={true}
             name='reason'
             placeholder='In a few words, tell us why you think you’re a good fit for the Sukuri affiliate program?'
             handleChange={handleChange}
