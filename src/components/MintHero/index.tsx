@@ -54,7 +54,7 @@ const MintHero = () => {
   const [name, setName] = useState('');
   const [referral, setReferral] = useState(ref);
   const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(4);
+  const [open, setOpen] = useState(0);
   const [txHash, setTxHash] = useState<`0x${string}` | undefined>(undefined);
   const [price, setPrice] = useState(0.018777);
   const [isWhitelisted, setIsWhitelisted] = useState(false);

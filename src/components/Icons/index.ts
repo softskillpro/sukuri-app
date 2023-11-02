@@ -32,6 +32,7 @@ import RankIcon from './RankIcon';
 import TrophyIcon from './TrophyIcon';
 import ArrowDownIcon2 from './ArrowDownIcon2';
 import RocketIcon from './RocketIcon';
+import InfoIcon from './InfoIcon';
 
 export {
   ArrowRightIcon,
@@ -68,4 +69,5 @@ export {
   TrophyIcon,
   ArrowDownIcon2,
   RocketIcon,
+  InfoIcon,
 };
