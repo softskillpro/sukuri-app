@@ -18,24 +18,21 @@ import {
   writeContract,
   readContract,
 } from '@wagmi/core';
-import { Typography, setRef, useMediaQuery, useTheme } from '@mui/material';
+import { Typography, useMediaQuery, useTheme } from '@mui/material';
 import { HeroGlow } from '@/components/Common/HeroGlow';
 import { Section } from '@/components/Common/Section';
 import { FlexBox } from '@/components/Common/FlexBox';
 import { StyledButton } from '@/components/Common/StyledButton';
 import { Loader } from '@/components/Common/Loader';
 import SpinnerModal from '@/components/SpinnerModal';
-import { CircleIcon } from '@/components/Icons';
 import { MintHeroContainer } from './styles';
 import { getAddress, parseEther } from 'viem';
 import ABI from '@/contract/primeAbi.json';
 import axios from 'axios';
-import { bigint } from 'zod';
 
 const inter = Inter({
   // weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
-  variable: '--Inter',
 });
 
 const MintHero = () => {

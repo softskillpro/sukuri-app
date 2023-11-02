@@ -20,7 +20,7 @@ export const SpinnerModalContainer = styled(Modal)(({ theme }) => ({
       transform: 'translate(-50%, -50%)',
       flexDirection: 'column',
       width: 'max-content',
-      padding: '80px 150px',
+      padding: '80px 80px',
       borderRadius: 7,
       background: theme.palette.topProductsGradient.main,
       boxShadow: theme.palette.boxShadow.main,
@@ -107,6 +107,11 @@ export const SpinnerModalContainer = styled(Modal)(({ theme }) => ({
           background: 'transparent',
         },
       },
+
+      '.step4-btn-group': {
+        gap: 10,
+        margin: '60px 0 22px',
+      },
     },
   },
 
@@ -147,6 +152,14 @@ export const SpinnerModalContainer = styled(Modal)(({ theme }) => ({
 
         '.button-list': {
           flexDirection: 'column',
+        },
+
+        '.step4-btn-group': {
+          flexDirection: 'column',
+
+          button: {
+            width: '100%',
+          },
         },
       },
     },
