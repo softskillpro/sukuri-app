@@ -1,4 +1,4 @@
-import { StyledModalContainer } from './styles';
+import { StyledModalContainer, SecondaryModalContainer } from './styles';
 
 interface StyledModalProps {
   open: boolean;
@@ -18,3 +18,18 @@ const StyledModal = ({ open, handleClose, children }: StyledModalProps) => (
 );
 
 export default StyledModal;
+
+export const SecondaryModal = ({
+  open,
+  handleClose,
+  children,
+}: StyledModalProps) => (
+  <SecondaryModalContainer
+    open={open}
+    onClose={handleClose}
+    aria-labelledby='secondary-modal-title'
+    aria-describedby='secondary-modal-description'
+  >
+    {children}
+  </SecondaryModalContainer>
+);

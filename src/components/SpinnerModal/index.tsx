@@ -1,15 +1,19 @@
 import { memo, useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Inter } from 'next/font/google';
 import { Typography } from '@mui/material';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FlexBox } from '@/components/Common/FlexBox';
+import { TertiaryButton } from '@/components/Common/StyledButton';
 import {
+  ArrowRightIcon,
   CloseIcon,
   SpinnerIcon,
   CopyIcon,
   TwitterIcon2,
+  RocketIcon,
 } from '@/components/Icons';
 import { SpinnerModalContainer } from './styles';
 import { toast } from 'react-toastify';
@@ -22,7 +26,7 @@ const inter = Inter({
 interface SpinnerModalProps {
   open: boolean;
   state: number;
-  code: string;
+  code?: string;
   name: string;
   txHash?: `0x${string}`;
   handleClose: () => void;
@@ -31,11 +35,12 @@ interface SpinnerModalProps {
 const SpinnerModal = ({
   open,
   state,
-  code,
   name,
   txHash,
   handleClose,
 }: SpinnerModalProps) => {
+  const router = useRouter();
+
   const [step, setStep] = useState(0);
 
   useEffect(() => {
@@ -57,6 +62,11 @@ Use my referral link to get 10% off!`);
       '_blank',
     );
   }, [name]);
+
+  const handlePurchase = () => {
+    router.push('/');
+    handleClose();
+  };
 
   return (
     <SpinnerModalContainer
@@ -134,7 +144,7 @@ Use my referral link to get 10% off!`);
                 Share your link to get extra points and earn ETH
               </Typography>
             </>
-          ) : (
+          ) : step === 3 ? (
             <>
               <div className='intro'>
                 <Typography variant='body3'>
@@ -182,6 +192,34 @@ Use my referral link to get 10% off!`);
                 Show off your Sukuri Prime Pass on X to get extra points and
                 earn ETH
               </Typography>
+            </>
+          ) : (
+            <>
+              <Typography variant='h4' mb={1.5} textAlign='center'>
+                Thank You!
+              </Typography>
+              <Typography variant='body3' mb={3.75} textAlign='center'>
+                Welcome to Sukuri Prime
+              </Typography>
+
+              <RocketIcon sx={{ fontSize: 220 }} />
+
+              <FlexBox className='step4-btn-group'>
+                <TertiaryButton onClick={handlePurchase}>
+                  Purchase another
+                  <ArrowRightIcon sx={{ fontSize: 24, ml: 0.6 }} />
+                </TertiaryButton>
+                <TertiaryButton onClick={handleClose}>
+                  More on Sukuri
+                  <ArrowRightIcon sx={{ fontSize: 24, ml: 0.6 }} />
+                </TertiaryButton>
+              </FlexBox>
+
+              <Link href={`/leaderboard`}>
+                <Typography variant='bodyBoldMobile' color='#ABD2FF'>
+                  {`Become an affiliate >`}
+                </Typography>
+              </Link>
             </>
           )}
         </FlexBox>
