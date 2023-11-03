@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles';
 
 export const SearchBarContainer = styled('section')(({ theme }) => ({
   position: 'relative',
+  width: '100%',
 
   '.input-glow': {
     opacity: 0.2,

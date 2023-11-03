@@ -89,6 +89,8 @@ export const company: FooterLink[] = [
 
 export const currencies = ['USD', 'ETH'];
 
+export const priceRange = ['Price:low to high', 'Price:high to low'];
+
 export const explorers: Explorer[] = [
   {
     title: 'TRADING',
@@ -109,12 +111,35 @@ export const explorers: Explorer[] = [
 ];
 
 export const categories = [
-  { title: 'Trading', width: 77 },
-  { title: 'Sports Betting', width: 121 },
-  { title: 'E-commerce', width: 111 },
-  { title: 'Gaming', width: 78 },
-  { title: 'Business', width: 87 },
-  { title: 'DAOS', width: 39 },
+  { title: 'Trading', value: 'trading', width: 77 },
+  { title: 'Sports Betting', value: 'sports-betting', width: 121 },
+  { title: 'E-commerce', value: 'e-commerce', width: 111 },
+  { title: 'Gaming', value: 'gaming', width: 78 },
+  { title: 'Business', value: 'business', width: 87 },
+  { title: 'DAOS', value: 'daos', width: 39 },
+];
+
+export const statues = [
+  {
+    name: 'All',
+    value: 'all',
+  },
+  {
+    name: 'New',
+    value: 'new',
+  },
+  {
+    name: 'Resale',
+    value: 'resale',
+  },
+  {
+    name: 'Trending',
+    value: 'trending',
+  },
+  {
+    name: 'Popular',
+    value: 'popular',
+  },
 ];
 
 export const categoriesOfSubscription: CategoryOfSubscription[] = [

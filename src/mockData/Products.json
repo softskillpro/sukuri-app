@@ -1,0 +1,250 @@
+[
+    {
+        "id": "3c97d7b2-5647-4c1a-87d7-2fbfc97b5f0c",
+        "name": "Exclusive DAO Alpha Group",
+        "short_description": "Premium access to DAO Alpha strategies and insights.",
+        "long_description": "Get exclusive access to the DAO Alpha Group. It offers insights, strategies, and discussions around DAOs. Make informed decisions and leverage the collective knowledge of the group!",
+        "thumbnail_image": "https://example.com",
+        "large_image": "https://example.com",
+        "chain_id": 1,
+        "member_count": 1985,
+        "is_erc721": false,
+        "is_featured": true,
+        "userId": "af7d39af-84a9-4a4b-b6a2-18563e42bc6e",
+        "created_date": "2023-10-06T17:02:15.454Z",
+        "updated_date": "2023-10-06T17:02:15.454Z",
+        "discord_url": null,
+        "instagram_url": null,
+        "medium_url": null,
+        "telegram_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "tiers": [
+            {
+                "id": "61d46e08-e208-447a-b50e-b2aa946f91e5",
+                "address": "0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d",
+                "tier_id": 3,
+                "name": "Elite Tier",
+                "price": "50000000000000000000",
+                "unit": "wei",
+                "supply": 1,
+                "filled": 889,
+                "subscription_length": 90,
+                "subscription_length_unit": "days",
+                "description": "The all inclusive Elite tier, access to everything and more!",
+                "features": [
+                    "Access to all internal tooling and servers",
+                    "Seat at the table with the board."
+                ],
+                "projectId": "3c97d7b2-5647-4c1a-87d7-2fbfc97b5f0c",
+                "created_date": "2023-10-06T17:02:17.768Z",
+                "updated_date": "2023-10-06T17:02:17.768Z"
+            },
+            {
+                "id": "86598f25-d35a-4898-b2ed-17485af648fe",
+                "address": "0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d",
+                "tier_id": 1,
+                "name": "Insight Tier",
+                "price": "10000000000000000000",
+                "unit": "wei",
+                "supply": 1,
+                "filled": 523,
+                "subscription_length": 30,
+                "subscription_length_unit": "days",
+                "description": "Gain valuable insights to new tokens, NFTs, and Web3 projects.",
+                "features": [
+                    "Private Discord Access",
+                    "Voting Rights to DAO Alpha Group"
+                ],
+                "projectId": "3c97d7b2-5647-4c1a-87d7-2fbfc97b5f0c",
+                "created_date": "2023-10-06T17:02:17.768Z",
+                "updated_date": "2023-10-06T17:02:17.768Z"
+            },
+            {
+                "id": "8d17d223-f8df-422b-8ebc-ff18819b1ac3",
+                "address": "0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d",
+                "tier_id": 2,
+                "name": "Strategy Tier",
+                "price": "20000000000000000000",
+                "unit": "wei",
+                "supply": 1,
+                "filled": 573,
+                "subscription_length": 60,
+                "subscription_length_unit": "days",
+                "description": "Everything Insight tier includes plus toolkits for building your own trading strategies.",
+                "features": [
+                    "Access to internal toolkits",
+                    "1 on 1 strategy building with experts"
+                ],
+                "projectId": "3c97d7b2-5647-4c1a-87d7-2fbfc97b5f0c",
+                "created_date": "2023-10-06T17:02:17.769Z",
+                "updated_date": "2023-10-06T17:02:17.769Z"
+            }
+        ]
+    },
+    {
+        "id": "3c97d7b2-5647-4c1a-87d7-2fbfc97b5f0c",
+        "name": "Exclusive DAO Alpha Group",
+        "short_description": "Premium access to DAO Alpha strategies and insights.",
+        "long_description": "Get exclusive access to the DAO Alpha Group. It offers insights, strategies, and discussions around DAOs. Make informed decisions and leverage the collective knowledge of the group!",
+        "thumbnail_image": "https://example.com",
+        "large_image": "https://example.com",
+        "chain_id": 1,
+        "member_count": 1985,
+        "is_erc721": false,
+        "is_featured": true,
+        "userId": "af7d39af-84a9-4a4b-b6a2-18563e42bc6e",
+        "created_date": "2023-10-06T17:02:15.454Z",
+        "updated_date": "2023-10-06T17:02:15.454Z",
+        "discord_url": null,
+        "instagram_url": null,
+        "medium_url": null,
+        "telegram_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "tiers": [
+            {
+                "id": "61d46e08-e208-447a-b50e-b2aa946f91e5",
+                "address": "0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d",
+                "tier_id": 3,
+                "name": "Elite Tier",
+                "price": "50000000000000000000",
+                "unit": "wei",
+                "supply": 1,
+                "filled": 889,
+                "subscription_length": 90,
+                "subscription_length_unit": "days",
+                "description": "The all inclusive Elite tier, access to everything and more!",
+                "features": [
+                    "Access to all internal tooling and servers",
+                    "Seat at the table with the board."
+                ],
+                "projectId": "3c97d7b2-5647-4c1a-87d7-2fbfc97b5f0c",
+                "created_date": "2023-10-06T17:02:17.768Z",
+                "updated_date": "2023-10-06T17:02:17.768Z"
+            },
+            {
+                "id": "86598f25-d35a-4898-b2ed-17485af648fe",
+                "address": "0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d",
+                "tier_id": 1,
+                "name": "Insight Tier",
+                "price": "10000000000000000000",
+                "unit": "wei",
+                "supply": 1,
+                "filled": 523,
+                "subscription_length": 30,
+                "subscription_length_unit": "days",
+                "description": "Gain valuable insights to new tokens, NFTs, and Web3 projects.",
+                "features": [
+                    "Private Discord Access",
+                    "Voting Rights to DAO Alpha Group"
+                ],
+                "projectId": "3c97d7b2-5647-4c1a-87d7-2fbfc97b5f0c",
+                "created_date": "2023-10-06T17:02:17.768Z",
+                "updated_date": "2023-10-06T17:02:17.768Z"
+            },
+            {
+                "id": "8d17d223-f8df-422b-8ebc-ff18819b1ac3",
+                "address": "0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d",
+                "tier_id": 2,
+                "name": "Strategy Tier",
+                "price": "20000000000000000000",
+                "unit": "wei",
+                "supply": 1,
+                "filled": 573,
+                "subscription_length": 60,
+                "subscription_length_unit": "days",
+                "description": "Everything Insight tier includes plus toolkits for building your own trading strategies.",
+                "features": [
+                    "Access to internal toolkits",
+                    "1 on 1 strategy building with experts"
+                ],
+                "projectId": "3c97d7b2-5647-4c1a-87d7-2fbfc97b5f0c",
+                "created_date": "2023-10-06T17:02:17.769Z",
+                "updated_date": "2023-10-06T17:02:17.769Z"
+            }
+        ]
+    },{
+        "id": "3c97d7b2-5647-4c1a-87d7-2fbfc97b5f0c",
+        "name": "Exclusive DAO Alpha Group",
+        "short_description": "Premium access to DAO Alpha strategies and insights.",
+        "long_description": "Get exclusive access to the DAO Alpha Group. It offers insights, strategies, and discussions around DAOs. Make informed decisions and leverage the collective knowledge of the group!",
+        "thumbnail_image": "https://example.com",
+        "large_image": "https://example.com",
+        "chain_id": 1,
+        "member_count": 1985,
+        "is_erc721": false,
+        "is_featured": true,
+        "userId": "af7d39af-84a9-4a4b-b6a2-18563e42bc6e",
+        "created_date": "2023-10-06T17:02:15.454Z",
+        "updated_date": "2023-10-06T17:02:15.454Z",
+        "discord_url": null,
+        "instagram_url": null,
+        "medium_url": null,
+        "telegram_url": null,
+        "twitter_url": null,
+        "website_url": null,
+        "tiers": [
+            {
+                "id": "61d46e08-e208-447a-b50e-b2aa946f91e5",
+                "address": "0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d",
+                "tier_id": 3,
+                "name": "Elite Tier",
+                "price": "50000000000000000000",
+                "unit": "wei",
+                "supply": 1,
+                "filled": 889,
+                "subscription_length": 90,
+                "subscription_length_unit": "days",
+                "description": "The all inclusive Elite tier, access to everything and more!",
+                "features": [
+                    "Access to all internal tooling and servers",
+                    "Seat at the table with the board."
+                ],
+                "projectId": "3c97d7b2-5647-4c1a-87d7-2fbfc97b5f0c",
+                "created_date": "2023-10-06T17:02:17.768Z",
+                "updated_date": "2023-10-06T17:02:17.768Z"
+            },
+            {
+                "id": "86598f25-d35a-4898-b2ed-17485af648fe",
+                "address": "0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d",
+                "tier_id": 1,
+                "name": "Insight Tier",
+                "price": "10000000000000000000",
+                "unit": "wei",
+                "supply": 1,
+                "filled": 523,
+                "subscription_length": 30,
+                "subscription_length_unit": "days",
+                "description": "Gain valuable insights to new tokens, NFTs, and Web3 projects.",
+                "features": [
+                    "Private Discord Access",
+                    "Voting Rights to DAO Alpha Group"
+                ],
+                "projectId": "3c97d7b2-5647-4c1a-87d7-2fbfc97b5f0c",
+                "created_date": "2023-10-06T17:02:17.768Z",
+                "updated_date": "2023-10-06T17:02:17.768Z"
+            },
+            {
+                "id": "8d17d223-f8df-422b-8ebc-ff18819b1ac3",
+                "address": "0x7A7e6d4A4f2B1f9C946d57D14E6f052A5B7eeB9d",
+                "tier_id": 2,
+                "name": "Strategy Tier",
+                "price": "20000000000000000000",
+                "unit": "wei",
+                "supply": 1,
+                "filled": 573,
+                "subscription_length": 60,
+                "subscription_length_unit": "days",
+                "description": "Everything Insight tier includes plus toolkits for building your own trading strategies.",
+                "features": [
+                    "Access to internal toolkits",
+                    "1 on 1 strategy building with experts"
+                ],
+                "projectId": "3c97d7b2-5647-4c1a-87d7-2fbfc97b5f0c",
+                "created_date": "2023-10-06T17:02:17.769Z",
+                "updated_date": "2023-10-06T17:02:17.769Z"
+            }
+        ]
+    }
+]

@@ -49,6 +49,17 @@ export interface CategoryOfSubscription {
   value: string;
 }
 
+export interface Category {
+  title: string;
+  value: string;
+  width: number;
+}
+
+export interface Status {
+  name: string;
+  value: string;
+}
+
 export interface Subscription {
   address: string;
   tier_id: number;
