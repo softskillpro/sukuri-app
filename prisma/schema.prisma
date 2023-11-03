@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
 }
 
 datasource db {
@@ -113,6 +114,7 @@ model Project {
   accepted_payments ProjectPayment[]
   tiers             ProjectTier[]
   subscriptions     Subscription[]
+  Category          Category[]
 }
 
 model Balance {
@@ -217,4 +219,14 @@ model LeaderboardPosition {
   address      String @unique
   points       String
   last_updated String
+}
+
+model Category {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+  projectId   String
+  Project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
 }
