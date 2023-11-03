@@ -20,10 +20,13 @@ import { type Session } from 'next-auth';
 import { getServerAuthSession } from '@/server/auth';
 import { prisma } from '@/server/db';
 
+import { verifyEthereumSignature, checkNFTOwnership } from '@/lib/auth';
+
 type CreateContextOptions = {
   session: Session | null;
   user?: {
     id: string;
+    address: string;
   };
 };
 
@@ -61,7 +64,7 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
 
   return createInnerTRPCContext({
     session,
-    user: userId ? { id: userId } : undefined,
+    user: userId ? { id: userId, address:session.user.address } : undefined,
   });
 };
 
@@ -126,6 +129,25 @@ const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
   });
 });
 
+
+/** Reusable middleware that checks if users own a prime NFT before running the procedure. */
+const enforceNFTOwnership = t.middleware(async ({ ctx, next }) => {
+  const ethAddress: string | undefined = ctx.session?.user.address;
+  // Ensure that there's an Ethereum address in the input
+  if (!ethAddress) {
+    throw new TRPCError({ code: 'BAD_REQUEST', message: 'Ethereum address is required' });
+  }
+
+  const ownsNFT = await checkNFTOwnership(ethAddress);
+
+  if (!ownsNFT) {
+    throw new TRPCError({ code: 'FORBIDDEN', message: 'User does not own the required NFT' });
+  }
+
+  return next();
+});
+
+
 /**
  * Protected (authenticated) procedure
  *
@@ -135,3 +157,14 @@ const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
  * @see https://trpc.io/docs/procedures
  */
 export const protectedProcedure = t.procedure.use(enforceUserIsAuthed);
+
+
+/**
+ * Prime (authenticated) procedure
+ *
+ * If you want a query or mutation to ONLY be accessible to logged in users, use this. It verifies
+ * the session is valid and guarantees `ctx.session.user` is a prime holder
+ *
+ * @see https://trpc.io/docs/procedures
+ */
+export const primeProcedure = t.procedure.use(enforceUserIsAuthed);

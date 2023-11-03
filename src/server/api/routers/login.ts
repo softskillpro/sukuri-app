@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { createTRPCRouter, publicProcedure } from '@/server/api/trpc';
-import { verifyEthereumSignature } from '@/lib/auth';
+import { createTRPCRouter, publicProcedure, primeProcedure } from '@/server/api/trpc';
+import { verifyEthereumSignature, checkNFTOwnership } from '@/lib/auth';
 import { SignInInputSchema, SignUpInputSchema } from '@/lib/models';
 
 const SignInput = z.object({
@@ -20,13 +20,13 @@ export const loginRouter = createTRPCRouter({
     /**
    * Register a new user based on their Ethereum signature.
    *
-   * @function signin
+   * @function signinPrime
    * @param {SigninInputSchema} input - The registration details from the client.
    * @param {Object} ctx - The context object.
    * @returns {Object} - Object indicating if the registration was successful.
    * @throws {Error} Throws an error if registration fails.
    */
-    signin: publicProcedure
+    signinPrime: primeProcedure
         .input(SignInput)
         .mutation(async ({ input, ctx }) => {
             const username = input.username || input.ethAddress;
@@ -60,13 +60,13 @@ export const loginRouter = createTRPCRouter({
     /**
 * Register a new user based on their Ethereum signature.
 *
-* @function signup
+* @function signupPrime
 * @param {SignUpInputSchema} input - The registration details from the client.
 * @param {Object} ctx - The context object.
 * @returns {Object} - Object indicating if the registration was successful.
 * @throws {Error} Throws an error if registration fails.
 */
-    signup: publicProcedure
+    signupPrime: publicProcedure
         .input(SignInput)
         .mutation(async ({ input, ctx }) => {
             const username = input.username || input.ethAddress;
@@ -80,9 +80,15 @@ export const loginRouter = createTRPCRouter({
             if (!isValidSignature) {
                 throw new Error('Invalid signature or Ethereum address');
             }
+            const ownsNFT = await checkNFTOwnership(input.ethAddress);
+
+            if (!ownsNFT) {
+                throw new Error('User does not own the required NFT');
+            }
 
             const existingUser = await ctx.prisma.user.findUnique({
                 where: { address: input.ethAddress.toLowerCase() },
+                
             });
 
             if (existingUser) {
@@ -101,6 +107,7 @@ export const loginRouter = createTRPCRouter({
             }
 
             ctx.session.user.id = user.id;
+            ctx.session.user.address = user.address;
 
             return { success: true };
         }),

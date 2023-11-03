@@ -32,7 +32,7 @@ export const userRouter = createTRPCRouter({
      * @function get
      * @param {string} input - The ID of the user.
      * @param {Object} ctx - The context object.
-     * @returns {User/User[]} - The requested user/users.
+    * @returns {PrismaUser/PrismaUser[]} - The requested user/users.
      */
     get: publicProcedure
         .input(GetInput)

@@ -46,7 +46,6 @@ model User {
   balances       Balance[]
   Image          Image[]
   PaymentHistory PaymentHistory[]
-  UserPoints     UserPoints[]
   Subscription   Subscription[]
   SukuriPass     SukuriPass?      @relation(fields: [sukuriPassId], references: [id])
   sukuriPassId   String?
@@ -203,17 +202,6 @@ model PaymentHistory {
   @@index([userId])
   @@index([subscriptionId])
   @@index([txn_hash])
-}
-
-model UserPoints {
-  id     String   @id @default(uuid())
-  userId String
-  points Int      @default(0)
-  reason String
-  date   DateTime @default(now())
-  user   User     @relation(fields: [userId], references: [id])
-
-  @@index([userId])
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.

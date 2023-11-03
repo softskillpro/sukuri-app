@@ -144,3 +144,8 @@ export interface SignUpInputSchema {
     timestamp: string,
     nonce: string
 }
+
+export interface EthereumProviderConfig {
+    endpoint: string;
+    nftContractAddress: string;
+}
