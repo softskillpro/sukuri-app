@@ -10,6 +10,7 @@ interface IProps {
   children: React.ReactNode;
 }
 
+
 const BasicAccordion: React.FC<IProps> = ({ title, children }) => {
   return (
     <StyledAccordion defaultExpanded disableGutters>
